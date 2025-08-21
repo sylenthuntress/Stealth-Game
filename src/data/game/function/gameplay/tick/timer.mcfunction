@@ -16,29 +16,29 @@ execute store result bossbar game:time/round_timer value run scoreboard players 
         scoreboard objectives add var.minutes dummy
         minutes = Scoreboard("var.minutes")
         seconds = Scoreboard("var.seconds")
-        minutes["#VARIABLE"] = timer["$time"] / 1200
-        seconds["#VARIABLE"] = (timer["$time"] / 20) - 60 * minutes["#VARIABLE"]
+        minutes["$variable"] = timer["$time"] / 1200
+        seconds["$variable"] = (timer["$time"] / 20) - 60 * minutes["$variable"]
 
     time_display = {
         "translate": "game.round_timer",
         "with": [
             {
                 "score": {
-                    "name": minutes["#VARIABLE"].scoreholder,
-                    "objective": minutes["#VARIABLE"].objective
+                    "name": minutes["$variable"].scoreholder,
+                    "objective": minutes["$variable"].objective
                 }
             },
             ":",
             {
                 "score": {
-                    "name": seconds["#VARIABLE"].scoreholder,
-                    "objective": seconds["#VARIABLE"].objective
+                    "name": seconds["$variable"].scoreholder,
+                    "objective": seconds["$variable"].objective
                 }
             }
         ]
     }
-    execute if score #VARIABLE var.seconds matches 10.. run bossbar set game:time/round_timer name time_display
-        execute if score #VARIABLE var.seconds matches ..9:
+    execute if score $variable var.seconds matches 10.. run bossbar set game:time/round_timer name time_display
+        execute if score $variable var.seconds matches ..9:
             time_display."with"[1] += "0"
             bossbar set game:time/round_timer name time_display
     
