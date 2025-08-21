@@ -1,3 +1,7 @@
+from bolt_expressions import Scoreboard, Data
+import datetime
+timer = Scoreboard.objective("time.round_timer")
+
 # Increment timer
 scoreboard players remove #TIME time.round_timer 1
 execute store result bossbar game:time/round_timer value run scoreboard players get #TIME time.round_timer
@@ -8,17 +12,40 @@ execute store result bossbar game:time/round_timer value run scoreboard players 
     execute if score #TIME time.round_timer matches 0 run return fail
 
     # Update bossbar name to reflect timer
-    bossbar set game:time/round_timer name {
+        # Calculate minutes and seconds
+        scoreboard objectives add var.seconds dummy
+        scoreboard objectives add var.minutes dummy
+        minutes = Scoreboard("var.minutes")
+        seconds = Scoreboard("var.seconds")
+        minutes["#VARIABLE"] = timer["#TIME"] / 1200
+        seconds["#VARIABLE"] = (timer["#TIME"] / 20) - 60 * minutes["#VARIABLE"]
+
+    time_display = {
         "translate": "game.round_timer",
         "with": [
             {
                 "score": {
-                    "name": "#TIME",
-                    "objective": "time.round_timer"
+                    "name": minutes["#VARIABLE"].scoreholder,
+                    "objective": minutes["#VARIABLE"].objective
+                }
+            },
+            ":",
+            {
+                "score": {
+                    "name": seconds["#VARIABLE"].scoreholder,
+                    "objective": seconds["#VARIABLE"].objective
                 }
             }
         ]
     }
+    execute if score #VARIABLE var.seconds matches 10.. run bossbar set game:time/round_timer name time_display
+        execute if score #VARIABLE var.seconds matches ..9:
+            time_display."with"[1] += "0"
+            bossbar set game:time/round_timer name time_display
+    
+        # Clear unneeded variables
+        scoreboard objectives remove var.minutes
+        scoreboard objectives remove var.seconds
 
     # Change bossbar color as timer progresses
         # Set bossbar to green by default
