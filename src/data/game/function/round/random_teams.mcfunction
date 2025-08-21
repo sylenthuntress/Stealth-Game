@@ -12,7 +12,7 @@ execute store result score $variable var.player_count run function util:get/play
 playerCount["$variable"] = percentage(playerCount["$variable"], seekerRatio["$config"])
 
 # Select random player as seeker, then loop until complete
-execute as @r[tag=playing,tag=!seeker_blacklist] unless score @s game.player.team_id matches 1 run scoreboard players set @s game.player.team_id 1
+execute as @r[tag=playing,tag=!seeker_blacklist] run scoreboard players set @s game.player.team_id 1
 tag @a[scores={game.player.team_id=1}] add seeker_blacklist
 
 execute store result score $variable var.seeker_count run execute if entity @a[scores={game.player.team_id=1}]

@@ -17,6 +17,10 @@ scoreboard objectives add gamestate.round_count dummy
 # Game
 scoreboard objectives add game.player.team_id dummy
 scoreboard objectives add game.player.health dummy
+scoreboard objectives add game.player.points dummy
+scoreboard objectives modify game.player.points displayname {
+    "translate":"game.player.points"
+}
 
 # Math
 scoreboard objectives add constant.100 dummy
