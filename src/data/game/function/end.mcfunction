@@ -5,7 +5,8 @@ execute if score $gamestate gamestate.round_active matches 1 run function game:r
 scoreboard players set $gamestate gamestate.game_active 0
 
 # Reset player tags
-execute as @a run function game:reset_tags
+tag @a remove playing
+tag @a remove seeker_blacklist
 
 # Broadcast ending message
 tellraw @a {translate:"game.end"}
