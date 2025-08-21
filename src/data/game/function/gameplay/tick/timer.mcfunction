@@ -1,5 +1,4 @@
 from bolt_expressions import Scoreboard, Data
-import datetime
 timer = Scoreboard.objective("time.round_timer")
 
 # Increment timer
