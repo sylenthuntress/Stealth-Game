@@ -3,7 +3,8 @@
     "description": "meow",
     "author": "SylentHuntress",
     "require": [
-        "bolt"
+        "bolt",
+        "bolt_expressions"
     ],
     "data_pack": {
         "load": [ "src" ],
