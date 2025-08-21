@@ -2,13 +2,13 @@ from bolt_expressions import Scoreboard, Data
 timer = Scoreboard.objective("time.round_timer")
 
 # Increment timer
-scoreboard players remove #TIME time.round_timer 1
-execute store result bossbar game:time/round_timer value run scoreboard players get #TIME time.round_timer
+scoreboard players remove $time time.round_timer 1
+execute store result bossbar game:time/round_timer value run scoreboard players get $time time.round_timer
 
 # Run appropriate logic based on timer
     # End game if timer reaches zero
-    execute if score #TIME time.round_timer matches 0 run function game:round/end
-    execute if score #TIME time.round_timer matches 0 run return fail
+    execute if score $time time.round_timer matches 0 run function game:round/end
+    execute if score $time time.round_timer matches 0 run return fail
 
     # Update bossbar name to reflect timer
         # Calculate minutes and seconds
@@ -16,8 +16,8 @@ execute store result bossbar game:time/round_timer value run scoreboard players 
         scoreboard objectives add var.minutes dummy
         minutes = Scoreboard("var.minutes")
         seconds = Scoreboard("var.seconds")
-        minutes["#VARIABLE"] = timer["#TIME"] / 1200
-        seconds["#VARIABLE"] = (timer["#TIME"] / 20) - 60 * minutes["#VARIABLE"]
+        minutes["#VARIABLE"] = timer["$time"] / 1200
+        seconds["#VARIABLE"] = (timer["$time"] / 20) - 60 * minutes["#VARIABLE"]
 
     time_display = {
         "translate": "game.round_timer",
@@ -51,18 +51,18 @@ execute store result bossbar game:time/round_timer value run scoreboard players 
         bossbar set game:time/round_timer color green
 
         # Set bossbar to yellow at 50%
-        execute store result score #OPERAND math.division run function util:get/base_timer
-        scoreboard players set #OPERATOR math.division 2
+        execute store result score $operand math.division run function util:get/base_timer
+        scoreboard players set $operator math.division 2
         function util:math/division
-        execute if score #TIME time.round_timer <= #RESULT math.result run bossbar set game:time/round_timer color yellow
+        execute if score $time time.round_timer <= $result math.result run bossbar set game:time/round_timer color yellow
 
         # Set bossbar to red at 25%
-        scoreboard players operation #OPERAND math.division = #RESULT math.result
-        scoreboard players set #OPERATOR math.division 2
+        scoreboard players operation $operand math.division = $result math.result
+        scoreboard players set $operator math.division 2
         function util:math/division
-        execute if score #TIME time.round_timer <= #RESULT math.result run bossbar set game:time/round_timer color red
+        execute if score $time time.round_timer <= $result math.result run bossbar set game:time/round_timer color red
     
     # Play final warning sounds as timer reaches zero
-    execute if score #TIME time.round_timer matches 60 as @a if function util:test/is_playing run playsound entity.arrow.hit master @s ~ ~ ~ 2 0.5
-    execute if score #TIME time.round_timer matches 40 as @a if function util:test/is_playing run playsound entity.arrow.hit master @s ~ ~ ~ 2 0.5
-    execute if score #TIME time.round_timer matches 20 as @a if function util:test/is_playing run playsound entity.arrow.hit master @s ~ ~ ~ 2 0.5
+    execute if score $time time.round_timer matches 60 as @a if function util:test/is_playing run playsound entity.arrow.hit master @s ~ ~ ~ 2 0.5
+    execute if score $time time.round_timer matches 40 as @a if function util:test/is_playing run playsound entity.arrow.hit master @s ~ ~ ~ 2 0.5
+    execute if score $time time.round_timer matches 20 as @a if function util:test/is_playing run playsound entity.arrow.hit master @s ~ ~ ~ 2 0.5

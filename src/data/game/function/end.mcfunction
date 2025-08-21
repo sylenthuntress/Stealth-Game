@@ -1,8 +1,8 @@
 # End any active rounds
-execute if score #GAMESTATe gamestate.round_active matches 1 run function game:round/end
+execute if score $gamestate gamestate.round_active matches 1 run function game:round/end
 
 # Set variables
-scoreboard players set #GAMESTATE gamestate.game_active 0
+scoreboard players set $gamestate gamestate.game_active 0
 
 # Reset player tags
 execute as @a run function game:reset_tags

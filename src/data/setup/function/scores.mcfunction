@@ -6,8 +6,8 @@ scoreboard objectives add config.gamemode dummy
 scoreboard objectives add config.seeker_ratio dummy
 scoreboard objectives add config.round_timer dummy
 
-execute if score #CONFIG config.loaded_defaults matches 0 run function config:load_defaults
-scoreboard players set #CONFIG config.loaded_defaults 1
+execute if score $config config.loaded_defaults matches 0 run function config:load_defaults
+scoreboard players set $config config.loaded_defaults 1
 
 # Gamestate
 scoreboard objectives add gamestate.game_active dummy

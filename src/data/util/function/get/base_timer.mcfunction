@@ -1,1 +1,1 @@
-return run scoreboard players get #CONFIG config.round_timer
+return run scoreboard players get $config config.round_timer

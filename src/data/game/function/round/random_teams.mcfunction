@@ -4,8 +4,8 @@ scoreboard objectives add var.seeker_count dummy
 
 execute store result score #VARIABLE var.player_count run function util:get/players
 
-scoreboard players operation #OPERAND math.percentage = #VARIABLE var.player_count
-scoreboard players operation #OPERATOR math.percentage = #CONFIG config.seeker_ratio
+scoreboard players operation $operand math.percentage = #VARIABLE var.player_count
+scoreboard players operation $operator math.percentage = $config config.seeker_ratio
 execute store result score #VARIABLE var.player_count run function util:math/percentage
 
 # Select random player as seeker, then loop until complete
