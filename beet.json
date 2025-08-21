@@ -1,0 +1,20 @@
+{
+    "name": "Stealth Game",
+    "description": "meow",
+    "author": "SylentHuntress",
+    "require": [
+        "bolt"
+    ],
+    "data_pack": {
+        "load": [ "src" ],
+        "name": "Stealth Game",
+        "pack_format": 81
+    },
+    "resource_pack": {
+        "load": [ "src" ],
+        "name": "Stealth Game (Assets)",
+        "pack_format": 64
+    },
+    "pipeline": [ "mecha" ],
+    "output": "build"
+}

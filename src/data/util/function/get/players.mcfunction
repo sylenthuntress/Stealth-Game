@@ -1,0 +1,1 @@
+return run execute as @a run function util:test/is_playing

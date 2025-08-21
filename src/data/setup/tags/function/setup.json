@@ -1,0 +1,8 @@
+{
+    "values": [
+        "setup:scores",
+        "setup:gamerules",
+        "setup:teams",
+        "setup:bossbars"
+    ]
+}

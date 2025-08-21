@@ -1,0 +1,4 @@
+{
+    "game.end": "The game has ended!",
+    "game.round_timer": "Time remaining: %s"
+}

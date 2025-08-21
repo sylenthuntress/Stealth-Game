@@ -1,0 +1,1 @@
+return run scoreboard players get #CONFIG config.round_timer
