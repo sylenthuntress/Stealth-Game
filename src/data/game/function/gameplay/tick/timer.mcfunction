@@ -10,9 +10,9 @@ execute store result bossbar game:time/round_timer value run scoreboard players 
     execute if score $time time.round_timer matches 0 run function game:round/end
     execute if score $time time.round_timer matches 0 run return fail
 
-    execute function rendering:time/round_timer/display:
+    execute function render:time/round_timer/display:
         # Update bossbar name to reflect timer
-        execute function rendering:time/round_timer/name_clock:
+        execute function render:time/round_timer/name_clock:
                 # Calculate minutes and seconds
                 scoreboard objectives add var.seconds dummy
                 scoreboard objectives add var.minutes dummy
@@ -48,7 +48,7 @@ execute store result bossbar game:time/round_timer value run scoreboard players 
                 scoreboard objectives remove var.minutes
                 scoreboard objectives remove var.seconds
 
-        execute function rendering:time/round_timer/bossbar_color:
+        execute function render:time/round_timer/bossbar_color:
             # Change bossbar color as timer progresses
                 # Set bossbar to green by default
                 bossbar set game:time/round_timer color green
