@@ -14,8 +14,8 @@ scoreboard players set $gamestate gamestate.round_active 1
 # Distribute teams for everyone
 scoreboard players reset @a game.player.team_id
 
-execute if score $config config.team_selection matches 0 run function game:round/random_teams
 execute if score $config config.team_selection matches 0 run scoreboard players set @a[tag=playing] game.player.team_id 0
+execute if score $config config.team_selection matches 0 run function game:round/random_teams
 
 team join sneaker @a[scores={game.player.team_id=0}]
 team join seeker @a[scores={game.player.team_id=1}]
