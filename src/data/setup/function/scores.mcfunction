@@ -21,6 +21,13 @@ scoreboard objectives add game.player.points dummy
 scoreboard objectives modify game.player.points displayname {
     "translate":"game.player.points"
 }
+scoreboard players set $scoredisplay game.player.points -999
+scoreboard players display numberformat $scoredisplay game.player.points blank
+scoreboard players display name $scoredisplay game.player.points {
+    "text": "---------------------",
+    "color": "red",
+    "bold": true
+}
 
 # Math
 scoreboard objectives add constant.100 dummy
@@ -32,3 +39,6 @@ scoreboard objectives add math.result dummy
 
 # Time
 scoreboard objectives add time.round_timer dummy
+
+# Animations
+scoreboard objectives add animations.sidebar.name dummy
