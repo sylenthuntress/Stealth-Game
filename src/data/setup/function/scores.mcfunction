@@ -1,12 +1,14 @@
+import config:registry as registry
 # Config
 scoreboard objectives add config.loaded_defaults dummy
 
-scoreboard objectives add config.team_selection dummy
-scoreboard objectives add config.gamemode dummy
-scoreboard objectives add config.seeker_ratio dummy
-scoreboard objectives add config.round_timer dummy
+for option in registry.getOptions():
+    scoreboard objectives add option dummy
 
-execute if score $config config.loaded_defaults matches 0 run function config:load_defaults
+execute if score $config config.loaded_defaults matches 0 run function config:load_defaults:
+    for option in registry.getOptions():
+        default = registry.getDefault(option)
+        scoreboard players set $config option default
 scoreboard players set $config config.loaded_defaults 1
 
 # Gamestate

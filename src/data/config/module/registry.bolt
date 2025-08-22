@@ -1,0 +1,17 @@
+options = {
+    "gamemode": 0,
+    "team_selection": 0,
+    "seeker_ratio": 15,
+    "round_timer": 3600
+}
+
+prefix = "config."
+
+def getOptions():
+    keys = []
+    for key in options.keys():
+        keys.append(prefix + key)
+    return keys
+
+def getDefault(option):
+    return options[option[len(prefix):]]
