@@ -3,7 +3,7 @@ from bolt_expressions import Scoreboard
 function game:gameplay/tick/timer
 
 # Tick individual logic
-execute as @a if function util:test/is_playing run function game:gameplay/tick/player:
+execute as @a run function game:gameplay/tick/player:
     # Showcase points as decimals
     execute function rendering:points/format_sidebar:
         scoreboard objectives add var.points_decimal dummy
