@@ -66,6 +66,6 @@ execute store result bossbar game:time/round_timer value run scoreboard players 
                 execute if score $time time.round_timer <= $result math.result run bossbar set game:time/round_timer color red
         
     # Play final warning sounds as timer reaches zero
-    execute if score $time time.round_timer matches 60 as @a if function util:test/is_playing run playsound entity.arrow.hit master @s ~ ~ ~ 2 0.5
-    execute if score $time time.round_timer matches 40 as @a if function util:test/is_playing run playsound entity.arrow.hit master @s ~ ~ ~ 2 0.5
-    execute if score $time time.round_timer matches 20 as @a if function util:test/is_playing run playsound entity.arrow.hit master @s ~ ~ ~ 2 0.5
+    execute if score $time time.round_timer matches 60 as @a[tag=playing] at @s run playsound entity.arrow.hit master @s ~ ~ ~ 2 0.5
+    execute if score $time time.round_timer matches 40 as @a[tag=playing] at @s run playsound entity.arrow.hit master @s ~ ~ ~ 2 0.5
+    execute if score $time time.round_timer matches 20 as @a[tag=playing] at @s run playsound entity.arrow.hit master @s ~ ~ ~ 2 0.5
