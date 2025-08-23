@@ -2,7 +2,7 @@ from bolt_expressions import Scoreboard, Data
 timer = Scoreboard.objective("time.round_timer")
 
 # Increment timer
-scoreboard players remove $time time.round_timer 1
+execute if score $time time.round_timer matches 1.. run scoreboard players remove $time time.round_timer 1
 execute store result bossbar game:time/round_timer value run scoreboard players get $time time.round_timer
 
 # Run appropriate logic based on timer
@@ -66,6 +66,9 @@ execute store result bossbar game:time/round_timer value run scoreboard players 
                 execute if score $time time.round_timer <= $result math.result run bossbar set game:time/round_timer color red
         
     # Play final warning sounds as timer reaches zero
-    execute if score $time time.round_timer matches 60 as @a[tag=playing] at @s run playsound entity.arrow.hit master @s ~ ~ ~ 2 0.5
-    execute if score $time time.round_timer matches 40 as @a[tag=playing] at @s run playsound entity.arrow.hit master @s ~ ~ ~ 2 0.5
-    execute if score $time time.round_timer matches 20 as @a[tag=playing] at @s run playsound entity.arrow.hit master @s ~ ~ ~ 2 0.5
+    scoreboard objectives add var.timer_modulo dummy
+    timerModulo = Scoreboard("var.timer_modulo")
+    timerModulo["$variable"] = timer["$time"] % 20
+
+    execute if score $time time.round_timer matches ..200 if score $variable timerModulo matches 0 as @a[tag=playing] at @s run playsound entity.arrow.hit master @s ~ ~ ~ 2 0.5
+    scoreboard objectives remove var.timer_modulo
