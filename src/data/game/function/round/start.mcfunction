@@ -1,7 +1,7 @@
 # Set variables
 scoreboard players add $gamestate gamestate.round_count 1
 scoreboard players set $gamestate gamestate.round_active 1
-
+scoreboard players reset $time time.round_cooldown
     # Setup round timer
     execute store result score $time time.round_timer run function util:get/base_timer
     execute store result bossbar game:time/round_timer max run scoreboard players get $time time.round_timer
