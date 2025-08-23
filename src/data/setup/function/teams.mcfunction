@@ -20,10 +20,14 @@ team modify sneaker collisionRule never
 team modify sneaker nametagVisibility hideForOtherTeams
 team modify sneaker seeFriendlyInvisibles true
 team modify sneaker deathMessageVisibility never
-team modify sneaker displayName {"text":"Runners","color":"gray"}
-team modify sneaker prefix [{"text":"[","color":"dark_gray","bold":true},{"text":"Sneaker","bold":false,"color":"#8a8a8a"},{"text":"] ","color":"dark_gray","bold":true}]
+team modify sneaker displayName {"text":"Mice","color":"gray"}
+team modify sneaker prefix {
+    "text":"🐁 ",
+    "bold":false,
+    "color":"#8a8a8a"
+}
 
 # Spectator
 team add spectator "Spectator"
 team modify spectator color dark_gray
-team modify sneaker prefix [{"text":"[","color":"dark_gray","bold":true},{"text":"Spectating","bold":false,"color":"#8a8a8a"},{"text":"] ","color":"dark_gray","bold":true}]
+team modify spectator prefix [{"text":"[","color":"dark_gray","bold":true},{"text":"Spectating","bold":false,"color":"#8a8a8a"},{"text":"] ","color":"dark_gray","bold":true}]

@@ -1,1 +1,1 @@
-return run execute as @a run function util:test/is_playing
+return run execute if entity @a[tag=playing]

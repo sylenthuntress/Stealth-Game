@@ -41,6 +41,7 @@ scoreboard objectives add math.result dummy
 
 # Time
 scoreboard objectives add time.round_timer dummy
+scoreboard objectives add time.round_cooldown dummy
 
 # Animations
 scoreboard objectives add animations.sidebar.name dummy
