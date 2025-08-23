@@ -4,3 +4,4 @@ scoreboard players set $time time.round_cooldown 100
 
 # Put every player in spectator
 gamemode spectator @a[tag=playing]
+execute as @a[tag=playing] run attribute @s minecraft:scale modifier remove game:teams/sneaker

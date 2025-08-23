@@ -16,6 +16,7 @@ scoreboard players reset @a game.player.team_id
 execute if score $config config.team_selection matches 0 run scoreboard players set @a[tag=playing] game.player.team_id 1
 execute if score $config config.team_selection matches 0 run function game:round/random_teams
 
+team leave @a[tag=playing]
 execute as @a[scores={game.player.team_id=1}] run function game:round/join_sneaker:
     gamemode adventure @s
     team join sneaker @s
@@ -24,12 +25,12 @@ execute as @a[scores={game.player.team_id=2}] run function game:round/join_seeke
     gamemode adventure @s
     team join seeker @s
 
-    # End game if no sneaker/seeker is found
-    execute unless entity @a[team=sneaker] run function game:end
-    execute unless entity @a[team=sneaker] run return fail
+# End game if no sneaker/seeker is found
+execute unless entity @a[team=sneaker] run function game:end
+execute unless entity @a[team=sneaker] run return fail
 
-    execute unless entity @a[team=seeker] run function game:end
-    execute unless entity @a[team=seeker] run return fail
+execute unless entity @a[team=seeker] run function game:end
+execute unless entity @a[team=seeker] run return fail
 
 # Teleport players to their spawn
 teleport @a[scores={game.player.team_id=1}] @e[type=marker,limit=1,tag=sneaker_spawnpoint]
