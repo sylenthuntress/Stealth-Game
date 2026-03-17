@@ -1,5 +1,6 @@
 execute as @a run function render:tick/personal
 
+# Animates the sidebar
 execute function render:points/animate_sidebar:
     def makePointsText():
         pointsText = []

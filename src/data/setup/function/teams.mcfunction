@@ -1,16 +1,16 @@
 # Lobby
 team add lobby "Lobby"
 
-# Seeker
-team add seeker "Seeker"
-team modify seeker color gold
-team modify seeker friendlyFire false
-team modify seeker collisionRule never
-team modify seeker nametagVisibility always
-team modify seeker seeFriendlyInvisibles true
-team modify seeker deathMessageVisibility never
-team modify seeker displayName {"text":"Seekers","color":"red"}
-team modify seeker prefix [{"text":"[","color":"dark_gray","bold":true},{"text":"Seeker","bold":false,"color":"red"},{"text":"] ","color":"dark_gray","bold":true}]
+# Killer
+team add killer "Killer"
+team modify killer color gold
+team modify killer friendlyFire false
+team modify killer collisionRule never
+team modify killer nametagVisibility always
+team modify killer seeFriendlyInvisibles true
+team modify killer deathMessageVisibility never
+team modify killer displayName {"text":"Killers","color":"red"}
+team modify killer prefix [{"text":"[","color":"dark_gray","bold":true},{"text":"Killer","bold":false,"color":"red"},{"text":"] ","color":"dark_gray","bold":true}]
 
 # Sneaker
 team add sneaker "Sneaker"

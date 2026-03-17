@@ -5,7 +5,7 @@ bossbar set game:time/round_timer players
 
 # Reset player tags
 tag @a remove playing
-tag @a remove seeker_blacklist
+tag @a remove killer_blacklist
 
 # Broadcast ending message
 tellraw @a {translate:"game.end"}

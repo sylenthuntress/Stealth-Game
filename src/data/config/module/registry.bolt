@@ -1,7 +1,7 @@
 options = {
     "gamemode": 0,
     "team_selection": 0,
-    "seeker_ratio": 15,
+    "killer_ratio": 15,
     "round_timer": 3600
 }
 

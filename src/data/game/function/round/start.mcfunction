@@ -21,17 +21,17 @@ execute as @a[scores={game.player.team_id=1}] run function game:round/join_sneak
     gamemode adventure @s
     team join sneaker @s
     attribute @s minecraft:scale modifier add game:teams/sneaker -0.33 add_value
-execute as @a[scores={game.player.team_id=2}] run function game:round/join_seeker:
+execute as @a[scores={game.player.team_id=2}] run function game:round/join_killer:
     gamemode adventure @s
-    team join seeker @s
+    team join killer @s
 
-# End game if no sneaker/seeker is found
+# End game if no sneaker/killer is found
 execute unless entity @a[team=sneaker] run function game:end
 execute unless entity @a[team=sneaker] run return fail
 
-execute unless entity @a[team=seeker] run function game:end
-execute unless entity @a[team=seeker] run return fail
+execute unless entity @a[team=killer] run function game:end
+execute unless entity @a[team=killer] run return fail
 
 # Teleport players to their spawn
 teleport @a[scores={game.player.team_id=1}] @e[type=marker,limit=1,tag=sneaker_spawnpoint]
-teleport @a[scores={game.player.team_id=2}] @e[type=marker,limit=1,tag=seeker_spawnpoint]
+teleport @a[scores={game.player.team_id=2}] @e[type=marker,limit=1,tag=killer_spawnpoint]
