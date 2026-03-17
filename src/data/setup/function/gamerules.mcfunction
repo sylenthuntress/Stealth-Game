@@ -21,10 +21,10 @@ gamerule lava_source_conversion false
 gamerule limited_crafting true
 gamerule locator_bar false
 gamerule log_admin_commands false
-gamerule max_block_modifications 12147483647
-gamerule max_command_forks 12147483647
-gamerule max_command_sequence_length 12147483647
-gamerule max_entity_cramming 12147483647
+gamerule max_block_modifications 2147483647
+gamerule max_command_forks 2147483647
+gamerule max_command_sequence_length 2147483647
+gamerule max_entity_cramming 2147483647
 gamerule max_snow_accumulation_height 0
 gamerule mob_drops false
 gamerule mob_explosion_drop_decay false
