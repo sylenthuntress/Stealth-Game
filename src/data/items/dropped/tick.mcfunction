@@ -1,0 +1,1 @@
+execute as @e[type=item,tag=!items.processed] run function items:dropped/process
