@@ -1,5 +1,6 @@
 # Tick subtasks
 function game:gameplay/tick/timer
+execute as @a[scores={game.player.team_id=1}] run function game:gameplay/tick/sneaker_manager
 
 # Stop game if insufficient players
 scoreboard objectives add var.player_count dummy
