@@ -48,7 +48,7 @@ gamerule spawn_phantoms false
 gamerule spawn_wandering_traders false
 gamerule spawn_wardens false
 gamerule spawner_blocks_work false
-gamerule spectators_generate_chunks false
+gamerule spectators_generate_chunks true
 gamerule spread_vines false
 gamerule tnt_explodes false
 gamerule tnt_explosion_drop_decay false
