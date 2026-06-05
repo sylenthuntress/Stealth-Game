@@ -11,6 +11,13 @@ execute if score $config config.loaded_defaults matches 0 run function config:lo
         scoreboard players set $config option default
 scoreboard players set $config config.loaded_defaults 1
 
+# Id
+scoreboard objectives add uid.player dummy
+scoreboard objectives add uid.index dummy
+
+# Data
+scoreboard objectives add data.player.health health
+
 # Gamestate
 scoreboard objectives add gamestate.game_active dummy
 scoreboard objectives add gamestate.round_active dummy
@@ -18,7 +25,7 @@ scoreboard objectives add gamestate.round_count dummy
 
 # Game
 scoreboard objectives add game.player.team_id dummy
-scoreboard objectives add game.player.health dummy
+scoreboard objectives add game.player.damage dummy
 scoreboard objectives add game.player.points dummy
 scoreboard objectives modify game.player.points displayname {
     "translate":"game.player.points"
