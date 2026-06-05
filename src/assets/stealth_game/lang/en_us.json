@@ -1,4 +1,7 @@
 {
+    "main.new_join": "Hey, $s. Welcome to $s!",
+    "main.game_name": "STEALTH GAME PLACEHOLDER",
     "game.end": "The game has ended!",
-    "game.round_timer": "Time remaining: %s%s%s"
+    "game.round_timer": "Time remaining: %s%s%s",
+    "game.insufficient_players": "Insufficient players to start the game."
 }
