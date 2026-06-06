@@ -1,6 +1,6 @@
 # Lobby
-team add lobby {"text":"Lobby","color":"rgb(207, 219, 46)"}
-team add dev {"text":"Developers","color":"rgb(255, 140, 24)"}
+team add lobby {"text":"Lobby","color":"#cfdb2e"}
+team add dev {"text":"Developers","color":"#ff8c18"}
 team modify dev prefix [
     {
         "text":"[",
@@ -10,7 +10,7 @@ team modify dev prefix [
     {
         "text":"Dev",
         "bold":false,
-        "color": "rgb(255, 140, 24)"
+        "color": "#ff8c18"
 
     },
     {
