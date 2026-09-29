@@ -4,7 +4,7 @@ gamerule allow_entering_nether_using_portals false
 gamerule block_drops false
 gamerule block_explosion_drop_decay false
 gamerule command_block_output false
-gamerule command_blocks_work false
+gamerule command_blocks_work true
 gamerule drowning_damage false
 gamerule elytra_movement_check false
 gamerule ender_pearls_vanish_on_death false
