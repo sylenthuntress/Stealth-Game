@@ -47,6 +47,7 @@ scoreboard objectives add math.percentage dummy
 scoreboard objectives add math.result dummy
 
 # Time
+scoreboard objectives add time.start_timer dummy
 scoreboard objectives add time.round_timer dummy
 scoreboard objectives add time.round_cooldown dummy
 
