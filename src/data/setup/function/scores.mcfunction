@@ -40,6 +40,7 @@ scoreboard players display name $scoredisplay game.player.points {
 }
 
 # Generation
+scoreboard objectives add segments.elapsed dummy
 scoreboard objectives add segments.remaining dummy
 scoreboard objectives add segments.remaining_small dummy
 scoreboard objectives add segments.remaining_med dummy

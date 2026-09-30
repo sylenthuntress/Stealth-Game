@@ -1,7 +1,8 @@
 import util:coordinates as coords
 
 # Reset map
-fill coords.play_area.x coords.play_area.y coords.play_area.z (coords.play_area.x + 69) (coords.play_area.y + 30) (coords.play_area.z + 160) air
+fill coords.play_area.x coords.play_area.y coords.play_area.z (coords.play_area.x + 69) (coords.play_area.y + 30) (coords.play_area.z + 1000) air
+kill @e[type=text_display,tag=band_display]
 
 # Create level pool based on registry
 data merge storage level:pool {Entries:[]}
@@ -16,6 +17,7 @@ execute run function level:start_gen_r:
     execute if data storage level:registry Recursive[0] run function level:start_gen_r
 
 # Store the amount of segments to generate
+scoreboard players set $segments segments.elapsed 0
 scoreboard players set $segments segments.remaining 0
 scoreboard players set $segments segments.remaining_small 0
 scoreboard players set $segments segments.remaining_med 0
@@ -32,18 +34,26 @@ scoreboard players operation $segments segments.remaining_large += $config confi
 # Start generating segments
 execute positioned coords.play_area.x (coords.play_area.y-17) coords.play_area.z function level:make_segment:
     forceload add ~ ~
+    fill ~ ~ ~ ~69 ~60 ~35 air
     function level:get_random
     function level:place_segment with storage level:pool
+    execute if score $segments segments.elapsed matches 1.. positioned ~ ~16 ~ run function level:make_band:
+        summon minecraft:text_display ~34 ~16 ~-3 {Tags: ["band_display"], alignment: "center", background: 0, billboard: "vertical", default_background: 0b, line_width: 200, view_range: 2f, see_through: 0b, shadow: 1b, text:{"color":"red","score":{"name":"$segments","objective":"segments.elapsed"}}, text_opacity: -1b, transformation: {left_rotation: [0.0f, 0.0f, 0.0f, 1.0f], right_rotation: [0.0f, 0.0f, 0.0f, 1.0f], scale: [50.0f, 50.0f, 50.0f], translation: [0.0f, 0.0f, 0.0f]}}
+        scoreboard players operation @e[type=text_display,tag=band_display,limit=1,sort=nearest] segments.elapsed = $segments segments.elapsed
+        fill ~ ~ ~ ~68 ~ ~-5 bedrock
 
-    execute if score $segments segments.remaining_large matches 0 if score $segments segments.remaining_med matches 1.. run fill ~ ~ ~ ~9 ~31 ~25 air
-    execute if score $segments segments.remaining_large matches 0 if score $segments segments.remaining_med matches 1.. run fill ~69 ~ ~ ~59 ~31 ~25 air
+    # Shrink map segment to medium
+    execute if score $segments segments.remaining_large matches 0 if score $segments segments.remaining_med matches 1.. run fill ~ ~ ~-5 ~9 ~31 ~35 air
+    execute if score $segments segments.remaining_large matches 0 if score $segments segments.remaining_med matches 1.. run fill ~69 ~ ~-5 ~59 ~31 ~35 air
 
-    execute if score $segments segments.remaining_large matches 0 if score $segments segments.remaining_med matches 0 run fill ~ ~ ~ ~19 ~31 ~25 air
-    execute if score $segments segments.remaining_large matches 0 if score $segments segments.remaining_med matches 0 run fill ~69 ~ ~ ~49 ~31 ~25 air
+    # Shrink map segment to small
+    execute if score $segments segments.remaining_large matches 0 if score $segments segments.remaining_med matches 0 run fill ~ ~ ~-5 ~19 ~31 ~35 air
+    execute if score $segments segments.remaining_large matches 0 if score $segments segments.remaining_med matches 0 run fill ~69 ~ ~-5 ~49 ~31 ~35 air
 
     execute if score $segments segments.remaining_large matches 1.. run scoreboard players remove $segments segments.remaining_large 1
     execute if score $segments segments.remaining_large matches 0 if score $segments segments.remaining_med matches 1.. run scoreboard players remove $segments segments.remaining_med 1
     execute if score $segments segments.remaining_large matches 0 if score $segments segments.remaining_med matches 0 run scoreboard players remove $segments segments.remaining_small 1
     scoreboard players remove $segments segments.remaining 1
+    scoreboard players add $segments segments.elapsed 1
     execute unless score $segments segments.remaining matches ..0 positioned ~ ~ ~30 run function level:make_segment
     forceload remove ~ ~

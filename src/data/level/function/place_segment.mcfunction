@@ -1,2 +1,2 @@
 $place template $(selectedId) ~ ~ ~
-$place template level:$(selectedId) ~ ~ ~
+$place template level:segment/$(selectedId) ~ ~ ~

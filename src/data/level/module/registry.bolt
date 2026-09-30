@@ -7,7 +7,7 @@ segments = {
     "test": makeSegmentUniversal(1)
 }
 
-prefix = "level:"
+prefix = "level:segment/"
 
 def getSegments():
     keys = []
