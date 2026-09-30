@@ -18,29 +18,29 @@ execute store result bossbar game:time/round_timer value run scoreboard players 
                 scoreboard objectives add var.minutes dummy
                 minutes = Scoreboard("var.minutes")
                 seconds = Scoreboard("var.seconds")
-                minutes["$variable"] = timer["$time"] / 1200
-                seconds["$variable"] = (timer["$time"] / 20) - 60 * minutes["$variable"]
+                minutes["$var"] = timer["$time"] / 1200
+                seconds["$var"] = (timer["$time"] / 20) - 60 * minutes["$var"]
 
             time_display = {
                 "translate": "game.round_timer",
                 "with": [
                     {
                         "score": {
-                            "name": minutes["$variable"].scoreholder,
-                            "objective": minutes["$variable"].objective
+                            "name": minutes["$var"].scoreholder,
+                            "objective": minutes["$var"].objective
                         }
                     },
                     ":",
                     {
                         "score": {
-                            "name": seconds["$variable"].scoreholder,
-                            "objective": seconds["$variable"].objective
+                            "name": seconds["$var"].scoreholder,
+                            "objective": seconds["$var"].objective
                         }
                     }
                 ]
             }
-            execute if score $variable var.seconds matches 10.. run bossbar set game:time/round_timer name time_display
-                execute if score $variable var.seconds matches ..9:
+            execute if score $var var.seconds matches 10.. run bossbar set game:time/round_timer name time_display
+                execute if score $var var.seconds matches ..9:
                     time_display."with"[1] += "0"
                     bossbar set game:time/round_timer name time_display
             
@@ -68,7 +68,7 @@ execute store result bossbar game:time/round_timer value run scoreboard players 
     # Play final warning sounds as timer reaches zero
     scoreboard objectives add var.timer_modulo dummy
     timerModulo = Scoreboard("var.timer_modulo")
-    timerModulo["$variable"] = timer["$time"] % 20
+    timerModulo["$var"] = timer["$time"] % 20
 
-    execute if score $time time.round_timer matches ..200 if score $variable timerModulo matches 0 as @a[tag=playing] at @s run playsound entity.arrow.hit master @s ~ ~ ~ 2 0.5
+    execute if score $time time.round_timer matches ..200 if score $var timerModulo matches 0 as @a[tag=playing] at @s run playsound entity.arrow.hit master @s ~ ~ ~ 2 0.5
     scoreboard objectives remove var.timer_modulo

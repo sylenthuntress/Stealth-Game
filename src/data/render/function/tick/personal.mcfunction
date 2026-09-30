@@ -9,13 +9,13 @@ execute function render:points/format_sidebar:
     pointsDecimal = Scoreboard("var.points_decimal")
     pointsWhole = Scoreboard("var.points_whole")
 
-    pointsWhole["$variable"] = points["@s"] / 10
-    pointsDecimal["$variable"] = points["@s"] % 10
+    pointsWhole["$var"] = points["@s"] / 10
+    pointsDecimal["$var"] = points["@s"] % 10
 
     scoreboard players display numberformat @s game.player.points fixed [
             {
                 "score": {
-                    "name": "$variable",
+                    "name": "$var",
                     "objective": "var.points_whole"
                 },
                 "color": "red"
@@ -23,7 +23,7 @@ execute function render:points/format_sidebar:
             ".",
             {
                 "score": {
-                    "name": "$variable",
+                    "name": "$var",
                     "objective": "var.points_decimal"
                 },
                 "color": "red"
