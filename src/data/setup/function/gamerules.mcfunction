@@ -33,7 +33,7 @@ gamerule natural_health_regeneration false
 gamerule player_movement_check false
 gamerule players_sleeping_percentage 0
 gamerule projectiles_can_break_blocks false
-gamerule pvp false
+gamerule pvp true
 gamerule raids false
 gamerule random_tick_speed 0
 gamerule reduced_debug_info true
