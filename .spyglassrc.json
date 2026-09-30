@@ -1,0 +1,7 @@
+{
+  "env": {
+    "exclude": [
+      "src/data/level/function/random_segment.mcfunction"
+    ]
+  }
+}
