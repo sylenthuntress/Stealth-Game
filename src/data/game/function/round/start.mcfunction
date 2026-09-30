@@ -1,3 +1,7 @@
+# End game if this exceeds the last round
+scoreboard objectives add var.players dummy
+execute if score $gamestate gamestate.round_count = $var var.players run return run function game:end
+
 # Set variables
 scoreboard players add $gamestate gamestate.round_count 1
 scoreboard players set $gamestate gamestate.round_active 1
@@ -21,12 +25,13 @@ execute as @a[scores={game.player.team_id=1}] run function game:round/join_sneak
     gamemode adventure @s
     team join sneaker @s
     attribute @s minecraft:scale modifier add game:teams/sneaker -0.33 add_value
-    attribute @s minecraft:max_health modifier add game:teams/sneaker 979 add_value
+    attribute @s minecraft:max_health modifier add game:teams/sneaker 79 add_value
 execute as @a[scores={game.player.team_id=2}] run function game:round/join_killer:
     gamemode adventure @s
     team join killer @s
 execute as @a[tag=playing] run function game:round/join_round:
-    effect give @s regeneration infinite 255
+    effect give @s regeneration infinite 255 true
+    effect give @s instant_health 1 255 true
 
 # End game if no sneaker/killer is found
 execute unless entity @a[team=sneaker] run function game:end
