@@ -1,0 +1,3 @@
+$execute if score $segments segments.remaining_large matches 1 if data storage level:registry Registry[{id:$(selectedId)}].canBeLarge run function level:get_random_m with storage level:pool
+$execute if score $segments segments.remaining_large matches 0 if score $segments segments.remaining_med matches 1 if data storage level:registry Registry[{id:$(selectedId)}].canBeMed run function level:get_random_m with storage level:pool
+$execute if score $segments segments.remaining_large matches 0 if score $segments segments.remaining_med matches 0 if data storage level:registry Registry[{id:$(selectedId)}].canBeSmall run function level:get_random_m with storage level:pool

@@ -1,0 +1,16 @@
+def makeSegment(weight, canBeLarge, canBeMed, canBeSmall):
+    return {"weight": weight, "canBeLarge": canBeLarge, "canBeMed": canBeMed, "canBeSmall": canBeSmall}
+def makeSegmentUniversal(weight):
+    return makeSegment(weight, 1, 1, 1)
+
+segments = {
+    "test": makeSegmentUniversal(1)
+}
+
+prefix = "level:"
+
+def getSegments():
+    keys = []
+    for key in segments.keys():
+        keys.append(prefix + key)
+    return keys

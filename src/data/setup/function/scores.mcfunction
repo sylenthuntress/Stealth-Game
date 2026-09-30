@@ -9,6 +9,7 @@ execute if score $config config.loaded_defaults matches 0 run function config:lo
     for option in registry.getOptions():
         default = registry.getDefault(option)
         scoreboard players set $config option default
+execute if score $config config.loaded_defaults matches 0 run function setup:segments
 scoreboard players set $config config.loaded_defaults 1
 
 # Id
@@ -37,6 +38,12 @@ scoreboard players display name $scoredisplay game.player.points {
     "color": "red",
     "bold": true
 }
+
+# Generation
+scoreboard objectives add segments.remaining dummy
+scoreboard objectives add segments.remaining_small dummy
+scoreboard objectives add segments.remaining_med dummy
+scoreboard objectives add segments.remaining_large dummy
 
 # Math
 scoreboard objectives add constant.100 dummy

@@ -1,0 +1,9 @@
+def coords(x, y, z):
+    return {
+        "x": x,
+        "y": y,
+        "z": z
+    }
+
+lobby = coords(60, 31, 14.5)
+play_area = coords(1000, 63, 1000)
