@@ -3,5 +3,5 @@
     "main.game_name": "STEALTH GAME PLACEHOLDER",
     "game.end": "The game has ended!",
     "game.round_timer": "Time remaining: %s%s%s",
-    "game.insufficient_players": "Insufficient players to start the game."
+    "game.insufficient_players": "Insufficient players to play the game."
 }
