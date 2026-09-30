@@ -7,3 +7,5 @@ def coords(x, y, z):
 
 lobby = coords(60, 31, 14.5)
 play_area = coords(1000, 63, 1000)
+sneaker_spawn = coords(1034, 64, 991)
+killer_spawn = coords(1034, 64, 991)

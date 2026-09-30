@@ -1,4 +1,7 @@
-## Manage start button
+# Tick subtasks
+execute as @a[tag=lobby] run function scrubs_spores:lobby/tick_player
+
+# Manage start button
 execute positioned 60 32 -0.5 if block ~ ~ ~ minecraft:acacia_button[powered=true] run function lobby:start_game:
     scoreboard objectives add var.players dummy
     execute store result score $players var.players run execute if entity @a
