@@ -1,16 +1,27 @@
-def makeSegment(weight, canBeLarge, canBeMed, canBeSmall):
+def register(weight, canBeLarge, canBeMed, canBeSmall):
     return {"weight": weight, "canBeLarge": canBeLarge, "canBeMed": canBeMed, "canBeSmall": canBeSmall}
-def makeSegmentUniversal(weight):
-    return makeSegment(weight, 1, 1, 1)
+def registerUniversal(weight):
+    return register(weight, 1, 1, 1)
 
 segments = {
-    "test": makeSegmentUniversal(1)
+    "test": registerUniversal(1)
 }
 
-prefix = "level:segment/"
+bands = {
+    "test": registerUniversal(1)
+}
+
+segment_prefix = "level:segment/"
+band_prefix = "level:band/"
 
 def getSegments():
     keys = []
     for key in segments.keys():
-        keys.append(prefix + key)
+        keys.append(segment_prefix + key)
+    return keys
+
+def getBands():
+    keys = []
+    for key in bands.keys():
+        keys.append(band_prefix + key)
     return keys

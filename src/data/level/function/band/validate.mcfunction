@@ -1,0 +1,3 @@
+$execute if score $segments segments.remaining_large matches 1 if data storage level:registry BandRegistry[{id:$(selectedBandId)}].canBeLarge run function level:band/get_random_m with storage level:pool
+$execute if score $segments segments.remaining_large matches 0 if score $segments segments.remaining_med matches 1 if data storage level:registry BandRegistry[{id:$(selectedBandId)}].canBeMed run function level:band/get_random_m with storage level:pool
+$execute if score $segments segments.remaining_large matches 0 if score $segments segments.remaining_med matches 0 if data storage level:registry BandRegistry[{id:$(selectedBandId)}].canBeSmall run function level:band/get_random_m with storage level:pool

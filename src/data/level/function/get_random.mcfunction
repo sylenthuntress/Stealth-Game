@@ -1,1 +1,0 @@
-function level:get_random_m with storage level:pool

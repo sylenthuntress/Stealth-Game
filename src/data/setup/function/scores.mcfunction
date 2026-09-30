@@ -9,7 +9,7 @@ execute if score $config config.loaded_defaults matches 0 run function config:lo
     for option in registry.getOptions():
         default = registry.getDefault(option)
         scoreboard players set $config option default
-execute if score $config config.loaded_defaults matches 0 run function setup:segments
+execute if score $config config.loaded_defaults matches 0 run function setup:registry
 scoreboard players set $config config.loaded_defaults 1
 
 # Id
