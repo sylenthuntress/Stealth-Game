@@ -54,22 +54,23 @@ execute if score $prev.segments segments.elapsed matches 1.. positioned coords.p
 # Start generating segments
 execute positioned coords.play_area.x (coords.play_area.y-17) coords.play_area.z function level:make_segment:
     forceload add ~ ~
-    fill ~ ~ ~ ~69 ~60 ~35 air
-    function level:segment/get_random
-    function level:segment/place with storage level:pool
+    fill ~ ~-1 ~ ~69 ~60 ~35 air
     execute if score $segments segments.elapsed matches 1.. positioned ~ ~16 ~ run function level:make_band:
         summon minecraft:text_display ~34 ~16 ~-3 {Tags: ["band_display"], alignment: "center", background: 0, billboard: "vertical", default_background: 0b, line_width: 200, view_range: 2f, see_through: 0b, shadow: 1b, text:{"color":"red","score":{"name":"$segments","objective":"segments.elapsed"}}, text_opacity: -1b, transformation: {left_rotation: [0.0f, 0.0f, 0.0f, 1.0f], right_rotation: [0.0f, 0.0f, 0.0f, 1.0f], scale: [50.0f, 50.0f, 50.0f], translation: [0.0f, 0.0f, 0.0f]}}
         scoreboard players operation @e[type=text_display,tag=band_display,limit=1,sort=nearest] segments.elapsed = $segments segments.elapsed
         function level:band/get_random
         execute positioned ~ ~ ~-5 run function level:band/place with storage level:pool
+        execute positioned ~ ~-17 ~-1 run fill ~ ~ ~ ~68 ~ ~-4 minecraft:diamond_block
+    function level:segment/get_random
+    function level:segment/place with storage level:pool
 
     # Shrink map segment to medium
-    execute if score $segments segments.remaining_large matches 0 if score $segments segments.remaining_med matches 1.. run fill ~ ~ ~-5 ~9 ~31 ~35 air
-    execute if score $segments segments.remaining_large matches 0 if score $segments segments.remaining_med matches 1.. run fill ~69 ~ ~-5 ~59 ~31 ~35 air
+    execute if score $segments segments.remaining_large matches 0 if score $segments segments.remaining_med matches 1.. run fill ~ ~-1 ~-5 ~9 ~31 ~35 air
+    execute if score $segments segments.remaining_large matches 0 if score $segments segments.remaining_med matches 1.. run fill ~69 ~-1 ~-5 ~59 ~31 ~35 air
 
     # Shrink map segment to small
-    execute if score $segments segments.remaining_large matches 0 if score $segments segments.remaining_med matches 0 run fill ~ ~ ~-5 ~19 ~31 ~35 air
-    execute if score $segments segments.remaining_large matches 0 if score $segments segments.remaining_med matches 0 run fill ~69 ~ ~-5 ~49 ~31 ~35 air
+    execute if score $segments segments.remaining_large matches 0 if score $segments segments.remaining_med matches 0 run fill ~ ~-1 ~-5 ~19 ~31 ~35 air
+    execute if score $segments segments.remaining_large matches 0 if score $segments segments.remaining_med matches 0 run fill ~69 ~-1 ~-5 ~49 ~31 ~35 air
 
     # Finish the chain and start the next segment if queued
     execute if score $segments segments.remaining_large matches 1.. run scoreboard players remove $segments segments.remaining_large 1
