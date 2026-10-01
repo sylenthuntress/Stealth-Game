@@ -3,7 +3,7 @@ import config:registry as registry
 scoreboard objectives add config.loaded_defaults dummy
 
 for option in registry.getOptions():
-    scoreboard objectives add option dummy
+    scoreboard objectives add option trigger
 
 execute if score $config config.loaded_defaults matches 0 run function config:load_defaults:
     for option in registry.getOptions():

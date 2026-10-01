@@ -1,7 +1,7 @@
 # Set variables
 scoreboard objectives remove var.players
+execute if score $gamestate gamestate.round_active matches 1 run function game:round/end # End current round if present
 scoreboard players set $gamestate gamestate.game_active 0
-scoreboard players set $gamestate gamestate.round_active 0
 bossbar set game:time/round_timer players
 
 # Reset player data

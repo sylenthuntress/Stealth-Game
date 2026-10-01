@@ -37,6 +37,8 @@ execute as @a[scores={game.player.team_id=2}] run function game:round/join_kille
 execute as @a[tag=playing] run function game:round/join_round:
     effect give @s regeneration infinite 255 true
     effect give @s instant_health 1 255 true
+    effect clear @s blindness
+    effect clear @s invisibility
 
 # End game if no sneaker/killer is found
 execute unless entity @a[team=sneaker] run function game:end

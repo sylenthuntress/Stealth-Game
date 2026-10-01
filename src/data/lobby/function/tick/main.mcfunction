@@ -31,4 +31,4 @@ execute if score $time time.start_timer matches 0.. run function render:time/sta
     execute if score $time time.start_timer matches 20 run playsound entity.arrow.hit_player master @a ~ ~ ~ 1 0.5 1
     execute if score $time time.start_timer matches 1 run title @a subtitle [{"text": "In: ","color":"gold"},{"text":"1","color":"red"}]
 execute if score $time time.start_timer matches 0.. run scoreboard players remove $time time.start_timer 1
-execute if score $time time.start_timer matches 0 run function game:start
+execute if score $time time.start_timer matches 0 run function game:new_match
