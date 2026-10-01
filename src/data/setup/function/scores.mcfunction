@@ -24,10 +24,12 @@ scoreboard objectives add gamestate.game_active dummy
 scoreboard objectives add gamestate.round_active dummy
 scoreboard objectives add gamestate.round_count dummy
 scoreboard objectives add gamestate.round_total dummy
+scoreboard objectives add gamestate.band_progression dummy
 
 # Game
 scoreboard objectives add game.player.team_id dummy
 scoreboard objectives add game.player.damage dummy
+scoreboard objectives add game.player.band_progression dummy
 scoreboard objectives add game.player.points dummy
 scoreboard objectives modify game.player.points displayname {
     "translate":"game.player.points"

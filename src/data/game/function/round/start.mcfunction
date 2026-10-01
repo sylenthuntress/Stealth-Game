@@ -4,6 +4,7 @@ import util:coordinates as coords
 scoreboard players add $gamestate gamestate.round_count 1
 scoreboard players set $gamestate gamestate.round_active 1
 scoreboard players reset $time time.round_cooldown
+execute as @e[type=text_display,tag=band_display] run data modify entity @s text.color set value red
     # Setup round timer
     execute store result score $time time.round_timer run function util:get/base_timer
     execute store result bossbar game:time/round_timer max run scoreboard players get $time time.round_timer
