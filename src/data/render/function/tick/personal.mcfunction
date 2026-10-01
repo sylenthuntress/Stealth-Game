@@ -12,7 +12,7 @@ execute function render:points/format_sidebar:
     pointsWhole["$var"] = points["@s"] / 10
     pointsDecimal["$var"] = points["@s"] % 10
 
-    scoreboard players display numberformat @s game.player.points fixed [
+    execute unless score $var pointsDecimal matches 0 run scoreboard players display numberformat @s game.player.points fixed [
             {
                 "score": {
                     "name": "$var",
@@ -29,6 +29,15 @@ execute function render:points/format_sidebar:
                 "color": "red"
             }
         ]
-        # Remove unneeded variables
-        scoreboard objectives remove var.points_decimal
-        scoreboard objectives remove var.points_whole
+    execute if score $var pointsDecimal matches 0 run scoreboard players display numberformat @s game.player.points fixed [
+            {
+                "score": {
+                    "name": "$var",
+                    "objective": "var.points_whole"
+                },
+                "color": "red"
+            }
+        ]
+    # Remove unneeded variables
+    scoreboard objectives remove var.points_decimal
+    scoreboard objectives remove var.points_whole
