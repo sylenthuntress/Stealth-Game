@@ -23,6 +23,7 @@ scoreboard objectives add data.player.health health
 scoreboard objectives add gamestate.game_active dummy
 scoreboard objectives add gamestate.round_active dummy
 scoreboard objectives add gamestate.round_count dummy
+scoreboard objectives add gamestate.round_total dummy
 
 # Game
 scoreboard objectives add game.player.team_id dummy
@@ -35,7 +36,7 @@ scoreboard players set $scoredisplay game.player.points -999
 scoreboard players display numberformat $scoredisplay game.player.points blank
 scoreboard players display name $scoredisplay game.player.points {
     "text": "---------------------",
-    "color": "red",
+    "color": "gray",
     "bold": true
 }
 

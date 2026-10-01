@@ -4,12 +4,33 @@ execute as @a run function render:tick/personal
 execute function render:points/animate_sidebar:
     def makePointsText():
         pointsText = []
-        for char in "Points":
+        for char in "Round ":
             pointsText.append({
                 "text": char,
                 "color": "gold",
                 "bold": false
             })
+        pointsText.append({
+            "score": {
+                "name": "$gamestate",
+                "objective": "gamestate.round_count"
+            },
+            "color": "gold",
+            "bold": false
+        })
+        pointsText.append({
+            "text": "/",
+            "color": "gold",
+            "bold": false
+        })
+        pointsText.append({
+            "score": {
+                "name": "$gamestate",
+                "objective": "gamestate.round_total"
+            },
+            "color": "gold",
+            "bold": false
+        })
         return pointsText
     def makeSidebarText():
         return [
@@ -30,19 +51,20 @@ execute function render:points/animate_sidebar:
     animDuration = 202
     scoreboard players add $time animations.sidebar.name 1
     execute if score $time animations.sidebar.name matches (animDuration, None) run scoreboard players set $time animations.sidebar.name 0
-    
-    for n in range(12):
-        sidebarText = makeSidebarText()
+    pointsText = makePointsText()
+    pointsTextLength = pointsText.__len__()
+    for n in range(pointsTextLength * 2):
         pointsText = makePointsText()
-
+        pointsTextLength = pointsText.__len__()
+        sidebarText = makeSidebarText()
         pointsText[int(n/2)].color = "white"
-        if n > 1 and n < 11:
+        if n > 1 and n < pointsTextLength - 1:
             pointsText[int(n/2)-1].color = "white"
-        for i in range(6):
+        for i in range(pointsText.__len__()):
             sidebarText.insert(i + 2, pointsText[i])
-        execute if score $time animations.sidebar.name matches (animDuration - (12 - n)) run scoreboard objectives modify game.player.points displayname sidebarText
+        execute if score $time animations.sidebar.name matches (animDuration - ((pointsTextLength * 2) - n)) run scoreboard objectives modify game.player.points displayname sidebarText
     sidebarText = makeSidebarText()
     pointsText = makePointsText()
-    for n in range(6):
+    for n in range(pointsTextLength):
         sidebarText.insert(n + 2, pointsText[n])
-    execute if score $time animations.sidebar.name matches (0, animDuration - 12) run scoreboard objectives modify game.player.points displayname sidebarText
+    execute if score $time animations.sidebar.name matches (0, animDuration - (pointsTextLength * 2)) run scoreboard objectives modify game.player.points displayname sidebarText

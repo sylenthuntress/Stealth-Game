@@ -15,9 +15,12 @@ execute if score $gamestate gamestate.round_active matches 1 run function game:r
     execute unless entity @a[scores={game.player.team_id=1},gamemode=!spectator] run function game:round/end
     
 # Start round once round cooldown ends
+execute store result score $gamestate gamestate.round_total run execute if entity @a[tag=!killer_blacklist] 
+scoreboard players operation $gamestate gamestate.round_total += $gamestate gamestate.round_count
+
 execute if score $time time.round_cooldown matches 1.. run scoreboard players remove $time time.round_cooldown 1
-execute if score $time time.round_cooldown matches 0 if entity @a[tag=!killer_blacklist] run function game:round/start
-execute if score $time time.round_cooldown matches 0 unless entity @a[tag=!killer_blacklist] run return run function game:end # End game once rounds exceed available players
+execute if score $time time.round_cooldown matches 0 unless score $gamestate gamestate.round_count = $gamestate gamestate.round_total run function game:round/start
+execute if score $time time.round_cooldown matches 0 if score $gamestate gamestate.round_count = $gamestate gamestate.round_total run return run function game:end # End game once rounds exceed available players
 
 # Manage spectators
 execute as @a[gamemode=spectator] at @s if entity @a[gamemode=!spectator,tag=playing] unless entity @a[gamemode=!spectator,distance=..32] run function game:leash_spectator:
