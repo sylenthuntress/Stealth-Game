@@ -5,7 +5,7 @@ execute store result score @s var.damage run attribute @s minecraft:max_health g
 scoreboard players operation @s var.damage -= @s data.player.health
 
 # Heal player to avoid incorrect maths
-effect give @s instant_health 1 255
+effect give @s instant_health 1 255 true
 
 # Deduct player's health based on taken damage
 scoreboard players operation @s game.player.damage += @s var.damage
