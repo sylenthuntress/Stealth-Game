@@ -3,22 +3,24 @@ import util:coordinates as coords
 # Reset map
 fill coords.play_area.x coords.play_area.y coords.play_area.z (coords.play_area.x + 69) (coords.play_area.y + 30) (coords.play_area.z + 1000) air
 kill @e[type=text_display,tag=band_display]
+kill @e[tag=segment_entity]
 
 # Create level pool based on registry
 execute function level:segment/make_pool:
-    data merge storage level:pool {SegmentEntries:[]}
+    data remove storage level:pool SegmentEntries
     data remove storage level:registry Recursive
     data modify storage level:registry Recursive set from storage level:registry SegmentRegistry
     execute run function level:segment/make_pool_r:
         data modify storage level:pool SegmentEntries prepend value {"type": "minecraft:item", "name": "minecraft:stick", "weight": 0, "modifier": {"type": "minecraft:set_name", "name": ""}}
         data modify storage level:pool SegmentEntries[0].weight set from storage level:registry Recursive[0].weight
+        data modify storage level:pool SegmentEntries[0].biome set from storage level:registry Recursive[0].biome
         data modify storage level:pool SegmentEntries[0].modifier.name set from storage level:registry Recursive[0].id
 
         data remove storage level:registry Recursive[0]
         execute if data storage level:registry Recursive[0] run function level:segment/make_pool_r
 # Create band pool based on registry
 execute function level:band/make_pool:
-    data merge storage level:pool {BandEntries:[]}
+    data remove storage level:pool BandEntries
     data remove storage level:registry Recursive
     data modify storage level:registry Recursive set from storage level:registry BandRegistry
     execute run function level:band/make_pool_r:
@@ -64,13 +66,17 @@ execute positioned coords.play_area.x (coords.play_area.y-17) coords.play_area.z
     function level:segment/get_random
     function level:segment/place with storage level:pool
 
+    # TODO: add better wall generation
+    wallMaterial = "black_concrete"
+    fill ~ ~-1 ~-5 ~-2 ~31 ~35 wallMaterial
+    fill ~70 ~-1 ~-5 ~71 ~31 ~35 wallMaterial
     # Shrink map segment to medium
-    execute if score $segments segments.remaining_large matches 0 if score $segments segments.remaining_med matches 1.. run fill ~ ~-1 ~-5 ~9 ~31 ~35 air
-    execute if score $segments segments.remaining_large matches 0 if score $segments segments.remaining_med matches 1.. run fill ~69 ~-1 ~-5 ~59 ~31 ~35 air
+    execute if score $segments segments.remaining_large matches 0 if score $segments segments.remaining_med matches 1.. run fill ~ ~-1 ~-5 ~9 ~31 ~35 wallMaterial
+    execute if score $segments segments.remaining_large matches 0 if score $segments segments.remaining_med matches 1.. run fill ~69 ~-1 ~-5 ~59 ~31 ~35 wallMaterial
 
     # Shrink map segment to small
-    execute if score $segments segments.remaining_large matches 0 if score $segments segments.remaining_med matches 0 run fill ~ ~-1 ~-5 ~19 ~31 ~35 air
-    execute if score $segments segments.remaining_large matches 0 if score $segments segments.remaining_med matches 0 run fill ~69 ~-1 ~-5 ~49 ~31 ~35 air
+    execute if score $segments segments.remaining_large matches 0 if score $segments segments.remaining_med matches 0 run fill ~ ~-1 ~-5 ~19 ~31 ~35 wallMaterial
+    execute if score $segments segments.remaining_large matches 0 if score $segments segments.remaining_med matches 0 run fill ~69 ~-1 ~-5 ~49 ~31 ~35 wallMaterial
 
     # Finish the chain and start the next segment if queued
     execute if score $segments segments.remaining_large matches 1.. run scoreboard players remove $segments segments.remaining_large 1

@@ -1,10 +1,14 @@
-def register(weight, canBeLarge, canBeMed, canBeSmall):
-    return {"weight": weight, "canBeLarge": canBeLarge, "canBeMed": canBeMed, "canBeSmall": canBeSmall}
+def register(weight, biome, canBeLarge, canBeMed, canBeSmall):
+    return {"weight": weight, "biome": biome, "canBeLarge": canBeLarge, "canBeMed": canBeMed, "canBeSmall": canBeSmall}
 def registerUniversal(weight):
-    return register(weight, 1, 1, 1)
+    return register(weight, "minecraft:the_void", 1, 1, 1)
+def registerBiome(weight, biome):
+    return register(weight, biome, 1, 1, 1)
 
 segments = {
-    "test": registerUniversal(1)
+    "test": registerUniversal(5),
+    "dappled_trees": registerBiome(10, "minecraft:dappled_forest"),
+    "birch_trees": registerBiome(10, "minecraft:birch_forest")
 }
 
 bands = {
