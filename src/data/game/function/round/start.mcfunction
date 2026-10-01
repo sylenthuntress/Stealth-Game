@@ -1,6 +1,4 @@
-# End game if this exceeds the last round
-scoreboard objectives add var.players dummy
-execute if score $gamestate gamestate.round_count = $var var.players run return run function game:end
+import util:coordinates as coords
 
 # Set variables
 scoreboard players add $gamestate gamestate.round_count 1
@@ -26,9 +24,15 @@ execute as @a[scores={game.player.team_id=1}] run function game:round/join_sneak
     team join sneaker @s
     attribute @s minecraft:scale modifier add game:teams/sneaker -0.33 add_value
     attribute @s minecraft:max_health modifier add game:teams/sneaker 79 add_value
+    attribute @s minecraft:camera_distance modifier add game:teams/sneaker -1.5 add_value
+
+    tp @s coords.sneaker_spawn.x coords.sneaker_spawn.y coords.sneaker_spawn.z
 execute as @a[scores={game.player.team_id=2}] run function game:round/join_killer:
     gamemode adventure @s
     team join killer @s
+    attribute @s minecraft:camera_distance modifier add game:teams/killer -3.5 add_value
+
+    tp @s coords.killer_spawn.x coords.killer_spawn.y coords.killer_spawn.z
 execute as @a[tag=playing] run function game:round/join_round:
     effect give @s regeneration infinite 255 true
     effect give @s instant_health 1 255 true
