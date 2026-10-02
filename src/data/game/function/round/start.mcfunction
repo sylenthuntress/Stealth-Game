@@ -46,7 +46,3 @@ execute unless entity @a[team=sneaker] run return fail
 
 execute unless entity @a[team=killer] run function game:end
 execute unless entity @a[team=killer] run return fail
-
-# Teleport players to their spawn
-teleport @a[scores={game.player.team_id=1}] @e[type=marker,limit=1,tag=sneaker_spawnpoint]
-teleport @a[scores={game.player.team_id=2}] @e[type=marker,limit=1,tag=killer_spawnpoint]

@@ -42,6 +42,8 @@ scoreboard players display name $scoredisplay game.player.points {
     "bold": true
 }
 
+scoreboard objectives add game.hazard.dripleaf_launcher.timer dummy
+
 # Generation
 scoreboard objectives add segments.elapsed dummy
 scoreboard objectives add segments.remaining dummy

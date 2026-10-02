@@ -1,3 +1,4 @@
-$execute if score $segments segments.remaining_large matches 1 if data storage level:registry SegmentRegistry[{id:$(selectedSegmentId)}].canBeLarge run function level:segment/get_random_m with storage level:pool
-$execute if score $segments segments.remaining_large matches 0 if score $segments segments.remaining_med matches 1 if data storage level:registry SegmentRegistry[{id:$(selectedSegmentId)}].canBeMed run function level:segment/get_random_m with storage level:pool
-$execute if score $segments segments.remaining_large matches 0 if score $segments segments.remaining_med matches 0 if data storage level:registry SegmentRegistry[{id:$(selectedSegmentId)}].canBeSmall run function level:segment/get_random_m with storage level:pool
+
+$execute if score $segments segments.remaining_large matches 1.. unless data storage level:registry SegmentRegistry[{"id":"$(selectedSegmentId)"}].canBeLarge run function level:segment/get_random with storage level:pool
+$execute if score $segments segments.remaining_large matches 0 if score $segments segments.remaining_med matches 1.. unless data storage level:registry SegmentRegistry[{"id":"$(selectedSegmentId)"}].canBeMed run function level:segment/get_random with storage level:pool
+$execute if score $segments segments.remaining_large matches 0 if score $segments segments.remaining_med matches 0 unless data storage level:registry SegmentRegistry[{"id":"$(selectedSegmentId)"}].canBeSmall run function level:segment/get_random with storage level:pool

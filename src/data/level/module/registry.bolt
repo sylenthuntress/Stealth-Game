@@ -6,9 +6,10 @@ def registerBiome(weight, biome):
     return register(weight, biome, 1, 1, 1)
 
 segments = {
-    "test": registerUniversal(5),
+    "test": registerUniversal(0),
     "dappled_trees": registerBiome(10, "minecraft:dappled_forest"),
-    "birch_trees": registerBiome(10, "minecraft:birch_forest")
+    "birch_trees": registerBiome(10, "minecraft:birch_forest"),
+    "spores_cave": register(5, "minecraft:lush_caves", 0, 1, 1)
 }
 
 bands = {

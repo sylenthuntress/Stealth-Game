@@ -1,5 +1,6 @@
 # Tick subtasks
 function lobby:tick/main
+function level:tick/main
 execute if score $gamestate gamestate.game_active matches 1 run function game:tick/main
 execute as @e[type=item] run function items:dropped/tick
 
