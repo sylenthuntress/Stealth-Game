@@ -6,4 +6,4 @@ scoreboard players operation @s game.player.injury += @s data.player.damage_take
 execute if score @s game.player.damage matches 200.. run function game:gameplay/death
 
 # Refresh health-based penalties
-function game:gameplay/update_health
+function game:gameplay/runner/update_health

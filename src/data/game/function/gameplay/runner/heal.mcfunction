@@ -8,4 +8,4 @@ scoreboard players set @s[scores={game.player.damage=..0}] game.player.damage 0
 scoreboard players set @s[scores={game.player.injury=..0}] game.player.injury 0
 
 # Apply movement speed penalty
-function game:gameplay/update_health
+function game:gameplay/runner/update_health
