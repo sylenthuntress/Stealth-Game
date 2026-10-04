@@ -20,5 +20,8 @@ execute if block ~ 41 ~ minecraft:diamond_block unless score @s game.player.band
     execute if score @s game.player.band_progression > $gamestate gamestate.band_progression as @a[tag=playing] run playsound block.note_block.chime master @s ~ ~ ~ 2 0
     execute unless score @s game.player.band_progression > $gamestate gamestate.band_progression run playsound block.note_block.bit master @s ~ ~ ~ 2 0
 
-    data modify entity @e[type=text_display,tag=band_display,limit=1,sort=nearest] text.color set value 'green'
+    tag @s add self
+    execute as @e[type=text_display,tag=band_display] if score @s segments.elapsed <= @p[tag=self] game.player.band_progression run data modify entity @s text.color set value 'green'
+    tag @s remove self
+    
     scoreboard players operation $gamestate gamestate.band_progression > @s game.player.band_progression
