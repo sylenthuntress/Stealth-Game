@@ -35,5 +35,5 @@ execute run function game:rankings/broadcast_all:
     execute if entity @a[scores={var.placement=0}] run function game:rankings/broadcast_all
 
     scoreboard objectives remove var.placement # Remove unneeded variable
-scoreboard players reset @a game.player.points # Reset points for next game
+scoreboard players reset * game.player.points # Reset points for next game
 scoreboard objectives setdisplay sidebar # Clear points from sidebar

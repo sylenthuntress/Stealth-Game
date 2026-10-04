@@ -18,6 +18,7 @@ scoreboard objectives add uid.index dummy
 
 # Data
 scoreboard objectives add data.player.health health
+scoreboard objectives add data.player.damage_taken minecraft.custom:minecraft.damage_taken
 
 # Hazard
 scoreboard objectives add hazard.dripleaf_launcher.timer dummy
@@ -32,6 +33,7 @@ scoreboard objectives add gamestate.band_progression dummy
 # Game
 scoreboard objectives add game.player.team_id dummy
 scoreboard objectives add game.player.damage dummy
+scoreboard objectives add game.player.injury dummy
 scoreboard objectives add game.player.band_progression dummy
 scoreboard objectives add game.player.points dummy
 scoreboard objectives modify game.player.points displayname {

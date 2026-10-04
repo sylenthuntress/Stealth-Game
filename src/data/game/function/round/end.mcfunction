@@ -10,7 +10,9 @@ execute as @a run function game:round/leave_round:
     attribute @s minecraft:max_health modifier remove game:teams/sneaker
     attribute @s minecraft:camera_distance modifier remove game:teams/sneaker
     attribute @s minecraft:camera_distance modifier remove game:teams/killer
-    scoreboard players set @s game.player.band_progression 0
+    attribute @s minecraft:movement_speed modifier remove game:gameplay/movement_penalty/injury
+scoreboard players set * game.player.band_progression 0
+scoreboard players set * game.player.damage 0
 
 # Put every player in spectator
 gamemode spectator @a[tag=playing]

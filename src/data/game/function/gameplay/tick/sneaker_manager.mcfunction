@@ -1,5 +1,5 @@
 # Manage Health
-execute if entity @s[scores={data.player.health=..98}] run function game:gameplay/take_damage
+execute if score @s data.player.damage_taken matches 1.. run function game:gameplay/take_damage
 
 # Band crossing
 execute if block ~ 41 ~ minecraft:diamond_block unless score @s game.player.band_progression >= @e[type=text_display,tag=band_display,limit=1,sort=nearest] segments.elapsed run function game:gameplay/cross_band:

@@ -1,14 +1,7 @@
-# Create and set the necessary variables
-scoreboard objectives add var.damage dummy
-
-execute store result score @s var.damage run attribute @s minecraft:max_health get
-scoreboard players operation @s var.damage -= @s data.player.health
-
-# Heal player to avoid incorrect maths
-effect give @s instant_health 1 255 true
-
 # Deduct player's health based on taken damage
-scoreboard players operation @s game.player.damage += @s var.damage
+scoreboard players operation @s game.player.damage += @s data.player.damage_taken
+scoreboard players operation @s game.player.injury += @s data.player.damage_taken
 
-# Remove variables when done
-scoreboard objectives remove var.damage
+# Apply movement speed penalty
+execute store result storage var:damage damage double -0.001 run scoreboard players get @s game.player.damage
+function game:gameplay/movement_penalty/injury with storage var:damage
