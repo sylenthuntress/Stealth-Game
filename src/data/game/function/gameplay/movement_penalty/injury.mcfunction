@@ -1,2 +1,2 @@
 attribute @s minecraft:movement_speed modifier remove game:gameplay/movement_penalty/injury
-$attribute @s minecraft:movement_speed modifier add game:gameplay/movement_penalty/injury $(damage) add_multiplied_base
+$attribute @s minecraft:movement_speed modifier add game:gameplay/movement_penalty/injury $(injury) add_multiplied_base

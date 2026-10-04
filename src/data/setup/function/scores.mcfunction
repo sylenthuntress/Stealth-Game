@@ -34,6 +34,7 @@ scoreboard objectives add gamestate.band_progression dummy
 scoreboard objectives add game.player.team_id dummy
 scoreboard objectives add game.player.damage dummy
 scoreboard objectives add game.player.injury dummy
+scoreboard objectives add game.player.heal_amount dummy
 scoreboard objectives add game.player.band_progression dummy
 scoreboard objectives add game.player.points dummy
 scoreboard objectives modify game.player.points displayname {
@@ -55,8 +56,9 @@ scoreboard objectives add segments.remaining_med dummy
 scoreboard objectives add segments.remaining_large dummy
 
 # Math
-scoreboard objectives add constant.100 dummy
-scoreboard players set #CONSTANT constant.100 100
+scoreboard objectives add math.const dummy
+scoreboard players set $100 math.const 100
+scoreboard players set $2 math.const 2
 
 scoreboard objectives add math.division dummy
 scoreboard objectives add math.percentage dummy
@@ -65,6 +67,7 @@ scoreboard objectives add math.result dummy
 # Time
 scoreboard objectives add time.start_timer dummy
 scoreboard objectives add time.round_timer dummy
+scoreboard objectives add time.player.heal_timer dummy
 scoreboard objectives add time.round_cooldown dummy
 
 # Animations

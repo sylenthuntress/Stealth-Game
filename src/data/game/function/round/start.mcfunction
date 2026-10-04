@@ -20,6 +20,10 @@ execute if score $config config.team_selection matches 0 run scoreboard players 
 execute if score $config config.team_selection matches 0 run function game:round/random_teams
 
 team leave @a[tag=playing]
+execute as @a[tag=playing] run function game:round/join_round:
+    effect clear @s
+    effect give @s regeneration infinite 255 true
+    effect give @s instant_health 1 255 true
 execute as @a[scores={game.player.team_id=1}] run function game:round/join_sneaker:
     gamemode adventure @s
     team join sneaker @s
@@ -34,11 +38,6 @@ execute as @a[scores={game.player.team_id=2}] run function game:round/join_kille
     attribute @s minecraft:camera_distance modifier add game:teams/killer -3.5 add_value
 
     tp @s coords.killer_spawn.x coords.killer_spawn.y coords.killer_spawn.z
-execute as @a[tag=playing] run function game:round/join_round:
-    effect give @s regeneration infinite 255 true
-    effect give @s instant_health 1 255 true
-    effect clear @s blindness
-    effect clear @s invisibility
 
 # End game if no sneaker/killer is found
 execute unless entity @a[team=sneaker] run function game:end
