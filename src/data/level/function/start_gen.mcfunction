@@ -61,7 +61,7 @@ execute positioned coords.play_area.x (coords.play_area.y-19) coords.play_area.z
     forceload add ~ ~
     fill ~-2 ~-1 ~ ~74 ~60 ~35 air replace
     execute if score $segments segments.elapsed matches 1.. run function level:band/create:
-        summon minecraft:text_display ~34 ~30 ~-3 {Tags: ["band_display"], alignment: "center", background: 0, billboard: "vertical", default_background: 0b, line_width: 200, view_range: 2f, see_through: 0b, shadow: 1b, text:{"color":"red","score":{"name":"$segments","objective":"segments.elapsed"}}, text_opacity: -1b, transformation: {left_rotation: [0.0f, 0.0f, 0.0f, 1.0f], right_rotation: [0.0f, 0.0f, 0.0f, 1.0f], scale: [50.0f, 50.0f, 50.0f], translation: [0.0f, 0.0f, 0.0f]}}
+        summon minecraft:text_display ~34 ~30 ~-3 {Tags: ["band_display"], brightness:{sky:15,block:15}, alignment: "center", background: 0, billboard: "vertical", default_background: 0b, line_width: 200, view_range: 2f, see_through: 0b, shadow: 1b, text:{"color":"red","score":{"name":"$segments","objective":"segments.elapsed"}}, text_opacity: -1b, transformation: {left_rotation: [0.0f, 0.0f, 0.0f, 1.0f], right_rotation: [0.0f, 0.0f, 0.0f, 1.0f], scale: [50.0f, 50.0f, 50.0f], translation: [0.0f, 0.0f, 0.0f]}}
         scoreboard players operation @e[type=text_display,tag=band_display,limit=1,sort=nearest] segments.elapsed = $segments segments.elapsed
         function level:band/get_random with storage level:pool
         execute positioned ~ ~ ~-5 run function level:band/place with storage level:pool
