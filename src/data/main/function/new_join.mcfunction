@@ -1,4 +1,4 @@
-function game:make_uid:
+function main:make_uid:
     scoreboard players operation @s uid.player = $uid.index uid.index
     scoreboard players add $uid.index uid.index 1
 

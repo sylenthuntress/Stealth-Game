@@ -13,8 +13,11 @@ execute if score $config config.loaded_defaults matches 0 run function setup:reg
 scoreboard players set $config config.loaded_defaults 1
 
 # Id
-scoreboard objectives add uid.player dummy
 scoreboard objectives add uid.index dummy
+scoreboard players set $uid.index uid.index 0
+
+scoreboard objectives add uid.player dummy
+scoreboard objectives add uid.entity dummy
 
 # Data
 scoreboard objectives add data.player.health health
@@ -68,6 +71,7 @@ scoreboard objectives add math.result dummy
 scoreboard objectives add time.start_timer dummy
 scoreboard objectives add time.round_timer dummy
 scoreboard objectives add time.player.heal_timer dummy
+scoreboard objectives add time.player.hide_timer dummy
 scoreboard objectives add time.round_cooldown dummy
 
 # Animations

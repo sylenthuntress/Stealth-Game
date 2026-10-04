@@ -1,3 +1,24 @@
+# Sneak to hide
+execute if entity @s[predicate=util:is_sneaking] run scoreboard players add @s time.player.hide_timer 1
+execute if entity @s[predicate=!util:is_sneaking] run scoreboard players set @s time.player.hide_timer 0
+execute if score @s time.player.hide_timer matches 60 run function game:gameplay/runner/start_hiding:
+    item fill entity @s armor.* with air
+    effect give @s invisibility infinite 0 true
+    attribute @s minecraft:camera_distance modifier add game:gameplay/runner/hiding 2 add_multiplied_base
+    attribute @s minecraft:scale modifier add game:gameplay/runner/hiding -0.05 add_multiplied_base
+    attribute @s minecraft:movement_speed modifier add game:gameplay/runner/hiding 0.25 add_value
+
+    summon minecraft:item_display ~ ~ ~ {Tags:["little_mouse"], teleport_duration: 1, item: {components: {"minecraft:custom_name": {bold: 1b, color: "gold", italic: 0b, text: "Field Mouse", underlined: 1b}, "minecraft:lore": [{color: "gray", italic: 0b, text: "Custom Head ID: 110695"}, {color: "blue", italic: 0b, text: "www.minecraft-heads.com"}], "minecraft:profile": {properties: [{name: "textures", value: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjM3OWUwOTI1MjgxNzMxNGJkMGI2OTRmN2Q1M2I0OGFmMmM3ZmE4NDk5MTA5ODAyYTQxYmIyOTRkMmY5M2UzZSJ9fX0="}]}}, count: 1, id: "minecraft:player_head"}, item_display: "head"}
+    execute as @e[type=item_display,tag=little_mouse,limit=1,sort=nearest] unless score @s uid.entity matches 0.. run scoreboard players operation @s uid.entity = @p uid.player
+execute if score @s time.player.hide_timer matches 0 run function game:gameplay/runner/stop_hiding:
+    effect clear @s invisibility
+    attribute @s minecraft:camera_distance modifier remove game:gameplay/runner/hiding
+    attribute @s minecraft:scale modifier remove game:gameplay/runner/hiding
+    attribute @s minecraft:movement_speed modifier remove game:gameplay/runner/hiding
+    scoreboard players set @s time.player.hide_timer 0
+    execute as @e[type=item_display,tag=little_mouse] if score @s uid.entity = @p uid.player run kill @s
+execute as @e[type=item_display,tag=little_mouse] if score @s uid.entity = @p uid.player rotated as @p run tp @s ~ ~0.55 ~ ~180 0
+
 # Manage Health
 execute if score @s data.player.damage_taken matches 1.. run function game:gameplay/runner/take_damage
 ## Group healing
