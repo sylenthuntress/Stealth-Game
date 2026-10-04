@@ -29,7 +29,11 @@ team modify killer collisionRule never
 team modify killer nametagVisibility always
 team modify killer seeFriendlyInvisibles true
 team modify killer deathMessageVisibility never
-team modify killer prefix [{"text":"[","color":"dark_gray","bold":true},{"text":"Killer","bold":false,"color":"red"},{"text":"] ","color":"dark_gray","bold":true}]
+team modify killer prefix {
+    "text":"🔪 ",
+    "bold":true,
+    "color":"#712525"
+}
 
 # Sneaker
 team add sneaker {"text":"Mice","color":"gray"}
@@ -41,8 +45,17 @@ team modify sneaker seeFriendlyInvisibles true
 team modify sneaker deathMessageVisibility never
 team modify sneaker prefix {
     "text":"🐁 ",
+    "bold":true,
+    "color":"#626161"
+}
+
+# Dead
+team add dead "Dead"
+team modify dead color dark_gray
+team modify dead prefix {
+    "text":"☠ ",
     "bold":false,
-    "color":"#8a8a8a"
+    "color":"#bbb5b5"
 }
 
 # Spectator
@@ -65,3 +78,4 @@ team modify spectator prefix [
         "bold":true
     }
 ]
+
