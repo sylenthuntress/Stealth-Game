@@ -19,6 +19,9 @@ scoreboard objectives add uid.index dummy
 # Data
 scoreboard objectives add data.player.health health
 
+# Hazard
+scoreboard objectives add hazard.dripleaf_launcher.timer dummy
+
 # Gamestate
 scoreboard objectives add gamestate.game_active dummy
 scoreboard objectives add gamestate.round_active dummy
@@ -41,8 +44,6 @@ scoreboard players display name $scoredisplay game.player.points {
     "color": "gray",
     "bold": true
 }
-
-scoreboard objectives add game.hazard.dripleaf_launcher.timer dummy
 
 # Generation
 scoreboard objectives add segments.elapsed dummy

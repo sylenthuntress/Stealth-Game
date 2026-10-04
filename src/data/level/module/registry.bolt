@@ -9,7 +9,9 @@ segments = {
     "test": registerUniversal(0),
     "dappled_trees": registerBiome(10, "minecraft:dappled_forest"),
     "birch_trees": registerBiome(10, "minecraft:birch_forest"),
-    "spores_cave": register(5, "minecraft:lush_caves", 0, 1, 1)
+    "desert": register(10, "minecraft:desert", 1, 1, 0),
+    "spores_cave": register(5, "minecraft:lush_caves", 0, 0, 1),
+    "spores_field": registerBiome(5, "minecraft:lush_caves")
 }
 
 bands = {

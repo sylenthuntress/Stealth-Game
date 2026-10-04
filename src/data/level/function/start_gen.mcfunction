@@ -5,6 +5,9 @@ fill coords.play_area.x coords.play_area.y coords.play_area.z (coords.play_area.
 kill @e[type=text_display,tag=band_display]
 kill @e[tag=segment_entity]
 
+# Enable command blocks
+gamerule command_blocks_work true
+
 # Create level pool based on registry
 execute function level:segment/make_pool:
     data remove storage level:pool SegmentEntries
@@ -54,15 +57,15 @@ execute if score $prev.segments segments.elapsed matches 1.. positioned coords.p
     execute if score $prev.segments segments.elapsed matches 1.. positioned ~ ~ ~30 run function level:segment/clear
 
 # Start generating segments
-execute positioned coords.play_area.x (coords.play_area.y-17) coords.play_area.z function level:segment/create:
+execute positioned coords.play_area.x (coords.play_area.y-19) coords.play_area.z function level:segment/create:
     forceload add ~ ~
     fill ~-2 ~-1 ~ ~74 ~60 ~35 air replace
-    execute if score $segments segments.elapsed matches 1.. positioned ~ ~16 ~ run function level:band/create:
-        summon minecraft:text_display ~34 ~16 ~-3 {Tags: ["band_display"], alignment: "center", background: 0, billboard: "vertical", default_background: 0b, line_width: 200, view_range: 2f, see_through: 0b, shadow: 1b, text:{"color":"red","score":{"name":"$segments","objective":"segments.elapsed"}}, text_opacity: -1b, transformation: {left_rotation: [0.0f, 0.0f, 0.0f, 1.0f], right_rotation: [0.0f, 0.0f, 0.0f, 1.0f], scale: [50.0f, 50.0f, 50.0f], translation: [0.0f, 0.0f, 0.0f]}}
+    execute if score $segments segments.elapsed matches 1.. run function level:band/create:
+        summon minecraft:text_display ~34 ~30 ~-3 {Tags: ["band_display"], alignment: "center", background: 0, billboard: "vertical", default_background: 0b, line_width: 200, view_range: 2f, see_through: 0b, shadow: 1b, text:{"color":"red","score":{"name":"$segments","objective":"segments.elapsed"}}, text_opacity: -1b, transformation: {left_rotation: [0.0f, 0.0f, 0.0f, 1.0f], right_rotation: [0.0f, 0.0f, 0.0f, 1.0f], scale: [50.0f, 50.0f, 50.0f], translation: [0.0f, 0.0f, 0.0f]}}
         scoreboard players operation @e[type=text_display,tag=band_display,limit=1,sort=nearest] segments.elapsed = $segments segments.elapsed
         function level:band/get_random with storage level:pool
         execute positioned ~ ~ ~-5 run function level:band/place with storage level:pool
-        execute positioned ~ ~-17 ~-1 run fill ~ ~ ~ ~68 ~ ~-4 minecraft:diamond_block
+        execute positioned ~ ~ ~-1 run fill ~ ~ ~ ~68 ~ ~-4 minecraft:diamond_block
     function level:segment/get_random with storage level:pool
     function level:segment/place with storage level:pool
 
@@ -91,3 +94,8 @@ execute positioned coords.play_area.x (coords.play_area.y-17) coords.play_area.z
     execute unless score $segments segments.remaining matches ..0 positioned ~ ~ ~30 run function level:segment/create
     forceload remove ~ ~
 scoreboard players operation $prev.segments segments.elapsed = $segments segments.elapsed
+
+# Disable command blocks
+schedule function level:disable_command_blocks 10t
+function level:disable_command_blocks:
+    gamerule command_blocks_work false
