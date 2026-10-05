@@ -58,6 +58,15 @@ team modify dead prefix {
     "color":"#bbb5b5"
 }
 
+# Finished
+team add finished "Finish"
+team modify finished color gold
+team modify finished prefix {
+    "text":"🏆 ",
+    "bold":false,
+    "color":"#626161"
+}
+
 # Spectator
 team add spectator "Spectators"
 team modify spectator color dark_gray

@@ -37,12 +37,19 @@ execute if block ~ 41 ~ minecraft:diamond_block unless score @s game.player.band
     scoreboard players add @s game.player.band_progression 1
     scoreboard players add @s game.player.points 5
     execute if score @s game.player.band_progression > $gamestate gamestate.band_progression run scoreboard players add @s game.player.points 5
-    execute if score @s game.player.band_progression > $gamestate gamestate.band_progression as @a[tag=playing] run tellraw @s {"translate": "game.cross_band", "color": "red", with: [{"score":{"name":"@s","objective":"game.player.band_progression"}}]}
-    execute if score @s game.player.band_progression > $gamestate gamestate.band_progression as @a[tag=playing] run playsound block.note_block.chime master @s ~ ~ ~ 2 0
-    execute unless score @s game.player.band_progression > $gamestate gamestate.band_progression run playsound block.note_block.bit master @s ~ ~ ~ 2 0
+    execute if score @s game.player.band_progression > $gamestate gamestate.band_progression run tellraw @a[tag=playing] {"translate": "game.cross_band", "color": "red", with: [{"score":{"name":"@s","objective":"game.player.band_progression"}}]}
+    execute if score @s game.player.band_progression > $gamestate gamestate.band_progression run playsound block.note_block.chime master @a[tag=playing] ~ ~ ~ 1 0.5
+    execute unless score @s game.player.band_progression > $gamestate gamestate.band_progression run playsound block.note_block.bit master @s ~ ~ ~ 1 0.5
 
     tag @s add self
     execute as @e[type=text_display,tag=band_display] if score @s segments.elapsed <= @p[tag=self] game.player.band_progression run data modify entity @s text.color set value 'green'
     tag @s remove self
     
     scoreboard players operation $gamestate gamestate.band_progression > @s game.player.band_progression
+
+execute if block ~ 41 ~ minecraft:netherite_block run function game:gameplay/runner/cross_finish:
+    gamemode spectator
+    team join finished
+    tellraw @a {"translate": "game.cross_finish", "color": "red", with:[{"selector":"@s"}]}
+    playsound minecraft:block.note_block.bell master @s ~ ~ ~ 2 1 1
+    scoreboard players add @s game.player.points 150
