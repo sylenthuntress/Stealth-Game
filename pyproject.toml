@@ -8,5 +8,5 @@ dependencies = [
     "beet>=0.114.1",
     "bolt>=0.50.1",
     "bolt-expressions>=0.19.2",
-    "mecha>=0.102.3",
+    "mecha==0.106.0",
 ]

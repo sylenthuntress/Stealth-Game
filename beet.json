@@ -9,7 +9,8 @@
     "data_pack": {
         "load": [ "src" ],
         "name": "Stealth Game",
-        "pack_format": 121
+        "max_format": 121,
+        "min_format": 121
     },
     "resource_pack": {
         "load": [ "src" ],

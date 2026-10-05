@@ -48,5 +48,6 @@ execute function game:rankings/broadcast_all:
     scoreboard players reset @a[tag=selected] game.player.points
     tag @a remove selected
     execute if entity @a[tag=!winner,scores={game.player.points=1..}] run function game:rankings/broadcast_all
+scoreboard objectives setdisplay sidebar
 scoreboard players reset * points
 tag @a remove winner
