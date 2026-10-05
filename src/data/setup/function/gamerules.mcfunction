@@ -9,7 +9,7 @@ gamerule elytra_movement_check false
 gamerule ender_pearls_vanish_on_death false
 gamerule entity_drops false
 gamerule fall_damage false
-gamerule fire_damage false
+gamerule fire_damage true
 gamerule fire_spread_radius_around_player 0
 gamerule forgive_dead_players true
 gamerule freeze_damage false
