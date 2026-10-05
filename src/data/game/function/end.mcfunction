@@ -1,3 +1,5 @@
+from bolt_expressions import Scoreboard
+
 # Set variables
 scoreboard objectives remove var.players
 execute if score $gamestate gamestate.round_active matches 1 run function game:round/end # End current round if present
@@ -11,29 +13,40 @@ execute as @a run function lobby:join_lobby
 
 # Broadcast ending message
 tellraw @a {translate:"game.end"}
+execute function game:rankings/broadcast_winner:
+    scoreboard players reset $highscore game.player.points
+    execute as @a run scoreboard players operation $highscore game.player.points > @s game.player.points
+    execute as @a if score @s game.player.points = $highscore game.player.points run tag @s add winner
 
-# Sort points
-execute run function game:rankings/broadcast_all:
-    scoreboard objectives add var.placement dummy
-    execute unless score $var var.placement matches -2147483648..2147483647 function game:rankings/calculate_winner:
-        execute store result score $var var.placement run function util:get/players
-        tag @a remove winner
-        
-        execute as @a run function game:rankings/check_winner:
-            scoreboard players operation @s var.placement = $var var.placement
+    scoreboard objectives add var.points_decimal dummy
+    scoreboard objectives add var.points_whole dummy
 
-            tag @s add placing
-            execute as @a if score @s game.player.points > @a[limit=1,tag=placing] game.player.points run scoreboard players remove @a[limit=1,tag=placing] var.placement 1
-            tag @s remove placing
+    points = Scoreboard("game.player.points")
+    pointsDecimal = Scoreboard("var.points_decimal")
+    pointsWhole = Scoreboard("var.points_whole")
 
-            execute if score @s var.placement = $var var.placement run tag @s add winner
-            scoreboard players operation @s var.placement -= $var var.placement
-    execute as @a[scores={var.placement=0}] run function game:rankings/broadcast_self:
-        say TODO: add text here #TODO
-        scoreboard players reset @s
-    scoreboard players add @a var.placement 1
-    execute if entity @a[scores={var.placement=0}] run function game:rankings/broadcast_all
+    pointsWhole["$var"] = points["$highscore"] / 10
+    pointsDecimal["$var"] = points["$highscore"] % 10
+    tellraw @a {"translate": "game.end.winners", "color": "gold", "with": [{"selector":"@a[tag=winner]"}, [{"score": { "name": "$var", "objective": "var.points_whole"}, "color": "red"}, ".", {"score": {"name": "$var", "objective": "var.points_decimal"}, "color": "red"}]]}
+execute function game:rankings/broadcast_all:
+    scoreboard players reset $highscore game.player.points
+    execute as @a[tag=!winner] run scoreboard players operation $highscore game.player.points > @s game.player.points
+    execute as @a[tag=!winner] if score @s game.player.points = $highscore game.player.points run tag @s add selected
 
-    scoreboard objectives remove var.placement # Remove unneeded variable
-scoreboard players reset * game.player.points # Reset points for next game
-scoreboard objectives setdisplay sidebar # Clear points from sidebar
+    scoreboard objectives add var.points_decimal dummy
+    scoreboard objectives add var.points_whole dummy
+
+    points = Scoreboard("game.player.points")
+    pointsDecimal = Scoreboard("var.points_decimal")
+    pointsWhole = Scoreboard("var.points_whole")
+
+    pointsWhole["$var"] = points["$highscore"] / 10
+    pointsDecimal["$var"] = points["$highscore"] % 10
+    execute unless score $var pointsDecimal matches 0 run tellraw @a {"translate": "game.end.rankings", "color": "gold", "with": [{"selector":"@a[tag=selected]"}, [{"score": { "name": "$var", "objective": "var.points_whole"}, "color": "red"}, ".", {"score": {"name": "$var", "objective": "var.points_decimal"}, "color": "red"}]]}
+    execute if score $var pointsDecimal matches 0 run tellraw @a {"translate": "game.end.rankings", "color": "gold", "with": [{"selector":"@a[tag=selected]"}, {"score": { "name": "$var", "objective": "var.points_whole"}, "color": "red"}]}
+    
+    scoreboard players reset @a[tag=selected] game.player.points
+    tag @a remove selected
+    execute if entity @a[tag=!winner,scores={game.player.points=1..}] run function game:rankings/broadcast_all
+scoreboard players reset * points
+tag @a remove winner

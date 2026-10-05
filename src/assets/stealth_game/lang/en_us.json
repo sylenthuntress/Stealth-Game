@@ -2,6 +2,10 @@
     "main.new_join": "Hey, %s. Welcome to %s!",
     "main.game_name": "STEALTH GAME PLACEHOLDER",
     "game.end": "The game has ended!",
+    "game.end.winners": "%s won the game with %s points!",
+    "game.end.rankings": "%s had %s points",
     "game.round_timer": "Time remaining: %s%s%s",
-    "game.insufficient_players": "Insufficient players to play the game."
+    "game.insufficient_players": "Insufficient players to play the game.",
+    "game.cross_band": "A runner has crossed band %s",
+    "game.cross_finish": "%s has reached the finish line!"
 }

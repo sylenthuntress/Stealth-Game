@@ -37,7 +37,7 @@ execute if block ~ 41 ~ minecraft:diamond_block unless score @s game.player.band
     scoreboard players add @s game.player.band_progression 1
     scoreboard players add @s game.player.points 5
     execute if score @s game.player.band_progression > $gamestate gamestate.band_progression run scoreboard players add @s game.player.points 5
-    execute if score @s game.player.band_progression > $gamestate gamestate.band_progression run tellraw @a[tag=playing] {"translate": "game.cross_band", "color": "red", with: [{"score":{"name":"@s","objective":"game.player.band_progression"}}]}
+    execute if score @s game.player.band_progression > $gamestate gamestate.band_progression run tellraw @a[tag=playing] {"translate": "game.cross_band", "color": "red", with: [["",{text:"#",color:"dark_red","bold":true},{score:{name:"@s",objective:"game.player.band_progression"},color:"dark_red","bold":true}]]}
     execute if score @s game.player.band_progression > $gamestate gamestate.band_progression run playsound block.note_block.chime master @a[tag=playing] ~ ~ ~ 1 0.5
     execute unless score @s game.player.band_progression > $gamestate gamestate.band_progression run playsound block.note_block.bit master @s ~ ~ ~ 1 0.5
 
