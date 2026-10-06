@@ -1,8 +1,8 @@
 import skill:registry as registry
 
 data remove storage skill:selection Options
-data remove storage skill:registry Recursive
-data modify storage skill:registry Recursive set from storage skill:registry RunnerSkills
+data remove storage skill:selection Recursive
+data modify storage skill:selection Recursive set from storage skill:registry RunnerSkills
 tag @s add skill.selection.runner_skill
 function skill:selection/make_options
 

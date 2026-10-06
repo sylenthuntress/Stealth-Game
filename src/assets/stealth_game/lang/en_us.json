@@ -22,17 +22,20 @@
     "skill.runner.distorter": "%s Distorter",
     "skill.runner.chemist": "%s Chemist",
     "skill.runner.doctor": "%s Doctor",
+    "skill.runner.random": "%s Random",
     "skill.killer.athlete": "%s Athlete",
     "skill.killer.acrobat": "%s Acrobat",
     "skill.killer.winged": "%s Winged",
     "skill.killer.trapper": "%s Trapper",
-    "skill.killer.hag": "%s Hag",
+    "skill.killer.witch": "%s Witch",
     "skill.killer.locator": "%s Locator",
     "skill.killer.specter": "%s Specter",
     "skill.killer.shifter": "%s Shifter",
     "skill.killer.gemini": "%s Gemini",
+    "skill.killer.random": "%s Random",
     "skill.weapon.trident": "%s Trident",
     "skill.weapon.spectral_bow": "%s Spectral Bow",
     "skill.weapon.crossbow": "%s Crossbow",
-    "skill.weapon.mace": "%s Mace"
+    "skill.weapon.mace": "%s Mace",
+    "skill.weapon.random": "%s Random"
 }

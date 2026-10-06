@@ -1,7 +1,19 @@
 {
   "env": {
     "exclude": [
-      "src/data/level/function/random_segment.mcfunction"
+      "src/data/level/function/random_segment.mcfunction",
+      "src/data/game/function/end.mcfunction",
+      "src/data/setup/function/scores.mcfunction",
+      "src/data/skill/function/class_selection.mcfunction",
+      "src/data/skill/function/selection/runner_gui.mcfunction",
+      "src/data/setup/function/registry.mcfunction",
+      "src/data/level/function/start_gen.mcfunction",
+      "src/data/skill/function/selection/open_dialog.mcfunction",
+      "src/data/skill/function/selection/killer_gui.mcfunction",
+      "src/data/skill/function/selection/process_selection.mcfunction",
+      "src/data/main/function/new_join.mcfunction",
+      "src/data/skill/function/selection/weapon_gui.mcfunction",
+      "src/data/skill/function/apply_skills.mcfunction"
     ]
   }
 }

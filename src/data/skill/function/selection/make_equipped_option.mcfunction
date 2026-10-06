@@ -1,0 +1,4 @@
+# $execute if data entity @s {Tags:["$(id)"]} run data modify storage skill:selection body.contents append value {"translate": "skill.slot", "with": [{"translate": "$(id)", "with": [{"sprite": "$(icon)"}]}]}
+$execute if data storage skill:selection selections[{"uid": $(uid)}].skills[{"id": "$(id)"}] run data modify storage skill:selection Options[-1].label.color set value "green"
+$execute if data storage skill:selection selections[{"uid": $(uid)}].skills[{"id": "$(id)"}] run data modify storage skill:selection Options[-1].label.with[0].color set value "white"
+$execute if data storage skill:selection selections[{"uid": $(uid)}].skills[{"id": "$(id)"}] run data modify storage skill:selection Options[-1].label.strikethrough set value false
