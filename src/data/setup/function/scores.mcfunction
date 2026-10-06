@@ -67,6 +67,15 @@ scoreboard objectives add math.division dummy
 scoreboard objectives add math.percentage dummy
 scoreboard objectives add math.result dummy
 
+# Skill
+scoreboard objectives add skill.slots.runner.occupied dummy
+scoreboard objectives add skill.slots.killer.occupied dummy
+scoreboard objectives add skill.slots.weapon.occupied dummy
+
+scoreboard objectives add skill.selection trigger
+scoreboard objectives add skill.close_selection trigger
+scoreboard objectives add skill.current_slot trigger
+
 # Time
 scoreboard objectives add time.start_timer dummy
 scoreboard objectives add time.round_timer dummy

@@ -2,10 +2,13 @@ options = {
     "gamemode": 0,
     "team_selection": 0,
     "killer_ratio": 15,
-    "round_timer": 3600,
-    "segments_small": 5,
+    "round_timer": 12000,
+    "segments_small": 3,
     "segments_med": 4,
-    "segments_large": 3
+    "segments_large": 5,
+    "slots.runner_skill": 2,
+    "slots.killer_skill": 2,
+    "slots.weapon": 1
 }
 
 prefix = "config."
