@@ -3,8 +3,6 @@ scoreboard players remove @s[tag=skill.selection.killer_skill] skill.slots.kille
 scoreboard players remove @s[tag=skill.selection.weapon] skill.slots.weapon.occupied 1
 
 $data remove storage skill:selection selections[{"uid": $(uid)}].skills[{"id": "$(selectedoption)"}]
-execute if entity @s[tag=skill.selection.runner_skill] run function skill:selection/runner_gui
-execute if entity @s[tag=skill.selection.killer_skill] run function skill:selection/killer_gui
-execute if entity @s[tag=skill.selection.weapon] run function skill:selection/weapon_gui
+function skill:selection/refresh_gui
 
 execute at @s run playsound minecraft:entity.item.pickup ui @s ~ ~ ~ 0.5 0.5

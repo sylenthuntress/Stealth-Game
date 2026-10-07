@@ -87,6 +87,7 @@ scoreboard objectives add skill.current_slot trigger
 
 # Time
 scoreboard objectives add time.start_timer dummy
+scoreboard objectives add time.start_sequence dummy
 scoreboard objectives add time.round_timer dummy
 scoreboard objectives add time.player.heal_timer dummy
 scoreboard objectives add time.player.hide_timer dummy

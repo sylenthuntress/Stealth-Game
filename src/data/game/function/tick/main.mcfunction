@@ -19,8 +19,10 @@ execute store result score $gamestate gamestate.round_total run execute if entit
 scoreboard players operation $gamestate gamestate.round_total += $gamestate gamestate.round_count
 
 execute if score $time time.round_cooldown matches 1.. run scoreboard players remove $time time.round_cooldown 1
-execute if score $time time.round_cooldown matches 0 unless score $gamestate gamestate.round_count = $gamestate gamestate.round_total run function game:round/start
+execute if score $time time.round_cooldown matches 0 unless score $gamestate gamestate.round_count = $gamestate gamestate.round_total run function game:round/new_round
 execute if score $time time.round_cooldown matches 0 if score $gamestate gamestate.round_count = $gamestate gamestate.round_total run return run function game:end # End game once rounds exceed available players
+
+execute if score $time time.start_sequence matches 0.. run function game:round/start_sequence
 
 # Manage spectators
 execute as @a[gamemode=spectator] at @s if entity @a[gamemode=!spectator,tag=playing] unless entity @a[gamemode=!spectator,distance=..32] run function game:leash_spectator:

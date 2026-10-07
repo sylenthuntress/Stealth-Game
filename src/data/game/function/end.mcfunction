@@ -9,6 +9,7 @@ bossbar set game:time/round_timer players
 # Reset player data
 tag @a remove playing
 tag @a remove killer_blacklist
+tag @a add lobby
 execute as @a run function lobby:join_lobby
 
 # Broadcast ending message
