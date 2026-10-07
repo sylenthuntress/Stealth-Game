@@ -4,7 +4,7 @@ execute if entity @s[predicate=!util:is_sneaking] run scoreboard players set @s 
 execute if score @s time.player.hide_timer matches 60 run function game:gameplay/runner/start_hiding:
     item fill entity @s armor.* with air
     effect give @s invisibility infinite 0 true
-    attribute @s minecraft:camera_distance modifier add game:gameplay/runner/hiding 2 add_multiplied_base
+    attribute @s minecraft:camera_distance modifier add game:gameplay/runner/hiding 1.5 add_multiplied_base
     attribute @s minecraft:scale modifier add game:gameplay/runner/hiding -0.05 add_multiplied_base
     attribute @s minecraft:movement_speed modifier add game:gameplay/runner/hiding 0.25 add_value
 
