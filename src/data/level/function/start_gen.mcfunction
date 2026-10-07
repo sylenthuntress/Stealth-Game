@@ -71,9 +71,9 @@ execute positioned coords.play_area.x (coords.play_area.y-19) coords.play_area.z
 
     # TODO: add better wall generation
     wallMaterial = "black_concrete"
-    fill ~-1 ~-1 ~-5 ~-2 ~51 ~35 wallMaterial
-    fill ~69 ~-1 ~-5 ~70 ~51 ~35 wallMaterial
-    fill ~ ~46 ~ ~70 ~46 ~35 wallMaterial
+    fill ~-1 ~-5 ~-5 ~-2 ~40 ~35 wallMaterial
+    fill ~69 ~-5 ~-5 ~70 ~40 ~35 wallMaterial
+    fill ~ ~4035 ~ ~70 ~40 ~35 barrier
     # Shrink map segment to medium
     execute if score $segments segments.remaining_large matches 0 if score $segments segments.remaining_med matches 1.. run fill ~ ~-1 ~-5 ~9 ~46 ~35 wallMaterial
     execute if score $segments segments.remaining_large matches 0 if score $segments segments.remaining_med matches 1.. run fill ~69 ~-1 ~-5 ~59 ~46 ~35 wallMaterial
