@@ -1,4 +1,4 @@
 scoreboard players enable @s skill.selection
 scoreboard players enable @s skill.close_selection
 # $dialog show @s {"type": "minecraft:multi_action", "title": "skill.selection.gui", "body": $(body), "inputs": [], "can_close_with_escape": true, "pause": false, "exit_action": { "label": { "translate": "skill.selection.gui.ready"}}, "columns": 3, "actions": $(Options)}
-$dialog show @s {"type": "minecraft:multi_action", "title": {"translate": "skill.selection.gui"}, "inputs": [], "can_close_with_escape": true, "pause": false, "exit_action": { "label": {"translate": "skill.selection.gui.ready", "color": "green"}, "action": {"type": "minecraft:run_command", "command": "trigger skill.close_selection set 1"}}, "columns": 3, "actions": $(Options)}
+$dialog show @s {"type": "minecraft:multi_action", "title": $(title), "inputs": [], "can_close_with_escape": true, "pause": false, "exit_action": { "label": {"translate": "skill.selection.gui.ready", "color": "green"}, "action": {"type": "minecraft:run_command", "command": "trigger skill.close_selection set 1"}}, "columns": 3, "actions": $(Options)}

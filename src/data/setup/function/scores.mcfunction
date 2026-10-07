@@ -73,6 +73,7 @@ scoreboard objectives add skill.slots.killer.occupied dummy
 scoreboard objectives add skill.slots.weapon.occupied dummy
 
 scoreboard objectives add skill.selection trigger
+scoreboard objectives add skill.switch_selection trigger
 scoreboard objectives add skill.close_selection trigger
 scoreboard objectives add skill.current_slot trigger
 

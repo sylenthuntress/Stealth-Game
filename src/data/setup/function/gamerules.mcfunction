@@ -37,7 +37,7 @@ gamerule raids false
 gamerule random_tick_speed 0
 gamerule reduced_debug_info true
 gamerule respawn_radius 0
-gamerule send_command_feedback true
+gamerule send_command_feedback false
 gamerule show_advancement_messages true
 gamerule show_death_messages false
 gamerule spawn_mobs false

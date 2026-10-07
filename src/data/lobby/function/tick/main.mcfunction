@@ -1,5 +1,5 @@
 # Tick subtasks
-execute as @a[tag=lobby] run function scrubs_spores:lobby/tick_player
+execute as @a[tag=lobby] run function lobby:tick/player
 
 # Manage start button
 execute positioned 60 32 -0.5 if block ~ ~ ~ minecraft:acacia_button[powered=true] run function lobby:start_game:
