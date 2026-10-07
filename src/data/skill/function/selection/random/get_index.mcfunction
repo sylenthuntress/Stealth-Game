@@ -1,0 +1,1 @@
+$execute store result storage skill:random args.target_index int 1 run random value 0..$(max_index)

@@ -1,0 +1,1 @@
+$return run tag @s add $(id)

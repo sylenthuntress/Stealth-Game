@@ -1,0 +1,1 @@
+$return run function skill:selection/random/add_tag with storage skill:random list[$(target_index)]

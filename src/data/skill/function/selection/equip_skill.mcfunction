@@ -1,6 +1,6 @@
-execute if score $config config.slots.runner_skill <= @s[tag=skill.selection.runner_skill] skill.slots.runner.occupied run return run function skill:selection/fail_equip
-execute if score $config config.slots.killer_skill <= @s[tag=skill.selection.killer_skill] skill.slots.killer.occupied run return run function skill:selection/fail_equip
-execute if score $config config.slots.weapon <= @s[tag=skill.selection.weapon] skill.slots.weapon.occupied run return run function skill:selection/fail_equip
+execute if score $config config.slots.runner_skill <= @s[tag=skill.selection.runner_skill] skill.slots.runner.occupied run return run function skill:selection/locked
+execute if score $config config.slots.killer_skill <= @s[tag=skill.selection.killer_skill] skill.slots.killer.occupied run return run function skill:selection/locked
+execute if score $config config.slots.weapon <= @s[tag=skill.selection.weapon] skill.slots.weapon.occupied run return run function skill:selection/locked
 
 scoreboard players add @s[tag=skill.selection.runner_skill] skill.slots.runner.occupied 1
 scoreboard players add @s[tag=skill.selection.killer_skill] skill.slots.killer.occupied 1

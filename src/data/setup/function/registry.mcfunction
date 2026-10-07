@@ -52,6 +52,9 @@ for runner_skill in runner_skills:
         'icon': skill_registry.runner_skills[runner_skill[len(skill_registry.runner_prefix):]].icon,
         'atlas': skill_registry.runner_skills[runner_skill[len(skill_registry.runner_prefix):]].atlas
     }
+    isRandom = skill_registry.runner_skills[runner_skill[len(skill_registry.runner_prefix):]].isRandom
+    if isRandom == 1:
+        data modify storage skill:registry RunnerSkills[-1].is_random set value isRandom
 
 killer_skills = skill_registry.getKillerSkills()
 for killer_skill in killer_skills:
@@ -62,6 +65,9 @@ for killer_skill in killer_skills:
         'icon': skill_registry.killer_skills[killer_skill[len(skill_registry.killer_prefix):]].icon,
         'atlas': skill_registry.killer_skills[killer_skill[len(skill_registry.killer_prefix):]].atlas
     }
+    isRandom = skill_registry.killer_skills[killer_skill[len(skill_registry.killer_prefix):]].isRandom
+    if isRandom == 1:
+        data modify storage skill:registry KillerSkills[-1].is_random set value isRandom
 
 weapons = skill_registry.getWeapons()
 for weapon in weapons:
@@ -72,6 +78,9 @@ for weapon in weapons:
         'icon': skill_registry.weapons[weapon[len(skill_registry.weapon_prefix):]].icon,
         'atlas': skill_registry.weapons[weapon[len(skill_registry.weapon_prefix):]].atlas
     }
+    isRandom = skill_registry.weapons[weapon[len(skill_registry.weapon_prefix):]].isRandom
+    if isRandom == 1:
+        data modify storage skill:registry WeaponRegistry[-1].is_random set value isRandom
 
     
 # Compatibility with other datapacks

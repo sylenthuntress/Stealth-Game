@@ -69,10 +69,18 @@ scoreboard objectives add math.result dummy
 
 # Skill
 scoreboard objectives add skill.slots.runner.occupied dummy
+scoreboard objectives add skill.slots.runner.random_selected dummy
 scoreboard objectives add skill.slots.killer.occupied dummy
+scoreboard objectives add skill.slots.killer.random_selected dummy
 scoreboard objectives add skill.slots.weapon.occupied dummy
+scoreboard objectives add skill.slots.weapon.random_selected dummy
+
+scoreboard objectives add skill.is_random.runner dummy
+scoreboard objectives add skill.is_random.killer dummy
+scoreboard objectives add skill.is_random.weapon dummy
 
 scoreboard objectives add skill.selection trigger
+scoreboard objectives add skill.random_selection trigger
 scoreboard objectives add skill.switch_selection trigger
 scoreboard objectives add skill.close_selection trigger
 scoreboard objectives add skill.current_slot trigger

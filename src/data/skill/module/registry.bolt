@@ -2,7 +2,12 @@ id_index = 0
 def register(icon, atlas):
     global id_index
     id_index += 1
-    return {"id": id_index, "icon": icon, "atlas": atlas}
+    return {"id": id_index, "icon": icon, "atlas": atlas, "isRandom": 0}
+
+def registerRandom():
+    global id_index
+    id_index += 1
+    return {"id": id_index, "icon": "minecraft:item/nether_star", "atlas": "minecraft:items", "isRandom": 1}
 
 runner_skills = {
     "camoflauge": register("minecraft:block/bush", "minecraft:blocks"),
@@ -16,7 +21,7 @@ runner_skills = {
     "distorter": register("minecraft:block/warped_fungus", "minecraft:blocks"),
     "chemist": register("minecraft:block/brewing_stand", "minecraft:blocks"),
     "doctor": register("minecraft:item/apple", "minecraft:items"),
-    "random": register("minecraft:item/nether_star", "minecraft:items")
+    "random": registerRandom()
 }
 
 killer_skills = {
@@ -29,7 +34,7 @@ killer_skills = {
     "specter": register("minecraft:mob_effect/invisibility", "minecraft:gui"),
     "shifter": register("minecraft:block/lapis_ore", "minecraft:blocks"),
     "gemini": register("minecraft:mob_effect/oozing", "minecraft:gui"),
-    "random": register("minecraft:item/nether_star", "minecraft:items")
+    "random": registerRandom()
 }
 
 weapons = {
@@ -37,7 +42,7 @@ weapons = {
     "spectral_bow": register("minecraft:item/bow", "minecraft:items"),
     "crossbow": register("minecraft:item/crossbow_arrow", "minecraft:items"),
     "mace": register("minecraft:item/mace", "minecraft:items"),
-    "random": register("minecraft:item/nether_star", "minecraft:items")
+    "random": registerRandom()
 }
 
 runner_prefix = "skill.runner."
