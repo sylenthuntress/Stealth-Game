@@ -42,8 +42,8 @@ execute if score @s time.player.heal_timer matches 1 positioned ~-3 ~-1 ~-3 as @
 # Band crossing
 execute if block ~ 41 ~ minecraft:diamond_block unless score @s game.player.band_progression >= @e[type=text_display,tag=band_display,limit=1,sort=nearest] segments.elapsed run function game:gameplay/runner/cross_band:
     scoreboard players add @s game.player.band_progression 1
-    scoreboard players add @s game.player.points 5
-    execute if score @s game.player.band_progression > $gamestate gamestate.band_progression run scoreboard players add @s game.player.points 5
+    scoreboard players add @s game.player.due_points 5
+    execute if score @s game.player.band_progression > $gamestate gamestate.band_progression run scoreboard players add @s game.player.due_points 5
     execute if score @s game.player.band_progression > $gamestate gamestate.band_progression run tellraw @a[tag=playing] {"translate": "game.cross_band", "color": "red", with: [["",{text:"#",color:"dark_red","bold":true},{score:{name:"@s",objective:"game.player.band_progression"},color:"dark_red","bold":true}]]}
     execute if score @s game.player.band_progression > $gamestate gamestate.band_progression run playsound block.note_block.chime master @a[tag=playing] ~ ~ ~ 1 0.5
     execute unless score @s game.player.band_progression > $gamestate gamestate.band_progression run playsound block.note_block.bit master @s ~ ~ ~ 1 0.5
@@ -59,4 +59,4 @@ execute if block ~ 41 ~ minecraft:netherite_block run function game:gameplay/run
     team join finished
     tellraw @a {"translate": "game.cross_finish", "color": "red", with:[{"selector":"@s"}]}
     playsound minecraft:block.note_block.bell master @s ~ ~ ~ 2 1 1
-    scoreboard players add @s game.player.points 150
+    scoreboard players add @s game.player.due_points 50

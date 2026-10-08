@@ -39,6 +39,7 @@ scoreboard objectives add game.player.damage dummy
 scoreboard objectives add game.player.injury dummy
 scoreboard objectives add game.player.heal_amount dummy
 scoreboard objectives add game.player.band_progression dummy
+scoreboard objectives add game.player.due_points dummy
 scoreboard objectives add game.player.points dummy
 scoreboard objectives modify game.player.points displayname {
     "translate":"game.player.points"

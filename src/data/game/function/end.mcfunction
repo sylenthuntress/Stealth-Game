@@ -51,4 +51,5 @@ execute function game:rankings/broadcast_all:
     execute if entity @a[tag=!winner,scores={game.player.points=1..}] run function game:rankings/broadcast_all
 scoreboard objectives setdisplay sidebar
 scoreboard players reset * points
+scoreboard players set $scoredisplay game.player.points -999
 tag @a remove winner
