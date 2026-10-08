@@ -71,16 +71,16 @@ execute positioned coords.play_area.x (coords.play_area.y-19) coords.play_area.z
 
     # TODO: add better wall generation
     wallMaterial = "black_concrete"
-    fill ~-1 ~-5 ~-5 ~-2 ~40 ~35 wallMaterial
-    fill ~69 ~-5 ~-5 ~70 ~40 ~35 wallMaterial
-    fill ~ ~4035 ~ ~70 ~40 ~35 barrier
+    fill ~-1 41 ~-5 ~-6 ~46 ~35 wallMaterial
+    fill ~69 41 ~-5 ~75 ~46 ~35 wallMaterial
+    fill ~ ~47 ~ ~70 ~47 ~35 barrier
     # Shrink map segment to medium
-    execute if score $segments segments.remaining_large matches 0 if score $segments segments.remaining_med matches 1.. run fill ~ ~-1 ~-5 ~9 ~46 ~35 wallMaterial
-    execute if score $segments segments.remaining_large matches 0 if score $segments segments.remaining_med matches 1.. run fill ~69 ~-1 ~-5 ~59 ~46 ~35 wallMaterial
+    execute if score $segments segments.remaining_large matches 0 if score $segments segments.remaining_med matches 1.. run fill ~ 41 ~-5 ~9 ~46 ~35 wallMaterial
+    execute if score $segments segments.remaining_large matches 0 if score $segments segments.remaining_med matches 1.. run fill ~69 41 ~-5 ~59 ~46 ~35 wallMaterial
 
     # Shrink map segment to small
-    execute if score $segments segments.remaining_large matches 0 if score $segments segments.remaining_med matches 0 run fill ~ ~-1 ~-5 ~19 ~46 ~35 wallMaterial
-    execute if score $segments segments.remaining_large matches 0 if score $segments segments.remaining_med matches 0 run fill ~69 ~-1 ~-5 ~49 ~46 ~35 wallMaterial
+    execute if score $segments segments.remaining_large matches 0 if score $segments segments.remaining_med matches 0 run fill ~ 41 ~-5 ~19 ~46 ~35 wallMaterial
+    execute if score $segments segments.remaining_large matches 0 if score $segments segments.remaining_med matches 0 run fill ~69 41 ~-5 ~49 ~46 ~35 wallMaterial
 
     # Place pipes
     # execute if score $segments segments.elapsed matches 3.. run place template level:pipes ~45 ~32 ~-6
