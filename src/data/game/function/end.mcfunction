@@ -52,4 +52,9 @@ execute function game:rankings/broadcast_all:
 scoreboard objectives setdisplay sidebar
 scoreboard players reset * points
 scoreboard players set $scoredisplay game.player.points -999
+scoreboard players display name $scoredisplay game.player.points {
+    "text": "---------------------",
+    "color": "gray",
+    "bold": true
+}
 tag @a remove winner
