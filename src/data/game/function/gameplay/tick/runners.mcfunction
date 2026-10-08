@@ -33,8 +33,8 @@ execute if score @s data.player.damage_taken matches 1.. run function game:gamep
 ## Group healing
 execute if entity @s[predicate=util:is_sneaking,scores={time.player.heal_timer=..0}] run scoreboard players set @s time.player.heal_timer 20
 scoreboard players remove @s[predicate=!util:is_sneaking] time.player.heal_timer 1
-execute if score @s[predicate=!util:is_sneaking] time.player.heal_timer matches 1.. if entity @a[distance=0.1..5,team=sneaker] run particle minecraft:happy_villager ~ ~ ~ 0.3 0.4 0.3 1 1 normal @a[scores={game.player.team_id=1}]
-execute if score @s time.player.heal_timer matches 1 positioned ~-3 ~-1 ~-3 as @a[dx=6,dy=4,dz=6,team=sneaker,predicate=!util:is_sneaking,scores={time.player.heal_timer=2..,game.player.injury=1..}] at @s run function game:gameplay/mutual_health:
+execute if score @s[predicate=!util:is_sneaking] time.player.heal_timer matches 1.. if entity @a[distance=0.1..5,team=runner] run particle minecraft:happy_villager ~ ~ ~ 0.3 0.4 0.3 1 1 normal @a[scores={game.player.team_id=1}]
+execute if score @s time.player.heal_timer matches 1 positioned ~-3 ~-1 ~-3 as @a[dx=6,dy=4,dz=6,team=runner,predicate=!util:is_sneaking,scores={time.player.heal_timer=2..,game.player.injury=1..}] at @s run function game:gameplay/mutual_health:
     scoreboard players add @s game.player.heal_amount 5
     function game:gameplay/runner/heal
 

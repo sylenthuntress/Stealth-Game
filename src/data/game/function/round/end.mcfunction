@@ -13,9 +13,9 @@ execute as @a run function game:round/leave_round:
     function skill:on_disable
     function skill:disable_skills
 
-    attribute @s minecraft:scale modifier remove game:teams/sneaker
-    attribute @s minecraft:max_health modifier remove game:teams/sneaker
-    attribute @s minecraft:camera_distance modifier remove game:teams/sneaker
+    attribute @s minecraft:scale modifier remove game:teams/runner
+    attribute @s minecraft:max_health modifier remove game:teams/runner
+    attribute @s minecraft:camera_distance modifier remove game:teams/runner
     attribute @s minecraft:camera_distance modifier remove game:teams/killer
     attribute @s minecraft:movement_speed modifier remove game:gameplay/movement_penalty/injury
 scoreboard players set * game.player.band_progression 0

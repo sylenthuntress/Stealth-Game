@@ -21,15 +21,15 @@ execute as @a[tag=playing] run function game:round/join_round:
 
     attribute @s minecraft:movement_speed modifier add game:round/start_sequence -1 add_multiplied_base
     attribute @s minecraft:jump_strength modifier add game:round/start_sequence -1 add_multiplied_base
-execute as @a[scores={game.player.team_id=1}] run function game:round/join_sneaker:
+execute as @a[scores={game.player.team_id=1}] run function game:round/join_runner:
     gamemode adventure @s
-    team join sneaker @s
+    team join runner @s
     function skill:selection/runner_gui
-    attribute @s minecraft:scale modifier add game:teams/sneaker -0.33 add_value
-    attribute @s minecraft:max_health modifier add game:teams/sneaker 79 add_value
-    attribute @s minecraft:camera_distance modifier add game:teams/sneaker -1.5 add_value
+    attribute @s minecraft:scale modifier add game:teams/runner -0.33 add_value
+    attribute @s minecraft:max_health modifier add game:teams/runner 79 add_value
+    attribute @s minecraft:camera_distance modifier add game:teams/runner -1.5 add_value
 
-    tp @s coords.sneaker_spawn.x coords.sneaker_spawn.y coords.sneaker_spawn.z
+    tp @s coords.runner_spawn.x coords.runner_spawn.y coords.runner_spawn.z
 execute as @a[scores={game.player.team_id=2}] run function game:round/join_killer:
     gamemode adventure @s
     team join killer @s
@@ -38,9 +38,9 @@ execute as @a[scores={game.player.team_id=2}] run function game:round/join_kille
 
     tp @s coords.killer_spawn.x coords.killer_spawn.y coords.killer_spawn.z
 
-# End game if no sneaker/killer is found
-execute unless entity @a[team=sneaker] run function game:end
-execute unless entity @a[team=sneaker] run return fail
+# End game if no runner/killer is found
+execute unless entity @a[team=runner] run function game:end
+execute unless entity @a[team=runner] run return fail
 
 execute unless entity @a[team=killer] run function game:end
 execute unless entity @a[team=killer] run return fail

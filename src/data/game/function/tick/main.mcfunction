@@ -10,7 +10,7 @@ execute if score $var var.players matches ..1 run function game:insufficient_pla
     tellraw @a {"translate": "game.insufficient_players", "color": "red"}
 execute if score $var var.players matches ..1 return fail
 
-# End round once all sneakers are spectating
+# End round once all runners are spectating
 execute if score $gamestate gamestate.round_active matches 1 run function game:round/tick:
     execute unless entity @a[scores={game.player.team_id=1},gamemode=!spectator] run function game:round/end
     

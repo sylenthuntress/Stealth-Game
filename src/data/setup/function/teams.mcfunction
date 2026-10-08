@@ -35,15 +35,15 @@ team modify killer prefix {
     "color":"#712525"
 }
 
-# Sneaker
-team add sneaker {"text":"Mice","color":"gray"}
-team modify sneaker color gray
-team modify sneaker friendlyFire false
-team modify sneaker collisionRule never
-team modify sneaker nametagVisibility hideForOtherTeams
-team modify sneaker seeFriendlyInvisibles true
-team modify sneaker deathMessageVisibility never
-team modify sneaker prefix {
+# Runner
+team add runner {"text":"Mice","color":"gray"}
+team modify runner color gray
+team modify runner friendlyFire false
+team modify runner collisionRule never
+team modify runner nametagVisibility hideForOtherTeams
+team modify runner seeFriendlyInvisibles true
+team modify runner deathMessageVisibility never
+team modify runner prefix {
     "text":"🐁 ",
     "bold":true,
     "color":"#626161"
