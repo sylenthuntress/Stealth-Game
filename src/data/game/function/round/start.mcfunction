@@ -10,6 +10,8 @@ execute as @e[type=text_display,tag=band_display] run data modify entity @s text
     bossbar set game:time/round_timer players @a[tag=playing]
 
 execute as @a[tag=playing] at @s run function game:round/start_moving:
+    attribute @s minecraft:movement_speed modifier remove game:round/start_sequence
+    attribute @s minecraft:jump_strength modifier remove game:round/start_sequence
     # Enable skills
     function skill:selection/close_gui
     function skill:enable_skills

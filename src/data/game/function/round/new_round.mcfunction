@@ -18,6 +18,9 @@ execute as @a[tag=playing] run function game:round/join_round:
     effect clear @s
     effect give @s regeneration infinite 255 true
     effect give @s instant_health 1 255 true
+
+    attribute @s minecraft:movement_speed modifier add game:round/start_sequence -1 add_multiplied_base
+    attribute @s minecraft:jump_strength modifier add game:round/start_sequence -1 add_multiplied_base
 execute as @a[scores={game.player.team_id=1}] run function game:round/join_sneaker:
     gamemode adventure @s
     team join sneaker @s
