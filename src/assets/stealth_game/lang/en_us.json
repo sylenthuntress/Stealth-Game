@@ -15,6 +15,7 @@
     "skill.selection.gui.ready": "Ready",
     "skill.slot": "Selected: %s",
     "skill.runner.camouflage": "%s Camouflage",
+    "skill.runner.camouflage.desc": " §lHiding§r lingers for up to 10 seconds after you stop crouching. Furthermore, you're more nimble in that state.",
     "skill.runner.brawler": "%s Brawler",
     "skill.runner.brawler.desc": "Punch killers to stun them. Each hit comes with great knockback, and adds 1.5s to their stun duration.\n\n§cNote: Runners cannot attack while §lHiding§r§c.",
     "skill.runner.tank": "%s Tank",
