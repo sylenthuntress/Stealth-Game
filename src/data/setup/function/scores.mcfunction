@@ -94,6 +94,8 @@ scoreboard objectives add time.round_timer dummy
 scoreboard objectives add time.player.heal_timer dummy
 scoreboard objectives add time.player.hide_timer dummy
 scoreboard objectives add time.player.stun_timer dummy
+scoreboard objectives add time.player.dash_cooldown dummy
+scoreboard objectives add time.player.dash_timer dummy
 scoreboard objectives add time.round_cooldown dummy
 
 # Animations

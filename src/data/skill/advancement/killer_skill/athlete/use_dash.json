@@ -1,0 +1,18 @@
+
+{
+    "criteria": {
+        "requirement": {
+            "trigger": "minecraft:consume_item",
+            "conditions": {
+                "item": {
+                    "predicates": {
+                        "minecraft:custom_data": "{skill.killer.athlete.dash_item: true}"
+                    }
+                }
+            }
+        }
+    },
+    "rewards": {
+        "function": "skill:killer_skill/athlete/use_dash"
+    }
+}
