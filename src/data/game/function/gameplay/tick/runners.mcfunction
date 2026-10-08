@@ -1,32 +1,45 @@
 # Sneak to hide
-execute if entity @s[predicate=util:is_sneaking] run scoreboard players add @s time.player.hide_timer 1
-execute if entity @s[predicate=!util:is_sneaking] run scoreboard players set @s time.player.hide_timer 0
-execute if score @s time.player.hide_timer matches 15 run function game:gameplay/runner/start_hiding:
+execute if entity @s[predicate=util:is_sneaking] if score @s time.player.hide_timer matches ..15 run scoreboard players add @s time.player.hide_timer 1
+execute if score @s time.player.hide_timer matches 16.. run scoreboard players remove @s time.player.hide_timer 1
+execute if entity @s[predicate=!util:is_sneaking] if score @s time.player.hide_timer matches 1.. run scoreboard players remove @s time.player.hide_timer 1
+execute if score @s[tag=!hiding] time.player.hide_timer matches 15 run function game:gameplay/runner/start_hiding:
+    tag @s add hiding
+    particle minecraft:block_crumble{block_state:"minecraft:white_wool"} ~ ~ ~ 0.2 0.5 0.2 1 10 normal @a
     item fill entity @s armor.* with air
     effect give @s invisibility infinite 0 true
     attribute @s minecraft:camera_distance modifier add game:gameplay/runner/hiding 1.5 add_multiplied_base
     attribute @s minecraft:scale modifier add game:gameplay/runner/hiding -0.05 add_multiplied_base
     attribute @s minecraft:attack_damage modifier add game:gameplay/runner/hiding -1 add_multiplied_base
-    attribute @s minecraft:movement_speed modifier add game:gameplay/runner/hiding 0.2 add_value
+    attribute @s minecraft:sneaking_speed modifier add game:gameplay/runner/hiding 1 add_value
     attribute @s minecraft:jump_strength modifier add game:gameplay/runner/hiding -0.1 add_value
     attribute @s minecraft:gravity modifier add game:gameplay/runner/hiding 0.02 add_value
     attribute @s minecraft:step_height modifier add game:gameplay/runner/hiding -0.3 add_value
 
     summon minecraft:item_display ~ ~ ~ {Tags:["little_mouse"], teleport_duration: 1, item: {components: {"minecraft:custom_name": {bold: 1b, color: "gold", italic: 0b, text: "Field Mouse", underlined: 1b}, "minecraft:lore": [{color: "gray", italic: 0b, text: "Custom Head ID: 110695"}, {color: "blue", italic: 0b, text: "www.minecraft-heads.com"}], "minecraft:profile": {properties: [{name: "textures", value: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjM3OWUwOTI1MjgxNzMxNGJkMGI2OTRmN2Q1M2I0OGFmMmM3ZmE4NDk5MTA5ODAyYTQxYmIyOTRkMmY5M2UzZSJ9fX0="}]}}, count: 1, id: "minecraft:player_head"}, item_display: "head"}
     execute as @e[type=item_display,tag=little_mouse,limit=1,sort=nearest] unless score @s uid.entity matches 0.. run scoreboard players operation @s uid.entity = @p uid.player
-execute if score @s time.player.hide_timer matches 0 run function game:gameplay/runner/stop_hiding:
+    rotate @e[type=item_display,tag=little_mouse,limit=1,sort=nearest] ~180 0
+    tp @e[type=item_display,tag=little_mouse,limit=1,sort=nearest] ~ ~0.55 ~
+execute if score @s[tag=hiding] time.player.hide_timer matches 0 run function game:gameplay/runner/stop_hiding:
+    tag @s remove hiding
+    particle minecraft:block_crumble{block_state:"minecraft:white_wool"} ~ ~ ~ 0.2 0.5 0.2 1 10 normal @a
     effect clear @s invisibility
     attribute @s minecraft:camera_distance modifier remove game:gameplay/runner/hiding
     attribute @s minecraft:scale modifier remove game:gameplay/runner/hiding
-    attribute @s minecraft:movement_speed modifier remove game:gameplay/runner/hiding
+    attribute @s minecraft:sneaking_speed modifier remove game:gameplay/runner/hiding
     attribute @s minecraft:attack_damage modifier remove game:gameplay/runner/hiding
     attribute @s minecraft:jump_strength modifier remove game:gameplay/runner/hiding
     attribute @s minecraft:gravity modifier remove game:gameplay/runner/hiding
     attribute @s minecraft:step_height modifier remove game:gameplay/runner/hiding
     scoreboard players set @s time.player.hide_timer 0
     execute as @e[type=item_display,tag=little_mouse] if score @s uid.entity = @p uid.player run kill @s
-    
-execute as @e[type=item_display,tag=little_mouse] if score @s uid.entity = @p uid.player rotated as @p run tp @s ~ ~0.55 ~ ~180 0
+
+tag @s add this.self
+execute positioned ~ ~0.55 ~ as @e[type=item_display,tag=little_mouse,distance=0.001..] if score @s uid.entity = @a[tag=this.self,limit=1] uid.player run tag @s add this.selected
+execute as @e[type=item_display,tag=this.selected,limit=1] run rotate @s facing entity @a[tag=this.self,limit=1] eyes
+execute as @e[type=item_display,tag=this.selected,limit=1] at @s run rotate @s ~180 0
+execute as @e[type=item_display,tag=this.selected,limit=1] run tp @s ~ ~0.55 ~
+tag @e remove this.selected
+tag @s remove this.self
 
 # Manage Health
 execute if score @s data.player.damage_taken matches 1.. run function game:gameplay/runner/take_damage
