@@ -71,8 +71,8 @@ def getFunctions():
     skills = []
     for key in runner_skills.keys():
         skills.append({"tag": runner_prefix + key, "path": "skill:runner_skill/" + key + "/"})
-    for key in killer_skills.keys():
-        skills.append({"tag": killer_prefix + key, "path": "skill:killer_skill/" + key + "/"})
     for key in weapons.keys():
         skills.append({"tag": weapon_prefix + key, "path": "skill:weapon/" + key + "/"})
+    for key in killer_skills.keys():
+        skills.append({"tag": killer_prefix + key, "path": "skill:killer_skill/" + key + "/"})
     return skills
