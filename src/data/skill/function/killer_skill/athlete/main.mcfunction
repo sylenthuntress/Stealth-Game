@@ -32,10 +32,12 @@ execute if score @s time.player.dash_cooldown matches 0 run function skill:kille
     },
     consumable={
         consume_seconds: 0.05,
+        has_consume_particles: false,
         animation: "bow",
         sound:{sound_id:""}
     },
     custom_data={
         skill.killer.athlete.dash_item: true
-    }
+    },
+    minecraft:item_model="hide_and_squeak:dash"
 ]
