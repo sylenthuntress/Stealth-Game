@@ -22,6 +22,7 @@ scoreboard objectives add uid.entity dummy
 # Data
 scoreboard objectives add data.player.health health
 scoreboard objectives add data.player.damage_taken minecraft.custom:minecraft.damage_taken
+scoreboard objectives add data.player.damage_dealt minecraft.custom:minecraft.damage_dealt
 
 # Hazard
 scoreboard objectives add hazard.dripleaf_launcher.timer dummy
@@ -92,6 +93,7 @@ scoreboard objectives add time.start_sequence dummy
 scoreboard objectives add time.round_timer dummy
 scoreboard objectives add time.player.heal_timer dummy
 scoreboard objectives add time.player.hide_timer dummy
+scoreboard objectives add time.player.stun_timer dummy
 scoreboard objectives add time.round_cooldown dummy
 
 # Animations

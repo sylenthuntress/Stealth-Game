@@ -1,0 +1,1 @@
+attribute @s minecraft:attack_knockback modifier remove skill:runner_skill/brawler

@@ -13,6 +13,7 @@ execute as @a[tag=playing] at @s run function game:round/start_moving:
     # Enable skills
     function skill:selection/close_gui
     function skill:enable_skills
+    function skill:on_enable
 
     # Play FX
     playsound minecraft:entity.experience_orb.pickup ui @s ~ ~ ~ 1 1

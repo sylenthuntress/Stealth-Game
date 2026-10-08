@@ -1,0 +1,1 @@
+execute if score @s data.player.damage_dealt matches 1.. as @a[team=killer] run function skill:runner_skill/brawler/stun_killer

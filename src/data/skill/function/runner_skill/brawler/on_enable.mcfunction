@@ -1,0 +1,1 @@
+attribute @s minecraft:attack_knockback modifier add skill:runner_skill/brawler 1 add_value

@@ -1,0 +1,1 @@
+scoreboard players add @s time.player.stun_timer 30

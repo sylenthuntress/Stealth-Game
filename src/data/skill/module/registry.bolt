@@ -10,7 +10,7 @@ def registerRandom():
     return {"id": id_index, "icon": "minecraft:item/nether_star", "atlas": "minecraft:items", "isRandom": 1}
 
 runner_skills = {
-    "camoflauge": register("minecraft:block/bush", "minecraft:blocks"),
+    "camouflage": register("minecraft:block/bush", "minecraft:blocks"),
     "brawler": register("minecraft:mob_effect/strength", "minecraft:gui"),
     "tank": register("minecraft:mob_effect/resistance", "minecraft:gui"),
     "jumper": register("minecraft:mob_effect/jump_boost", "minecraft:gui"),
@@ -50,19 +50,29 @@ killer_prefix = "skill.killer."
 weapon_prefix = "skill.weapon."
 
 def getRunnerSkills():
-    keys = []
+    skills = []
     for key in runner_skills.keys():
-        keys.append(runner_prefix + key)
-    return keys
+        skills.append(runner_prefix + key)
+    return skills
 
 def getKillerSkills():
-    keys = []
+    skills = []
     for key in killer_skills.keys():
-        keys.append(killer_prefix + key)
-    return keys
+        skills.append(killer_prefix + key)
+    return skills
 
 def getWeapons():
-    keys = []
+    skills = []
     for key in weapons.keys():
-        keys.append(weapon_prefix + key)
-    return keys
+        skills.append(weapon_prefix + key)
+    return skills
+
+def getFunctions():
+    skills = []
+    for key in runner_skills.keys():
+        skills.append({"tag": runner_prefix + key, "path": "skill:runner_skill/" + key + "/"})
+    for key in killer_skills.keys():
+        skills.append({"tag": killer_prefix + key, "path": "skill:killer_skill/" + key + "/"})
+    for key in weapons.keys():
+        skills.append({"tag": weapon_prefix + key, "path": "skill:weapon/" + key + "/"})
+    return skills
