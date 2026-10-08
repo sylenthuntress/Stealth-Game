@@ -15,6 +15,7 @@ execute as @a run function game:round/leave_round:
     attribute @s minecraft:movement_speed modifier remove game:gameplay/movement_penalty/injury
 scoreboard players set * game.player.band_progression 0
 scoreboard players set * game.player.damage 0
+kill @e[type=item_display,tag=little_mouse]
 
 # Put every player in spectator
 gamemode spectator @a[tag=playing]
