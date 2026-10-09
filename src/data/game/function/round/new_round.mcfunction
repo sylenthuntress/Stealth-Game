@@ -28,6 +28,7 @@ execute as @a[scores={game.player.team_id=1}] run function game:round/join_runne
     attribute @s minecraft:scale modifier add game:teams/runner -0.33 add_value
     attribute @s minecraft:max_health modifier add game:teams/runner 79 add_value
     attribute @s minecraft:camera_distance modifier add game:teams/runner -1.5 add_value
+    attribute @s minecraft:attack_speed modifier add game:teams/killer 100 add_value
 
     tp @s coords.runner_spawn.x coords.runner_spawn.y coords.runner_spawn.z
 execute as @a[scores={game.player.team_id=2}] run function game:round/join_killer:
@@ -35,6 +36,8 @@ execute as @a[scores={game.player.team_id=2}] run function game:round/join_kille
     team join killer @s
     function skill:selection/killer_gui
     attribute @s minecraft:camera_distance modifier add game:teams/killer -3.5 add_value
+    attribute @s minecraft:attack_damage modifier add game:teams/killer 4 add_value
+    attribute @s minecraft:attack_speed modifier add game:teams/killer 100 add_value
 
     tp @s coords.killer_spawn.x coords.killer_spawn.y coords.killer_spawn.z
 
