@@ -26,6 +26,7 @@ execute as @a run function game:round/leave_round:
     attribute @s minecraft:jump_strength modifier remove game:round/start_sequence
 scoreboard players set * game.player.band_progression 0
 scoreboard players set * game.player.damage 0
+scoreboard players set * game.player.prev_damage 0
 kill @e[type=item_display,tag=little_mouse]
 
 # Put every player in spectator

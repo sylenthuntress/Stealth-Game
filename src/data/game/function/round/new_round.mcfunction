@@ -5,6 +5,7 @@ scoreboard players add $gamestate gamestate.round_count 1
 scoreboard players set $time time.start_sequence 300
 scoreboard players reset $time time.round_cooldown
 scoreboard players reset $time time.round_timer
+scoreboard players reset $gamestate gamestate.runners
 bossbar set game:time/round_timer players
 
 # Distribute teams for everyone
@@ -29,6 +30,7 @@ execute as @a[scores={game.player.team_id=1}] run function game:round/join_runne
     attribute @s minecraft:max_health modifier add game:teams/runner 79 add_value
     attribute @s minecraft:camera_distance modifier add game:teams/runner -1.5 add_value
     attribute @s minecraft:attack_speed modifier add game:teams/killer 100 add_value
+    scoreboard players add $gamestate gamestate.runners 1
 
     tp @s coords.runner_spawn.x coords.runner_spawn.y coords.runner_spawn.z
 execute as @a[scores={game.player.team_id=2}] run function game:round/join_killer:

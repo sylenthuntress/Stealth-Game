@@ -32,10 +32,12 @@ scoreboard objectives add gamestate.game_active dummy
 scoreboard objectives add gamestate.round_active dummy
 scoreboard objectives add gamestate.round_count dummy
 scoreboard objectives add gamestate.round_total dummy
+scoreboard objectives add gamestate.runners dummy
 scoreboard objectives add gamestate.band_progression dummy
 
 # Game
 scoreboard objectives add game.player.team_id dummy
+scoreboard objectives add game.player.prev_damage dummy
 scoreboard objectives add game.player.damage dummy
 scoreboard objectives add game.player.injury dummy
 scoreboard objectives add game.player.heal_amount dummy
@@ -63,6 +65,7 @@ scoreboard objectives add segments.remaining_large dummy
 # Math
 scoreboard objectives add math.const dummy
 scoreboard players set $100 math.const 100
+scoreboard players set $4 math.const 4
 scoreboard players set $2 math.const 2
 
 scoreboard objectives add math.division dummy
