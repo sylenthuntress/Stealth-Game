@@ -62,6 +62,9 @@ scoreboard objectives add segments.remaining_small dummy
 scoreboard objectives add segments.remaining_med dummy
 scoreboard objectives add segments.remaining_large dummy
 
+# Lobby
+scoreboard objectives add lobby.ready dummy
+
 # Math
 scoreboard objectives add math.const dummy
 scoreboard players set $100 math.const 100

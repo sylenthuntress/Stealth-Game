@@ -1,7 +1,7 @@
 from bolt_expressions import Scoreboard
 
 # Showcase points as decimals
-execute function render:points/format_sidebar:
+execute as @s[tag=playing] run function render:points/format_sidebar:
     scoreboard objectives add var.points_decimal dummy
     scoreboard objectives add var.points_whole dummy
 

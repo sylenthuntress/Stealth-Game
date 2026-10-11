@@ -1,0 +1,18 @@
+
+{
+    "criteria": {
+        "requirement": {
+            "trigger": "minecraft:consume_item",
+            "conditions": {
+                "item": {
+                    "predicates": {
+                        "minecraft:custom_data": "{lobby.ready_button.ready: true}"
+                    }
+                }
+            }
+        }
+    },
+    "rewards": {
+        "function": "lobby:disable_ready"
+    }
+}
