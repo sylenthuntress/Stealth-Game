@@ -7,21 +7,21 @@
         "when": "gui",
         "model": {
           "type": "minecraft:model",
-          "model": "hide_and_squeak:dash"
+          "model": "minecraft:item/feather"
         }
       },
       {
         "when": "firstperson_lefthand",
         "model": {
           "type": "minecraft:model",
-          "model": "hide_and_squeak:dash"
+          "model": "minecraft:item/feather"
         }
       },
       {
         "when": "firstperson_righthand",
         "model": {
           "type": "minecraft:model",
-          "model": "hide_and_squeak:dash"
+          "model": "minecraft:item/feather"
         }
       }
     ],
