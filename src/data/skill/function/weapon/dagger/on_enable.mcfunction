@@ -27,7 +27,7 @@ give @s copper_sword[
         {
             id: "attack_speed",
             type: "attack_speed",
-            amount: -0.7,
+            amount: -0.98,
             operation: "add_multiplied_base",
             slot: "mainhand",
             display:{

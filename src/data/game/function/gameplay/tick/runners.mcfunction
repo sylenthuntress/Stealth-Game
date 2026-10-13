@@ -1,3 +1,7 @@
+# Movement speed
+attribute @s[predicate=!util:is_sprinting] minecraft:movement_speed modifier add game:teams/runner 0.3 add_multiplied_base
+attribute @s[predicate=util:is_sprinting] minecraft:movement_speed modifier remove game:teams/runner
+
 # Sneak to hide
 execute if entity @s[predicate=util:is_sneaking] if score @s time.player.hide_timer matches ..15 run scoreboard players add @s time.player.hide_timer 1
 execute if score @s time.player.hide_timer matches 16.. run scoreboard players remove @s time.player.hide_timer 1
@@ -10,7 +14,7 @@ execute if score @s[tag=!hiding] time.player.hide_timer matches 15 run function 
     attribute @s minecraft:camera_distance modifier add game:gameplay/runner/hiding 1.5 add_multiplied_base
     attribute @s minecraft:scale modifier add game:gameplay/runner/hiding -0.05 add_multiplied_base
     attribute @s minecraft:attack_damage modifier add game:gameplay/runner/hiding -1 add_multiplied_base
-    attribute @s minecraft:sneaking_speed modifier add game:gameplay/runner/hiding 1 add_value
+    attribute @s minecraft:sneaking_speed modifier add game:gameplay/runner/hiding 0.7 add_value
     attribute @s minecraft:jump_strength modifier add game:gameplay/runner/hiding -0.1 add_value
     attribute @s minecraft:gravity modifier add game:gameplay/runner/hiding 0.02 add_value
     attribute @s minecraft:step_height modifier add game:gameplay/runner/hiding -0.3 add_value
