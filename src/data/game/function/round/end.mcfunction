@@ -24,6 +24,8 @@ execute as @a run function game:round/leave_round:
     attribute @s minecraft:movement_speed modifier remove game:gameplay/movement_penalty/injury
     attribute @s minecraft:movement_speed modifier remove game:round/start_sequence
     attribute @s minecraft:jump_strength modifier remove game:round/start_sequence
+
+    clear @s
 scoreboard players set * game.player.band_progression 0
 scoreboard players set * game.player.damage 0
 scoreboard players set * game.player.prev_damage 0

@@ -1,0 +1,18 @@
+
+{
+    "criteria": {
+        "requirement": {
+            "trigger": "minecraft:consume_item",
+            "conditions": {
+                "item": {
+                    "predicates": {
+                        "minecraft:custom_data": "{item.killer.backdoor: true}"
+                    }
+                }
+            }
+        }
+    },
+    "rewards": {
+        "function": "game:gameplay/killer/use_backdoor"
+    }
+}

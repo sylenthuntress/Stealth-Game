@@ -62,7 +62,7 @@ execute positioned coords.play_area.x (coords.play_area.y-19) coords.play_area.z
     fill ~-2 ~-10 ~ ~74 ~60 ~35 air replace
     execute if score $segments segments.elapsed matches 1.. run function level:band/create:
         summon minecraft:text_display ~34 ~30 ~-3 {Tags: ["band_display"], brightness:{sky:15,block:15}, alignment: "center", background: 0, billboard: "vertical", default_background: 0b, line_width: 200, view_range: 2f, see_through: 0b, shadow: 1b, text:{"color":"red","score":{"name":"$segments","objective":"segments.elapsed"}}, text_opacity: -1b, transformation: {left_rotation: [0.0f, 0.0f, 0.0f, 1.0f], right_rotation: [0.0f, 0.0f, 0.0f, 1.0f], scale: [50.0f, 50.0f, 50.0f], translation: [0.0f, 0.0f, 0.0f]}}
-        scoreboard players operation @e[type=text_display,tag=band_display,limit=1,sort=nearest] segments.elapsed = $segments segments.elapsed
+        scoreboard players operation @n[type=text_display,tag=band_display] segments.elapsed = $segments segments.elapsed
         function level:band/get_random with storage level:pool
         execute positioned ~ ~ ~-5 run function level:band/place with storage level:pool
         execute positioned ~ 41 ~-1 run fill ~ ~ ~ ~68 41 ~-4 minecraft:diamond_block
@@ -92,9 +92,14 @@ execute positioned coords.play_area.x (coords.play_area.y-19) coords.play_area.z
     execute if score $segments segments.remaining_large matches 0 if score $segments segments.remaining_med matches 0 run scoreboard players remove $segments segments.remaining_small 1
     scoreboard players remove $segments segments.remaining 1
     scoreboard players add $segments segments.elapsed 1
-    execute if score $segments segments.remaining matches 0 run place template level:finish_line ~ ~ ~25
-    execute if score $segments segments.remaining matches 0 run fill ~ 41 ~29 ~68 41 ~25 minecraft:netherite_block
-    execute unless score $segments segments.remaining matches ..0 positioned ~ ~ ~30 run function level:segment/create
+    execute if score $segments segments.remaining matches 0 expand:
+        place template level:finish_line ~ ~ ~25
+        fill ~ 41 ~29 ~68 41 ~25 minecraft:netherite_block
+        summon minecraft:text_display ~34 ~30 ~25 {Tags: ["band_display"], brightness:{sky:15,block:15}, alignment: "center", background: 0, billboard: "vertical", default_background: 0b, line_width: 200, view_range: 2f, see_through: 0b, shadow: 1b, text:{"color":"red","bold":true,"translate": "game.finish"}, text_opacity: -1b, transformation: {left_rotation: [0.0f, 0.0f, 0.0f, 1.0f], right_rotation: [0.0f, 0.0f, 0.0f, 1.0f], scale: [50.0f, 50.0f, 50.0f], translation: [0.0f, 0.0f, 0.0f]}}
+        execute positioned ~34 ~30 ~25 run scoreboard players operation @n[type=text_display,tag=band_display] segments.elapsed = $segments segments.elapsed
+        
+    unless score $segments segments.remaining matches ..0 positioned ~ ~ ~30 run function level:segment/create
+
     forceload remove ~ ~
 scoreboard players operation $prev.segments segments.elapsed = $segments segments.elapsed
 
