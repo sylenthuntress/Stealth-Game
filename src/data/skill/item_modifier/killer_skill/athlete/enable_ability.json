@@ -3,19 +3,19 @@
   "functions": [
     {
       "type": "minecraft:set_item",
-      "item": "minecraft:clock"
+      "item": "minecraft:feather"
     },
     {
       "type": "minecraft:set_components",
       "components": {
         "custom_name": {
-          "color": "#b97ecd",
+          "color": "#9dfff5",
           "translate": "skill.killer.athlete.ability",
           "italic": false,
           "with": [
             {
-              "sprite": "hide_and_squeak:item/warp",
-              "atlas": "minecraft:items",
+              "sprite": "minecraft:mob_effect/speed",
+              "atlas": "minecraft:gui",
               "color": "white"
             }
           ]
@@ -31,7 +31,7 @@
         "custom_data": {
           "skill.killer.athlete.ability": true
         },
-        "item_model": "hide_and_squeak:warp"
+        "item_model": "hide_and_squeak:dash"
       }
     }
   ]

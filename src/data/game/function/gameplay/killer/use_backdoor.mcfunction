@@ -7,5 +7,3 @@ tag @s remove this.selector
 
 execute at @s run playsound minecraft:entity.player.teleport player @s ~ ~ ~ 1 1
 execute as @a[tag=playing] at @s unless score @s game.player.team_id matches 2 run playsound minecraft:block.note_block.flute master @s ~ ~ ~ 0.3 1.5
-
-function game:gameplay/killer/get_backdoor

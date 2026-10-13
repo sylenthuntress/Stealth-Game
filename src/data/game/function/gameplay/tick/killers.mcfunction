@@ -1,0 +1,1 @@
+function game:gameplay/killer/get_backdoor
