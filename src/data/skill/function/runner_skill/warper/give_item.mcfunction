@@ -28,3 +28,5 @@ execute unless slots entity @s skill:runner_skill/warper/ability unless slots en
 
 execute if score @s skill.runner.warper.cooldown matches 1.. run item modify entity @s skill:runner_skill/warper/ability skill:runner_skill/warper/disable_ability
 execute if score @s skill.runner.warper.cooldown matches 1.. run item modify entity @s skill:runner_skill/warper/cooldown skill:runner_skill/warper/set_cooldown
+
+playsound minecraft:block.end_portal_frame.fill player @s ~ ~ ~ 1 0.5

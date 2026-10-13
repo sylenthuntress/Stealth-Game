@@ -16,6 +16,7 @@ execute if score @s skill.runner.warper.cooldown matches 1.. run function skill:
     item modify entity @s skill:runner_skill/warper/ability skill:runner_skill/warper/disable_ability
     item modify entity @s skill:runner_skill/warper/cooldown skill:runner_skill/warper/set_cooldown
 
-    execute if score @s skill.runner.warper.cooldown matches 0 run function skill:runner_skill/warper/end_cooldown:
+    execute if score @s skill.runner.warper.cooldown matches 0 at @s run function skill:runner_skill/warper/end_cooldown:
         scoreboard players reset @s skill.runner.warper.cooldown
         item modify entity @s skill:runner_skill/warper/cooldown skill:runner_skill/warper/enable_ability
+        playsound minecraft:block.end_portal_frame.fill player @s ~ ~ ~ 1 1

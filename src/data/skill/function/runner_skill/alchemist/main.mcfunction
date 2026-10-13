@@ -46,7 +46,8 @@ execute if score @s skill.runner.alchemist.cooldown matches 1.. run function ski
     item modify entity @s skill:runner_skill/alchemist/blinding_flask_cooldown skill:runner_skill/alchemist/set_cooldown
     item modify entity @s skill:runner_skill/alchemist/stagger_flask_cooldown skill:runner_skill/alchemist/set_cooldown
 
-    execute if score @s skill.runner.alchemist.cooldown matches 0 run function skill:runner_skill/alchemist/end_cooldown:
+    execute if score @s skill.runner.alchemist.cooldown matches 0 at @s run function skill:runner_skill/alchemist/end_cooldown:
         scoreboard players reset @s skill.runner.alchemist.cooldown
         item modify entity @s skill:runner_skill/alchemist/blinding_flask_cooldown skill:runner_skill/alchemist/enable_blinding_flask
         item modify entity @s skill:runner_skill/alchemist/stagger_flask_cooldown skill:runner_skill/alchemist/enable_stagger_flask
+        playsound minecraft:block.brewing_stand.brew player @s ~ ~ ~ 1 1.5

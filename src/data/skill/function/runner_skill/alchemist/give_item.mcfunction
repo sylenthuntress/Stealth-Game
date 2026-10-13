@@ -57,3 +57,5 @@ execute if score @s skill.runner.alchemist.cooldown matches 1.. run item modify 
 execute if score @s skill.runner.alchemist.cooldown matches 1.. run item modify entity @s skill:runner_skill/alchemist/stagger_flask skill:runner_skill/alchemist/disable_stagger_flask
 execute if score @s skill.runner.alchemist.cooldown matches 1.. run item modify entity @s skill:runner_skill/alchemist/blinding_flask_cooldown skill:runner_skill/alchemist/set_cooldown
 execute if score @s skill.runner.alchemist.cooldown matches 1.. run item modify entity @s skill:runner_skill/alchemist/stagger_flask_cooldown skill:runner_skill/alchemist/set_cooldown
+
+playsound minecraft:block.brewing_stand.brew player @s ~ ~ ~ 1 1
