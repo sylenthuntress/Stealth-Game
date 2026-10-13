@@ -97,6 +97,8 @@ scoreboard objectives add skill.current_slot trigger
 scoreboard objectives add skill.runner.warper.warp_spot dummy
 scoreboard objectives add skill.runner.warper.count dummy
 scoreboard objectives add skill.runner.warper.cooldown dummy
+scoreboard objectives add skill.runner.alchemist.count dummy
+scoreboard objectives add skill.runner.alchemist.cooldown dummy
 scoreboard objectives add skill.killer.athlete.dash_timer dummy
 scoreboard objectives add skill.killer.athlete.cooldown dummy
 
@@ -110,6 +112,7 @@ scoreboard objectives add time.player.hide_timer dummy
 scoreboard objectives add time.player.stun_timer dummy
 scoreboard objectives add time.player.dash_cooldown dummy
 scoreboard objectives add time.player.dash_timer dummy
+scoreboard objectives add time.player.assist_timer dummy
 scoreboard objectives add time.round_cooldown dummy
 
 # Animations

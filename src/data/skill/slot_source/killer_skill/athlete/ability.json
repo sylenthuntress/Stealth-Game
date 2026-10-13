@@ -1,14 +1,11 @@
 {
-  "type": "minecraft:group",
-  "terms": {
-    "type": "minecraft:filtered",
-    "slot_source": "util:inventory",
-    "item_filter": {
-      "items": "minecraft:feather",
-      "components": {
-        "minecraft:custom_data": {
-          "skill.killer.athlete.ability": true
-        }
+  "type": "minecraft:filtered",
+  "slot_source": "util:inventory",
+  "item_filter": {
+    "items": "minecraft:feather",
+    "components": {
+      "minecraft:custom_data": {
+        "skill.killer.athlete.ability": true
       }
     }
   }

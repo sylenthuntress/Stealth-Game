@@ -19,7 +19,7 @@ runner_skills = {
     "warper": register("hide_and_squeak:item/warp", "minecraft:items"),
     "ender": register("minecraft:item/ender_pearl", "minecraft:items"),
     "distorter": register("minecraft:block/warped_fungus", "minecraft:blocks"),
-    "chemist": register("minecraft:block/brewing_stand", "minecraft:blocks"),
+    "alchemist": register("hide_and_squeak:item/alchemist", "minecraft:items"),
     "doctor": register("minecraft:item/apple", "minecraft:items"),
     "random": registerRandom()
 }

@@ -1,0 +1,38 @@
+{
+  "type": "minecraft:sequence",
+  "functions": [
+    {
+      "type": "minecraft:set_item",
+      "item": "minecraft:coal"
+    },
+    {
+      "type": "minecraft:set_components",
+      "components": {
+        "custom_name": {
+          "color": "#4b414e",
+          "translate": "skill.runner.alchemist.blinding_flask",
+          "italic": false,
+          "with": [
+            {
+              "sprite": "hide_and_squeak:item/alchemist",
+              "atlas": "minecraft:items",
+              "color": "white"
+            }
+          ]
+        },
+        "consumable": {
+          "consume_seconds": 0.05,
+          "has_consume_particles": false,
+          "animation": "bow",
+          "sound": {
+            "sound_id": ""
+          }
+        },
+        "custom_data": {
+          "skill.runner.alchemist.blinding_flask": true
+        },
+        "item_model": "hide_and_squeak:blinding_flask"
+      }
+    }
+  ]
+}
