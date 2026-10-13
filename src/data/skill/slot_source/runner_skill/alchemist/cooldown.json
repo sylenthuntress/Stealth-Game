@@ -1,29 +1,7 @@
 {
   "type": "minecraft:group",
   "terms": [
-    {
-      "type": "minecraft:filtered",
-      "slot_source": "util:inventory",
-      "item_filter": {
-        "items": "minecraft:coal",
-        "components": {
-          "minecraft:custom_data": {
-            "skill.runner.alchemist.blinding_flask.cooldown": true
-          }
-        }
-      }
-    },
-        {
-      "type": "minecraft:filtered",
-      "slot_source": "util:inventory",
-      "item_filter": {
-        "items": "minecraft:coal",
-        "components": {
-          "minecraft:custom_data": {
-            "skill.runner.alchemist.stagger_flask.cooldown": true
-          }
-        }
-      }
-    }
+    "skill:runner_skill/alchemist/blinding_flask_cooldown",
+    "skill:runner_skill/alchemist/stagger_flask_cooldown"
   ]
 }
