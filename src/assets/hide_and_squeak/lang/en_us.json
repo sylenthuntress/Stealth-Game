@@ -50,6 +50,8 @@
     "skill.killer.shifter": "%s Shifter",
     "skill.killer.gemini": "%s Gemini",
     "skill.killer.random": "%s Random",
+    "skill.weapon.dagger": "%s Dagger",
+    "skill.weapon.dagger.desc": "Melee-only weapon that increases damage and movement speed slightly, but decreases your attack cooldown.",
     "skill.weapon.trident": "%s Trident",
     "skill.weapon.trident.desc": "Can be thrown for more damage, even while stunned. Recalls when thrown.",
     "skill.weapon.spectral_bow": "%s Spectral Bow",

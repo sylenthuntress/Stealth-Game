@@ -38,6 +38,7 @@ killer_skills = {
 }
 
 weapons = {
+    "dagger": register("hide_and_squeak:item/dagger", "minecraft:items"),
     "trident": register("minecraft:item/trident", "minecraft:items"),
     "spectral_bow": register("minecraft:item/bow", "minecraft:items"),
     "crossbow": register("minecraft:item/crossbow_arrow", "minecraft:items"),
