@@ -16,7 +16,7 @@ runner_skills = {
     "jumper": register("minecraft:mob_effect/jump_boost", "minecraft:gui"),
     "medic": register("minecraft:mob_effect/regeneration", "minecraft:gui"),
     "puppeteer": register("minecraft:mob_effect/infested", "minecraft:gui"),
-    "warper": register("minecraft:item/clock_00", "minecraft:items"),
+    "warper": register("hide_and_squeak:item/warp", "minecraft:items"),
     "ender": register("minecraft:item/ender_pearl", "minecraft:items"),
     "distorter": register("minecraft:block/warped_fungus", "minecraft:blocks"),
     "chemist": register("minecraft:block/brewing_stand", "minecraft:blocks"),

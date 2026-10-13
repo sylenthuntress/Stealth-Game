@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:sequence",
+  "functions": [
+    {
+      "type": "minecraft:set_item",
+      "item": "minecraft:barrier"
+    },
+    {
+      "type": "minecraft:set_components",
+      "components": {
+        "minecraft:custom_data": {
+          "skill.runner.warper.cooldown": true
+        },
+        "minecraft:item_model": "hide_and_squeak:cooldown",
+        "!minecraft:consumable": {}
+      }
+    },
+    "skill:runner_skill/warper/set_cooldown"
+  ]
+}

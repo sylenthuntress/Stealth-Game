@@ -26,6 +26,7 @@
     "skill.runner.medic": "%s Medic",
     "skill.runner.puppeteer": "%s Puppeteer",
     "skill.runner.warper": "%s Warper",
+    "skill.runner.warper.desc": "Cross bands to gain §lTime§r §lWarps§r; upon use, your position warps 5 seconds back in time.\n\nCooldown: §l30s§r\nLimit: §l2",
     "skill.runner.warper.ability": "%s Time Warp",
     "skill.runner.ender": "%s Ender",
     "skill.runner.distorter": "%s Distorter",

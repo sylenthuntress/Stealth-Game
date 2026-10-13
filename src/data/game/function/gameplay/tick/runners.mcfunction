@@ -68,6 +68,7 @@ execute if block ~ 41 ~ minecraft:diamond_block unless score @s game.player.band
     tag @s remove self
     
     scoreboard players operation $gamestate gamestate.band_progression > @s game.player.band_progression
+    function skill:cross_band
 
 execute if block ~ 41 ~ minecraft:netherite_block run function game:gameplay/runner/cross_finish:
     gamemode spectator

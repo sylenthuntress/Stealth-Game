@@ -1,0 +1,1 @@
+execute unless score @s skill.runner.warper.count matches 2.. run function skill:runner_skill/warper/give_item

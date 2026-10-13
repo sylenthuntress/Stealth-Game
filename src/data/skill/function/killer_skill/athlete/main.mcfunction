@@ -10,30 +10,7 @@ execute if score @s skill.killer.athlete.cooldown matches 1.. run function skill
 
     execute if score @s skill.killer.athlete.cooldown matches 0 run function skill:killer_skill/athlete/end_cooldown:
         scoreboard players reset @s skill.killer.athlete.cooldown
-        item fill entity @s skill:killer_skill/athlete/cooldown with minecraft:feather[
-        custom_name={
-            "color": "#9dfff5",
-            "translate": "skill.killer.athlete.ability",
-            "italic": false,
-            "with": [
-                {
-                    "sprite": "minecraft:mob_effect/speed",
-                    "atlas": "minecraft:gui",
-                    "color": "white"
-                }
-            ]
-        },
-        consumable={
-            consume_seconds: 0.05,
-            has_consume_particles: false,
-            animation: "bow",
-            sound:{sound_id:""}
-        },
-        custom_data={
-            skill.killer.athlete.ability: true
-        },
-        minecraft:item_model="hide_and_squeak:dash"
-    ]
+        item modify entity @s skill:killer_skill/athlete/cooldown skill:killer_skill/athlete/enable_ability
 
 execute if score @s skill.killer.athlete.dash_timer matches 1.. run function skill:killer_skill/athlete/start_dashing:
     tag @s add skill.killer_skill.athlete.dashing

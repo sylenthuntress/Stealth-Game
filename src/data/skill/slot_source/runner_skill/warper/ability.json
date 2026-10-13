@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:group",
+  "terms": {
+    "type": "minecraft:filtered",
+    "slot_source": "util:inventory",
+    "item_filter": {
+      "items": "minecraft:clock",
+      "components": {
+        "minecraft:custom_data": {
+          "skill.runner.warper.ability": true
+        }
+      }
+    }
+  }
+}
