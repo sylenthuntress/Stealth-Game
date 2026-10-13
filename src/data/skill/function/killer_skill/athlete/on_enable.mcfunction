@@ -1,7 +1,7 @@
 give @s feather[
     custom_name={
         "color": "#9dfff5",
-        "translate": "skill.killer.athlete.dash_item",
+        "translate": "skill.killer.athlete.ability",
         "italic": false,
         "with": [
             {
@@ -18,7 +18,7 @@ give @s feather[
         sound:{sound_id:""}
     },
     custom_data={
-        skill.killer.athlete.dash_item: true
+        skill.killer.athlete.ability: true
     },
     minecraft:item_model="hide_and_squeak:dash"
 ]

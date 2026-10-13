@@ -4,10 +4,10 @@
     "type": "minecraft:filtered",
     "slot_source": "util:inventory",
     "item_filter": {
-      "items": "minecraft:feather",
+      "items": "minecraft:barrier",
       "components": {
         "minecraft:custom_data": {
-          "skill.killer.athlete.dash_item": true
+          "skill.killer.athlete.cooldown": true
         }
       }
     }

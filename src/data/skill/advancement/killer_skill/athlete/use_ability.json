@@ -6,13 +6,13 @@
             "conditions": {
                 "item": {
                     "predicates": {
-                        "minecraft:custom_data": "{skill.killer.athlete.dash_item: true}"
+                        "minecraft:custom_data": "{skill.killer.athlete.ability: true}"
                     }
                 }
             }
         }
     },
     "rewards": {
-        "function": "skill:killer_skill/athlete/use_dash"
+        "function": "skill:killer_skill/athlete/use_ability"
     }
 }

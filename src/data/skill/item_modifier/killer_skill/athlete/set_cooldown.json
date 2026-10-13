@@ -1,0 +1,28 @@
+{
+    "type": "minecraft:set_name",
+    "entity": "this",
+    "name": [
+        {
+            "color": "dark_gray",
+            "sprite": "minecraft:mob_effect/speed",
+            "atlas": "minecraft:gui"
+        },
+        " ",
+        {
+            "color": "dark_gray",
+            "bold": true,
+            "italic": false,
+            "translate": "skill.cooldown",
+            "with": [
+                {
+                    "score": {
+                        "name": "$display",
+                        "objective": "time.display_sec"
+                    },
+                    "bold": true,
+                    "color": "#9e9d9b"
+                }
+            ]
+        }
+    ]
+}
