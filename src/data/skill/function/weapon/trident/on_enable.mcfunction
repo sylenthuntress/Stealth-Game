@@ -13,7 +13,8 @@ give @s trident[
     },
     unbreakable={},
     enchantments={
-        "loyalty": 4
+        "loyalty": 4,
+        "skill:weapon/trident/no_inaccuracy": 1
     },
     enchantment_glint_override=false,
     attribute_modifiers=[
@@ -27,5 +28,8 @@ give @s trident[
                 type: "hidden"
             }
         }
-    ]
+    ],
+    custom_data={
+        "skill.weapon.trident": true
+    }
 ]
