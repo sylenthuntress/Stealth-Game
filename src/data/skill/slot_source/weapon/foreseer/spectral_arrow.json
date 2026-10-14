@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:filtered",
+  "slot_source": "util:inventory",
+  "item_filter": {
+    "items": "minecraft:spectral_arrow",
+    "components": {
+      "minecraft:custom_data": {
+        "skill.weapon.foreseer.spectral_arrow": true
+      }
+    }
+  }
+}

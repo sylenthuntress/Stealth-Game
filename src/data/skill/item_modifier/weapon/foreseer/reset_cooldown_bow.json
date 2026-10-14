@@ -1,0 +1,18 @@
+{
+    "type": "minecraft:set_name",
+    "entity": "this",
+    "name": [
+        {
+            "color": "#ffe02e",
+            "translate": "skill.weapon.foreseer.spectral_bow",
+            "italic": false,
+            "with": [
+                {
+                    "sprite": "minecraft:item/bow",
+                    "atlas": "minecraft:items",
+                    "color": "white"
+                }
+            ]
+        }
+    ]
+}

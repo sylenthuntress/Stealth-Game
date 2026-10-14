@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:sequence",
+  "functions": [
+    {
+      "type": "minecraft:set_item",
+      "item": "minecraft:spectral_arrow"
+    },
+    {
+      "type": "minecraft:set_components",
+      "components": {
+        "custom_name": {
+          "color": "#ffe02e",
+          "translate": "skill.weapon.foreseer.spectral_arrow",
+          "italic": false,
+          "with": [
+            {
+              "sprite": "minecraft:item/bow",
+              "atlas": "minecraft:items",
+              "color": "white"
+            }
+          ]
+        },
+        "custom_data": {
+          "skill.weapon.foreseer.spectral_arrow": true
+        },
+        "item_model": "minecraft:spectral_arrow"
+      }
+    }
+  ]
+}

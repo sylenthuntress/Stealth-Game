@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:sequence",
+    "functions": [
+        {
+            "type": "minecraft:set_item",
+            "item": "minecraft:arrow"
+        },
+        {
+            "type": "minecraft:set_components",
+            "components": {
+                "minecraft:custom_data": {
+                    "skill.weapon.foreseer.spectral_arrow.cooldown": true
+                },
+                "minecraft:item_model": "hide_and_squeak:cooldown",
+                "!minecraft:consumable": {}
+            }
+        },
+        "skill:weapon/foreseer/set_cooldown"
+    ]
+}

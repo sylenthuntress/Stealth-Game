@@ -57,7 +57,10 @@
     "skill.weapon.dagger.desc": "Melee-only weapon that increases damage and movement speed slightly, but decreases your attack cooldown.",
     "skill.weapon.trident": "%s Trident",
     "skill.weapon.trident.desc": "Can be thrown for more damage, even while stunned. Recalls when thrown.",
-    "skill.weapon.spectral_bow": "%s Spectral Bow",
+    "skill.weapon.foreseer": "%s Spectral Bow",
+    "skill.weapon.foreseer.desc": "Fires spectral arrows that, upon hitting a block, reveal all nearby runners. While on cooldown, it only fires normal arrows.\n\nCooldown: §l20s",
+    "skill.weapon.foreseer.spectral_bow": "%s Spectral Bow",
+    "skill.weapon.foreseer.spectral_arrow": "%s Spectral Arrow",
     "skill.weapon.crossbow": "%s Crossbow",
     "skill.weapon.mace": "%s Mace",
     "skill.weapon.random": "%s Random"

@@ -12,37 +12,37 @@ def registerRandom():
 runner_skills = {
     "camouflage": register("minecraft:block/bush", "minecraft:blocks"),
     "brawler": register("minecraft:mob_effect/strength", "minecraft:gui"),
-    "tank": register("minecraft:mob_effect/resistance", "minecraft:gui"),
-    "jumper": register("minecraft:mob_effect/jump_boost", "minecraft:gui"),
-    "medic": register("minecraft:mob_effect/regeneration", "minecraft:gui"),
-    "puppeteer": register("minecraft:mob_effect/infested", "minecraft:gui"),
+#    "tank": register("minecraft:mob_effect/resistance", "minecraft:gui"),
+#    "jumper": register("minecraft:mob_effect/jump_boost", "minecraft:gui"),
+#    "medic": register("minecraft:mob_effect/regeneration", "minecraft:gui"),
+#    "puppeteer": register("minecraft:mob_effect/infested", "minecraft:gui"),
     "warper": register("hide_and_squeak:item/warp", "minecraft:items"),
-    "ender": register("minecraft:item/ender_pearl", "minecraft:items"),
-    "distorter": register("minecraft:block/warped_fungus", "minecraft:blocks"),
+#    "ender": register("minecraft:item/ender_pearl", "minecraft:items"),
+#    "distorter": register("minecraft:block/warped_fungus", "minecraft:blocks"),
     "alchemist": register("hide_and_squeak:item/alchemist", "minecraft:items"),
-    "doctor": register("minecraft:item/apple", "minecraft:items"),
+#    "doctor": register("minecraft:item/apple", "minecraft:items"),
     "random": registerRandom()
 }
 
 killer_skills = {
     "athlete": register("minecraft:mob_effect/speed", "minecraft:gui"),
-    "acrobat": register("minecraft:mob_effect/jump_boost", "minecraft:gui"),
-    "winged": register("minecraft:item/elytra", "minecraft:items"),
-    "trapper": register("minecraft:block/tripwire_hook", "minecraft:blocks"),
-    "witch": register("minecraft:item/witch_spawn_egg", "minecraft:items"),
-    "locator": register("minecraft:item/compass_00", "minecraft:items"),
-    "specter": register("minecraft:mob_effect/invisibility", "minecraft:gui"),
-    "shifter": register("minecraft:block/lapis_ore", "minecraft:blocks"),
-    "gemini": register("minecraft:mob_effect/oozing", "minecraft:gui"),
+#    "acrobat": register("minecraft:mob_effect/jump_boost", "minecraft:gui"),
+#    "winged": register("minecraft:item/elytra", "minecraft:items"),
+#    "trapper": register("minecraft:block/tripwire_hook", "minecraft:blocks"),
+#    "witch": register("minecraft:item/witch_spawn_egg", "minecraft:items"),
+#    "locator": register("minecraft:item/compass_00", "minecraft:items"),
+#    "specter": register("minecraft:mob_effect/invisibility", "minecraft:gui"),
+#    "shifter": register("minecraft:block/lapis_ore", "minecraft:blocks"),
+#    "gemini": register("minecraft:mob_effect/oozing", "minecraft:gui"),
     "random": registerRandom()
 }
 
 weapons = {
     "dagger": register("hide_and_squeak:item/dagger", "minecraft:items"),
     "trident": register("minecraft:item/trident", "minecraft:items"),
-    "spectral_bow": register("minecraft:item/bow", "minecraft:items"),
-    "crossbow": register("minecraft:item/crossbow_arrow", "minecraft:items"),
-    "mace": register("minecraft:item/mace", "minecraft:items"),
+    "foreseer": register("minecraft:item/bow", "minecraft:items"),
+#    "crossbow": register("minecraft:item/crossbow_arrow", "minecraft:items"),
+#    "mace": register("minecraft:item/mace", "minecraft:items"),
     "random": registerRandom()
 }
 

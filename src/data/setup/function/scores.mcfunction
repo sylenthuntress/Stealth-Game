@@ -102,6 +102,15 @@ scoreboard objectives add skill.runner.alchemist.count dummy
 scoreboard objectives add skill.runner.alchemist.cooldown dummy
 scoreboard objectives add skill.killer.athlete.dash_timer dummy
 scoreboard objectives add skill.killer.athlete.cooldown dummy
+scoreboard objectives add skill.weapon.trident.charge_time dummy
+scoreboard objectives add skill.weapon.trident.motion.x dummy
+scoreboard objectives add skill.weapon.trident.motion.y dummy
+scoreboard objectives add skill.weapon.trident.motion.z dummy
+scoreboard objectives add skill.weapon.foreseer.charge_time dummy
+scoreboard objectives add skill.weapon.foreseer.cooldown dummy
+scoreboard objectives add skill.weapon.foreseer.motion.x dummy
+scoreboard objectives add skill.weapon.foreseer.motion.y dummy
+scoreboard objectives add skill.weapon.foreseer.motion.z dummy
 
 # Time
 scoreboard objectives add time.display_sec dummy

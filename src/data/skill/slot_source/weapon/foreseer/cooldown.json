@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:group",
+  "terms": {
+    "type": "minecraft:filtered",
+    "slot_source": "util:inventory",
+    "item_filter": {
+      "items": "minecraft:arrow",
+      "components": {
+        "minecraft:custom_data": {
+          "skill.weapon.foreseer.spectral_arrow.cooldown": true
+        }
+      }
+    }
+  }
+}
