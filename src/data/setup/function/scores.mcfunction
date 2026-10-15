@@ -102,6 +102,10 @@ scoreboard objectives add skill.runner.alchemist.count dummy
 scoreboard objectives add skill.runner.alchemist.cooldown dummy
 scoreboard objectives add skill.killer.athlete.dash_timer dummy
 scoreboard objectives add skill.killer.athlete.cooldown dummy
+scoreboard objectives add skill.killer.gemini.hide_teleport dummy
+scoreboard objectives add skill.killer.gemini.clone.health dummy
+scoreboard objectives add skill.killer.gemini.clone.curr_hp dummy
+scoreboard objectives add skill.killer.gemini.clone.prev_hp dummy
 scoreboard objectives add skill.weapon.trident.charge_time dummy
 scoreboard objectives add skill.weapon.trident.motion.x dummy
 scoreboard objectives add skill.weapon.trident.motion.y dummy
