@@ -11,7 +11,7 @@ execute as @a[tag=playing] at @s run function game:round/start_moving:
     attribute @s minecraft:movement_speed modifier remove game:round/start_sequence
     attribute @s minecraft:jump_strength modifier remove game:round/start_sequence
 
-    function game:gameplay/killer/get_backdoor
+    execute if entity @s[scores={game.player.team_id=2}] run function game:gameplay/killer/get_backdoor
 
     # Enable skills
     function skill:selection/close_gui

@@ -21,5 +21,6 @@ give @s slime_ball[
     },
     custom_data={
         skill.killer.gemini.ability: true
-    }
+    },
+    item_model="hide_and_squeak:swap_bodies"
 ]

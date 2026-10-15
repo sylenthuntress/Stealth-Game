@@ -1,0 +1,41 @@
+{
+    "type": "minecraft:set_name",
+    "entity": "this",
+    "name": [
+        {
+            "color": "#7bd587",
+            "translate": "skill.killer.gemini.ability",
+            "italic": false,
+            "with": [
+                {
+                    "sprite": "minecraft:mob_effect/oozing",
+                    "atlas": "minecraft:gui",
+                    "color": "white"
+                }
+            ]
+        },
+        " ",
+        {
+            "color": "red",
+            "bold": true,
+            "italic": false,
+            "translate": "skill.cooldown",
+            "with": [
+                [
+                    {
+                        "score": {
+                            "objective": "skill.killer.gemini.clone.health",
+                            "name": "@n[type=mannequin,tag=this.selected]"
+                        },
+                        "bold": true,
+                        "color": "#B17F70"
+                    },
+                    {
+                        "text": "❤",
+                        "bold": false
+                    }
+                ]
+            ]
+        }
+    ]
+}

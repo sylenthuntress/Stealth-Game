@@ -1,7 +1,7 @@
 tag @s add this.selector
 execute as @e[type=mannequin,tag=skill.killer_skill.gemini.clone] if score @s uid.entity = @p[tag=this.selector] uid.player run tag @s add this.selected
 
-execute as @e[type=mannequin,tag=this.selected] expand:
+execute as @e[type=mannequin,tag=this.selected] at @s expand:
     store result score @s skill.killer.gemini.clone.curr_hp run data get entity @s Health
     on attacker run tag @s add this.attacker
     if score @s skill.killer.gemini.clone.curr_hp < @s skill.killer.gemini.clone.prev_hp if entity @a[tag=this.attacker,team=runner] run function skill:killer_skill/gemini/damage_mannequin:
@@ -11,14 +11,17 @@ execute as @e[type=mannequin,tag=this.selected] expand:
         execute on attacker at @s expand:
             scoreboard players add @s game.player.due_points 3
             damage @p[tag=this.selector] 1 minecraft:player_attack
-        execute as @a[tag=this.selector] at @s expand:
-            playsound minecraft:block.slime_block.break master @s ~ ~ ~ 2 2 1
-            playsound minecraft:block.note_block.didgeridoo master @s ~ ~ ~ 1 2
+        execute as @a[tag=this.selector] expand:
+            playsound minecraft:block.slime_block.break master @a[tag=playing] ~ ~ ~ 2 2 1
+            at @s run playsound minecraft:block.note_block.didgeridoo master @s ~ ~ ~ 1 2
             title @s actionbar {"translate":"skill.killer.gemini.clone.hurt","color":"red"}
+            item modify entity @s {"type":"minecraft:filtered","slot_source":"util:inventory","item_filter":{"items":"minecraft:slime_ball","components":{"minecraft:custom_data":{"skill.killer.gemini.ability":true}}}} skill:killer_skill/gemini/display_health
+
         execute if score @s skill.killer.gemini.clone.health matches 0 run function skill:killer_skill/gemini/kill_mannequin:
             execute as @a[tag=this.selector] at @s expand:
-                playsound minecraft:block.respawn_anchor.deplete master @s ~ ~ ~ 1 1
+                playsound minecraft:block.respawn_anchor.deplete master @a[tag=playing] ~ ~ ~ 2 1 1
                 title @s actionbar {"translate":"skill.killer.gemini.clone.killed","color":"red"}
+                tellraw @a[tag=playing] {"translate":"skill.killer.gemini.clone.announce_kill","color":"#7bd587","with":[{"selector":"@a[tag=this.selector]"},{"selector":"@a[tag=this.attacker]"}]}
                 item replace entity @s {"type":"minecraft:filtered","slot_source":"util:inventory","item_filter":{"items":"minecraft:slime_ball","components":{"minecraft:custom_data":{"skill.killer.gemini.ability":true}}}} with air
             kill @s
     tag @a remove this.attacker

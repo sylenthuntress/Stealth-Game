@@ -27,5 +27,7 @@ execute at @n[tag=this.selected] expand:
     function skill:killer_skill/gemini/copy_mannequin with entity @n[tag=this.selected]
     tag @n[type=mannequin,tag=!this.selected] add skill.killer_skill.gemini.display
 
+execute at @s run playsound minecraft:entity.slime.jump_small player @s ~ ~ ~ 1 1
+
 tag @a remove this.selected
 tag @s remove this.self
