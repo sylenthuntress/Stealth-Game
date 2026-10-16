@@ -28,6 +28,7 @@ execute as @a[scores={game.player.team_id=1}] run function game:round/join_runne
     gamemode adventure @s
     team join runner @s
     function skill:selection/runner_gui
+    effect give @s invisibility 17 0 true
     attribute @s minecraft:scale modifier add game:teams/runner -0.33 add_value
     attribute @s minecraft:max_health modifier add game:teams/runner 79 add_value
     attribute @s minecraft:camera_distance modifier add game:teams/runner -1.5 add_value
