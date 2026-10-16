@@ -41,10 +41,12 @@ scoreboard objectives add game.player.prev_damage dummy
 scoreboard objectives add game.player.damage dummy
 scoreboard objectives add game.player.injury dummy
 scoreboard objectives add game.player.heal_amount dummy
+scoreboard objectives add game.player.dance_state dummy
 scoreboard objectives add game.player.band_progression dummy
 scoreboard objectives add game.player.target_band dummy
 scoreboard objectives add game.player.due_points dummy
 scoreboard objectives add game.player.points dummy
+scoreboard objectives add game.player.points_split dummy
 scoreboard objectives modify game.player.points displayname {
     "translate":"game.player.points"
 }
@@ -71,6 +73,7 @@ scoreboard objectives add math.const dummy
 scoreboard players set $100 math.const 100
 scoreboard players set $20 math.const 20
 scoreboard players set $4 math.const 4
+scoreboard players set $3 math.const 3
 scoreboard players set $2 math.const 2
 
 scoreboard objectives add math.division dummy
@@ -100,6 +103,11 @@ scoreboard objectives add skill.runner.warper.count dummy
 scoreboard objectives add skill.runner.warper.cooldown dummy
 scoreboard objectives add skill.runner.alchemist.count dummy
 scoreboard objectives add skill.runner.alchemist.cooldown dummy
+scoreboard objectives add skill.runner.medic.revive_timer dummy
+scoreboard objectives add skill.runner.medic.revive_uid dummy
+scoreboard objectives add skill.runner.medic.count dummy
+scoreboard objectives add skill.runner.medic.uses dummy
+scoreboard objectives add skill.runner.medic.heartbeat dummy
 scoreboard objectives add skill.killer.athlete.dash_timer dummy
 scoreboard objectives add skill.killer.athlete.cooldown dummy
 scoreboard objectives add skill.killer.gemini.hide_teleport dummy
@@ -121,6 +129,8 @@ scoreboard objectives add time.display_sec dummy
 scoreboard objectives add time.start_timer dummy
 scoreboard objectives add time.start_sequence dummy
 scoreboard objectives add time.round_timer dummy
+scoreboard objectives add time.player.corpse_age dummy
+scoreboard objectives add time.player.dance_timer dummy
 scoreboard objectives add time.player.heal_timer dummy
 scoreboard objectives add time.player.hide_timer dummy
 scoreboard objectives add time.player.stun_timer dummy

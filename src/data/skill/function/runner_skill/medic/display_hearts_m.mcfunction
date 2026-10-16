@@ -1,0 +1,1 @@
+$title @s actionbar {"color":"red","translate":"skill.runner.medic.display_hearts","with":[{"selector":"@n[type=mannequin,tag=game.runner_corpse]"},{"color": "red","bold": true,"italic": false,"translate": "skill.cooldown","with": [$(hearts)]}]}

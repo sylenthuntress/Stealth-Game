@@ -14,7 +14,7 @@ runner_skills = {
     "brawler": register("minecraft:mob_effect/strength", "minecraft:gui"),
 #    "tank": register("minecraft:mob_effect/resistance", "minecraft:gui"),
 #    "jumper": register("minecraft:mob_effect/jump_boost", "minecraft:gui"),
-#    "medic": register("minecraft:mob_effect/regeneration", "minecraft:gui"),
+    "medic": register("minecraft:mob_effect/regeneration", "minecraft:gui"),
 #    "puppeteer": register("minecraft:mob_effect/infested", "minecraft:gui"),
     "warper": register("hide_and_squeak:item/warp", "minecraft:items"),
 #    "ender": register("minecraft:item/ender_pearl", "minecraft:items"),

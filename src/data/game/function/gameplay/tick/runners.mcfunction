@@ -48,10 +48,21 @@ tag @s remove this.self
 # Manage Health
 execute if score @s data.player.damage_taken matches 1.. run function game:gameplay/runner/take_damage
 ## Group healing
-execute if entity @s[predicate=util:is_sneaking,scores={time.player.heal_timer=..0}] run scoreboard players set @s time.player.heal_timer 20
-scoreboard players remove @s[predicate=!util:is_sneaking] time.player.heal_timer 1
-execute if score @s[predicate=!util:is_sneaking] time.player.heal_timer matches 1.. if entity @a[distance=0.1..5,team=runner] run particle minecraft:happy_villager ~ ~ ~ 0.3 0.4 0.3 1 1 normal @a[scores={game.player.team_id=1}]
-execute if score @s time.player.heal_timer matches 1 positioned ~-3 ~-1 ~-3 as @a[dx=6,dy=4,dz=6,team=runner,predicate=!util:is_sneaking,scores={time.player.heal_timer=2..,game.player.injury=1..}] at @s run function game:gameplay/mutual_health:
+execute if predicate util:is_sneaking unless score @s game.player.dance_state matches 1.. expand:
+    scoreboard players set @s time.player.dance_timer 20
+    scoreboard players set @s game.player.dance_state 1
+execute unless predicate util:is_sneaking if score @s game.player.dance_state matches 1 expand:
+    scoreboard players set @s time.player.dance_timer 20
+    scoreboard players set @s game.player.dance_state 2
+execute if predicate util:is_sneaking if score @s game.player.dance_state matches 2 expand: 
+    unless score @s time.player.heal_timer matches 1.. run scoreboard players set @s time.player.heal_timer 20
+    scoreboard players set @s game.player.dance_state 0
+scoreboard players remove @s time.player.dance_timer 1
+execute if score @s time.player.dance_timer matches 0 run scoreboard players set @s game.player.dance_state 0
+
+scoreboard players remove @s time.player.heal_timer 1
+execute if score @s time.player.heal_timer matches 1.. if entity @a[distance=0.1..5,team=runner] run particle minecraft:happy_villager ~ ~ ~ 0.3 0.4 0.3 1 1 normal @a[scores={game.player.team_id=1}]
+execute if score @s time.player.heal_timer matches 1 positioned ~-3 ~-1 ~-3 as @a[dx=6,dy=4,dz=6,team=runner,scores={time.player.heal_timer=2..,game.player.injury=1..}] at @s run function game:gameplay/mutual_health:
     scoreboard players add @s game.player.heal_amount 5
     function game:gameplay/runner/heal
 
@@ -80,8 +91,9 @@ execute if block ~ 41 ~ minecraft:diamond_block unless score @s game.player.band
 execute if block ~ 41 ~ minecraft:netherite_block run function game:gameplay/runner/cross_finish:
     gamemode spectator
     team join finished
-    tellraw @a {"translate": "game.cross_finish", "color": "red", with:[{"selector":"@s"}]}
     playsound minecraft:block.note_block.bell master @s ~ ~ ~ 2 1 1
     scoreboard players add @s game.player.due_points 50
+    execute unless score @s skill.runner.medic.revive_uid matches 0.. run tellraw @a {"translate": "game.cross_finish", "color": "red", with:[{"selector":"@s"}]}
+    execute if score @s skill.runner.medic.revive_uid matches 0.. run function skill:runner_skill/medic/award_points
 
     execute as @e[type=text_display,tag=band_display] run data modify entity @s text.color set value 'gold'

@@ -28,10 +28,17 @@ execute as @a run function game:round/leave_round:
     attribute @s minecraft:jump_strength modifier remove game:round/start_sequence
 
     clear @s
-scoreboard players set * game.player.band_progression 0
-scoreboard players set * game.player.damage 0
-scoreboard players set * game.player.prev_damage 0
+
+execute as @a run function game:add_points
+scoreboard players set * game.player.points_split 1
+scoreboard players reset * game.player.band_progression
+scoreboard players reset * game.player.damage
+scoreboard players reset * game.player.injury
+scoreboard players reset * game.player.due_points
+scoreboard players reset * game.player.prev_damage
+scoreboard players reset * skill.runner.medic.revive_uid
 kill @e[type=item_display,tag=little_mouse]
+execute as @e[type=mannequin,tag=game.runner_corpse] run function game:gameplay/runner/kill_corpse
 
 # Put every player in spectator
 gamemode spectator @a[tag=playing]
