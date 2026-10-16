@@ -5,11 +5,11 @@ scoreboard objectives add config.loaded_defaults dummy
 for option in registry.getOptions():
     scoreboard objectives add option trigger
 
-execute if score $config config.loaded_defaults matches 0 run function config:load_defaults:
+execute unless score $config config.loaded_defaults matches 1 run function config:load_defaults:
     for option in registry.getOptions():
         default = registry.getDefault(option)
         scoreboard players set $config option default
-execute if score $config config.loaded_defaults matches 0 run function setup:registry
+execute unless score $config config.loaded_defaults matches 1 run function setup:registry
 scoreboard players set $config config.loaded_defaults 1
 
 # Id
