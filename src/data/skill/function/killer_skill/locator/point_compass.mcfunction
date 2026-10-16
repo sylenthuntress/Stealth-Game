@@ -1,0 +1,1 @@
+$item modify entity @s {"type":"minecraft:filtered","slot_source":"util:inventory","item_filter":{"items":"minecraft:compass","predicates":{"minecraft:custom_data":{"skill.killer.locator.ability":true}}}} {type:"minecraft:set_components",components:{"minecraft:lodestone_tracker":{target:{pos:$(Pos),dimension:"minecraft:overworld"},tracked:false}}}

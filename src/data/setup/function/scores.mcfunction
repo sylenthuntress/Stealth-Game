@@ -110,6 +110,9 @@ scoreboard objectives add skill.runner.medic.uses dummy
 scoreboard objectives add skill.runner.medic.heartbeat dummy
 scoreboard objectives add skill.killer.athlete.dash_timer dummy
 scoreboard objectives add skill.killer.athlete.cooldown dummy
+scoreboard objectives add skill.killer.locator.cooldown dummy
+scoreboard objectives add skill.killer.locator.tracking_uid dummy
+scoreboard objectives add skill.killer.locator.tracking_timer dummy
 scoreboard objectives add skill.killer.gemini.hide_teleport dummy
 scoreboard objectives add skill.killer.gemini.clone.health dummy
 scoreboard objectives add skill.killer.gemini.clone.curr_hp dummy
