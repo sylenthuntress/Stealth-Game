@@ -12,11 +12,15 @@ segments = {
     "desert": register(10, "minecraft:desert", 1, 1, 0),
     "spores_cave": register(5, "minecraft:lush_caves", 0, 0, 1),
     "spores_field": registerBiome(5, "minecraft:lush_caves"),
-    "skull_peak": registerBiome(10, "minecraft:warm_ocean")
+    "skull_peak": registerBiome(10, "minecraft:warm_ocean"),
+    "trial_chambers": registerUniversal(10)
 }
 
 bands = {
-    "test": registerUniversal(1)
+    "test": registerUniversal(0),
+    "crimson": registerUniversal(5),
+    "end": registerUniversal(5),
+    "warped": registerUniversal(5)
 }
 
 segment_prefix = "level:segment/"
