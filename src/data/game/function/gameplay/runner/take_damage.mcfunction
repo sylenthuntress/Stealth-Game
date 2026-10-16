@@ -17,6 +17,9 @@ execute on attacker run scoreboard players operation @s game.player.due_points +
 scoreboard players reset $var game.player.due_points
 scoreboard players operation @s game.player.prev_damage = @s game.player.damage
 
+# Reveal attacker
+execute on attacker run effect clear @s invisibility
+
 # Kill player at high damage
 execute if score @s game.player.damage matches 200 run function game:gameplay/runner/death
 
