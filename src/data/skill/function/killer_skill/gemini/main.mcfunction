@@ -10,7 +10,7 @@ execute as @e[type=mannequin,tag=this.selected] at @s expand:
         scoreboard players remove @s skill.killer.gemini.clone.health 1
         execute on attacker at @s expand:
             scoreboard players add @s game.player.due_points 3
-            damage @p[tag=this.selector] 1 minecraft:player_attack
+            damage @p[tag=this.selector] 1 minecraft:player_attack by @s
         execute as @a[tag=this.selector] expand:
             playsound minecraft:block.slime_block.break master @a[tag=playing] ~ ~ ~ 2 2 1
             at @s run playsound minecraft:block.note_block.didgeridoo master @s ~ ~ ~ 1 2
