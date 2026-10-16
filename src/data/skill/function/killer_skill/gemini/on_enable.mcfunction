@@ -7,8 +7,8 @@ give @s slime_ball[
         "italic": false,
         "with": [
             {
-                "sprite": "minecraft:mob_effect/oozing",
-                "atlas": "minecraft:gui",
+                "sprite": "hide_and_squeak:item/swap_bodies",
+                "atlas": "minecraft:items",
                 "color": "white"
             }
         ]

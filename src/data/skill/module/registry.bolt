@@ -33,7 +33,7 @@ killer_skills = {
     "locator": register("minecraft:item/compass_00", "minecraft:items"),
     "specter": register("hide_and_squeak:item/specter", "minecraft:items"),
 #    "shifter": register("minecraft:block/lapis_ore", "minecraft:blocks"),
-    "gemini": register("minecraft:mob_effect/oozing", "minecraft:gui"),
+    "gemini": register("hide_and_squeak:item/swap_bodies", "minecraft:items"),
     "random": registerRandom()
 }
 
