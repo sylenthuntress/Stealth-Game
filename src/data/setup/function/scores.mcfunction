@@ -108,6 +108,9 @@ scoreboard objectives add skill.runner.medic.revive_uid dummy
 scoreboard objectives add skill.runner.medic.count dummy
 scoreboard objectives add skill.runner.medic.uses dummy
 scoreboard objectives add skill.runner.medic.heartbeat dummy
+scoreboard objectives add skill.runner.puppeteer.cooldown dummy
+scoreboard objectives add skill.runner.puppeteer.puppet.curr_hp dummy
+scoreboard objectives add skill.runner.puppeteer.puppet.prev_hp dummy
 scoreboard objectives add skill.killer.athlete.dash_timer dummy
 scoreboard objectives add skill.killer.athlete.cooldown dummy
 scoreboard objectives add skill.killer.locator.cooldown dummy
