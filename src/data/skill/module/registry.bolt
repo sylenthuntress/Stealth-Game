@@ -15,6 +15,7 @@ runner_skills = {
 #    "tank": register("minecraft:mob_effect/resistance", "minecraft:gui"),
 #    "jumper": register("minecraft:mob_effect/jump_boost", "minecraft:gui"),
     "medic": register("minecraft:mob_effect/regeneration", "minecraft:gui"),
+    "undying": register("minecraft:item/totem_of_undying", "minecraft:items"),
     "puppeteer": register("minecraft:mob_effect/infested", "minecraft:gui"),
     "warper": register("hide_and_squeak:item/warp", "minecraft:items"),
 #    "ender": register("minecraft:item/ender_pearl", "minecraft:items"),
