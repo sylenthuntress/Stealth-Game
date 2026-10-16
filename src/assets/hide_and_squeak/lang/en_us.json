@@ -45,6 +45,7 @@
     "skill.runner.alchemist.land_stagger_flask": "%s has been stunned!",
     "skill.runner.doctor": "%s Doctor",
     "skill.runner.random": "%s Random",
+    "skill.runner.random.desc": "Your runner skills will be randomly selected.",
     "skill.killer.athlete": "%s Athlete",
     "skill.killer.athlete.desc": "Activate a dash to gain a huge boost to your speed and movement for several seconds.\n\nDuration: §l3.5s§r\nCooldown: §l15s",
     "skill.killer.athlete.ability": "%s Dash",
@@ -69,6 +70,7 @@
     "skill.killer.gemini.clone.killed": "Your clone has been killed.",
     "skill.killer.gemini.clone.announce_kill": "%s had their clone killed by %s!",
     "skill.killer.random": "%s Random",
+    "skill.killer.random.desc": "Your killer skills will be randomly selected.",
     "skill.weapon.dagger": "%s Dagger",
     "skill.weapon.dagger.desc": "Melee-only weapon that increases damage and movement speed slightly, but decreases your attack cooldown.",
     "skill.weapon.trident": "%s Trident",
@@ -79,5 +81,6 @@
     "skill.weapon.foreseer.spectral_arrow": "%s Spectral Arrow",
     "skill.weapon.crossbow": "%s Crossbow",
     "skill.weapon.mace": "%s Mace",
-    "skill.weapon.random": "%s Random"
+    "skill.weapon.random": "%s Random",
+    "skill.weapon.random.desc": "Your weapon will be randomly selected."
 }
