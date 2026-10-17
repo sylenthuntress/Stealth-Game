@@ -35,6 +35,7 @@ scoreboard objectives add gamestate.round_count dummy
 scoreboard objectives add gamestate.round_total dummy
 scoreboard objectives add gamestate.runners dummy
 scoreboard objectives add gamestate.band_progression dummy
+scoreboard objectives add gamestate.crossed_finish dummy
 
 # Game
 scoreboard objectives add game.player.team_id dummy
@@ -73,6 +74,7 @@ scoreboard objectives add lobby.ready dummy
 scoreboard objectives add math.const dummy
 scoreboard players set $100 math.const 100
 scoreboard players set $20 math.const 20
+scoreboard players set $5 math.const 5
 scoreboard players set $4 math.const 4
 scoreboard players set $3 math.const 3
 scoreboard players set $2 math.const 2
@@ -139,6 +141,7 @@ scoreboard objectives add time.display_sec dummy
 scoreboard objectives add time.start_timer dummy
 scoreboard objectives add time.start_sequence dummy
 scoreboard objectives add time.round_timer dummy
+scoreboard objectives add time.endgame_timer dummy
 scoreboard objectives add time.player.corpse_age dummy
 scoreboard objectives add time.player.dance_timer dummy
 scoreboard objectives add time.player.heal_timer dummy
