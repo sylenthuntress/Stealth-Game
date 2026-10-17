@@ -5,8 +5,8 @@ give @s minecraft:copper_nugget[
         "italic": false,
         "with": [
             {
-                "sprite": "minecraft:mob_effect/infested",
-                "atlas": "minecraft:gui",
+                "sprite": "hide_and_squeak:item/small_puppet",
+                "atlas": "minecraft:items",
                 "color": "white"
             }
         ]
@@ -20,7 +20,8 @@ give @s minecraft:copper_nugget[
     custom_data={
         skill.runner.puppeteer.ability: true,
         skill.runner.puppeteer.large_puppet: true
-    }
+    },
+    item_model="hide_and_squeak:large_puppet"
 ]
 
 give @s minecraft:copper_nugget[
@@ -30,8 +31,8 @@ give @s minecraft:copper_nugget[
         "italic": false,
         "with": [
             {
-                "sprite": "minecraft:mob_effect/infested",
-                "atlas": "minecraft:gui",
+                "sprite": "hide_and_squeak:item/small_puppet",
+                "atlas": "minecraft:items",
                 "color": "white"
             }
         ]
@@ -45,5 +46,6 @@ give @s minecraft:copper_nugget[
     custom_data={
         skill.runner.puppeteer.ability: true,
         skill.runner.puppeteer.small_puppet: true
-    }
+    },
+    item_model="hide_and_squeak:small_puppet"
 ]

@@ -71,9 +71,9 @@ execute if score @s skill.runner.puppeteer.cooldown matches 1.. run function ski
             "entity": "this",
             "name": [
                 {
-                    "color": "dark_gray",
-                    "sprite": "minecraft:mob_effect/infested",
-                    "atlas": "minecraft:gui"
+                    "sprite": "hide_and_squeak:item/small_puppet",
+                    "atlas": "minecraft:items",
+                    "color": "dark_gray"
                 },
                 " ",
                 {
@@ -113,8 +113,8 @@ execute if score @s skill.runner.puppeteer.cooldown matches 1.. run function ski
                             "italic": false,
                             "with": [
                                 {
-                                    "sprite": "minecraft:mob_effect/infested",
-                                    "atlas": "minecraft:gui",
+                                    "sprite": "hide_and_squeak:item/small_puppet",
+                                    "atlas": "minecraft:items",
                                     "color": "white"
                                 }
                             ]
@@ -132,7 +132,7 @@ execute if score @s skill.runner.puppeteer.cooldown matches 1.. run function ski
                             "skill.runner.puppeteer.large_puppet": true,
                             "skill.runner.puppeteer.cooldown": false
                         },
-                        "item_model": "minecraft:copper_nugget"
+                        "item_model": "hide_and_squeak:large_puppet"
                     }
                 }
             ]
@@ -153,8 +153,8 @@ execute if score @s skill.runner.puppeteer.cooldown matches 1.. run function ski
                             "italic": false,
                             "with": [
                                 {
-                                    "sprite": "minecraft:mob_effect/infested",
-                                    "atlas": "minecraft:gui",
+                                    "sprite": "hide_and_squeak:item/small_puppet",
+                                    "atlas": "minecraft:items",
                                     "color": "white"
                                 }
                             ]
@@ -172,7 +172,7 @@ execute if score @s skill.runner.puppeteer.cooldown matches 1.. run function ski
                             "skill.runner.puppeteer.small_puppet": true,
                             "skill.runner.puppeteer.cooldown": false
                         },
-                        "item_model": "minecraft:copper_nugget"
+                        "item_model": "hide_and_squeak:small_puppet"
                     }
                 }
             ]
