@@ -56,8 +56,7 @@ execute as @e[type=mannequin,tag=this.selected] at @s run function skill:runner_
             
     tag @a remove this.attacker
     scoreboard players operation @s skill.runner.puppeteer.puppet.prev_hp = @s skill.runner.puppeteer.puppet.curr_hp
-
-tag @e remove this.selected
+    tag @s remove this.selected
 tag @s remove this.selector
 
 execute if score @s skill.runner.puppeteer.cooldown matches 1.. run function skill:runner_skill/puppeteer/tick_cooldown:
