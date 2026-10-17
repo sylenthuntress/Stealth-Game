@@ -12,3 +12,4 @@ execute as @a unless score @s uid.player matches 0.. run function main:first_joi
 scoreboard players reset * data.player.damage_taken
 scoreboard players reset * data.player.damage_dealt
 scoreboard players reset * data.player.health
+scoreboard players reset * data.player.jump

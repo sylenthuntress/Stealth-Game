@@ -23,6 +23,7 @@ scoreboard objectives add uid.entity dummy
 scoreboard objectives add data.player.health health
 scoreboard objectives add data.player.damage_taken minecraft.custom:minecraft.damage_taken
 scoreboard objectives add data.player.damage_dealt minecraft.custom:minecraft.damage_dealt
+scoreboard objectives add data.player.jump minecraft.custom:minecraft.jump
 
 # Hazard
 scoreboard objectives add hazard.dripleaf_launcher.timer dummy
@@ -103,6 +104,8 @@ scoreboard objectives add skill.runner.warper.count dummy
 scoreboard objectives add skill.runner.warper.cooldown dummy
 scoreboard objectives add skill.runner.alchemist.count dummy
 scoreboard objectives add skill.runner.alchemist.cooldown dummy
+scoreboard objectives add skill.runner.jumper.charge_cooldown dummy
+scoreboard objectives add skill.runner.jumper.charge dummy
 scoreboard objectives add skill.runner.medic.revive_timer dummy
 scoreboard objectives add skill.runner.medic.revive_uid dummy
 scoreboard objectives add skill.runner.medic.count dummy

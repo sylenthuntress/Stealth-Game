@@ -13,7 +13,7 @@ runner_skills = {
     "camouflage": register("minecraft:block/bush", "minecraft:blocks"),
     "brawler": register("minecraft:mob_effect/strength", "minecraft:gui"),
 #    "tank": register("minecraft:mob_effect/resistance", "minecraft:gui"),
-#    "jumper": register("minecraft:mob_effect/jump_boost", "minecraft:gui"),
+    "jumper": register("minecraft:mob_effect/jump_boost", "minecraft:gui"),
     "medic": register("minecraft:mob_effect/regeneration", "minecraft:gui"),
     "undying": register("minecraft:item/totem_of_undying", "minecraft:items"),
     "puppeteer": register("minecraft:mob_effect/infested", "minecraft:gui"),
