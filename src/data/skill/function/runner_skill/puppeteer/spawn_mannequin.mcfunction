@@ -2,9 +2,9 @@ $summon mannequin ~ ~ ~ {Tags:["skill.runner_skill.puppeteer.puppet"],profile:{"
 
 item replace entity @n[type=mannequin,tag=skill.runner_skill.puppeteer.puppet] armor.head with player_head
 item modify entity @n[type=mannequin,tag=skill.runner_skill.puppeteer.puppet] armor.head {type:"minecraft:fill_player_head",entity:"this"}
-execute as @n[type=mannequin,tag=skill.runner_skill.puppeteer.puppet] expand:
+execute as @n[type=mannequin,tag=skill.runner_skill.puppeteer.puppet] at @s expand:
     scoreboard players operation @s uid.entity = @p[tag=this.selector] uid.player
     team join runner
-
+    rotate @s ~ 0
     data modify entity @s CustomName set from entity @s equipment.head.components."minecraft:profile".name
     item replace entity @s armor.head with air
