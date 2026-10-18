@@ -12,7 +12,7 @@ execute if score $var var.players matches ..1 return fail
 
 # End round once all runners are spectating
 execute if score $gamestate gamestate.round_active matches 1 run function game:round/tick:
-    execute unless entity @a[scores={game.player.team_id=1},gamemode=!spectator] run function game:round/end
+    execute unless entity @a[scores={game.player.team_id=1},gamemode=!spectator] unless entity @a[tag=skill.runner.undying] run function game:round/end
     
 # Start round once round cooldown ends
 execute store result score $gamestate gamestate.round_total run execute if entity @a[tag=!killer_blacklist,tag=playing] 
