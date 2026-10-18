@@ -1,5 +1,5 @@
 {
-    "name": "Stealth Game",
+    "name": "Hide & Squeak",
     "description": "meow",
     "author": "SylentHuntress",
     "require": [
@@ -8,13 +8,13 @@
     ],
     "data_pack": {
         "load": [ "src" ],
-        "name": "Stealth Game",
+        "name": "Hide & Squeak",
         "max_format": 121,
         "min_format": 121
     },
     "resource_pack": {
         "load": [ "src" ],
-        "name": "Stealth Game (Assets)",
+        "name": "Hide & Squeak (Assets)",
         "pack_format": 64
     },
     "pipeline": [ "mecha" ],
