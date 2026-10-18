@@ -1,6 +1,5 @@
 # Movement speed
-attribute @s[predicate=!util:is_sprinting] minecraft:movement_speed modifier add game:teams/runner 0.3 add_multiplied_base
-attribute @s[predicate=util:is_sprinting] minecraft:movement_speed modifier remove game:teams/runner
+attribute @s[predicate=!util:is_sprinting] minecraft:movement_speed modifier add minecraft:sprinting 0.3 add_multiplied_base
 
 # Sneak to hide
 execute if entity @s[predicate=util:is_sneaking] if score @s time.player.hide_timer matches ..15 run scoreboard players add @s time.player.hide_timer 1
@@ -47,6 +46,11 @@ tag @s remove this.self
 
 # Manage Health
 execute if score @s data.player.damage_taken matches 1.. run function game:gameplay/runner/take_damage
+execute if score @s time.player.damage_timer matches 1.. run scoreboard players remove @s time.player.damage_timer 1
+execute if score @s time.player.damage_timer matches 0 expand:
+    attribute @s minecraft:movement_speed modifier remove game:gameplay/runner/damaged
+    scoreboard players reset @s time.player.damage_timer
+
 ## Group healing
 execute if predicate util:is_sneaking unless score @s game.player.dance_state matches 1.. expand:
     scoreboard players set @s time.player.dance_timer 20

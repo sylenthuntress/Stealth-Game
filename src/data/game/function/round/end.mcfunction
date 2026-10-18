@@ -20,6 +20,7 @@ execute as @a run function game:round/leave_round:
     attribute @s minecraft:camera_distance modifier remove game:teams/runner
     attribute @s minecraft:attack_speed modifier remove game:teams/runner
     attribute @s minecraft:movement_speed modifier remove game:teams/runner
+    attribute @s minecraft:movement_speed modifier remove game:gameplay/runner/damaged
     attribute @s minecraft:camera_distance modifier remove game:teams/killer
     attribute @s minecraft:attack_speed modifier remove game:teams/killer
     attribute @s minecraft:attack_damage modifier remove game:teams/killer
@@ -37,6 +38,7 @@ scoreboard players reset * game.player.damage
 scoreboard players reset * game.player.injury
 scoreboard players reset * game.player.due_points
 scoreboard players reset * game.player.prev_damage
+scoreboard players reset * time.player.damage_timer
 scoreboard players reset * skill.runner.medic.revive_uid
 kill @e[type=item_display,tag=little_mouse]
 execute as @e[type=mannequin,tag=game.runner_corpse] run function game:gameplay/runner/kill_corpse

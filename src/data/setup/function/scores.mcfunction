@@ -35,6 +35,7 @@ scoreboard objectives add gamestate.round_active dummy
 scoreboard objectives add gamestate.round_count dummy
 scoreboard objectives add gamestate.round_total dummy
 scoreboard objectives add gamestate.runners dummy
+scoreboard objectives add gamestate.killers dummy
 scoreboard objectives add gamestate.band_progression dummy
 scoreboard objectives add gamestate.crossed_finish dummy
 scoreboard objectives add gamestate.ranked_players dummy
@@ -43,6 +44,7 @@ scoreboard objectives add gamestate.ranked_players dummy
 scoreboard objectives add game.player.team_id dummy
 scoreboard objectives add game.player.prev_damage dummy
 scoreboard objectives add game.player.damage dummy
+scoreboard objectives add game.player.kill_threshold dummy
 scoreboard objectives add game.player.injury dummy
 scoreboard objectives add game.player.heal_amount dummy
 scoreboard objectives add game.player.dance_state dummy
@@ -146,6 +148,7 @@ scoreboard objectives add time.player.dance_timer dummy
 scoreboard objectives add time.player.heal_timer dummy
 scoreboard objectives add time.player.hide_timer dummy
 scoreboard objectives add time.player.stun_timer dummy
+scoreboard objectives add time.player.damage_timer dummy
 scoreboard objectives add time.player.dash_cooldown dummy
 scoreboard objectives add time.player.dash_timer dummy
 scoreboard objectives add time.player.assist_timer dummy
