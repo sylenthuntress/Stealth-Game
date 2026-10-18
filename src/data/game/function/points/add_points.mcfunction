@@ -44,7 +44,7 @@ execute if score @s game.player.due_points matches 1.. run function game:points/
     # Display all saved log entries
     execute if data storage points:data PointsLog[0] expand:
         scoreboard players set $scoredisplay game.player.points -999999
-        scoreboard players display numberformat $scoredisplay game.player.points fixed {"text":"|  ","color":"dark_gray"}
+        scoreboard players display numberformat $scoredisplay game.player.points fixed {"translate":"game.sidebar.value","color":"dark_gray","with":[" "]}
         scoreboard players display name $scoredisplay game.player.points {
             "translate": "game.sidebar.point_log",
             "color": "dark_gray",

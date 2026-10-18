@@ -31,14 +31,14 @@ def makePointsText():
 def makeSidebarText():
     return [
         {
-            "text": "======",
+            "text": "=======",
             "color": "dark_gray",
             "bold": true
         },
         " ",
         " ",
         {
-            "text": "=======",
+            "text": "========",
             "color": "dark_gray",
             "bold": true
         }

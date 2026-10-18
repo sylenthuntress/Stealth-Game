@@ -5,7 +5,7 @@ execute at @s:
     data modify storage points:data DisplayName.with[0].text set from entity @n[type=item] Item.components."minecraft:profile".name
     kill @n[type=item]
 
-execute if entity @s[team=killer] run data modify storage points:data DisplayName.with[0].color set value "gray"
+execute if entity @s[team=killer] run data modify storage points:data DisplayName.with[0].color set value "gold"
 execute if entity @s[team=runner] run data modify storage points:data DisplayName.with[0].color set value "gray"
 execute if entity @s[team=finished] run data modify storage points:data DisplayName.with[0].color set value "gold"
 execute if entity @s[team=finished] run data modify storage points:data DisplayName.with[0].bold set value true
