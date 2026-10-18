@@ -6,6 +6,7 @@ execute if score $gamestate gamestate.round_active matches 1 run function game:r
 scoreboard players set $gamestate gamestate.game_active 0
 scoreboard players reset $gamestate gamestate.ranked_players
 bossbar set game:time/round_timer players
+bossbar set game:time/endgame_timer players
 
 # Reset player data
 tag @a remove playing
