@@ -50,6 +50,7 @@ execute if score @s time.player.damage_timer matches 1.. run scoreboard players 
 execute if score @s time.player.damage_timer matches 0 expand:
     attribute @s minecraft:movement_speed modifier remove game:gameplay/runner/damaged
     scoreboard players reset @s time.player.damage_timer
+scoreboard players operation @s game.player.prev_damage = @s game.player.damage
 
 ## Group healing
 execute if predicate util:is_sneaking unless score @s game.player.dance_state matches 1.. expand:

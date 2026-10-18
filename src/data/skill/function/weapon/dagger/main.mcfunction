@@ -1,0 +1,1 @@
+execute if score @s time.player.recovery_timer matches 53.. run scoreboard players set @s time.player.recovery_timer 20

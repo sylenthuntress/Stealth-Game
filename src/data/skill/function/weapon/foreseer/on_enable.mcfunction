@@ -54,4 +54,3 @@ execute unless slots entity @s skill:weapon/foreseer/spectral_arrow expand:
         },
         custom_data={"skill.weapon.foreseer.spectral_arrow": true}
     ]
-execute if score $gamestate gamestate.band_progression matches 1.. run item modify entity @s game:backdoor game:backdoor

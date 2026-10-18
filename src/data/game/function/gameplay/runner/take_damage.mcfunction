@@ -18,7 +18,7 @@ execute on attacker expand:
     if score @s data.player.damage_dealt matches 1.. run function game:gameplay/killer/land_hit
 
 # Kill player at high damage
-execute if score @s game.player.damage = @s game.player.kill_threshold run function game:gameplay/runner/death
+execute if score @s game.player.damage = @s game.player.kill_threshold if score @s game.player.prev_damage matches 1.. run function game:gameplay/runner/death
 
 # Refresh health-based penalties
 function game:gameplay/runner/update_injury
@@ -26,5 +26,3 @@ function game:gameplay/runner/stop_hiding
 
 scoreboard players operation @s time.player.damage_timer += @s data.player.damage_taken
 attribute @s minecraft:movement_speed modifier add game:gameplay/runner/damaged 0.1 add_value
-
-scoreboard players operation @s game.player.prev_damage = @s game.player.damage
