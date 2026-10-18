@@ -1,4 +1,4 @@
-function game:gameplay/killer/get_backdoor
+execute unless score @s time.player.recovery_timer matches 1.. function game:gameplay/killer/get_backdoor
 
 # Manage attack recovery
 execute if score @s time.player.recovery_timer matches 1.. run scoreboard players remove @s time.player.recovery_timer 1

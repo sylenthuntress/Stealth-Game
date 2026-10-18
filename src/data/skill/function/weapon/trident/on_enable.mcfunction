@@ -21,7 +21,7 @@ give @s trident[
         {
             id: "attack_damage",
             type: "attack_damage",
-            amount: 0,
+            amount: 3,
             operation: "add_value",
             slot: "mainhand",
             display:{

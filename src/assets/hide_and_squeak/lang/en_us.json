@@ -42,7 +42,7 @@
     "skill.runner.medic.display_hearts": "Dance to revive %s %s",
     "skill.runner.medic.cross_finish": "%s has reached the finish line!",
     "skill.runner.undying": "%s Undying",
-    "skill.runner.undying.desc": "After dying once, you begin to revive yourself. This takes 20 seconds, and upon resurrection:\n- You're fully healed.\n- Your skills are disabled.\n- Your point gain is halved.\n- Everyone is alerted.",
+    "skill.runner.undying.desc": "After dying once, you begin to revive yourself. This takes 20 seconds, and upon resurrection:\n- You're healed by 50%.\n- Your skills are disabled.\n- Your point gain is halved.\n- Everyone is alerted.",
     "skill.runner.undying.revive": "%s has returned from death!",
     "skill.runner.puppeteer": "%s Puppeteer",
     "skill.runner.puppeteer.desc": "Throw puppets that resemble yourself. If a killer attacks your puppet, they get stunned and award you points.\n\nYou have two types of puppets; the mananequin looks like you, and the fake mouse looks like a runner who's §lHiding§r.\n\nCooldown (Large Puppet): §l45s§r\nCooldown (Small Puppet): §l15s",
