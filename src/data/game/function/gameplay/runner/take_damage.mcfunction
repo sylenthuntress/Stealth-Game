@@ -13,7 +13,9 @@ scoreboard players reset $var game.player.due_points
 scoreboard players reset $var game.player.damage
 
 # Reveal attacker
-execute on attacker run effect clear @s invisibility
+execute on attacker expand:
+    effect clear @s invisibility
+    if score @s data.player.damage_dealt matches 1.. run function game:gameplay/killer/land_hit
 
 # Kill player at high damage
 execute if score @s game.player.damage = @s game.player.kill_threshold run function game:gameplay/runner/death

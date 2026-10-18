@@ -19,6 +19,10 @@ execute as @a run function game:round/leave_round:
     attribute @s minecraft:attack_speed modifier remove game:teams/killer
     attribute @s minecraft:attack_damage modifier remove game:teams/killer
     attribute @s minecraft:movement_speed modifier remove game:teams/killer
+    attribute @s minecraft:movement_speed modifier remove game:gameplay/killer/recovery
+    attribute @s minecraft:jump_strength modifier remove game:gameplay/killer/recovery
+    attribute @s minecraft:attack_speed modifier remove game:gameplay/killer/recovery
+    attribute @s minecraft:attack_damage modifier remove game:gameplay/killer/recovery
     attribute @s minecraft:movement_speed modifier remove game:gameplay/movement_penalty/injury
     attribute @s minecraft:movement_speed modifier remove game:round/start_sequence
     attribute @s minecraft:jump_strength modifier remove game:round/start_sequence
