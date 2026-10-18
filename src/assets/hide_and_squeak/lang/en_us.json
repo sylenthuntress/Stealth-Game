@@ -12,6 +12,7 @@
     "game.cross_band": "A runner has crossed band %s",
     "game.cross_finish": "%s has reached the finish line!",
     "game.finish": "🏆",
+    "game.generating": "Generating map segments...",
     "game.sidebar.name": "|  %s",
     "game.sidebar.value": "%s |  ",
     "game.sidebar.point_log": "  ------- HISTORY ----->",

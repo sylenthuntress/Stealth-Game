@@ -102,6 +102,7 @@ execute positioned coords.play_area.x (coords.play_area.y-19) coords.play_area.z
 
     forceload remove ~ ~
 scoreboard players operation $prev.segments segments.elapsed = $segments segments.elapsed
+execute if score $gamestate gamestate.generating matches 1 run function game:finish_generation
 
 # Disable command blocks
 schedule function level:disable_command_blocks 10t

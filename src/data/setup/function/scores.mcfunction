@@ -29,6 +29,7 @@ scoreboard objectives add data.player.jump minecraft.custom:minecraft.jump
 scoreboard objectives add hazard.dripleaf_launcher.timer dummy
 
 # Gamestate
+scoreboard objectives add gamestate.generating dummy
 scoreboard objectives add gamestate.game_active dummy
 scoreboard objectives add gamestate.round_active dummy
 scoreboard objectives add gamestate.round_count dummy
