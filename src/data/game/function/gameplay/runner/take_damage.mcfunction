@@ -49,5 +49,6 @@ execute if score @s game.player.damage = @s game.player.kill_threshold if score 
 function game:gameplay/runner/update_injury
 execute if entity @s[tag=hiding] run function game:gameplay/runner/stop_hiding
 
-scoreboard players operation @s time.player.damage_timer += @s data.player.damage_taken
-attribute @s minecraft:movement_speed modifier add game:gameplay/runner/damaged 0.1 add_value
+execute if score @s data.player.damage_taken matches 10.. expand:
+    scoreboard players add @s time.player.damage_timer 45
+    attribute @s minecraft:movement_speed modifier add game:gameplay/runner/damaged 0.1 add_value
