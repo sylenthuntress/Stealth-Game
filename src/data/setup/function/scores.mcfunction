@@ -97,6 +97,8 @@ scoreboard objectives add skill.switch_selection trigger
 scoreboard objectives add skill.close_selection trigger
 scoreboard objectives add skill.current_slot trigger
 
+scoreboard objectives add skill.runner.brawler.uses dummy
+scoreboard objectives add skill.runner.brawler.cooldown dummy
 scoreboard objectives add skill.runner.warper.warp_spot dummy
 scoreboard objectives add skill.runner.warper.count dummy
 scoreboard objectives add skill.runner.warper.cooldown dummy
