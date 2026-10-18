@@ -101,7 +101,7 @@ execute if score @s skill.runner.puppeteer.cooldown matches 1.. run function ski
             "functions": [
                 {
                     "type": "minecraft:set_item",
-                    "item": "minecraft:copper_nugget"
+                    "item": "minecraft:player_head"
                 },
                 {
                     "type": "minecraft:set_components",
@@ -131,9 +131,11 @@ execute if score @s skill.runner.puppeteer.cooldown matches 1.. run function ski
                             "skill.runner.puppeteer.large_puppet": true,
                             "skill.runner.puppeteer.cooldown": false
                         },
-                        "item_model": "hide_and_squeak:large_puppet"
+                        "!minecraft:equippable":{},
+                        "item_model":"hide_and_squeak:large_puppet"
                     }
-                }
+                },
+                {type:"minecraft:fill_player_head",entity:"this"}
             ]
         }
         item modify entity @s {"type":"minecraft:filtered","slot_source":"util:inventory","item_filter":{"items":"minecraft:barrier","predicates":{"minecraft:custom_data":{"skill.runner.puppeteer.small_puppet":true,"skill.runner.puppeteer.cooldown":true}}}} {

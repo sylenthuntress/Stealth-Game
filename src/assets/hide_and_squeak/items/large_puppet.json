@@ -1,32 +1,113 @@
 {
-  "model": {
-    "type": "minecraft:select",
-    "property": "minecraft:display_context",
-    "cases": [
-      {
-        "when": "gui",
-        "model": {
-          "type": "minecraft:model",
-          "model": "hide_and_squeak:item/large_puppet"
+    "model": {
+        "type": "minecraft:select",
+        "property": "display_context",
+        "cases": [
+            {
+                "when": "gui",
+                "model": {
+                    "type": "minecraft:special",
+                    "base": "minecraft:item/template_skull",
+                    "model": {
+                        "type": "minecraft:player_head"
+                    },
+                    "transformation": {
+                        "left_rotation": [
+                            1.0,
+                            0.0,
+                            0.0,
+                            -0.0
+                        ],
+                        "right_rotation": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "translation": [
+                            0.5,
+                            0.0,
+                            0.5
+                        ]
+                    }
+                }
+            },
+            {
+                "when": "firstperson_righthand",
+                "model": {
+                    "type": "minecraft:special",
+                    "base": "minecraft:item/template_skull",
+                    "model": {
+                        "type": "minecraft:player_head"
+                    },
+                    "transformation": {
+                        "left_rotation": [
+                            1.0,
+                            0.0,
+                            0.0,
+                            -0.0
+                        ],
+                        "right_rotation": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "translation": [
+                            0.5,
+                            0.0,
+                            0.5
+                        ]
+                    }
+                }
+            },
+            {
+                "when": "firstperson_lefthand",
+                "model": {
+                    "type": "minecraft:special",
+                    "base": "minecraft:item/template_skull",
+                    "model": {
+                        "type": "minecraft:player_head"
+                    },
+                    "transformation": {
+                        "left_rotation": [
+                            1.0,
+                            0.0,
+                            0.0,
+                            -0.0
+                        ],
+                        "right_rotation": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            1.0
+                        ],
+                        "scale": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "translation": [
+                            0.5,
+                            0.0,
+                            0.5
+                        ]
+                    }
+                }
+            }
+        ],
+        "fallback": {
+            "type": "minecraft:empty"
         }
-      },
-      {
-        "when": "firstperson_lefthand",
-        "model": {
-          "type": "minecraft:model",
-          "model": "hide_and_squeak:item/large_puppet"
-        }
-      },
-      {
-        "when": "firstperson_righthand",
-        "model": {
-          "type": "minecraft:model",
-          "model": "hide_and_squeak:item/large_puppet"
-        }
-      }
-    ],
-    "fallback": {
-      "type": "minecraft:empty"
     }
-  }
 }

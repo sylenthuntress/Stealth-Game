@@ -1,7 +1,7 @@
 scoreboard players set @s skill.runner.puppeteer.cooldown 400
 advancement revoke @s only skill:runner_skill/puppeteer/throw_small_puppet
 
-item modify entity @s {"type":"minecraft:filtered","slot_source":"util:inventory","item_filter":{"items":"minecraft:copper_nugget","predicates":{"minecraft:custom_data":{"skill.runner.puppeteer.large_puppet":true}}}} {
+item modify entity @s {"type":"minecraft:filtered","slot_source":"util:inventory","item_filter":{"items":"minecraft:player_head","predicates":{"minecraft:custom_data":{"skill.runner.puppeteer.large_puppet":true}}}} {
     "type": "minecraft:sequence",
     "functions": [
         {
