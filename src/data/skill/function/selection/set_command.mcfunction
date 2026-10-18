@@ -1,1 +1,1 @@
-$data modify storage skill:selection Options[-1].action.command set value "trigger skill.selection set $(numid)" 
+$data modify storage skill:selection dialog.actions[-1].action.command set value "trigger skill.selection set $(numid)" 
