@@ -25,6 +25,7 @@ execute as @a[tag=playing] run function game:round/join_round:
 
     attribute @s minecraft:movement_speed modifier add game:round/start_sequence -1 add_multiplied_base
     attribute @s minecraft:jump_strength modifier add game:round/start_sequence -1 add_multiplied_base
+    function render:points/make_numberformat
 execute as @a[scores={game.player.team_id=1}] run function game:round/join_runner:
     gamemode adventure @s
     team join runner @s
@@ -47,6 +48,7 @@ execute as @a[scores={game.player.team_id=2}] run function game:round/join_kille
     attribute @s minecraft:movement_speed modifier add game:teams/killer 0.15 add_multiplied_base
 
     tp @s coords.killer_spawn.x coords.killer_spawn.y coords.killer_spawn.z
+
 
 # End game if no runner/killer is found
 execute unless entity @a[team=runner] run function game:end
