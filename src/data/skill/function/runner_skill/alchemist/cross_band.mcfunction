@@ -1,1 +1,0 @@
-execute unless score @s skill.runner.alchemist.count matches 1.. run function skill:runner_skill/alchemist/give_item

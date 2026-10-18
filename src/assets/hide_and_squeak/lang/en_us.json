@@ -55,7 +55,7 @@
     "skill.runner.ender": "%s Ender",
     "skill.runner.distorter": "%s Distorter",
     "skill.runner.alchemist": "%s Alchemist",
-    "skill.runner.alchemist.desc": "Cross bands to gain §lFlasks§r. Using one §lFlask§r consumes both.\n- §lBlinding§r §lFlasks§r: when thrown, they blind any killers they hit, awarding you points upon band completion.\n- §lStunning§r §lFlasks§r: Instead of blinding the killer, the killer gets stunned for half the time.\n\nCooldown: §l30s§r\nLimit: §l1",
+    "skill.runner.alchemist.desc": "You start with two sets of 3 §lFlasks§r. Using one §lFlask§r depletes both sets.\n- §lBlinding§r §lFlasks§r: when thrown, they blind any killers they hit, awarding you points upon band completion.\n- §lStunning§r §lFlasks§r: Instead of blinding the killer, the killer gets stunned for half the time.\n\nCooldown: §l30s§r\nLimit: §l1",
     "skill.runner.alchemist.blinding_flask": "%s Blinding Flask",
     "skill.runner.alchemist.stagger_flask": "%s Stunning Flask",
     "skill.runner.alchemist.land_blinding_flask": "%s has been blinded!",
