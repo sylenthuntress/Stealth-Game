@@ -1,0 +1,1 @@
+$data modify storage points:data MergeData.old_points set from storage points:data PointsLog[{"index":$(index)}].points

@@ -36,6 +36,7 @@ scoreboard objectives add gamestate.round_total dummy
 scoreboard objectives add gamestate.runners dummy
 scoreboard objectives add gamestate.band_progression dummy
 scoreboard objectives add gamestate.crossed_finish dummy
+scoreboard objectives add gamestate.ranked_players dummy
 
 # Game
 scoreboard objectives add game.player.team_id dummy
@@ -47,17 +48,11 @@ scoreboard objectives add game.player.dance_state dummy
 scoreboard objectives add game.player.band_progression dummy
 scoreboard objectives add game.player.target_band dummy
 scoreboard objectives add game.player.due_points dummy
+scoreboard objectives add game.player.round_points dummy
 scoreboard objectives add game.player.points dummy
 scoreboard objectives add game.player.points_split dummy
 scoreboard objectives modify game.player.points displayname {
     "translate":"game.player.points"
-}
-scoreboard players set $scoredisplay game.player.points -999
-scoreboard players display numberformat $scoredisplay game.player.points blank
-scoreboard players display name $scoredisplay game.player.points {
-    "text": "---------------------",
-    "color": "gray",
-    "bold": true
 }
 
 # Generation
@@ -74,6 +69,7 @@ scoreboard objectives add lobby.ready dummy
 scoreboard objectives add math.const dummy
 scoreboard players set $100 math.const 100
 scoreboard players set $20 math.const 20
+scoreboard players set $10 math.const 10
 scoreboard players set $5 math.const 5
 scoreboard players set $4 math.const 4
 scoreboard players set $3 math.const 3
@@ -150,7 +146,9 @@ scoreboard objectives add time.player.stun_timer dummy
 scoreboard objectives add time.player.dash_cooldown dummy
 scoreboard objectives add time.player.dash_timer dummy
 scoreboard objectives add time.player.assist_timer dummy
+scoreboard objectives add time.player.points_display_timer dummy
 scoreboard objectives add time.round_cooldown dummy
 
-# Animations
+# Rendering
+scoreboard objectives add scoredisplay.points_log.index dummy
 scoreboard objectives add animations.sidebar.name dummy

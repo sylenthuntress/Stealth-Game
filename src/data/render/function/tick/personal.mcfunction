@@ -1,43 +1,7 @@
-from bolt_expressions import Scoreboard
+# Make point display more fancy
+execute as @s[tag=playing] run function render:points/make_displayname
 
-# Showcase points as decimals
-execute as @s[tag=playing] run function render:points/format_sidebar:
-    scoreboard objectives add var.points_decimal dummy
-    scoreboard objectives add var.points_whole dummy
-
-    points = Scoreboard("game.player.points")
-    pointsDecimal = Scoreboard("var.points_decimal")
-    pointsWhole = Scoreboard("var.points_whole")
-
-    pointsWhole["$var"] = points["@s"] / 10
-    pointsDecimal["$var"] = points["@s"] % 10
-
-    execute unless score $var pointsDecimal matches 0 run scoreboard players display numberformat @s game.player.points fixed [
-            {
-                "score": {
-                    "name": "$var",
-                    "objective": "var.points_whole"
-                },
-                "color": "red"
-            },
-            ".",
-            {
-                "score": {
-                    "name": "$var",
-                    "objective": "var.points_decimal"
-                },
-                "color": "red"
-            }
-        ]
-    execute if score $var pointsDecimal matches 0 run scoreboard players display numberformat @s game.player.points fixed [
-            {
-                "score": {
-                    "name": "$var",
-                    "objective": "var.points_whole"
-                },
-                "color": "red"
-            }
-        ]
-    # Remove unneeded variables
-    scoreboard objectives remove var.points_decimal
-    scoreboard objectives remove var.points_whole
+execute if score @s time.player.points_display_timer matches 0 expand:
+    function render:points/make_numberformat
+    scoreboard players reset @s time.player.points_display_time
+execute if score @s time.player.points_display_timer matches 1.. run scoreboard players remove @s time.player.points_display_timer 1

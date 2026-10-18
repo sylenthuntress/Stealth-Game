@@ -4,6 +4,7 @@ from bolt_expressions import Scoreboard
 scoreboard objectives remove var.players
 execute if score $gamestate gamestate.round_active matches 1 run function game:round/end # End current round if present
 scoreboard players set $gamestate gamestate.game_active 0
+scoreboard players reset $gamestate gamestate.ranked_players
 bossbar set game:time/round_timer players
 
 # Reset player data
@@ -50,13 +51,7 @@ execute function game:rankings/broadcast_all:
     scoreboard players reset @a[tag=selected] game.player.points
     tag @a remove selected
     execute if entity @a[tag=!winner,scores={game.player.points=1..}] run function game:rankings/broadcast_all
+    del points
 scoreboard objectives setdisplay sidebar
-scoreboard players reset * points
-scoreboard players set $scoredisplay game.player.points -999
-scoreboard players display numberformat $scoredisplay game.player.points blank
-scoreboard players display name $scoredisplay game.player.points {
-    "text": "---------------------",
-    "color": "gray",
-    "bold": true
-}
+scoreboard players reset * game.player.points
 tag @a remove winner

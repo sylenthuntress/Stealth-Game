@@ -1,0 +1,2 @@
+$function game:points/clear_log_entry with storage points:data PointsLog[{"index":$(index)}]
+$data modify storage points:data PointsLog[{"index":$(index)}].points set compute default integer {type:"minecraft:add",inputs:[$(old_points), $(points)]}

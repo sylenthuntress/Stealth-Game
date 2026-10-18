@@ -1,0 +1,1 @@
+$scoreboard players display numberformat @s game.player.points fixed $(DisplayText)

@@ -10,7 +10,7 @@ scoreboard players reset $var game.player.due_points
 execute as @a run function game:round/leave_round:
     effect clear @s
     execute if entity @s[tag=hiding] run function game:gameplay/runner/stop_hiding
-    function game:add_points
+    function game:points/add_points
 
     function skill:on_disable
     function skill:disable_skills
@@ -31,6 +31,7 @@ execute as @a run function game:round/leave_round:
     clear @s
 
 scoreboard players set * game.player.points_split 1
+scoreboard players reset * game.player.round_points
 scoreboard players reset * game.player.band_progression
 scoreboard players reset * game.player.damage
 scoreboard players reset * game.player.injury

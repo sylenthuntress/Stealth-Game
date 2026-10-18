@@ -1,0 +1,1 @@
+$scoreboard players reset $scoredisplay.$(name)_$(index) game.player.points

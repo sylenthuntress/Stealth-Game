@@ -1,0 +1,1 @@
+$scoreboard players display name @s game.player.points $(DisplayName)

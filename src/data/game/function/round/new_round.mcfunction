@@ -8,6 +8,7 @@ scoreboard players reset $time time.round_timer
 scoreboard players reset $gamestate gamestate.runners
 bossbar set game:time/round_timer players
 execute as @e[type=text_display,tag=band_display] run data modify entity @s text.color set value red
+function game:points/clear_logs
 
 # Distribute teams for everyone
 scoreboard players reset @a game.player.team_id
