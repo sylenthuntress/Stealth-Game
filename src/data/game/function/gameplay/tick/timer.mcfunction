@@ -11,7 +11,7 @@ execute unless score $time time.endgame_timer matches 1.. run return run functio
     execute if score $var timerModulo matches 0 store result bossbar game:time/round_timer value run scoreboard players get $time timer
 
     # End game if timer reaches zero
-    execute if score $time timer matches 0 run return run function game:round/end
+    execute if score $time timer matches 0 run return run function game:round/timeout
 
     execute function render:time/round_timer/display:
         # Update bossbar name to reflect timer

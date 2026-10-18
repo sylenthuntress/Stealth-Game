@@ -73,6 +73,7 @@ scoreboard objectives add math.const dummy
 scoreboard players set $100 math.const 100
 scoreboard players set $20 math.const 20
 scoreboard players set $10 math.const 10
+scoreboard players set $8 math.const 8
 scoreboard players set $5 math.const 5
 scoreboard players set $4 math.const 4
 scoreboard players set $3 math.const 3

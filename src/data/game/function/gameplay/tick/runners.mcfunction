@@ -97,8 +97,12 @@ execute if block ~ 41 ~ minecraft:netherite_block run function game:gameplay/run
     team join finished
     playsound minecraft:block.note_block.bell master @a ~ ~ ~ 2 1 1
 
-    scoreboard players add @s game.player.due_points 50
-    execute unless score $gamestate gamestate.crossed_finish matches 1 scoreboard players add @s game.player.due_points 5
+    scoreboard players operation $math game.player.due_points = $segments segments.elapsed
+    scoreboard players operation $math game.player.due_points *= $10 math.const
+    scoreboard players operation $math game.player.due_points /= $2 math.const
+    execute if score $gamestate gamestate.crossed_finish matches 1 run scoreboard players remove $math game.player.due_points 10
+    scoreboard players operation @s game.player.due_points += $math game.player.due_points
+
     execute unless score $gamestate gamestate.crossed_finish matches 1 scoreboard players set $time time.endgame_timer 600
     scoreboard players set $gamestate gamestate.crossed_finish 1
     bossbar set game:time/round_timer players

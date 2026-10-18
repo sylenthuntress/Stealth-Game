@@ -1,10 +1,4 @@
 import skill:registry as skill_registry
-# Award points to killers for timing out
-scoreboard players operation $var game.player.due_points += $segments segments.elapsed
-scoreboard players operation $var game.player.due_points -= $gamestate gamestate.band_progression
-scoreboard players operation $var game.player.due_points *= $5 math.const
-execute as @a[scores={game.player.team_id=2}] run scoreboard players operation @s game.player.due_points += $var game.player.due_points
-scoreboard players reset $var game.player.due_points
 
 # Reset each player
 execute as @a run function game:round/leave_round:
