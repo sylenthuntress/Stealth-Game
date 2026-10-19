@@ -4,6 +4,7 @@ import util:coordinates as coords
 fill coords.play_area.x coords.play_area.y coords.play_area.z (coords.play_area.x + 69) (coords.play_area.y + 30) (coords.play_area.z + 1000) air
 kill @e[type=text_display,tag=band_display]
 kill @e[tag=segment_entity]
+kill @e[tag=gameplay.killer.backdoor.final_warp]
 
 # Enable command blocks
 gamerule command_blocks_work true
@@ -53,6 +54,7 @@ scoreboard players operation $segments segments.remaining_large += $config confi
 execute if score $prev.segments segments.elapsed matches 1.. positioned coords.play_area.x (coords.play_area.y-17) coords.play_area.z function level:segment/clear:
     forceload add ~ ~
     fill ~ ~ ~ ~69 ~60 ~35 air
+    fillbiome ~ ~ ~ ~69 ~60 ~35 minecraft:the_void
     scoreboard players remove $prev.segments segments.elapsed 1
     execute if score $prev.segments segments.elapsed matches 1.. positioned ~ ~ ~30 run function level:segment/clear
 
@@ -93,11 +95,15 @@ execute positioned coords.play_area.x (coords.play_area.y-19) coords.play_area.z
     scoreboard players remove $segments segments.remaining 1
     scoreboard players add $segments segments.elapsed 1
     execute if score $segments segments.remaining matches 0 expand:
-        place template level:finish_line ~ ~ ~25
-        fill ~ 41 ~29 ~68 41 ~25 minecraft:netherite_block
-        summon minecraft:text_display ~34 ~30 ~25 {Tags: ["band_display"], brightness:{sky:15,block:15}, alignment: "center", background: 0, billboard: "vertical", default_background: 0b, line_width: 200, view_range: 2f, see_through: 0b, shadow: 1b, text:{"color":"red","bold":true,"translate": "game.finish"}, text_opacity: -1b, transformation: {left_rotation: [0.0f, 0.0f, 0.0f, 1.0f], right_rotation: [0.0f, 0.0f, 0.0f, 1.0f], scale: [50.0f, 50.0f, 50.0f], translation: [0.0f, 0.0f, 0.0f]}}
+        forceload add ~69 ~ ~49 ~80
+        place template level:finish_line ~19 ~ ~25
+        fill ~ 41 ~29 ~49 41 ~25 minecraft:netherite_block
+        fill ~ 41 ~-5 ~19 ~46 ~80 wallMaterial
+        fill ~69 41 ~-5 ~49 ~46 ~80 wallMaterial
+        summon minecraft:text_display ~34 ~30 ~27 {Tags: ["band_display"], brightness:{sky:15,block:15}, alignment: "center", background: 0, billboard: "vertical", default_background: 0b, line_width: 200, view_range: 2f, see_through: 0b, shadow: 1b, text:{"color":"red","bold":true,"translate": "game.finish"}, text_opacity: -1b, transformation: {left_rotation: [0.0f, 0.0f, 0.0f, 1.0f], right_rotation: [0.0f, 0.0f, 0.0f, 1.0f], scale: [50.0f, 50.0f, 50.0f], translation: [0.0f, 0.0f, 0.0f]}}
+        summon minecraft:marker ~34 ~17 ~50 {Tags: ["gameplay.killer.backdoor.final_warp"]}
         execute positioned ~34 ~30 ~25 run scoreboard players operation @n[type=text_display,tag=band_display] segments.elapsed = $segments segments.elapsed
-        
+        forceload remove ~69 ~ ~49 ~80
     unless score $segments segments.remaining matches ..0 positioned ~ ~ ~30 run function level:segment/create
 
     forceload remove ~ ~

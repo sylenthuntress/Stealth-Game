@@ -1,1 +1,1 @@
-$fillbiome ~-2 ~ ~-2 ~73 ~31 ~35 $(biome)
+$fillbiome ~-2 ~ ~-2 ~73 ~31 ~33 $(biome)

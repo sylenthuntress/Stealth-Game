@@ -1,6 +1,5 @@
 scoreboard players operation @s game.player.target_band = $gamestate gamestate.band_progression
-execute if score @s game.player.target_band < $segments segments.elapsed run scoreboard players add @s game.player.target_band 2
-scoreboard players operation @s game.player.target_band < $segments segments.elapsed
+scoreboard players add @s game.player.target_band 2
 
 slot_source game:gameplay/killer/backdoor {
     "type": "minecraft:filtered","slot_source": "util:inventory","item_filter": {"items": "minecraft:dark_oak_door","components": {"minecraft:custom_data": {"item.killer.backdoor": true}}}
@@ -51,6 +50,11 @@ execute if score $gamestate gamestate.band_progression matches 2.. run item modi
                 "with": [
                     [
                         {
+                            "translate": "item.killer.backdoor.band",
+                            "color": "red"
+                        },
+                        " ",
+                        {
                             "text": "#",
                             "color": "dark_red",
                             "bold": true,
@@ -66,6 +70,43 @@ execute if score $gamestate gamestate.band_progression matches 2.. run item modi
                             "color": "dark_red"
                         }
                     ]
+                ]
+            }
+        }
+    ]
+}
+execute if score @s game.player.target_band >= $segments segments.elapsed run item modify entity @s game:gameplay/killer/backdoor {
+    "type": "minecraft:sequence",
+    "functions": [
+        {
+            "type": "minecraft:set_components",
+            "components": {
+                "consumable": {
+                    "consume_seconds": 0.05,
+                    "has_consume_particles": false,
+                    "animation": "bow",
+                    "sound": {
+                        "sound_id": ""
+                    }
+                },
+                "custom_data": {
+                    "item.killer.backdoor": true
+                }
+            }
+        },
+        {
+            "type": "minecraft:set_name",
+            "entity": "this",
+            "name": {
+                "translate": "item.killer.backdoor",
+                "color": "red",
+                "italic": false,
+                "with": [
+                    {
+                        "translate": "item.killer.backdoor.finish_line",
+                        "color": "gold",
+                        "bold": true
+                    }
                 ]
             }
         }
