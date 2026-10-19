@@ -25,11 +25,7 @@ execute if score $time time.round_cooldown matches 0 if score $gamestate gamesta
 execute if score $time time.start_sequence matches 0.. run function game:round/start_sequence
 
 # Manage spectators
-# execute as @a[gamemode=spectator] at @s if block ~ 41 ~ minecraft:black_concrete run function game:leash_spectator:
-#    tp @p[gamemode=!spectator,tag=playing]
-#    title @s actionbar {"translate": "game.spectator.too_far", "color": "red"}
-#    execute at @s run playsound minecraft:block.note_block.didgeridoo master @s ~ ~ ~ 2 0.5
-# execute as @a[gamemode=spectator,y=100,distance=..20] run function game:leash_spectator
+execute as @a[gamemode=spectator] at @s run function game:tick/spectators
 
 # Remove unneded variables
 scoreboard objectives remove var.players
