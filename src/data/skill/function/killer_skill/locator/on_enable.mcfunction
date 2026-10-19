@@ -28,5 +28,6 @@ give @s compass[
             dimension: "minecraft:the_nether"
         }, 
         tracked: false
-    }
+    },
+    item_model="hide_and_squeak:pest_tracker"
 ]

@@ -1,18 +1,3 @@
-execute unless score @s skill.killer.locator.cooldown matches 1.. unless score @s skill.killer.locator.tracking_timer matches 0.. function skill:killer_skill/locator/passive_tracking:
-    scoreboard objectives add var.runners dummy
-    execute store result score $var var.runners if entity @a[team=runner]
-    execute if score $var var.runners matches ..1 run return run function skill:killer_skill/locator/fail_tracking:
-        scoreboard objectives remove var.runners
-
-    scoreboard players set @s skill.killer.locator.tracking_timer 1
-    execute at @s run scoreboard players operation @s skill.killer.locator.tracking_uid = @p[distance=..32,sort=furthest,team=runner] uid.player
-
-tag @s add this.self
-execute as @a[team=runner] if score @s uid.player = @p[tag=this.self] skill.killer.locator.tracking_uid run data modify storage skill:data KillerSkills.Locator.Tracked.Pos set from entity @s Pos
-tag @s remove this.self
-
-function skill:killer_skill/locator/point_compass with storage skill:data KillerSkills.Locator.Tracked
-
 execute function skill:killer_skill/locator/tick_tracking:
     scoreboard players remove @s skill.killer.locator.tracking_timer 1
 
@@ -54,7 +39,6 @@ execute function skill:killer_skill/locator/tick_tracking:
             }
         ]
     }
-
     execute if score @s skill.killer.locator.tracking_timer matches ..0 function skill:killer_skill/locator/refresh_tracking:
         item modify entity @s {"type":"minecraft:filtered","slot_source":"util:inventory","item_filter":{"items":"minecraft:compass","predicates":{"minecraft:custom_data":{"skill.killer.locator.ability":true}}}} {
             "type": "minecraft:set_components",
@@ -81,18 +65,40 @@ execute function skill:killer_skill/locator/tick_tracking:
                         "skill.killer.locator.ability": true,
                         "skill.killer.locator.locked": false
                     },
-                    "enchantment_glint_override": false,
-                    "minecraft:lodestone_tracker": {
-                        "target": {
-                            "pos": [0,0,0],
-                            "dimension": "minecraft:the_nether"
-                        }, 
-                        "tracked": false
-                    }
+                    "enchantment_glint_override": false
                 }
             }
         scoreboard players reset @s skill.killer.locator.tracking_uid
         scoreboard players reset @s skill.killer.locator.tracking_timer
+
+execute unless score @s skill.killer.locator.cooldown matches 1.. unless score @s skill.killer.locator.tracking_timer matches 0.. function skill:killer_skill/locator/passive_tracking:
+    scoreboard objectives add var.runners dummy
+    execute at @s store result score $var var.runners if entity @a[team=runner,distance=12..48]
+    execute if score $var var.runners matches ..1 run return run function skill:killer_skill/locator/fail_tracking:
+        scoreboard objectives remove var.runners
+
+    scoreboard players set @s skill.killer.locator.tracking_timer 2
+    execute at @s run scoreboard players operation @s skill.killer.locator.tracking_uid = @p[distance=12..48,sort=furthest,team=runner] uid.player
+            item modify entity @s {"type":"minecraft:filtered","slot_source":"util:inventory","item_filter":{"items":"minecraft:compass","predicates":{"minecraft:custom_data":{"skill.killer.locator.ability":true}}}} {
+            "type": "minecraft:set_components",
+                "components": {
+                    "enchantment_glint_override": true
+                }
+            }
+
+data modify storage skill:data KillerSkills.Locator.Tracked set value {pos:[0,0,0],dimension:the_nether}
+tag @s add this.self
+execute at @s as @a[team=runner] if score @s uid.player = @p[tag=this.self] skill.killer.locator.tracking_uid expand:
+    data modify storage skill:data KillerSkills.Locator.Tracked.pos set from entity @s Pos
+    data modify storage skill:data KillerSkills.Locator.Tracked.dimension set from entity @s Dimension
+    if entity @s[distance=..12] as @p[tag=this.self] run function skill:killer_skill/locator/too_close:
+        function skill:killer_skill/locator/refresh_tracking
+        title @s actionbar {"color":"#9e3f3f","translate":"skill.killer.locator.too_close"}
+        playsound minecraft:item.lodestone_compass.lock master @s ~ ~ ~ 1 0.2
+        playsound minecraft:block.dispenser.fail master @s ~ ~ ~ 1
+tag @s remove this.self
+
+function skill:killer_skill/locator/point_compass with storage skill:data KillerSkills.Locator.Tracked
 
 execute unless score @s skill.killer.locator.tracking_timer matches 0.. if score @s skill.killer.locator.cooldown matches 1.. run function skill:killer_skill/locator/tick_cooldown:
     scoreboard players remove @s skill.killer.locator.cooldown 1
