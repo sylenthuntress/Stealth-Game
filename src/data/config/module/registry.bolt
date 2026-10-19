@@ -1,7 +1,7 @@
 options = {
     "gamemode": 0,
     "team_selection": 0,
-    "killer_ratio": 15,
+    "killer_ratio": 25,
     "round_timer": 12000,
     "segments_small": 3,
     "segments_med": 4,

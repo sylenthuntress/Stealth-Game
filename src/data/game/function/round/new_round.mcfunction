@@ -61,6 +61,8 @@ execute as @a[scores={game.player.team_id=2}] run function game:round/join_kille
 
     tp @s coords.killer_spawn.x coords.killer_spawn.y coords.killer_spawn.z
 
+# Update round total
+execute if score $time time.round_cooldown matches 0 run function game:round/check_total
 
 # End game if no runner/killer is found
 execute unless entity @a[team=runner] run function game:end

@@ -71,6 +71,7 @@ scoreboard objectives add lobby.ready dummy
 # Math
 scoreboard objectives add math.const dummy
 scoreboard players set $100 math.const 100
+scoreboard players set $50 math.const 50
 scoreboard players set $20 math.const 20
 scoreboard players set $10 math.const 10
 scoreboard players set $8 math.const 8

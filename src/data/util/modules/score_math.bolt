@@ -1,2 +1,2 @@
 def percentage(part, whole):
-    return (part/whole) * 100
+    return (part * 100/whole)

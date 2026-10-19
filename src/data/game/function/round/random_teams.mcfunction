@@ -1,23 +1,14 @@
-from bolt_expressions import Scoreboard
-from util:score_math import percentage
+scoreboard objectives add var.candidates dummy
+scoreboard objectives add var.queue dummy
 
-# Create and set the necessary variables
-scoreboard objectives add var.players dummy
-scoreboard objectives add var.killer_count dummy
-playerCount = Scoreboard("var.players")
-killerCount = Scoreboard("var.killer_count")
-killerRatio = Scoreboard("config.killer_ratio")
+execute as @a[tag=playing,sort=random,tag=!killer_blacklist] store result score @s var.queue run scoreboard players add $var var.candidates 100
+execute as @a[tag=playing,tag=killer_blacklist] run scoreboard players add $var var.candidates 100
 
-execute store result score $var var.players run function util:get/players
-playerCount["$var"] = percentage(playerCount["$var"], killerRatio["$config"])
+scoreboard players operation $var var.candidates /= $100 math.const
+scoreboard players operation $var var.candidates *= $config config.killer_ratio
 
-# Select random player as killer, then loop until complete
-execute as @r[tag=playing,tag=!killer_blacklist] run scoreboard players set @s game.player.team_id 2
+execute as @a[tag=playing,tag=!killer_blacklist] if score @s var.queue <= $var var.candidates run scoreboard players set @s game.player.team_id 2
 tag @a[scores={game.player.team_id=2}] add killer_blacklist
 
-execute store result score $var var.killer_count run execute if entity @a[scores={game.player.team_id=2}]
-execute if score $var var.killer_count < $var var.players run function game:round/random_teams
-
-# Remove variables when done
-scoreboard objectives remove var.players
-scoreboard objectives remove var.killer_count
+scoreboard objectives remove var.candidates
+scoreboard objectives remove var.queue
