@@ -14,8 +14,8 @@ execute if score @s skill.killer.athlete.cooldown matches 1.. run function skill
 
 execute if score @s skill.killer.athlete.dash_timer matches 1.. run function skill:killer_skill/athlete/start_dashing:
     tag @s add skill.killer_skill.athlete.dashing
-    attribute @s minecraft:movement_speed modifier add game:killer_skill/athlete/dashing 1.5 add_multiplied_base
-    attribute @s minecraft:friction_modifier modifier add game:killer_skill/athlete/dashing -1.5 add_multiplied_base
+    attribute @s minecraft:movement_speed modifier add game:killer_skill/athlete/dashing 1.8 add_multiplied_base
+    attribute @s minecraft:friction_modifier modifier add game:killer_skill/athlete/dashing -1 add_multiplied_base
     attribute @s minecraft:step_height modifier add game:killer_skill/athlete/dashing 1 add_value
 
 execute if score @s skill.killer.athlete.dash_timer matches 0 run function skill:killer_skill/athlete/stop_dashing:
