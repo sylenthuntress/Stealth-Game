@@ -29,8 +29,8 @@ execute as @a[tag=playing] run function game:round/join_round:
     effect give @s saturation infinite 255 true
     effect give @s instant_health 1 255 true
 
-    attribute @s minecraft:movement_speed modifier add game:round/start_sequence -1 add_multiplied_base
-    attribute @s minecraft:jump_strength modifier add game:round/start_sequence -1 add_multiplied_base
+    attribute @s minecraft:movement_speed modifier add game:round/start_sequence -1 add_multiplied_total
+    attribute @s minecraft:jump_strength modifier add game:round/start_sequence -1 add_multiplied_total
     function render:points/make_numberformat
 execute as @a[scores={game.player.team_id=1}] run function game:round/join_runner:
     gamemode adventure @s
