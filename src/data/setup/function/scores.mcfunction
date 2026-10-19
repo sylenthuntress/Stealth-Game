@@ -41,6 +41,7 @@ scoreboard objectives add gamestate.crossed_finish dummy
 scoreboard objectives add gamestate.ranked_players dummy
 
 # Game
+scoreboard objectives add game.player.killer_queue dummy
 scoreboard objectives add game.player.team_id dummy
 scoreboard objectives add game.player.prev_damage dummy
 scoreboard objectives add game.player.damage dummy

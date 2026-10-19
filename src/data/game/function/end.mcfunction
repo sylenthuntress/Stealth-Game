@@ -10,8 +10,8 @@ bossbar set game:time/endgame_timer players
 
 # Reset player data
 tag @a remove playing
-tag @a remove killer_blacklist
 tag @a add lobby
+scoreboard players reset * game.player.killer_queue
 execute as @a run function lobby:join_lobby
 
 # Broadcast ending message

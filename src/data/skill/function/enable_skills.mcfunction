@@ -1,6 +1,7 @@
 data remove storage skill:selection selector
 execute store result storage skill:selection selector.uid int 1 run scoreboard players get @s uid.player
 function skill:get_skills with storage skill:selection selector
+execute unless data storage skill:selection Recursive[0] run return fail # Return function if no selection is found
 
 function skill:add_tags with storage skill:selection Recursive[0]
 

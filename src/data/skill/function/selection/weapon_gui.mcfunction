@@ -10,7 +10,7 @@ data merge storage skill:selection {dialog:{
     "exit_action": {"label": {"translate": "skill.selection.gui.ready", "color": "green"}, "action": {"type": "minecraft:run_command", "command": "trigger skill.close_selection set 1"}},
     "columns": 3
 }}
-data modify storage skill:selection dialog.recursive set from storage skill:registry WeaponRegistry
+data modify storage skill:selection Recursive set from storage skill:registry WeaponRegistry
 tag @s add skill.selection.weapon
 function skill:selection/make_options
 

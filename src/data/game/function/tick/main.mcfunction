@@ -16,7 +16,7 @@ execute if score $gamestate gamestate.round_active matches 1 run function game:r
     
 # Start round once round cooldown ends
 execute if score $time time.round_cooldown matches 1.. run scoreboard players remove $time time.round_cooldown 1
-execute if score $time time.round_cooldown matches 0 run unless score $gamestate gamestate.round_count >= $gamestate gamestate.round_total run function game:round/new_round
+execute if score $time time.round_cooldown matches 0 if score $gamestate gamestate.round_count < $gamestate gamestate.round_total run function game:round/new_round
 execute if score $time time.round_cooldown matches 0 if score $gamestate gamestate.round_count >= $gamestate gamestate.round_total run return run function game:end # End game once rounds exceed available players
 
 execute if score $time time.start_sequence matches 0.. run function game:round/start_sequence

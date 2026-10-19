@@ -12,8 +12,13 @@ function game:points/clear_logs
 # Distribute teams for everyone
 scoreboard players reset @a game.player.team_id
 
-execute if score $config config.team_selection matches 0 run scoreboard players set @a[tag=playing] game.player.team_id 1
-execute if score $config config.team_selection matches 0 run function game:round/random_teams
+execute if score $config config.team_selection matches 0 expand:
+    scoreboard players set @a[tag=playing] game.player.team_id 1
+    scoreboard players set $queue game.player.killer_queue 999
+    execute as @a[tag=playing] if score @s game.player.killer_queue matches 1.. run scoreboard players operation $queue game.player.killer_queue < @s game.player.killer_queue
+    execute as @a[tag=playing] if score @s game.player.killer_queue = $queue game.player.killer_queue expand:
+        scoreboard players set @s game.player.team_id 2
+        scoreboard players reset @s game.player.killer_queue
 execute store result score $gamestate gamestate.runners if entity @a[scores={game.player.team_id=1}]
 execute store result score $gamestate gamestate.killers if entity @a[scores={game.player.team_id=2}]
 
@@ -62,7 +67,7 @@ execute as @a[scores={game.player.team_id=2}] run function game:round/join_kille
     tp @s coords.killer_spawn.x coords.killer_spawn.y coords.killer_spawn.z
 
 # Update round total
-execute if score $time time.round_cooldown matches 0 run function game:round/check_total
+function game:round/check_total
 
 # End game if no runner/killer is found
 execute unless entity @a[team=runner] run function game:end
