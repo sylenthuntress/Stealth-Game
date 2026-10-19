@@ -58,6 +58,7 @@ execute as @a[scores={game.player.team_id=1}] run function game:round/join_runne
 execute as @a[scores={game.player.team_id=2}] run function game:round/join_killer:
     gamemode adventure @s
     team join killer @s
+    effect give @s invisibility 17 0 true
     function skill:selection/killer_gui
     attribute @s minecraft:camera_distance modifier add game:teams/killer -3.5 add_value
     attribute @s minecraft:attack_damage modifier add game:teams/killer 2 add_value
