@@ -38,8 +38,15 @@ execute as @a[scores={game.player.team_id=1}] run function game:round/join_runne
     attribute @s minecraft:attack_speed modifier add game:teams/runner 100 add_value
 
     scoreboard players set @s game.player.kill_threshold 300
-    scoreboard players operation @s game.player.kill_threshold /= $gamestate gamestate.runners
+
+    scoreboard players operation $math gamestate.runners = $gamestate gamestate.runners
+    scoreboard players operation $math gamestate.runners /= $2 math.const
+    scoreboard players add $math gamestate.runners 1
+    scoreboard players operation @s game.player.kill_threshold /= $math gamestate.runners
+    scoreboard players reset $math gamestate.runners
+
     scoreboard players operation @s game.player.kill_threshold *= $gamestate gamestate.killers
+
     execute if score @s game.player.kill_threshold matches ..50 run scoreboard players set @s game.player.kill_threshold 50
 
     tp @s coords.runner_spawn.x coords.runner_spawn.y coords.runner_spawn.z
