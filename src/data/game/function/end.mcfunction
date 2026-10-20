@@ -32,7 +32,7 @@ execute function game:rankings/broadcast_winner:
     pointsDecimal["$var"] = points["$highscore"] % 10
     execute unless score $var pointsDecimal matches 0 run tellraw @a {"translate": "game.end.winners", "color": "gold", "with": [{"selector":"@a[tag=winner]"}, [{"score": { "name": "$var", "objective": "var.points_whole"}, "color": "red"}, ".", {"score": {"name": "$var", "objective": "var.points_decimal"}, "color": "red"}]]}
     execute if score $var pointsDecimal matches 0 run tellraw @a {"translate": "game.end.winners", "color": "gold", "with": [{"selector":"@a[tag=winner]"}, [{"score": { "name": "$var", "objective": "var.points_whole"}, "color": "red"}]]}
-execute function game:rankings/broadcast_all:
+execute if entity @a[tag=!winner,scores={game.player.points=1..}] run function game:rankings/broadcast_all:
     scoreboard players reset $highscore game.player.points
     execute as @a[tag=!winner] run scoreboard players operation $highscore game.player.points > @s game.player.points
     execute as @a[tag=!winner] if score @s game.player.points = $highscore game.player.points run tag @s add selected
