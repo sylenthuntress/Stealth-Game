@@ -122,6 +122,7 @@ scoreboard objectives add skill.runner.puppeteer.puppet.curr_hp dummy
 scoreboard objectives add skill.runner.puppeteer.puppet.prev_hp dummy
 scoreboard objectives add skill.killer.athlete.dash_timer dummy
 scoreboard objectives add skill.killer.athlete.cooldown dummy
+scoreboard objectives add skill.killer.trapper.count dummy
 scoreboard objectives add skill.killer.locator.cooldown dummy
 scoreboard objectives add skill.killer.locator.tracking_uid dummy
 scoreboard objectives add skill.killer.locator.tracking_timer dummy

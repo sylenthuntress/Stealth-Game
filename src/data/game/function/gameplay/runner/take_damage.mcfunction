@@ -54,4 +54,5 @@ execute if entity @s[tag=hiding] run function game:gameplay/runner/stop_hiding
 
 execute if score @s data.player.damage_taken matches 10.. expand:
     scoreboard players add @s time.player.damage_timer 45
+    scoreboard players remove @s time.player.stun_timer 45
     attribute @s minecraft:movement_speed modifier add game:gameplay/runner/damaged 0.1 add_value
