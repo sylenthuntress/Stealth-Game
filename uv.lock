@@ -457,7 +457,7 @@ wheels = [
 ]
 
 [[package]]
-name = "Hide & Squeak"
+name = "hide_and_squeak"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
