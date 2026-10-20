@@ -1,4 +1,22 @@
-advancement revoke @s only skill:killer_skill/specter/use_ability
+advancement ./use_abiility: {
+    "criteria": {
+        "requirement": {
+            "trigger": "minecraft:consume_item",
+            "conditions": {
+                "item": {
+                    "predicates": {
+                        "minecraft:custom_data": "{skill.killer.specter.ability: true}"
+                    }
+                }
+            }
+        }
+    },
+    "rewards": {
+        "function": (./use_ability)
+    }
+}
+
+advancement revoke @s only ./use_ability
 scoreboard players set @s skill.killer.specter.cooldown 600
 
 item modify entity @s {"type":"minecraft:filtered","slot_source":"util:inventory","item_filter":{"items":"minecraft:amethyst_shard","predicates":{"minecraft:custom_data":{"skill.killer.specter.ability":true}}}} {

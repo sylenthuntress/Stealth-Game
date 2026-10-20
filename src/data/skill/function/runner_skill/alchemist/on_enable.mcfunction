@@ -1,1 +1,1 @@
-function skill:runner_skill/alchemist/give_item
+function ./give_item

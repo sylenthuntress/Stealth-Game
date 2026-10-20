@@ -1,4 +1,4 @@
-function skill:killer_skill/gemini/spawn_mannequin with entity @s
+function ./spawn_mannequin with entity @s
 
 give @s slime_ball[
     custom_name={

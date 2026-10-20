@@ -1,1 +1,1 @@
-function skill:runner_skill/camouflage/not_hiding
+function ./not_hiding

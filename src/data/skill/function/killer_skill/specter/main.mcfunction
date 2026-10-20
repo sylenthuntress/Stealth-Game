@@ -1,4 +1,4 @@
-execute if score @s skill.killer.specter.cooldown matches 1.. run function skill:killer_skill/specter/tick_cooldown:
+execute if score @s skill.killer.specter.cooldown matches 1.. run function ./tick_cooldown:
     scoreboard players remove @s skill.killer.specter.cooldown 1
 
     scoreboard players operation $display time.display_sec = @s skill.killer.specter.cooldown
@@ -33,7 +33,7 @@ execute if score @s skill.killer.specter.cooldown matches 1.. run function skill
             ]
         }
 
-    execute if score @s skill.killer.specter.cooldown matches 0 run function skill:killer_skill/specter/end_cooldown:
+    execute if score @s skill.killer.specter.cooldown matches 0 run function ./end_cooldown:
         scoreboard players reset @s skill.killer.specter.cooldown
         item modify entity @s {"type":"minecraft:filtered","slot_source":"util:inventory","item_filter":{"items":"minecraft:barrier","predicates":{"minecraft:custom_data":{"skill.killer.specter.cooldown":true}}}} {
             "type": "minecraft:sequence",

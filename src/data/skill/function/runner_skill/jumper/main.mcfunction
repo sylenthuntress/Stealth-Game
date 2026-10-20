@@ -12,7 +12,7 @@ def hexify_tuple(tup):
     return '#' + string
 
 scoreboard players remove @s skill.runner.jumper.charge_cooldown 1
-execute at @s if entity @s[tag=hiding,predicate=util:is_sneaking,predicate=!util:is_moving] unless score @s skill.runner.jumper.charge_cooldown matches 1.. unless score @s skill.runner.jumper.charge matches maxCharge run function skill:runner_skill/jumper/charge:
+execute at @s if entity @s[tag=hiding,predicate=util:is_sneaking,predicate=!util:is_moving] unless score @s skill.runner.jumper.charge_cooldown matches 1.. unless score @s skill.runner.jumper.charge matches maxCharge run function ./charge:
     scoreboard players add @s skill.runner.jumper.charge 1
     for n in range(1, maxCharge+1):
         new_green = (green[0], int(green[1] * (1 - n/maxCharge/2)), green[2])
@@ -41,7 +41,7 @@ execute at @s if entity @s[tag=hiding,predicate=util:is_sneaking,predicate=!util
 
     execute if score @s skill.runner.jumper.charge matches maxCharge run scoreboard players set @s skill.runner.jumper.charge_cooldown int(chargeCooldown/chargeMult)
 
-execute at @s if entity @s[tag=hiding,predicate=util:is_sneaking,predicate=!util:is_moving] unless score @s skill.runner.jumper.charge_cooldown matches 1.. if score @s skill.runner.jumper.charge matches maxCharge run function skill:runner_skill/jumper/max_charge:
+execute at @s if entity @s[tag=hiding,predicate=util:is_sneaking,predicate=!util:is_moving] unless score @s skill.runner.jumper.charge_cooldown matches 1.. if score @s skill.runner.jumper.charge matches maxCharge run function ./max_charge:
     playsound minecraft:block.note_block.bit master @a[distance=(0, maxCharge*3)] ~ ~ ~ 2 1.25
     scoreboard players set @s skill.runner.jumper.charge_cooldown int(chargeCooldown/chargeMult)
     title @s[scores={skill.runner.jumper.charge=1..}] actionbar {
@@ -61,12 +61,12 @@ execute at @s if entity @s[tag=hiding,predicate=util:is_sneaking,predicate=!util
         ]
     }
 
-execute if entity @s[tag=hiding,predicate=util:is_moving,scores={skill.runner.jumper.charge_cooldown=1..}] unless score @s skill.runner.jumper.charge matches maxCharge run function skill:runner_skill/jumper/moving:
+execute if entity @s[tag=hiding,predicate=util:is_moving,scores={skill.runner.jumper.charge_cooldown=1..}] unless score @s skill.runner.jumper.charge matches maxCharge run function ./moving:
     for n in range(1, maxCharge+1):
         execute if score @s skill.runner.jumper.charge matches n scoreboard players set @s skill.runner.jumper.charge_cooldown (chargeCooldown+int(n*chargeMult))
-execute if entity @s[tag=hiding,predicate=!util:is_sneaking,scores={skill.runner.jumper.charge_cooldown=1..}] run function skill:runner_skill/jumper/moving
+execute if entity @s[tag=hiding,predicate=!util:is_sneaking,scores={skill.runner.jumper.charge_cooldown=1..}] run function ./moving
 
-execute at @s if score @s data.player.jump matches 1 if score @s skill.runner.jumper.charge matches 1.. run function skill:runner_skill/jumper/jump:
+execute at @s if score @s data.player.jump matches 1 if score @s skill.runner.jumper.charge matches 1.. run function ./jump:
     function game:gameplay/runner/stop_hiding
     playsound minecraft:block.note_block.bit master @s ~ ~ ~ 1 2
     for n in range(1, maxCharge+1):
@@ -76,7 +76,7 @@ execute at @s if score @s data.player.jump matches 1 if score @s skill.runner.ju
     scoreboard players reset @s skill.runner.jumper.charge
     scoreboard players reset @s skill.runner.jumper.charge_cooldown
 
-execute if entity @s[tag=!hiding] run function skill:runner_skill/jumper/not_hiding:
+execute if entity @s[tag=!hiding] run function ./not_hiding:
     attribute @s minecraft:jump_strength modifier remove game:runner_skill/jumper/hiding
     scoreboard players reset @s skill.runner.jumper.charge
     scoreboard players reset @s skill.runner.jumper.charge_cooldown

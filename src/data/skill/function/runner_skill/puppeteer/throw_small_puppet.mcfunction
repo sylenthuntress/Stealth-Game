@@ -1,5 +1,23 @@
+advancement ./throw_small_puppet: {
+    "criteria": {
+        "requirement": {
+            "trigger": "minecraft:consume_item",
+            "conditions": {
+                "item": {
+                    "predicates": {
+                        "minecraft:custom_data": "{skill.runner.puppeteer.large_puppet: true}"
+                    }
+                }
+            }
+        }
+    },
+    "rewards": {
+        "function": (./throw_small_puppet)
+    }
+}
+
 scoreboard players set @s skill.runner.puppeteer.cooldown 400
-advancement revoke @s only skill:runner_skill/puppeteer/throw_small_puppet
+advancement revoke @s only ./throw_small_puppet
 
 item modify entity @s {"type":"minecraft:filtered","slot_source":"util:inventory","item_filter":{"items":"minecraft:player_head","predicates":{"minecraft:custom_data":{"skill.runner.puppeteer.large_puppet":true}}}} {
     "type": "minecraft:sequence",

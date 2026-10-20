@@ -4,11 +4,11 @@ execute if entity @s[gamemode=spectator,team=dead] run return fail
 scoreboard players add $time skill.runner.medic.heartbeat 1
 execute if score $time skill.runner.medic.heartbeat matches 10 run scoreboard players set $time skill.runner.medic.heartbeat 0
 
-execute at @s unless score @s time.player.heal_timer matches -10.. positioned ~-3 ~-1 ~-3 if entity @e[dx=6,dy=4,dz=6,type=mannequin,tag=game.runner_corpse,tag=!skill.runner_skill.undying.reviving,scores={time.player.corpse_age=..600}] run function skill:runner_skill/medic/display_hearts:
+execute at @s unless score @s time.player.heal_timer matches -10.. positioned ~-3 ~-1 ~-3 if entity @e[dx=6,dy=4,dz=6,type=mannequin,tag=game.runner_corpse,tag=!skill.runner_skill.undying.reviving,scores={time.player.corpse_age=..600}] run function ./display_hearts:
     scoreboard players operation $var skill.runner.medic.count = @s skill.runner.medic.count
     scoreboard players operation $var skill.runner.medic.uses = @s skill.runner.medic.uses
     data remove storage skill:data RunnerSkill.Medic.hearts
-    execute function skill:runner_skill/medic/display_hearts_r:
+    execute function ./display_hearts_r:
         execute if score $var skill.runner.medic.count matches 1.. expand:
             if score $time skill.runner.medic.heartbeat matches 0..5 run data modify storage skill:data RunnerSkill.Medic.hearts append value {"text":"❤","color":"#912525","bold":false}
             if score $time skill.runner.medic.heartbeat matches 6..10 run data modify storage skill:data RunnerSkill.Medic.hearts append value {"text":"♥","color":"#912525","bold":false}
@@ -16,16 +16,16 @@ execute at @s unless score @s time.player.heal_timer matches -10.. positioned ~-
         execute unless score $var skill.runner.medic.count matches 1.. if score $var skill.runner.medic.uses matches 1.. expand: 
             data modify storage skill:data RunnerSkill.Medic.hearts append value {"text":"♡","color":"#b17070"}
             scoreboard players remove $var skill.runner.medic.uses 1
-        execute unless score $var skill.runner.medic.count matches ..0 unless score $var skill.runner.medic.uses matches ..0 run function skill:runner_skill/medic/display_hearts_r
-        execute if score $var skill.runner.medic.count matches 1.. if score $var skill.runner.medic.uses matches ..0 run function skill:runner_skill/medic/display_hearts_r
-    function skill:runner_skill/medic/display_hearts_m with storage skill:data RunnerSkill.Medic
+        execute unless score $var skill.runner.medic.count matches ..0 unless score $var skill.runner.medic.uses matches ..0 run function ./display_hearts_r
+        execute if score $var skill.runner.medic.count matches 1.. if score $var skill.runner.medic.uses matches ..0 run function ./display_hearts_r
+    function ./display_hearts_m with storage skill:data RunnerSkill.Medic
 
 tag @s add this.self
-execute as @e[type=mannequin,tag=game.runner_corpse,tag=!skill.runner_skill.undying.reviving] at @s run function skill:runner_skill/medic/show_beam:
+execute as @e[type=mannequin,tag=game.runner_corpse,tag=!skill.runner_skill.undying.reviving] at @s run function ./show_beam:
     execute if score @s time.player.corpse_age matches 600.. run return fail
     particle dust{color:[1,0,0], scale:1} ~ ~10 ~ 0 10 0 0 50 force @a[tag=this.self]
 
-execute at @s if score @s time.player.heal_timer matches -10.. positioned ~-3 ~-1 ~-3 if entity @e[dx=6,dy=4,dz=6,type=mannequin,tag=game.runner_corpse,tag=!skill.runner_skill.undying.reviving] at @s run function skill:runner_skill/medic/reviving:
+execute at @s if score @s time.player.heal_timer matches -10.. positioned ~-3 ~-1 ~-3 if entity @e[dx=6,dy=4,dz=6,type=mannequin,tag=game.runner_corpse,tag=!skill.runner_skill.undying.reviving] at @s run function ./reviving:
     execute if score @s time.player.corpse_age matches 600.. run return fail
     execute as @n[type=mannequin,tag=game.runner_corpse] expand:
             effect give @s glowing 2 0 true
@@ -51,8 +51,8 @@ execute at @s if score @s time.player.heal_timer matches -10.. positioned ~-3 ~-
         rotate @s facing entity @n[type=mannequin,tag=game.runner_corpse,distance=9..] feet
         if score @n[type=mannequin,tag=game.runner_corpse] skill.runner.medic.revive_timer matches 150.. spectate @n[type=mannequin,tag=game.runner_corpse]
 
-    execute if score @s time.player.heal_timer matches 1 run function skill:runner_skill/medic/attempt_revive:
-        execute if score @n[type=mannequin,tag=game.runner_corpse] skill.runner.medic.revive_timer matches 200.. run function skill:runner_skill/medic/revive:
+    execute if score @s time.player.heal_timer matches 1 run function ./attempt_revive:
+        execute if score @n[type=mannequin,tag=game.runner_corpse] skill.runner.medic.revive_timer matches 200.. run function ./revive:
             execute as @p[tag=this.selected] expand:
                 team join runner
                 gamemode adventure

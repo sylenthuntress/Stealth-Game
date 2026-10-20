@@ -1,5 +1,5 @@
 append function_tag items:process_special {
-    "values": ["skill:runner_skill/puppeteer/process_item"]
+    "values": [(./process_item)]
 }
 
 execute unless items entity @s contents *[custom_data~{"skill.runner.puppeteer.ability": true}] run return fail
@@ -18,7 +18,7 @@ execute if entity @s[nbt={Item:{components:{"minecraft:custom_data":{"skill.runn
 ride @n[type=marker,tag=skill.runner_skill.puppeteer.puppet] mount @n[type=snowball,tag=skill.runner_skill.puppeteer.puppet]
 
 execute on origin expand:
-    function skill:runner_skill/puppeteer/give_item
+    function ./give_item
     item modify entity @s {"type":"minecraft:filtered","slot_source":"util:inventory","item_filter":{"items":"minecraft:player_head","predicates":{"minecraft:custom_data":{"skill.runner.puppeteer.large_puppet":true}}}} {
         "type": "minecraft:sequence",
         "functions": [

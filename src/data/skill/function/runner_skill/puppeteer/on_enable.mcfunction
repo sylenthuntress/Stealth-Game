@@ -1,1 +1,1 @@
-function skill:runner_skill/puppeteer/give_item
+function ./give_item

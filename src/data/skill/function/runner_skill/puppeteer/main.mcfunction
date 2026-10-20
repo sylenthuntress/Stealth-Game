@@ -1,16 +1,16 @@
 tag @s add this.selector
-execute as @e[type=marker,tag=skill.runner_skill.puppeteer.puppet] at @s run function skill:runner_skill/puppeteer/tick_snowball:
+execute as @e[type=marker,tag=skill.runner_skill.puppeteer.puppet] at @s run function ./tick_snowball:
     particle minecraft:block_crumble{block_state:"minecraft:white_wool"} ~ ~ ~ 0.1 0.1 0.1 0.1 3 force @a[team=runner]
 
-execute as @e[type=marker,tag=skill.runner_skill.puppeteer.large_puppet] at @s unless predicate {type:"minecraft:entity_properties",entity:"this",predicate:{vehicle:{}}} run function skill:runner_skill/puppeteer/land_large_puppet:
-    function skill:runner_skill/puppeteer/spawn_mannequin with entity @p[tag=this.selector]
+execute as @e[type=marker,tag=skill.runner_skill.puppeteer.large_puppet] at @s unless predicate {type:"minecraft:entity_properties",entity:"this",predicate:{vehicle:{}}} run function ./land_large_puppet:
+    function ./spawn_mannequin with entity @p[tag=this.selector]
     tag @n[type=mannequin,tag=skill.runner_skill.puppeteer.puppet] add skill.runner_skill.puppeteer.large_puppet
     kill @s
 
-execute as @e[type=marker,tag=skill.runner_skill.puppeteer.small_puppet] at @s unless predicate {type:"minecraft:entity_properties",entity:"this",predicate:{vehicle:{}}} run function skill:runner_skill/puppeteer/land_small_puppet:
-    function skill:runner_skill/puppeteer/spawn_mannequin with entity @p[tag=this.selector]
+execute as @e[type=marker,tag=skill.runner_skill.puppeteer.small_puppet] at @s unless predicate {type:"minecraft:entity_properties",entity:"this",predicate:{vehicle:{}}} run function ./land_small_puppet:
+    function ./spawn_mannequin with entity @p[tag=this.selector]
     tag @n[type=mannequin,tag=skill.runner_skill.puppeteer.puppet] add skill.runner_skill.puppeteer.small_puppet
-    execute as @n[type=mannequin,tag=skill.runner_skill.puppeteer.puppet] at @s run function skill:runner_skill/puppeteer/start_hiding:
+    execute as @n[type=mannequin,tag=skill.runner_skill.puppeteer.puppet] at @s run function ./start_hiding:
         data merge entity @s {pose:"crouching"}
         item fill entity @s armor.* with air
         effect give @s invisibility infinite 0 true
@@ -25,9 +25,9 @@ execute as @e[type=marker,tag=skill.runner_skill.puppeteer.small_puppet] at @s u
 
 execute as @e[type=mannequin,tag=skill.runner_skill.puppeteer.puppet] if score @s uid.entity = @p[tag=this.selector] uid.player run tag @s add this.selected
 
-execute as @e[type=mannequin,tag=this.selected] at @s run function skill:runner_skill/puppeteer/tick_puppet:
+execute as @e[type=mannequin,tag=this.selected] at @s run function ./tick_puppet:
     execute positioned ~ ~0.55 ~ unless entity @e[distance=..0.001,type=item_display,tag=skill.runner_skill.puppeteer.little_mouse] as @e[type=item_display,tag=skill.runner_skill.puppeteer.little_mouse] if score @s uid.entity = @n[type=mannequin,tag=this.selected,tag=skill.runner_skill.puppeteer.small_puppet] uid.entity run tag @s add this.display
-    execute as @n[type=item_display,tag=this.display] run function skill:runner_skill/puppeteer/tick_hiding:
+    execute as @n[type=item_display,tag=this.display] run function ./tick_hiding:
         at @s facing entity @n[type=mannequin,tag=this.selected] eyes run rotate @s ~180 0
         tp @s ~ ~0.55 ~
         tag @e remove this.display
@@ -36,7 +36,7 @@ execute as @e[type=mannequin,tag=this.selected] at @s run function skill:runner_
     on attacker run tag @s add this.attacker
     if score @s skill.runner.puppeteer.puppet.curr_hp < @s skill.runner.puppeteer.puppet.prev_hp expand:
         if entity @a[tag=this.attacker,team=runner] rotated as @a[tag=this.attacker] run rotate @s ~ 0
-        if entity @a[tag=this.attacker,team=killer] run function skill:runner_skill/puppeteer/damage_mannequin:
+        if entity @a[tag=this.attacker,team=killer] run function ./damage_mannequin:
             scoreboard players add @p[tag=this.selector] game.player.due_points 15
             execute if entity @s[tag=skill.runner_skill.puppeteer.large_puppet] run scoreboard players add @p[tag=this.selector] game.player.due_points 15
 
@@ -61,7 +61,7 @@ execute as @e[type=mannequin,tag=this.selected] at @s run function skill:runner_
     tag @s remove this.selected
 tag @s remove this.selector
 
-execute if score @s skill.runner.puppeteer.cooldown matches 1.. run function skill:runner_skill/puppeteer/tick_cooldown:
+execute if score @s skill.runner.puppeteer.cooldown matches 1.. run function ./tick_cooldown:
     scoreboard players remove @s skill.runner.puppeteer.cooldown 1
 
     scoreboard players operation $display time.display_sec = @s skill.runner.puppeteer.cooldown
@@ -96,7 +96,7 @@ execute if score @s skill.runner.puppeteer.cooldown matches 1.. run function ski
             ]
         }
 
-    execute if score @s skill.runner.puppeteer.cooldown matches 0 at @s run function skill:runner_skill/puppeteer/end_cooldown:
+    execute if score @s skill.runner.puppeteer.cooldown matches 0 at @s run function ./end_cooldown:
         scoreboard players reset @s skill.runner.puppeteer.cooldown
         item modify entity @s {"type":"minecraft:filtered","slot_source":"util:inventory","item_filter":{"items":"minecraft:barrier","predicates":{"minecraft:custom_data":{"skill.runner.puppeteer.large_puppet":true,"skill.runner.puppeteer.cooldown":true}}}} {
             "type": "minecraft:sequence",

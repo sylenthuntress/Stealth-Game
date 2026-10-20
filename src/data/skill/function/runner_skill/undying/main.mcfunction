@@ -1,4 +1,4 @@
-execute if entity @s[gamemode=spectator,team=dead] at @s run function skill:runner_skill/undying/attempt_revive:
+execute if entity @s[gamemode=spectator,team=dead] at @s run function ./attempt_revive:
     tag @s add this.selector
     execute as @e[type=mannequin,tag=game.runner_corpse] if score @s uid.entity = @p[tag=this.selector] uid.player run tag @s add this.selected
     tag @s remove this.selector
@@ -19,7 +19,7 @@ execute if entity @s[gamemode=spectator,team=dead] at @s run function skill:runn
     spectate @n[type=mannequin,tag=this.selected]
     execute unless score @n[tag=this.selected] time.player.corpse_age matches 300.. unless entity @a[scores={game.player.team_id=1},gamemode=!spectator] run scoreboard players add @n[tag=this.selected] time.player.corpse_age 300
     execute if score @n[tag=this.selected] time.player.corpse_age matches 300.. run effect give @n[tag=this.selected] glowing 5 0 true
-    execute if score @n[tag=this.selected] time.player.corpse_age matches 400.. run function skill:runner_skill/undying/revive:
+    execute if score @n[tag=this.selected] time.player.corpse_age matches 400.. run function ./revive:
         team join runner
         gamemode adventure
         teleport @n[type=mannequin,tag=this.selected]

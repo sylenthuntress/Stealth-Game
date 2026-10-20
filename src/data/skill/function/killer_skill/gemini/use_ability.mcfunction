@@ -1,4 +1,23 @@
-advancement revoke @s only skill:killer_skill/gemini/use_ability
+advancement ./use_ability: 
+{
+    "criteria": {
+        "requirement": {
+            "trigger": "minecraft:consume_item",
+            "conditions": {
+                "item": {
+                    "predicates": {
+                        "minecraft:custom_data": "{skill.killer.gemini.ability: true}"
+                    }
+                }
+            }
+        }
+    },
+    "rewards": {
+        "function": (./use_ability)
+    }
+}
+
+advancement revoke @s only ./use_ability
 item modify entity @s {"type":"minecraft:filtered","slot_source":"util:inventory","item_filter":{"items":"minecraft:slime_ball","components":{"minecraft:custom_data":{"skill.killer.gemini.ability":true}}}} util:increment
 item modify entity @s {"type":"minecraft:filtered","slot_source":"util:inventory","item_filter":{"items":"minecraft:slime_ball","components":{"minecraft:custom_data":{"skill.killer.gemini.ability":true}}}} util:decrement
 
@@ -21,10 +40,10 @@ tp @n[tag=this.selected] @n[type=marker,tag=skill.killer_skill.gemini.anchor]
 kill @e[type=marker,tag=skill.killer_skill.gemini.anchor]
 
 execute at @s[scores={skill.killer.gemini.hide_teleport=1..}] expand:
-    function skill:killer_skill/gemini/spawn_mannequin with entity @s
+    function ./spawn_mannequin with entity @s
     tag @n[type=mannequin,tag=!this.selected] add skill.killer_skill.gemini.display
 execute at @n[tag=this.selected] expand:
-    function skill:killer_skill/gemini/copy_mannequin with entity @n[tag=this.selected]
+    function ./copy_mannequin with entity @n[tag=this.selected]
     tag @n[type=mannequin,tag=!this.selected] add skill.killer_skill.gemini.display
 
 execute at @s run playsound minecraft:entity.slime.jump_small player @s ~ ~ ~ 1 1

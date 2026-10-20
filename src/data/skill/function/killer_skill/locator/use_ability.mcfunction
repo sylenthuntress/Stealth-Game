@@ -1,4 +1,22 @@
-advancement revoke @s only skill:killer_skill/locator/use_ability
+advancement ./use_ability: {
+    "criteria": {
+        "requirement": {
+            "trigger": "minecraft:consume_item",
+            "conditions": {
+                "item": {
+                    "predicates": {
+                        "minecraft:custom_data": "{skill.killer.locator.ability: true, skill.killer.locator.locked: false}"
+                    }
+                }
+            }
+        }
+    },
+    "rewards": {
+        "function": (./use_ability)
+    }
+}
+
+advancement revoke @s only ./use_ability
 
 item modify entity @s {"type":"minecraft:filtered","slot_source":"util:inventory","item_filter":{"items":"minecraft:compass","predicates":{"minecraft:custom_data":{"skill.killer.locator.ability":true}}}} {
     "type": "minecraft:set_components",
@@ -15,7 +33,7 @@ item modify entity @s {"type":"minecraft:filtered","slot_source":"util:inventory
 scoreboard players set @s skill.killer.locator.cooldown 400
 scoreboard players set @s skill.killer.locator.tracking_timer 300
 
-execute unless entity @a[distance=12..48,sort=furthest,team=runner] run return run function skill:killer_skill/locator/fail_ability:
+execute unless entity @a[distance=12..48,sort=furthest,team=runner] run return run function ./fail_ability:
     scoreboard players set @s skill.killer.locator.cooldown 1
     scoreboard players set @s skill.killer.locator.tracking_timer 1
 
