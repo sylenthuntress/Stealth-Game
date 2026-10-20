@@ -31,7 +31,10 @@ scoreboard players reset $math game.player.damage
 # Give points to attacker
 scoreboard players operation $math game.player.due_points = @s game.player.damage
 scoreboard players operation $math game.player.due_points -= @s game.player.prev_damage
+scoreboard players operation $math game.player.due_points *= $10 math.const
+scoreboard players add $math game.player.due_points 9
 scoreboard players operation $math game.player.due_points /= $4 math.const
+scoreboard players operation $math game.player.due_points /= $10 math.const
 
 execute on attacker run scoreboard players operation @s game.player.due_points += $math game.player.due_points
 scoreboard players reset $math game.player.due_points
