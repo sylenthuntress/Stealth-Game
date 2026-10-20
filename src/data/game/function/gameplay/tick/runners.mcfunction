@@ -114,4 +114,5 @@ execute if block ~ 41 ~ minecraft:netherite_block run function game:gameplay/run
     execute unless score @s skill.runner.medic.revive_uid matches 0.. run tellraw @a {"translate": "game.cross_finish", "color": "red", with:[{"selector":"@s"}]}
     execute if score @s skill.runner.medic.revive_uid matches 0.. run function skill:runner_skill/medic/award_points
 
+    function skill:disable_skills
     execute as @e[type=text_display,tag=band_display] run data modify entity @s text.color set value 'gold'
