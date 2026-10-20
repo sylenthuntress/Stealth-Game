@@ -115,7 +115,21 @@ execute if score @s skill.runner.puppeteer.cooldown matches 1.. run function ski
                                     "sprite": "hide_and_squeak:item/small_puppet",
                                     "atlas": "minecraft:items",
                                     "color": "white"
-                                }
+                                },
+                                [
+                                    {
+                                        "translate": "skill.use",
+                                        "color": "gold"
+                                    },
+                                    {
+                                        "text": "/",
+                                        "color": "gold"
+                                    },
+                                    {
+                                        "translate": "skill.drop",
+                                        "color": "gold"
+                                    }
+                                ]
                             ]
                         },
                         "consumable": {
@@ -157,7 +171,21 @@ execute if score @s skill.runner.puppeteer.cooldown matches 1.. run function ski
                                     "sprite": "hide_and_squeak:item/small_puppet",
                                     "atlas": "minecraft:items",
                                     "color": "white"
-                                }
+                                },
+                                [
+                                    {
+                                        "translate": "skill.use",
+                                        "color": "gold"
+                                    },
+                                    {
+                                        "text": "/",
+                                        "color": "gold"
+                                    },
+                                    {
+                                        "translate": "skill.drop",
+                                        "color": "gold"
+                                    }
+                                ]
                             ]
                         },
                         "consumable": {

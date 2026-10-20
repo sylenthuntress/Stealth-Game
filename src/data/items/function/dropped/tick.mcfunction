@@ -1,1 +1,1 @@
-execute as @e[type=item,tag=!items.processed] run function items:dropped/process
+execute as @e[type=item,tag=!items.processed] if data entity @s Thrower at @s run function items:dropped/process
