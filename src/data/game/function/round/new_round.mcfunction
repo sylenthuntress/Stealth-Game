@@ -63,6 +63,7 @@ execute as @a[scores={game.player.team_id=2}] run function game:round/join_kille
     attribute @s minecraft:camera_distance modifier add game:teams/killer -3.5 add_value
     attribute @s minecraft:attack_damage modifier add game:teams/killer 2 add_value
     attribute @s minecraft:attack_speed modifier add game:teams/killer 100 add_value
+    attribute @s minecraft:entity_interaction_range modifier add game:teams/killer 0.33 add_multiplied_base
     attribute @s minecraft:movement_speed modifier add game:teams/killer 0.15 add_multiplied_base
 
     tp @s coords.killer_spawn.x coords.killer_spawn.y coords.killer_spawn.z

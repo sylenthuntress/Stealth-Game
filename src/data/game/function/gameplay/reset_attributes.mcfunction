@@ -8,6 +8,7 @@ attribute @s minecraft:camera_distance modifier remove game:teams/killer
 attribute @s minecraft:attack_speed modifier remove game:teams/killer
 attribute @s minecraft:attack_damage modifier remove game:teams/killer
 attribute @s minecraft:movement_speed modifier remove game:teams/killer
+attribute @s minecraft:entity_interaction_range modifier remove game:teams/killer
 attribute @s minecraft:movement_speed modifier remove game:gameplay/killer/recovery
 attribute @s minecraft:jump_strength modifier remove game:gameplay/killer/recovery
 attribute @s minecraft:attack_speed modifier remove game:gameplay/killer/recovery
