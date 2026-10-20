@@ -11,6 +11,10 @@ execute unless slots entity @s skill:runner_skill/warper/ability unless slots en
                 "sprite": "hide_and_squeak:item/warp",
                 "atlas": "minecraft:items",
                 "color": "white"
+            },
+            {
+                "translate": "skill.use",
+                "color": "#87479c"
             }
         ]
     },

@@ -3,7 +3,7 @@
   "slot_source": "util:inventory",
   "item_filter": {
     "items": "minecraft:coal",
-    "components": {
+    "predicates": {
       "minecraft:custom_data": {
         "skill.runner.alchemist.blinding_flask": true
       }

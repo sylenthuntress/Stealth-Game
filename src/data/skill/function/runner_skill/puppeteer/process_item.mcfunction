@@ -2,7 +2,7 @@ append function_tag items:process_special {
     "values": ["skill:runner_skill/puppeteer/process_item"]
 }
 
-execute unless entity @s[nbt={Item:{components:{"minecraft:custom_data":{"skill.runner.puppeteer.ability": true}}}}] run return fail
+execute unless items entity @s contents *[custom_data~{"skill.runner.puppeteer.ability": true}] run return fail
 
 summon snowball ~ ~ ~ {Tags:["skill.runner_skill.puppeteer.puppet"],Item:{id:"minecraft:snowball","count":1,"components":{"minecraft:item_model":"minecraft:air"}}}
 data modify entity @n[type=snowball,tag=skill.runner_skill.puppeteer.puppet] Motion set from entity @s Motion

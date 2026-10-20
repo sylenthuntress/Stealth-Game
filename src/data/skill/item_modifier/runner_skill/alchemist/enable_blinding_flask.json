@@ -17,7 +17,21 @@
               "sprite": "hide_and_squeak:item/alchemist",
               "atlas": "minecraft:items",
               "color": "white"
-            }
+            },
+            [
+              {
+                "translate": "skill.use",
+                "color": "#b456d0"
+              },
+              {
+                "text": "/",
+                "color": "#b456d0"
+              },
+              {
+                "translate": "skill.drop",
+                "color": "#b456d0"
+              }
+            ]
           ]
         },
         "consumable": {
@@ -29,7 +43,8 @@
           }
         },
         "custom_data": {
-          "skill.runner.alchemist.blinding_flask": true
+          "skill.runner.alchemist.blinding_flask": true,
+          "skill.runner.alchemist.ability": true
         },
         "item_model": "hide_and_squeak:blinding_flask"
       }

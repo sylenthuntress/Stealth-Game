@@ -5,7 +5,7 @@
     "slot_source": "util:inventory",
     "item_filter": {
       "items": "minecraft:barrier",
-      "components": {
+      "predicates": {
         "minecraft:custom_data": {
           "skill.runner.alchemist.stagger_flask.cooldown": true
         }

@@ -18,5 +18,46 @@ execute if score @s skill.runner.warper.cooldown matches 1.. run function skill:
 
     execute if score @s skill.runner.warper.cooldown matches 0 at @s run function skill:runner_skill/warper/end_cooldown:
         scoreboard players reset @s skill.runner.warper.cooldown
-        item modify entity @s skill:runner_skill/warper/cooldown skill:runner_skill/warper/enable_ability
+        item modify entity @s skill:runner_skill/warper/cooldown {
+        "type": "minecraft:sequence",
+        "functions": [
+            {
+                "type": "minecraft:set_item",
+                "item": "minecraft:clock"
+            },
+            {
+                "type": "minecraft:set_components",
+                "components": {
+                        "custom_name": {
+                            "color": "#b97ecd",
+                            "translate": "skill.runner.warper.ability",
+                            "italic": false,
+                            "with": [
+                                {
+                                    "sprite": "hide_and_squeak:item/warp",
+                                    "atlas": "minecraft:items",
+                                    "color": "white"
+                                },
+                                {
+                                    "translate": "skill.use",
+                                    "color": "#87479c"
+                                }
+                            ]
+                        },
+                        "consumable": {
+                            "consume_seconds": 0.05,
+                            "has_consume_particles": false,
+                            "animation": "bow",
+                            "sound": {
+                                "sound_id": ""
+                            }
+                        },
+                        "custom_data": {
+                            "skill.runner.warper.ability": true
+                        },
+                        "item_model": "hide_and_squeak:warp"
+                    }
+                }
+            ]
+        }
         playsound minecraft:block.end_portal_frame.fill player @s ~ ~ ~ 1 1

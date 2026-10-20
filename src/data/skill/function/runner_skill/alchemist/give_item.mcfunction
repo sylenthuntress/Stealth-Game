@@ -13,7 +13,21 @@ execute unless slots entity @s skill:runner_skill/alchemist/blinding_flask unles
                 "sprite": "hide_and_squeak:item/alchemist",
                 "atlas": "minecraft:items",
                 "color": "white"
-            }
+            },
+            [
+                {
+                    "translate": "skill.use",
+                    "color": "#b456d0"
+                },
+                {
+                    "text": "/",
+                    "color": "#b456d0"
+                },
+                {
+                    "translate": "skill.drop",
+                    "color": "#b456d0"
+                }
+            ]
         ]
     },
     consumable={
@@ -23,7 +37,8 @@ execute unless slots entity @s skill:runner_skill/alchemist/blinding_flask unles
         sound:{sound_id:""}
     },
     custom_data={
-        skill.runner.alchemist.blinding_flask: true
+        skill.runner.alchemist.blinding_flask: true,
+        skill.runner.alchemist.ability: true
     },
     minecraft:item_model="hide_and_squeak:blinding_flask"
 ] 3
@@ -38,7 +53,21 @@ execute unless slots entity @s skill:runner_skill/alchemist/stagger_flask unless
                 "sprite": "hide_and_squeak:item/alchemist",
                 "atlas": "minecraft:items",
                 "color": "white"
-            }
+            },
+            [
+                {
+                    "translate": "skill.use",
+                    "color": "#e9583b"
+                },
+                {
+                    "text": "/",
+                    "color": "#e9583b"
+                },
+                {
+                    "translate": "skill.drop",
+                    "color": "#e9583b"
+                }
+            ]
         ]
     },
     consumable={
@@ -48,7 +77,8 @@ execute unless slots entity @s skill:runner_skill/alchemist/stagger_flask unless
         sound:{sound_id:""}
     },
     custom_data={
-        skill.runner.alchemist.stagger_flask: true
+        skill.runner.alchemist.stagger_flask: true,
+        skill.runner.alchemist.ability: true
     },
     minecraft:item_model="hide_and_squeak:stagger_flask"
 ] 3

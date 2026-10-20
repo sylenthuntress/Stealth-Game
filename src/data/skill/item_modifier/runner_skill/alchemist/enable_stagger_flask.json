@@ -17,7 +17,21 @@
               "sprite": "hide_and_squeak:item/alchemist",
               "atlas": "minecraft:items",
               "color": "white"
-            }
+            },
+            [
+              {
+                "translate": "skill.use",
+                "color": "#e9583b"
+              },
+              {
+                "text": "/",
+                "color": "#e9583b"
+              },
+              {
+                "translate": "skill.drop",
+                "color": "#e9583b"
+              }
+            ]
           ]
         },
         "consumable": {
@@ -29,7 +43,8 @@
           }
         },
         "custom_data": {
-          "skill.runner.alchemist.stagger_flask": true
+          "skill.runner.alchemist.stagger_flask": true,
+          "skill.runner.alchemist.ability": true
         },
         "item_model": "hide_and_squeak:stagger_flask"
       }
