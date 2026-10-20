@@ -34,25 +34,27 @@ execute as @e[type=mannequin,tag=this.selected] at @s run function skill:runner_
 
     store result score @s skill.runner.puppeteer.puppet.curr_hp run data get entity @s Health
     on attacker run tag @s add this.attacker
-    if score @s skill.runner.puppeteer.puppet.curr_hp < @s skill.runner.puppeteer.puppet.prev_hp if entity @a[tag=this.attacker,team=killer] run function skill:runner_skill/puppeteer/damage_mannequin:
-        scoreboard players add @p[tag=this.selector] game.player.due_points 15
-        execute if entity @s[tag=skill.runner_skill.puppeteer.large_puppet] run scoreboard players add @p[tag=this.selector] game.player.due_points 15
+    if score @s skill.runner.puppeteer.puppet.curr_hp < @s skill.runner.puppeteer.puppet.prev_hp expand:
+        if entity @a[tag=this.attacker,team=runner] rotated as @a[tag=this.attacker] run rotate @s ~ 0
+        if entity @a[tag=this.attacker,team=killer] run function skill:runner_skill/puppeteer/damage_mannequin:
+            scoreboard players add @p[tag=this.selector] game.player.due_points 15
+            execute if entity @s[tag=skill.runner_skill.puppeteer.large_puppet] run scoreboard players add @p[tag=this.selector] game.player.due_points 15
 
-        execute on attacker at @s expand:
-            scoreboard players add @s time.player.stun_timer 80
-            execute if entity @n[tag=this.selected,tag=skill.runner_skill.puppeteer.large_puppet] run scoreboard players add @s time.player.stun_timer 60
+            execute on attacker at @s expand:
+                scoreboard players add @s time.player.stun_timer 80
+                execute if entity @n[tag=this.selected,tag=skill.runner_skill.puppeteer.large_puppet] run scoreboard players add @s time.player.stun_timer 60
 
-            execute if entity @n[tag=this.selected,tag=skill.runner_skill.puppeteer.small_puppet] run effect give @s darkness 4 0 false
-            execute if entity @n[tag=this.selected,tag=skill.runner_skill.puppeteer.large_puppet] run effect give @s blindness 7 0 false
+                execute if entity @n[tag=this.selected,tag=skill.runner_skill.puppeteer.small_puppet] run effect give @s darkness 4 0 false
+                execute if entity @n[tag=this.selected,tag=skill.runner_skill.puppeteer.large_puppet] run effect give @s blindness 7 0 false
 
-            execute if entity @n[tag=this.selected,tag=skill.runner_skill.puppeteer.small_puppet] run tellraw @a[tag=playing] {"translate":"skill.runner.puppeteer.small_puppet.announce","color":"#caa541","with":[{"selector":"@s"}]}
-            execute if entity @n[tag=this.selected,tag=skill.runner_skill.puppeteer.large_puppet] run tellraw @a[tag=playing] {"translate":"skill.runner.puppeteer.large_puppet.announce","color":"#caa541","with":[{"selector":"@s"}]}
-            playsound minecraft:block.netherite_block.break master @a[tag=playing] ~ ~ ~ 1000 0.5
-            playsound minecraft:block.netherite_block.break master @a[tag=playing] ~ ~ ~ 1000 0.67
-            playsound minecraft:block.netherite_block.break master @a[tag=playing] ~ ~ ~ 1000 0.75
-        
-        execute as @n[type=item_display,tag=skill.runner_skill.puppeteer.little_mouse] if score @s uid.entity = @n[type=mannequin,tag=this.selected] uid.entity kill @s
-        kill @s
+                execute if entity @n[tag=this.selected,tag=skill.runner_skill.puppeteer.small_puppet] run tellraw @a[tag=playing] {"translate":"skill.runner.puppeteer.small_puppet.announce","color":"#caa541","with":[{"selector":"@s"}]}
+                execute if entity @n[tag=this.selected,tag=skill.runner_skill.puppeteer.large_puppet] run tellraw @a[tag=playing] {"translate":"skill.runner.puppeteer.large_puppet.announce","color":"#caa541","with":[{"selector":"@s"}]}
+                playsound minecraft:block.netherite_block.break master @a[tag=playing] ~ ~ ~ 1000 0.5
+                playsound minecraft:block.netherite_block.break master @a[tag=playing] ~ ~ ~ 1000 0.67
+                playsound minecraft:block.netherite_block.break master @a[tag=playing] ~ ~ ~ 1000 0.75
+            
+            execute as @n[type=item_display,tag=skill.runner_skill.puppeteer.little_mouse] if score @s uid.entity = @n[type=mannequin,tag=this.selected] uid.entity kill @s
+            kill @s
             
     tag @a remove this.attacker
     scoreboard players operation @s skill.runner.puppeteer.puppet.prev_hp = @s skill.runner.puppeteer.puppet.curr_hp
