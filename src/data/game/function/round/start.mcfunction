@@ -23,3 +23,6 @@ execute as @a[tag=playing] at @s run function game:round/start_moving:
 
     # Play FX
     playsound minecraft:entity.experience_orb.pickup ui @s ~ ~ ~ 1 1
+
+# Announce round start
+function skill:announcement/announce_skills

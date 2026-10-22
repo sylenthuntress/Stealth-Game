@@ -1,0 +1,2 @@
+$data modify storage skill:selection RoundSelections[{"uid":$(uid)}].skills append value {"id": "$(id)","desc":"$(desc)","icon":"$(icon)","atlas":"$(atlas)","$(registry)": true}
+$execute if data storage skill:selection Recursive[0].is_random run data modify storage skill:selection RoundSelections[{"uid":$(uid)}].skills[-1].is_random set value true

@@ -5,6 +5,7 @@ execute store result score $var var.max_index if data storage skill:registry Run
 execute store result storage skill:random args.max_index int 1 run scoreboard players remove $var var.max_index 1
 execute store result storage skill:random args.uid int 1 run scoreboard players get @s uid.player
 data modify storage skill:random list set from storage skill:registry RunnerSkills
+data modify storage skill:random args.registry set value "runner_skill"
 
 scoreboard objectives add var.times dummy
 scoreboard players operation $var var.times = $config config.slots.runner_skill

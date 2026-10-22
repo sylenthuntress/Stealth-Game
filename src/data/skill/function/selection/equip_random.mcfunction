@@ -7,7 +7,11 @@ scoreboard players operation @s[tag=skill.selection.killer_skill] skill.slots.ki
 scoreboard players operation @s[tag=skill.selection.weapon] skill.slots.weapon.occupied += $config config.slots.weapon
 
 $execute unless data storage skill:selection selections[{"uid": $(uid)}] run data modify storage skill:selection selections append value {"uid": $(uid), "skills": []}
-$data modify storage skill:selection selections[{"uid": $(uid)}].skills append value {"id": $(selectedoption), "is_random": 1}
+$data modify storage skill:selection selections[{"uid": $(uid)}].skills append value {"id": $(selected_id), "desc": "$(selected_desc)", "icon": "$(selected_icon)", "atlas": "$(selected_atlas)", "is_random": 1}
+
+$execute if entity @s[tag=skill.selection.runner_skill] run data modify storage skill:selection selections[{"uid": $(uid)}].skills[-1].runner_skill set value true 
+$execute if entity @s[tag=skill.selection.killer_skill] run data modify storage skill:selection selections[{"uid": $(uid)}].skills[-1].killer_skill set value true 
+$execute if entity @s[tag=skill.selection.weapon] run data modify storage skill:selection selections[{"uid": $(uid)}].skills[-1].weapon set value true 
 
 execute if entity @s[tag=skill.selection.runner_skill] run function skill:selection/runner_gui
 execute if entity @s[tag=skill.selection.killer_skill] run function skill:selection/killer_gui

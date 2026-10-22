@@ -1,6 +1,18 @@
-$execute if entity @s[tag=skill.selection.runner_skill] run data modify storage skill:selection selector.selectedoption set from storage skill:registry RunnerSkills[{"numid":$(selectedoption)}].id
-$execute if entity @s[tag=skill.selection.killer_skill] run data modify storage skill:selection selector.selectedoption set from storage skill:registry KillerSkills[{"numid":$(selectedoption)}].id
-$execute if entity @s[tag=skill.selection.weapon] run data modify storage skill:selection selector.selectedoption set from storage skill:registry WeaponRegistry[{"numid":$(selectedoption)}].id
+$execute if entity @s[tag=skill.selection.runner_skill] run data modify storage skill:selection selector.selected_id set from storage skill:registry RunnerSkills[{"numid":$(selectedoption)}].id
+$execute if entity @s[tag=skill.selection.killer_skill] run data modify storage skill:selection selector.selected_id set from storage skill:registry KillerSkills[{"numid":$(selectedoption)}].id
+$execute if entity @s[tag=skill.selection.weapon] run data modify storage skill:selection selector.selected_id set from storage skill:registry WeaponRegistry[{"numid":$(selectedoption)}].id
+
+$execute if entity @s[tag=skill.selection.runner_skill] run data modify storage skill:selection selector.selected_desc set from storage skill:registry RunnerSkills[{"numid":$(selectedoption)}].desc
+$execute if entity @s[tag=skill.selection.killer_skill] run data modify storage skill:selection selector.selected_desc set from storage skill:registry KillerSkills[{"numid":$(selectedoption)}].desc
+$execute if entity @s[tag=skill.selection.weapon] run data modify storage skill:selection selector.selected_desc set from storage skill:registry WeaponRegistry[{"numid":$(selectedoption)}].desc
+
+$execute if entity @s[tag=skill.selection.runner_skill] run data modify storage skill:selection selector.selected_icon set from storage skill:registry RunnerSkills[{"numid":$(selectedoption)}].icon
+$execute if entity @s[tag=skill.selection.killer_skill] run data modify storage skill:selection selector.selected_icon set from storage skill:registry KillerSkills[{"numid":$(selectedoption)}].icon
+$execute if entity @s[tag=skill.selection.weapon] run data modify storage skill:selection selector.selected_icon set from storage skill:registry WeaponRegistry[{"numid":$(selectedoption)}].icon
+
+$execute if entity @s[tag=skill.selection.runner_skill] run data modify storage skill:selection selector.selected_atlas set from storage skill:registry RunnerSkills[{"numid":$(selectedoption)}].atlas
+$execute if entity @s[tag=skill.selection.killer_skill] run data modify storage skill:selection selector.selected_atlas set from storage skill:registry KillerSkills[{"numid":$(selectedoption)}].atlas
+$execute if entity @s[tag=skill.selection.weapon] run data modify storage skill:selection selector.selected_atlas set from storage skill:registry WeaponRegistry[{"numid":$(selectedoption)}].atlas
 
 execute store result storage skill:selection selector.uid int 1 run scoreboard players get @s uid.player
 
