@@ -1,5 +1,5 @@
 tag @s add this.self
-execute if score @s data.player.damage_dealt matches 1.. as @a[scores={game.player.team_id=2}] run tag @s add this.selected
+execute if score @s data..damage_dealt matches 1.. as @a[scores={game.player.team_id=2}] run tag @s add this.selected
 execute as @a[tag=this.selected] run function ./attack_killer:
     execute on attacker if entity @s[tag=this.self] expand:
         execute at @s function ./use_ability:

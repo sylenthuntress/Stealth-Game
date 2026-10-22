@@ -1,6 +1,6 @@
 # Deduct player's health based on taken damage
-scoreboard players operation @s game.player.damage += @s data.player.damage_taken
-execute if score #gamestate gamestate.runners matches 2.. run scoreboard players operation @s game.player.injury += @s data.player.damage_taken
+scoreboard players operation @s game.player.damage += @s data..damage_taken
+execute if score #gamestate gamestate.runners matches 2.. run scoreboard players operation @s game.player.injury += @s data..damage_taken
 execute if score @s game.player.damage > @s game.player.kill_threshold run scoreboard players operation @s game.player.damage = @s game.player.kill_threshold
 
 # Display health percentage
@@ -13,7 +13,7 @@ scoreboard players set #math math.percentage 100
 scoreboard players operation #math math.percentage -= #math game.player.damage
 
 data merge storage var:injury {"title":{"color":"gray","translate":"", "with": [[{"text": "","color":"red","bold":true}],[{"score": {"name":"#math", "objective":"math.percentage"},"color":"gray","bold":true},{"text":"%"}]]}}
-execute store result storage var:injury title.with[0][0].text float 0.1 run scoreboard players get @s data.player.damage_taken
+execute store result storage var:injury title.with[0][0].text float 0.1 run scoreboard players get @s data..damage_taken
 data modify storage var:injury title.with[0][0].text set string storage var:injury title.with[0][0].text 0 -1
 
 execute if score #math math.percentage matches 66.. run data modify storage var:injury title.translate set value "gameplay.player.take_damage.low" 
@@ -44,7 +44,7 @@ scoreboard players reset #math game.player.damage
 # Reveal attacker
 execute on attacker expand:
     effect clear @s invisibility
-    if score @s data.player.damage_dealt matches 1.. run function game:gameplay/killer/land_hit
+    if score @s data..damage_dealt matches 1.. run function game:gameplay/killer/land_hit
 
 # Kill player at high damage
 execute if score @s game.player.damage = @s game.player.kill_threshold if score @s game.player.prev_damage matches 1.. run function game:gameplay/runner/death
@@ -53,7 +53,7 @@ execute if score @s game.player.damage = @s game.player.kill_threshold if score 
 function game:gameplay/runner/update_injury
 execute if entity @s[tag=hiding] run function game:gameplay/runner/stop_hiding
 
-execute if score @s data.player.damage_taken matches 10.. expand:
+execute if score @s data..damage_taken matches 10.. expand:
     scoreboard players add @s time.player.damage_timer 45
     scoreboard players remove @s time.player.stun_timer 45
     attribute @s minecraft:movement_speed modifier add game:gameplay/runner/damaged 0.1 add_value
