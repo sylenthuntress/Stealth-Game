@@ -156,6 +156,7 @@ scoreboard objectives add time.player.damage_timer dummy
 scoreboard objectives add time.player.recovery_timer dummy
 scoreboard objectives add time.player.assist_timer dummy
 scoreboard objectives add time.player.points_display_timer dummy
+scoreboard objectives add time.entity.glow_timer dummy
 scoreboard objectives add time.round_cooldown dummy
 
 # Rendering
