@@ -1,0 +1,1 @@
+execute unless score @s skill.killer.trapper.count matches 3 function ./take_trap

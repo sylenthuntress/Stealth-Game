@@ -11,7 +11,7 @@ execute as @n[type=marker,tag=skill.killer.trapper.random_marker] expand:
     execute at @s function ./spawn_trap
     kill @s
 
-title @s actionbar {"translate": "skill.killer.trapper.full_inventory","color":"#9e3f3f"}
+title @s actionbar {"translate": "skill.killer.trapper.full_inventory","color":"#9e3f3f","with":[{"color":"#866654","translate":"skill.killer.trapper.ability.name","italic":false,"with":[{"sprite":"minecraft:block/tripwire_hook","atlas":"minecraft:blocks","color":"white"}]}]}
 playsound minecraft:item.bundle.insert_fail master @s ~ ~ ~ 1 1
 
 tag @s remove this.selector
