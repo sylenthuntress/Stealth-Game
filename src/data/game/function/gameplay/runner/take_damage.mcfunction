@@ -37,6 +37,7 @@ scoreboard players operation $math game.player.due_points /= $4 math.const
 scoreboard players operation $math game.player.due_points /= $10 math.const
 
 execute on attacker run scoreboard players operation @s game.player.due_points += $math game.player.due_points
+execute unless predicate {type:"minecraft:entity_properties",entity:"attacker",predicate:{}} as @a[scores={game.player.team_id=2}] run scoreboard players operation @s game.player.due_points += $math game.player.due_points
 scoreboard players reset $math game.player.due_points
 scoreboard players reset $math game.player.damage
 
