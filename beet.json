@@ -31,5 +31,14 @@
         "max_format": 97
     },
     "pipeline": [ "mecha" ],
-    "output": "build"
+    "output": "build",
+    "meta": {
+        "bolt_expressions": {
+            "init_path": "setup:scores",
+            "const_objective": "math.const",
+            "const_score_prefix": "#",
+            "temp_objective": "math.const",
+            "temp_score_prefix": "#"
+        }
+    }
 }
