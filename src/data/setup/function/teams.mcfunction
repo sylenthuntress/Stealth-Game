@@ -72,19 +72,10 @@ team add spectator "Spectators"
 team modify spectator color dark_gray
 team modify spectator prefix [
     {
-        "text":"[",
-        "color":"dark_gray",
-        "bold":true
+        "sprite": "hide_and_squeak:item/spectator",
+        "atlas": "minecraft:items",
+        "color": "white"
     },
-    {
-        "text":"Spectating",
-        "bold":false,
-        "color":"#8a8a8a"
-    },
-    {
-        "text":"] ",
-        "color":"dark_gray",
-        "bold":true
-    }
+    " "
 ]
 
