@@ -1,11 +1,12 @@
 import util:coordinates as coords
 
 # Remove lobby tag
-tag @a[scores={lobby.ready=1}] add playing
-tag @a[tag=playing] remove lobby
+tag @a[scores={lobby.ready=1}] add game.playing
+tag @a[tag=game.playing] remove lobby
+scoreboard players set @a[tag=game.playing] game.player.in_game 1
 
 # Start map generation
-execute as @a[tag=playing] expand: 
+execute as @a[tag=game.playing] expand: 
     clear @s
     teleport @s coords.loading.x coords.loading.y coords.loading.z
     effect give @s blindness infinite 255 true

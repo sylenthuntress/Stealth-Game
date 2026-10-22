@@ -7,9 +7,7 @@ execute as @e[type=item] run function items:dropped/tick
 
 # Handle new players
 execute as @a unless score @s uid.player matches 0.. run function main:first_join
+execute as @a[scores={data.player.leave_game=1..}] run function main:consecutive_join
 
 # Reset data collection at end of tree
-scoreboard players reset * data.player.damage_taken
-scoreboard players reset * data.player.damage_dealt
-scoreboard players reset * data.player.health
-scoreboard players reset * data.player.jump
+## (Appended from setup:scores#Data)

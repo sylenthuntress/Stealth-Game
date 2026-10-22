@@ -1,3 +1,4 @@
+tag @s remove game.playing
 tag @s add lobby
 team join lobby
 team join dev @s[name=SylentHuntress]

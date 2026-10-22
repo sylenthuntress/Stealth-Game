@@ -70,7 +70,7 @@ execute if block ~ 41 ~ minecraft:diamond_block unless score @s game.player.band
         scoreboard players add @s game.player.due_points 5
         scoreboard players reset @s time.player.assist_timer
         scoreboard players add @a[scores={time.player.assist_timer=1..}] game.player.due_points 5
-        tellraw @a[tag=playing] {"translate": "game.cross_band", "color": "red", with: [["",{text:"#",color:"dark_red","bold":true},{score:{name:"@s",objective:"game.player.band_progression"},color:"dark_red","bold":true}]]}
+        tellraw @a[tag=game.playing] {"translate": "game.cross_band", "color": "red", with: [["",{text:"#",color:"dark_red","bold":true},{score:{name:"@s",objective:"game.player.band_progression"},color:"dark_red","bold":true}]]}
         as @a at @s run playsound block.note_block.chime master @s ~ ~ ~ 1 0.5
     execute unless score @s game.player.band_progression > $gamestate gamestate.band_progression run playsound block.note_block.bit master @s ~ ~ ~ 1 0.5
 
@@ -96,7 +96,7 @@ execute if block ~ 41 ~ minecraft:netherite_block run function game:gameplay/run
     execute unless score $gamestate gamestate.crossed_finish matches 1 scoreboard players set $time time.endgame_timer 600
     scoreboard players set $gamestate gamestate.crossed_finish 1
     bossbar set game:time/round_timer players
-    bossbar set game:time/endgame_timer players @a[tag=playing]
+    bossbar set game:time/endgame_timer players @a[tag=game.playing]
     execute store result bossbar game:time/endgame_timer value run scoreboard players get $time time.endgame_timer
     
     execute unless score @s skill.runner.medic.revive_uid matches 0.. run tellraw @a {"translate": "game.cross_finish", "color": "red", with:[{"selector":"@s"}]}

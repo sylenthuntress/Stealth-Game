@@ -62,10 +62,10 @@ execute at @s if score @s time.player.heal_timer matches -10.. positioned ~-3 ~-
                 scoreboard players add @s game.player.points_split 1
                 function skill:on_disable
                 function skill:disable_skills
-                at @s run playsound minecraft:item.totem.use master @a[tag=playing] ~ ~ ~ 2 1 1
+                at @s run playsound minecraft:item.totem.use master @a[tag=game.playing] ~ ~ ~ 2 1 1
             execute as @n[type=mannequin,tag=game.runner_corpse] at @s expand:
                 function game:gameplay/runner/kill_corpse
-            tellraw @a[tag=playing] {"color":"gold","translate":"skill.runner.medic.revive","with":[{"selector":"@s"},{"selector":"@p[tag=this.selected]"}]}
+            tellraw @a[tag=game.playing] {"color":"gold","translate":"skill.runner.medic.revive","with":[{"selector":"@s"},{"selector":"@p[tag=this.selected]"}]}
             scoreboard players operation @p[tag=this.selected] skill.runner.medic.revive_uid = @s uid.player
             scoreboard players remove @s skill.runner.medic.count 1
             scoreboard players add @s skill.runner.medic.uses 1

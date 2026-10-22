@@ -4,7 +4,7 @@ function render:tick/main
 
 # Stop game if insufficient players
 scoreboard objectives add var.players dummy
-execute store result score $var var.players run execute if entity @a[tag=playing]
+execute store result score $var var.players run execute if entity @a[tag=game.playing]
 execute if score $var var.players matches ..1 run function game:insufficient_players:
     function game:end
     tellraw @a {"translate": "game.insufficient_players", "color": "red"}

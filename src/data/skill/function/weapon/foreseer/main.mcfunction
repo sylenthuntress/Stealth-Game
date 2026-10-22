@@ -4,7 +4,7 @@ execute as @e[tag=skill.weapon.foreseer.spectral_bow.projectile,nbt={inGround:1b
     at @s[type=spectral_arrow] run function skill:weapon/foreseer/land_arrow:
         playsound minecraft:entity.elder_guardian.curse master @a ~ ~ ~ 1 2
 
-        execute positioned ~ ~-1 ~ as @a[tag=playing,team=runner,distance=..6] expand:
+        execute positioned ~ ~-1 ~ as @a[tag=game.playing,team=runner,distance=..6] expand:
             effect give @s glowing 3 0 false
             effect give @s slowness 3 1 false
 

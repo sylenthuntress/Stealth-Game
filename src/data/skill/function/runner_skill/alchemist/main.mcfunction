@@ -8,7 +8,7 @@ execute as @e[type=snowball,tag=skill.runner_skill.alchemist.blinding_flask] at 
             effect give @a[team=killer,distance=..3] minecraft:darkness 5 0 false
             scoreboard players add this.selected time.player.assist_timer 240
 
-            tellraw @a[tag=playing] {"translate":"skill.runner.alchemist.land_blinding_flask","color":"#5c3561","with":[{"selector":"@a[team=killer,distance=..3]"}]}
+            tellraw @a[tag=game.playing] {"translate":"skill.runner.alchemist.land_blinding_flask","color":"#5c3561","with":[{"selector":"@a[team=killer,distance=..3]"}]}
             particle minecraft:large_smoke ~ ~ ~ 0.4 0.4 0.4 0.01 32 normal @a
             playsound minecraft:block.glass.break player @a ~ ~ ~ 1 1.7
             playsound minecraft:entity.squid.squirt player @a ~ ~ ~ 1 2
@@ -22,7 +22,7 @@ execute as @e[type=snowball,tag=skill.runner_skill.alchemist.stagger_flask] at @
             scoreboard players add @a[team=killer,distance=..3] time.player.stun_timer 50
             scoreboard players add this.selected time.player.assist_timer 120
 
-            tellraw @a[tag=playing] {"translate":"skill.runner.alchemist.land_stagger_flask","color":"#933f2e","with":[{"selector":"@a[team=killer,distance=..3]"}]}
+            tellraw @a[tag=game.playing] {"translate":"skill.runner.alchemist.land_stagger_flask","color":"#933f2e","with":[{"selector":"@a[team=killer,distance=..3]"}]}
             particle minecraft:crit ~ ~ ~ 0.4 0.4 0.4 0.01 32 normal @a
             playsound minecraft:block.glass.break player @a ~ ~ ~ 1 1.7
             playsound minecraft:entity.squid.squirt player @a ~ ~ ~ 1 2

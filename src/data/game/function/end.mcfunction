@@ -9,8 +9,7 @@ bossbar set game:time/round_timer players
 bossbar set game:time/endgame_timer players
 
 # Reset player data
-tag @a remove playing
-tag @a add lobby
+scoreboard players reset * game.player.in_game
 scoreboard players reset * game.player.killer_queue
 execute as @a run function lobby:join_lobby
 

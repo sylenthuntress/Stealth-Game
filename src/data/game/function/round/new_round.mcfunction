@@ -13,17 +13,17 @@ function game:points/clear_logs
 scoreboard players reset @a game.player.team_id
 
 execute if score $config config.team_selection matches 0 expand:
-    scoreboard players set @a[tag=playing] game.player.team_id 1
+    scoreboard players set @a[tag=game.playing] game.player.team_id 1
     scoreboard players set $queue game.player.killer_queue 999
-    execute as @a[tag=playing] if score @s game.player.killer_queue matches 1.. run scoreboard players operation $queue game.player.killer_queue < @s game.player.killer_queue
-    execute as @a[tag=playing] if score @s game.player.killer_queue = $queue game.player.killer_queue expand:
+    execute as @a[tag=game.playing] if score @s game.player.killer_queue matches 1.. run scoreboard players operation $queue game.player.killer_queue < @s game.player.killer_queue
+    execute as @a[tag=game.playing] if score @s game.player.killer_queue = $queue game.player.killer_queue expand:
         scoreboard players set @s game.player.team_id 2
         scoreboard players reset @s game.player.killer_queue
 execute store result score $gamestate gamestate.runners if entity @a[scores={game.player.team_id=1}]
 execute store result score $gamestate gamestate.killers if entity @a[scores={game.player.team_id=2}]
 
-team leave @a[tag=playing]
-execute as @a[tag=playing] run function game:round/join_round:
+team leave @a[tag=game.playing]
+execute as @a[tag=game.playing] run function game:round/join_round:
     effect clear @s
     effect give @s regeneration infinite 255 true
     effect give @s saturation infinite 255 true
@@ -32,6 +32,8 @@ execute as @a[tag=playing] run function game:round/join_round:
     attribute @s minecraft:movement_speed modifier add game:round/start_sequence -1 add_multiplied_total
     attribute @s minecraft:jump_strength modifier add game:round/start_sequence -1 add_multiplied_total
     function render:points/make_numberformat
+
+    scoreboard players set @s game.player.in_round 1
 execute as @a[scores={game.player.team_id=1}] run function game:round/join_runner:
     gamemode adventure @s
     team join runner @s

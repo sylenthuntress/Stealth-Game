@@ -1,1 +1,1 @@
-$tellraw @a[tag=playing] $(text)
+$tellraw @a[tag=game.playing] $(text)

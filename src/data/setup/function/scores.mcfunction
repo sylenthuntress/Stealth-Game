@@ -20,10 +20,18 @@ scoreboard objectives add uid.player dummy
 scoreboard objectives add uid.entity dummy
 
 # Data
-scoreboard objectives add data.player.health health
-scoreboard objectives add data.player.damage_taken minecraft.custom:minecraft.damage_taken
-scoreboard objectives add data.player.damage_dealt minecraft.custom:minecraft.damage_dealt
-scoreboard objectives add data.player.jump minecraft.custom:minecraft.jump
+## Example: data.player.<raw_criteria>
+def addData(criteria):
+    obj = "data.player." + criteria.replace('minecraft.custom:minecraft.', '')
+    append function main:tick:
+        scoreboard players reset @a obj
+    raw f"scoreboard objectives add {ob} {criteria}"
+
+addData("health")
+addData("minecraft.custom:minecraft.damage_taken")
+addData("minecraft.custom:minecraft.damage_dealt")
+addData("minecraft.custom:minecraft.jump")
+addData("minecraft.custom:minecraft.leave_game")
 
 # Hazard
 scoreboard objectives add hazard.dripleaf_launcher.timer dummy
@@ -41,16 +49,22 @@ scoreboard objectives add gamestate.crossed_finish dummy
 scoreboard objectives add gamestate.ranked_players dummy
 
 # Game
+scoreboard objectives add game.player.in_game dummy
+scoreboard objectives add game.player.in_round dummy
 scoreboard objectives add game.player.killer_queue dummy
 scoreboard objectives add game.player.team_id dummy
+
 scoreboard objectives add game.player.prev_damage dummy
 scoreboard objectives add game.player.damage dummy
 scoreboard objectives add game.player.kill_threshold dummy
 scoreboard objectives add game.player.injury dummy
 scoreboard objectives add game.player.heal_amount dummy
+
 scoreboard objectives add game.player.dance_state dummy
+
 scoreboard objectives add game.player.band_progression dummy
 scoreboard objectives add game.player.target_band dummy
+
 scoreboard objectives add game.player.due_points dummy
 scoreboard objectives add game.player.round_points dummy
 scoreboard objectives add game.player.points dummy

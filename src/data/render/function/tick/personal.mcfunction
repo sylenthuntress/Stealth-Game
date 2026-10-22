@@ -1,5 +1,5 @@
 # Make point display more fancy
-execute as @s[tag=playing] run function render:points/make_displayname
+execute as @s[tag=game.playing] run function render:points/make_displayname
 
 execute if score @s time.player.points_display_timer matches 0 expand:
     function render:points/make_numberformat

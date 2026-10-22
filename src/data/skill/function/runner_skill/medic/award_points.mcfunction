@@ -1,5 +1,5 @@
 tag @s add this.self
-execute as @a[tag=playing] if score @s uid.player = @p[tag=this.self] skill.runner.medic.revive_uid run tag @s add this.medic
+execute as @a[tag=game.playing] if score @s uid.player = @p[tag=this.self] skill.runner.medic.revive_uid run tag @s add this.medic
 tag @s remove this.self
 
 scoreboard players add @a[tag=this.medic] game.player.due_points 25

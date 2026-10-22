@@ -13,6 +13,7 @@ execute as @a run function game:round/leave_round:
 
     clear @s
 
+scoreboard players reset * game.player.in_round
 scoreboard players set * game.player.points_split 1
 scoreboard players reset * game.player.round_points
 scoreboard players reset * game.player.band_progression
@@ -26,7 +27,7 @@ kill @e[type=item_display,tag=little_mouse]
 execute as @e[type=mannequin,tag=game.runner_corpse] run function game:gameplay/runner/kill_corpse
 
 # Put every player in spectator
-gamemode spectator @a[tag=playing]
+gamemode spectator @a[tag=game.playing]
 
 # Set variables
 scoreboard players set $gamestate gamestate.round_active 0

@@ -1,1 +1,1 @@
-return run execute if entity @a[tag=playing]
+return run execute if entity @a[tag=game.playing]
