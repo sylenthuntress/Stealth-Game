@@ -7,7 +7,7 @@ def register(icon, atlas):
 def registerRandom():
     global id_index
     id_index += 1
-    return {"id": id_index, "icon": "minecraft:item/nether_star", "atlas": "minecraft:items", "isRandom": 1}
+    return {"id": id_index, "icon": "hide_and_squeak:item/random", "atlas": "minecraft:items", "isRandom": 1}
 
 runner_skills = {
     "camouflage": register("minecraft:block/bush", "minecraft:blocks"),
