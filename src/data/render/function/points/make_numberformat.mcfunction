@@ -6,17 +6,17 @@ data merge storage points:data {DisplayText:{"translate":"game.sidebar.value", "
 display_objective = Scoreboard("game.player.points")
 data modify storage points:data DisplayText.with[0] append value {"text":"", "color": "gray"} 
 
-scoreboard players operation $decimal display_objective = @s display_objective
-scoreboard players operation $decimal display_objective %= $10 math.const
+scoreboard players operation #decimal display_objective = @s display_objective
+scoreboard players operation #decimal display_objective %= #10 math.const
 
-execute if score $decimal display_objective matches 0 run store result storage points:data DisplayText.with[0][-1].points int 0.1 run scoreboard players get @s display_objective
-execute unless score $decimal display_objective matches 0 run store result storage points:data DisplayText.with[0][-1].points float 0.1 run scoreboard players get @s display_objective
+execute if score #decimal display_objective matches 0 run store result storage points:data DisplayText.with[0][-1].points int 0.1 run scoreboard players get @s display_objective
+execute unless score #decimal display_objective matches 0 run store result storage points:data DisplayText.with[0][-1].points float 0.1 run scoreboard players get @s display_objective
 
 data modify storage points:data DisplayText.with[0][-1].text set string storage points:data DisplayText.with[0][-1].points
-execute unless score $decimal display_objective matches 0 run data modify storage points:data DisplayText.with[0][-1].text set string storage points:data DisplayText.with[0][-1].text 0 -1
+execute unless score #decimal display_objective matches 0 run data modify storage points:data DisplayText.with[0][-1].text set string storage points:data DisplayText.with[0][-1].text 0 -1
 data remove storage points:data DisplayText.with[0][-1].points
 
-scoreboard players reset $decimal display_objective
+scoreboard players reset #decimal display_objective
 
 # Add new points to numberformat
 display_objective = Scoreboard("game.player.round_points")

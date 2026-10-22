@@ -1,8 +1,8 @@
 tag @s add this.selector
 
-scoreboard players operation @s game.player.target_band = $gamestate gamestate.band_progression
+scoreboard players operation @s game.player.target_band = #gamestate gamestate.band_progression
 scoreboard players add @s game.player.target_band 2
-execute if score @s game.player.target_band > $segments segments.elapsed run scoreboard players operation @s game.player.target_band = $segments segments.elapsed
+execute if score @s game.player.target_band > #segments segments.elapsed run scoreboard players operation @s game.player.target_band = #segments segments.elapsed
 
 execute as @e[type=text_display,tag=band_display] if score @s segments.elapsed = @p[tag=this.selector] game.player.target_band at @s run summon marker ~ ~ ~ {"Tags":["skill.killer.trapper.random_marker"]}
 

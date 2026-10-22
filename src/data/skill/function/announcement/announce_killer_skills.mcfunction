@@ -32,4 +32,4 @@ execute if data storage skill:selection Recursive[0] expand:
 # Display tellraw and end function
 function util:tellraw_players with storage skill:selection KillerSkillsAnnouncement
 data modify storage skill:selection KillerSkillsAnnouncement.ran set value true
-scoreboard players reset $var game.player.team_id
+scoreboard players reset #var game.player.team_id

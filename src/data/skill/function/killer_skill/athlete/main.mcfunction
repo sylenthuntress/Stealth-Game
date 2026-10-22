@@ -3,8 +3,8 @@ scoreboard players remove @s[tag=skill.killer_skill.athlete.dashing] time.player
 execute if score @s skill.killer.athlete.cooldown matches 1.. run function ./tick_cooldown:
     scoreboard players remove @s skill.killer.athlete.cooldown 1
 
-    scoreboard players operation $display time.display_sec = @s skill.killer.athlete.cooldown
-    scoreboard players operation $display time.display_sec /= $20 math.const
+    scoreboard players operation #display time.display_sec = @s skill.killer.athlete.cooldown
+    scoreboard players operation #display time.display_sec /= #20 math.const
 
     item modify entity @s ./cooldown ./set_cooldown
 

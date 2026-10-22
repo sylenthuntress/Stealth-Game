@@ -20,8 +20,8 @@ execute as @a[tag=game.viewing] expand:
     title @s title ""
     title @s subtitle {"translate":"game.generating","color":"red"}
     at @s run playsound minecraft:block.bell.resonate master @s ~ ~ ~ 1 1.5
-scoreboard players set $gamestate gamestate.generating 1
+scoreboard players set #gamestate gamestate.generating 1
 schedule function level:start_gen 10t
 
 # Get random teams
-execute if score $config config.team_selection matches 0 run function game:random_teams
+execute if score #config config.team_selection matches 0 run function game:random_teams

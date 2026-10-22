@@ -38,8 +38,8 @@ execute as @e[type=marker,tag=skill.runner_skill.alchemist.flask] at @s unless p
 execute if score @s skill.runner.alchemist.cooldown matches 1.. run function ./tick_cooldown:
     scoreboard players remove @s skill.runner.alchemist.cooldown 1
 
-    scoreboard players operation $display time.display_sec = @s skill.runner.alchemist.cooldown
-    scoreboard players operation $display time.display_sec /= $20 math.const
+    scoreboard players operation #display time.display_sec = @s skill.runner.alchemist.cooldown
+    scoreboard players operation #display time.display_sec /= #20 math.const
 
     item modify entity @s ./blinding_flask ./disable_blinding_flask
     item modify entity @s ./stagger_flask ./disable_stagger_flask

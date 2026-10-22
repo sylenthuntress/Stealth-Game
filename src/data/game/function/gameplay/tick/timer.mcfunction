@@ -1,17 +1,17 @@
 from bolt_expressions import Scoreboard, Data
 
-execute unless score $time time.endgame_timer matches 1.. run return run function game:gameplay/tick/round_timer:
+execute unless score #time time.endgame_timer matches 1.. run return run function game:gameplay/tick/round_timer:
     timer = Scoreboard.objective("time.round_timer")
     # Increment timer
-    execute if score $time timer matches 1.. run scoreboard players remove $time timer 1
+    execute if score #time timer matches 1.. run scoreboard players remove #time timer 1
     scoreboard objectives add var.timer_modulo dummy
     timerModulo = Scoreboard("var.timer_modulo")
-    timerModulo["$var"] = timer["$time"] % 20
+    timerModulo["#var"] = timer["#time"] % 20
 
-    execute if score $var timerModulo matches 0 store result bossbar game:time/round_timer value run scoreboard players get $time timer
+    execute if score #var timerModulo matches 0 store result bossbar game:time/round_timer value run scoreboard players get #time timer
 
     # End game if timer reaches zero
-    execute if score $time timer matches 0 run return run function game:round/timeout
+    execute if score #time timer matches 0 run return run function game:round/timeout
 
     execute function render:time/round_timer/display:
         # Update bossbar name to reflect timer
@@ -21,8 +21,8 @@ execute unless score $time time.endgame_timer matches 1.. run return run functio
                 scoreboard objectives add var.minutes dummy
                 minutes = Scoreboard("var.minutes")
                 seconds = Scoreboard("var.seconds")
-                minutes["$var"] = timer["$time"] / 1200
-                seconds["$var"] = (timer["$time"] / 20) - 60 * minutes["$var"]
+                minutes["#var"] = timer["#time"] / 1200
+                seconds["#var"] = (timer["#time"] / 20) - 60 * minutes["#var"]
 
             time_display = {
                 "translate": "game.round_timer",
@@ -30,8 +30,8 @@ execute unless score $time time.endgame_timer matches 1.. run return run functio
                     [
                     {
                         "score": {
-                            "name": minutes["$var"].scoreholder,
-                            "objective": minutes["$var"].objective
+                            "name": minutes["#var"].scoreholder,
+                            "objective": minutes["#var"].objective
                         },
                         "color": "green",
                         "bold": true
@@ -43,8 +43,8 @@ execute unless score $time time.endgame_timer matches 1.. run return run functio
                     },
                     {
                         "score": {
-                            "name": seconds["$var"].scoreholder,
-                            "objective": seconds["$var"].objective
+                            "name": seconds["#var"].scoreholder,
+                            "objective": seconds["#var"].objective
                         },
                         "color": "green",
                         "bold": true
@@ -54,7 +54,7 @@ execute unless score $time time.endgame_timer matches 1.. run return run functio
             }
 
             # Display timer text
-            execute if score $var var.seconds matches ..9:
+            execute if score #var var.seconds matches ..9:
                     time_display."with"[0].insert(2, {
                         "text": "0",
                         "color": "green",
@@ -62,16 +62,16 @@ execute unless score $time time.endgame_timer matches 1.. run return run functio
                     })
                     bossbar set game:time/round_timer name time_display
                     del time_display."with"[0][2]
-            execute if score $var var.seconds matches 10.. run bossbar set game:time/round_timer name time_display
+            execute if score #var var.seconds matches 10.. run bossbar set game:time/round_timer name time_display
 
             # Display timer text as yellow at 50%
-            execute store result score $operand math.division run function util:get/base_timer
-            scoreboard players set $operator math.division 2
+            execute store result score #operand math.division run function util:get/base_timer
+            scoreboard players set #operator math.division 2
             function util:math/division
-                execute if score $time timer <= $result math.result expand:
+                execute if score #time timer <= #result math.result expand:
                     for component in time_display."with"[0]:
                         component.color = "yellow"
-                    execute if score $var var.seconds matches ..9:
+                    execute if score #var var.seconds matches ..9:
                         time_display."with"[0].insert(2, {
                             "text": "0",
                             "color": "yellow",
@@ -79,16 +79,16 @@ execute unless score $time time.endgame_timer matches 1.. run return run functio
                         })
                         bossbar set game:time/round_timer name time_display
                         del time_display."with"[0][2]
-                    execute if score $var var.seconds matches 10.. run bossbar set game:time/round_timer name time_display
+                    execute if score #var var.seconds matches 10.. run bossbar set game:time/round_timer name time_display
 
             # Display timer text as red at 25%
-            scoreboard players operation $operand math.division = $result math.result
-            scoreboard players set $operator math.division 2
+            scoreboard players operation #operand math.division = #result math.result
+            scoreboard players set #operator math.division 2
             function util:math/division
-                execute if score $time timer <= $result math.result expand:
+                execute if score #time timer <= #result math.result expand:
                     for component in time_display."with"[0]:
                         component.color = "red"
-                    execute if score $var var.seconds matches ..9:
+                    execute if score #var var.seconds matches ..9:
                         time_display."with"[0].insert(2, {
                             "text": "0",
                             "color": "red",
@@ -96,7 +96,7 @@ execute unless score $time time.endgame_timer matches 1.. run return run functio
                         })
                         bossbar set game:time/round_timer name time_display
                         del time_display."with"[0][2]
-                    execute if score $var var.seconds matches 10.. run bossbar set game:time/round_timer name time_display
+                    execute if score #var var.seconds matches 10.. run bossbar set game:time/round_timer name time_display
             
             # Clear unneeded variables
             scoreboard objectives remove var.minutes
@@ -107,27 +107,27 @@ execute unless score $time time.endgame_timer matches 1.. run return run functio
             bossbar set game:time/round_timer color green
 
             # Set bossbar to yellow at 50%
-            execute store result score $operand math.division run function util:get/base_timer
-            scoreboard players set $operator math.division 2
+            execute store result score #operand math.division run function util:get/base_timer
+            scoreboard players set #operator math.division 2
             function util:math/division
-            execute if score $time timer <= $result math.result run bossbar set game:time/round_timer color yellow
+            execute if score #time timer <= #result math.result run bossbar set game:time/round_timer color yellow
 
             # Set bossbar to red at 25%
-            scoreboard players operation $operand math.division = $result math.result
-            scoreboard players set $operator math.division 2
+            scoreboard players operation #operand math.division = #result math.result
+            scoreboard players set #operator math.division 2
             function util:math/division
-            execute if score $time timer <= $result math.result run bossbar set game:time/round_timer color red
+            execute if score #time timer <= #result math.result run bossbar set game:time/round_timer color red
         
     # Play final warning as timer reaches zero
-    execute if score $time timer matches ..300 function render:time/round_timer/final_warning:
+    execute if score #time timer matches ..300 function render:time/round_timer/final_warning:
         bossbar set game:time/round_timer max 200
-        execute if score $time timer matches 300 tellraw @a[tag=game.viewing,scores={game.player.team_id=1}] {"translate": "game.round_timer.runner_warning","color":"gray"}
-        execute if score $time timer matches 300 tellraw @a[tag=game.viewing,scores={game.player.team_id=2}] {"translate": "game.round_timer.killer_warning","color":"red"}
+        execute if score #time timer matches 300 tellraw @a[tag=game.viewing,scores={game.player.team_id=1}] {"translate": "game.round_timer.runner_warning","color":"gray"}
+        execute if score #time timer matches 300 tellraw @a[tag=game.viewing,scores={game.player.team_id=2}] {"translate": "game.round_timer.killer_warning","color":"red"}
         for n in range(1, 21):
-            execute if score $time timer matches (n*20) run expand:
+            execute if score #time timer matches (n*20) run expand:
                 playsound minecraft:block.note_block.didgeridoo master @a[tag=game.viewing] 0 0 0 1 (2-(n*0.01)) 1
                 playsound minecraft:block.note_block.didgeridoo master @a[tag=game.viewing] 0 0 0 1 (1-(n*0.01)) 1
-        execute if score $var timerModulo matches 0 expand:
+        execute if score #var timerModulo matches 0 expand:
             playsound minecraft:block.note_block.bass master @a[tag=game.viewing] 0 0 0 0.1 0.5 0.1
             playsound minecraft:block.note_block.bass master @a[tag=game.viewing] 0 0 0 0.1 0.5 0.1
     scoreboard objectives remove timerModulo
@@ -135,14 +135,14 @@ execute unless score $time time.endgame_timer matches 1.. run return run functio
 execute function game:gameplay/tick/endgame_timer:
     timer = Scoreboard.objective("time.endgame_timer")
     # Increment timer
-    execute if score $time timer matches 1.. run scoreboard players remove $time timer 1
+    execute if score #time timer matches 1.. run scoreboard players remove #time timer 1
     scoreboard objectives add var.timer_modulo dummy
     timerModulo = Scoreboard("var.timer_modulo")
-    timerModulo["$var"] = timer["$time"] % 20
+    timerModulo["#var"] = timer["#time"] % 20
 
-    execute if score $var timerModulo matches 0 store result bossbar game:time/endgame_timer value run scoreboard players get $time timer
+    execute if score #var timerModulo matches 0 store result bossbar game:time/endgame_timer value run scoreboard players get #time timer
     # End game if timer reaches zero
-    execute if score $time timer matches 0 run return run function game:round/end
+    execute if score #time timer matches 0 run return run function game:round/end
 
     execute function render:time/endgame_timer/display:
         # Update bossbar name to reflect timer
@@ -152,8 +152,8 @@ execute function game:gameplay/tick/endgame_timer:
                 scoreboard objectives add var.minutes dummy
                 minutes = Scoreboard("var.minutes")
                 seconds = Scoreboard("var.seconds")
-                minutes["$var"] = timer["$time"] / 1200
-                seconds["$var"] = (timer["$time"] / 20) - 60 * minutes["$var"]
+                minutes["#var"] = timer["#time"] / 1200
+                seconds["#var"] = (timer["#time"] / 20) - 60 * minutes["#var"]
 
             time_display = {
                 "translate": "game.endgame_timer",
@@ -162,8 +162,8 @@ execute function game:gameplay/tick/endgame_timer:
                     [
                         {
                             "score": {
-                                "name": minutes["$var"].scoreholder,
-                                "objective": minutes["$var"].objective
+                                "name": minutes["#var"].scoreholder,
+                                "objective": minutes["#var"].objective
                             },
                             "color": "red",
                             "bold": true
@@ -175,8 +175,8 @@ execute function game:gameplay/tick/endgame_timer:
                         },
                         {
                             "score": {
-                                "name": seconds["$var"].scoreholder,
-                                "objective": seconds["$var"].objective
+                                "name": seconds["#var"].scoreholder,
+                                "objective": seconds["#var"].objective
                             },
                             "color": "red",
                             "bold": true
@@ -184,8 +184,8 @@ execute function game:gameplay/tick/endgame_timer:
                     ]
                 ]
             }
-            execute if score $var var.seconds matches 10.. run bossbar set game:time/endgame_timer name time_display
-                execute if score $var var.seconds matches ..9:
+            execute if score #var var.seconds matches 10.. run bossbar set game:time/endgame_timer name time_display
+                execute if score #var var.seconds matches ..9:
                     time_display."with"[0].insert(2, {
                         "text": "0",
                         "color": "red",
@@ -198,28 +198,28 @@ execute function game:gameplay/tick/endgame_timer:
                 scoreboard objectives remove var.seconds
         
     # Play final warning as timer reaches zero
-    execute if score $time timer matches ..600 function render:time/endgame_timer/final_warning:
-        execute if score $time timer matches 300 tellraw @a[tag=game.viewing,scores={game.player.team_id=1}] {"translate": "game.round_timer.runner_warning","color":"gray"}
-        execute if score $time timer matches 300 tellraw @a[tag=game.viewing,scores={game.player.team_id=2}] {"translate": "game.round_timer.killer_warning","color":"red"}
+    execute if score #time timer matches ..600 function render:time/endgame_timer/final_warning:
+        execute if score #time timer matches 300 tellraw @a[tag=game.viewing,scores={game.player.team_id=1}] {"translate": "game.round_timer.runner_warning","color":"gray"}
+        execute if score #time timer matches 300 tellraw @a[tag=game.viewing,scores={game.player.team_id=2}] {"translate": "game.round_timer.killer_warning","color":"red"}
 
         for n in range(1, 21):
-            execute if score $time timer matches (n*20) run expand:
+            execute if score #time timer matches (n*20) run expand:
                 playsound minecraft:block.note_block.didgeridoo master @a[tag=game.viewing] 0 0 0 1 (2-(n*0.01)) 1
                 playsound minecraft:block.note_block.didgeridoo master @a[tag=game.viewing] 0 0 0 1 (1-(n*0.01)) 1
-        execute if score $time timer matches ..200 if score $var timerModulo matches 0 expand:
+        execute if score #time timer matches ..200 if score #var timerModulo matches 0 expand:
             playsound minecraft:block.note_block.xylophone master @a[tag=game.viewing] 0 0 0 0.1 0.5 0.1
             playsound minecraft:block.note_block.bass master @a[tag=game.viewing] 0 0 0 0.1 0.5 0.1
     
-        timerModulo["$var"] = timer["$time"] % 10
-        execute if score $var timerModulo matches 0 if score $time timer matches ..400 as @a[tag=game.viewing] at @s expand:
+        timerModulo["#var"] = timer["#time"] % 10
+        execute if score #var timerModulo matches 0 if score #time timer matches ..400 as @a[tag=game.viewing] at @s expand:
             particle minecraft:copper_fire_flame 0 0 0 10 10 10 0.1 50 normal @s
             particle minecraft:soul_fire_flame 0 0 0 10 10 10 0.1 50 normal @s
     
         for n in range(1, 7):
-            execute if score $time timer matches (n*100) run playsound minecraft:block.bell.use master @a[tag=game.viewing] 0 0 0 1 (1-(n*0.07)) 1
-        timerModulo["$var"] = timer["$time"] % 100
-        execute if score $var timerModulo matches 60 run playsound minecraft:block.bell.resonate master @a[tag=game.viewing] 0 0 0 1 0.7 1
-        execute if score $var timerModulo matches 0 as @a[tag=game.viewing] at @s expand:
+            execute if score #time timer matches (n*100) run playsound minecraft:block.bell.use master @a[tag=game.viewing] 0 0 0 1 (1-(n*0.07)) 1
+        timerModulo["#var"] = timer["#time"] % 100
+        execute if score #var timerModulo matches 60 run playsound minecraft:block.bell.resonate master @a[tag=game.viewing] 0 0 0 1 0.7 1
+        execute if score #var timerModulo matches 0 as @a[tag=game.viewing] at @s expand:
             particle minecraft:falling_dust{block_state:"minecraft:redstone_block"} ~ ~ ~ 10 10 10 0.1 30 normal
             particle minecraft:falling_dust{block_state:"minecraft:gold_block"} ~ ~ ~ 10 10 10 0.1 30 normal
             particle minecraft:falling_dust{block_state:"minecraft:redstone_block"} ~ ~ ~ 3 3 3 1 50 normal

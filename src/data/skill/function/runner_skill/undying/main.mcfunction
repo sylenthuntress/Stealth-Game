@@ -23,8 +23,8 @@ execute if entity @s[gamemode=spectator,team=dead] at @s run function ./attempt_
         team join runner
         gamemode adventure
         teleport @n[type=mannequin,tag=this.selected]
-        scoreboard players operation @s game.player.injury /= $2 math.const
-        scoreboard players operation @s game.player.damage /= $2 math.const
+        scoreboard players operation @s game.player.injury /= #2 math.const
+        scoreboard players operation @s game.player.damage /= #2 math.const
         function game:gameplay/runner/update_injury
         scoreboard players add @s game.player.points_split 1
         function skill:on_disable

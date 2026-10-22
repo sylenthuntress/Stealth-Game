@@ -2,7 +2,7 @@ import util:coordinates as coords
 
 execute positioned coords.lobby.x coords.lobby.y coords.lobby.z if entity @s[distance=300..,gamemode=!creative,gamemode=!spectator] run function lobby:spawn
 
-execute if score $gamestate gamestate.game_active matches 1 run item fill entity @s util:mid_hotbar with coal[
+execute if score #gamestate gamestate.game_active matches 1 run item fill entity @s util:mid_hotbar with coal[
     custom_name={
         "color": "#818181",
         "translate": "lobby.join_spectator",

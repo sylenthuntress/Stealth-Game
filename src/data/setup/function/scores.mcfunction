@@ -5,16 +5,16 @@ scoreboard objectives add config.loaded_defaults dummy
 for option in registry.getOptions():
     scoreboard objectives add option trigger
 
-execute unless score $config config.loaded_defaults matches 1 run function config:load_defaults:
+execute unless score #config config.loaded_defaults matches 1 run function config:load_defaults:
     for option in registry.getOptions():
         default = registry.getDefault(option)
-        scoreboard players set $config option default
-execute unless score $config config.loaded_defaults matches 1 run function setup:registry
-scoreboard players set $config config.loaded_defaults 1
+        scoreboard players set #config option default
+execute unless score #config config.loaded_defaults matches 1 run function setup:registry
+scoreboard players set #config config.loaded_defaults 1
 
 # Id
 scoreboard objectives add uid.index dummy
-scoreboard players set $uid.index uid.index 0
+scoreboard players set #uid.index uid.index 0
 
 scoreboard objectives add uid.player dummy
 scoreboard objectives add uid.entity dummy
@@ -87,15 +87,15 @@ scoreboard objectives add lobby.ready dummy
 
 # Math
 scoreboard objectives add math.const dummy
-scoreboard players set $100 math.const 100
-scoreboard players set $50 math.const 50
-scoreboard players set $20 math.const 20
-scoreboard players set $10 math.const 10
-scoreboard players set $8 math.const 8
-scoreboard players set $5 math.const 5
-scoreboard players set $4 math.const 4
-scoreboard players set $3 math.const 3
-scoreboard players set $2 math.const 2
+scoreboard players set #100 math.const 100
+scoreboard players set #50 math.const 50
+scoreboard players set #20 math.const 20
+scoreboard players set #10 math.const 10
+scoreboard players set #8 math.const 8
+scoreboard players set #5 math.const 5
+scoreboard players set #4 math.const 4
+scoreboard players set #3 math.const 3
+scoreboard players set #2 math.const 2
 
 scoreboard objectives add math.division dummy
 scoreboard objectives add math.percentage dummy

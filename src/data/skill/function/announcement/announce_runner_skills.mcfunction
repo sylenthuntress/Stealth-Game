@@ -23,7 +23,7 @@ execute if data storage skill:selection RunnerSkillsAnnouncement.text.with[0][0]
 
 # Loop function with next player's skills, until all players have been sorted
 data remove storage skill:selection Recursive[0]
-execute store result score $var game.player.team_id run data get storage skill:selection Recursive[0].team_id
+execute store result score #var game.player.team_id run data get storage skill:selection Recursive[0].team_id
 execute if data storage skill:selection Recursive[0] expand:
     data modify storage skill:selection RunnerSkillsAnnouncement.text.with[0] append value {"text": "\n- [","hover_event":{"action": "show_text","value":[{"text": ""}]}}
     return run function ~/
@@ -31,4 +31,4 @@ execute if data storage skill:selection Recursive[0] expand:
 # Display tellraw and end function
 function util:tellraw_players with storage skill:selection RunnerSkillsAnnouncement
 data modify storage skill:selection RunnerSkillsAnnouncement.ran set value true
-scoreboard players reset $var game.player.team_id
+scoreboard players reset #var game.player.team_id

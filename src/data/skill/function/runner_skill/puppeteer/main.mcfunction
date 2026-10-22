@@ -64,8 +64,8 @@ tag @s remove this.selector
 execute if score @s skill.runner.puppeteer.cooldown matches 1.. run function ./tick_cooldown:
     scoreboard players remove @s skill.runner.puppeteer.cooldown 1
 
-    scoreboard players operation $display time.display_sec = @s skill.runner.puppeteer.cooldown
-    scoreboard players operation $display time.display_sec /= $20 math.const
+    scoreboard players operation #display time.display_sec = @s skill.runner.puppeteer.cooldown
+    scoreboard players operation #display time.display_sec /= #20 math.const
 
     item modify entity @s {"type":"minecraft:filtered","slot_source":"util:inventory","item_filter":{"items":"minecraft:barrier","predicates":{"minecraft:custom_data":{"skill.runner.puppeteer.cooldown":true}}}} {
             "type": "minecraft:set_name",
@@ -85,7 +85,7 @@ execute if score @s skill.runner.puppeteer.cooldown matches 1.. run function ./t
                     "with": [
                         {
                             "score": {
-                                "name": "$display",
+                                "name": "#display",
                                 "objective": "time.display_sec"
                             },
                             "bold": true,

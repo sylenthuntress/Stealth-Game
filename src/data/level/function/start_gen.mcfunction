@@ -36,35 +36,35 @@ execute function level:band/make_pool:
         execute if data storage level:registry Recursive[0] run function level:band/make_pool_r
 
 # Store the amount of segments to generate
-scoreboard players set $segments segments.elapsed 0
-scoreboard players set $segments segments.remaining 0
-scoreboard players set $segments segments.remaining_small 0
-scoreboard players set $segments segments.remaining_med 0
-scoreboard players set $segments segments.remaining_large 0
+scoreboard players set #segments segments.elapsed 0
+scoreboard players set #segments segments.remaining 0
+scoreboard players set #segments segments.remaining_small 0
+scoreboard players set #segments segments.remaining_med 0
+scoreboard players set #segments segments.remaining_large 0
 
-scoreboard players operation $segments segments.remaining += $config config.segments_small
-scoreboard players operation $segments segments.remaining += $config config.segments_med
-scoreboard players operation $segments segments.remaining += $config config.segments_large
+scoreboard players operation #segments segments.remaining += #config config.segments_small
+scoreboard players operation #segments segments.remaining += #config config.segments_med
+scoreboard players operation #segments segments.remaining += #config config.segments_large
 
-scoreboard players operation $segments segments.remaining_small += $config config.segments_small
-scoreboard players operation $segments segments.remaining_med += $config config.segments_med
-scoreboard players operation $segments segments.remaining_large += $config config.segments_large
+scoreboard players operation #segments segments.remaining_small += #config config.segments_small
+scoreboard players operation #segments segments.remaining_med += #config config.segments_med
+scoreboard players operation #segments segments.remaining_large += #config config.segments_large
 
 # Clear previous segments
-execute if score $prev.segments segments.elapsed matches 1.. positioned coords.play_area.x (coords.play_area.y-17) coords.play_area.z function level:segment/clear:
+execute if score #prev.segments segments.elapsed matches 1.. positioned coords.play_area.x (coords.play_area.y-17) coords.play_area.z function level:segment/clear:
     forceload add ~ ~
     fill ~ ~ ~ ~69 ~60 ~35 air
     fillbiome ~ ~ ~ ~69 ~60 ~35 minecraft:the_void
-    scoreboard players remove $prev.segments segments.elapsed 1
-    execute if score $prev.segments segments.elapsed matches 1.. positioned ~ ~ ~30 run function level:segment/clear
+    scoreboard players remove #prev.segments segments.elapsed 1
+    execute if score #prev.segments segments.elapsed matches 1.. positioned ~ ~ ~30 run function level:segment/clear
 
 # Start generating segments
 execute positioned coords.play_area.x (coords.play_area.y-19) coords.play_area.z function level:segment/create:
     forceload add ~ ~
     fill ~-2 ~-10 ~ ~74 ~60 ~35 air replace
-    execute if score $segments segments.elapsed matches 1.. run function level:band/create:
-        summon minecraft:text_display ~34 ~30 ~-3 {Tags: ["band_display"], brightness:{sky:15,block:15}, alignment: "center", background: 0, billboard: "vertical", default_background: 0b, line_width: 200, view_range: 2f, see_through: 0b, shadow: 1b, text:{"color":"red","score":{"name":"$segments","objective":"segments.elapsed"}}, text_opacity: -1b, transformation: {left_rotation: [0.0f, 0.0f, 0.0f, 1.0f], right_rotation: [0.0f, 0.0f, 0.0f, 1.0f], scale: [50.0f, 50.0f, 50.0f], translation: [0.0f, 0.0f, 0.0f]}}
-        scoreboard players operation @n[type=text_display,tag=band_display] segments.elapsed = $segments segments.elapsed
+    execute if score #segments segments.elapsed matches 1.. run function level:band/create:
+        summon minecraft:text_display ~34 ~30 ~-3 {Tags: ["band_display"], brightness:{sky:15,block:15}, alignment: "center", background: 0, billboard: "vertical", default_background: 0b, line_width: 200, view_range: 2f, see_through: 0b, shadow: 1b, text:{"color":"red","score":{"name":"#segments","objective":"segments.elapsed"}}, text_opacity: -1b, transformation: {left_rotation: [0.0f, 0.0f, 0.0f, 1.0f], right_rotation: [0.0f, 0.0f, 0.0f, 1.0f], scale: [50.0f, 50.0f, 50.0f], translation: [0.0f, 0.0f, 0.0f]}}
+        scoreboard players operation @n[type=text_display,tag=band_display] segments.elapsed = #segments segments.elapsed
         function level:band/get_random with storage level:pool
         execute positioned ~ ~ ~-5 run function level:band/place with storage level:pool
         execute positioned ~ 41 ~-1 run fill ~ ~ ~ ~68 41 ~-4 minecraft:diamond_block
@@ -77,24 +77,24 @@ execute positioned coords.play_area.x (coords.play_area.y-19) coords.play_area.z
     fill ~69 41 ~-5 ~75 ~46 ~35 wallMaterial
     fill ~ ~47 ~ ~70 ~47 ~35 barrier
     # Shrink map segment to medium
-    execute if score $segments segments.remaining_large matches 0 if score $segments segments.remaining_med matches 1.. run fill ~ 41 ~-5 ~9 ~46 ~35 wallMaterial
-    execute if score $segments segments.remaining_large matches 0 if score $segments segments.remaining_med matches 1.. run fill ~69 41 ~-5 ~59 ~46 ~35 wallMaterial
+    execute if score #segments segments.remaining_large matches 0 if score #segments segments.remaining_med matches 1.. run fill ~ 41 ~-5 ~9 ~46 ~35 wallMaterial
+    execute if score #segments segments.remaining_large matches 0 if score #segments segments.remaining_med matches 1.. run fill ~69 41 ~-5 ~59 ~46 ~35 wallMaterial
 
     # Shrink map segment to small
-    execute if score $segments segments.remaining_large matches 0 if score $segments segments.remaining_med matches 0 run fill ~ 41 ~-5 ~19 ~46 ~35 wallMaterial
-    execute if score $segments segments.remaining_large matches 0 if score $segments segments.remaining_med matches 0 run fill ~69 41 ~-5 ~49 ~46 ~35 wallMaterial
+    execute if score #segments segments.remaining_large matches 0 if score #segments segments.remaining_med matches 0 run fill ~ 41 ~-5 ~19 ~46 ~35 wallMaterial
+    execute if score #segments segments.remaining_large matches 0 if score #segments segments.remaining_med matches 0 run fill ~69 41 ~-5 ~49 ~46 ~35 wallMaterial
 
     # Place pipes
-    # execute if score $segments segments.elapsed matches 3.. run place template level:pipes ~45 ~32 ~-6
-    # execute if score $segments segments.elapsed matches 3.. run place template level:pipes ~23 ~32 ~ 180
+    # execute if score #segments segments.elapsed matches 3.. run place template level:pipes ~45 ~32 ~-6
+    # execute if score #segments segments.elapsed matches 3.. run place template level:pipes ~23 ~32 ~ 180
 
     # Finish the chain and start the next segment if queued
-    execute if score $segments segments.remaining_large matches 1.. run scoreboard players remove $segments segments.remaining_large 1
-    execute if score $segments segments.remaining_large matches 0 if score $segments segments.remaining_med matches 1.. run scoreboard players remove $segments segments.remaining_med 1
-    execute if score $segments segments.remaining_large matches 0 if score $segments segments.remaining_med matches 0 run scoreboard players remove $segments segments.remaining_small 1
-    scoreboard players remove $segments segments.remaining 1
-    scoreboard players add $segments segments.elapsed 1
-    execute if score $segments segments.remaining matches 0 expand:
+    execute if score #segments segments.remaining_large matches 1.. run scoreboard players remove #segments segments.remaining_large 1
+    execute if score #segments segments.remaining_large matches 0 if score #segments segments.remaining_med matches 1.. run scoreboard players remove #segments segments.remaining_med 1
+    execute if score #segments segments.remaining_large matches 0 if score #segments segments.remaining_med matches 0 run scoreboard players remove #segments segments.remaining_small 1
+    scoreboard players remove #segments segments.remaining 1
+    scoreboard players add #segments segments.elapsed 1
+    execute if score #segments segments.remaining matches 0 expand:
         forceload add ~69 ~ ~49 ~80
         place template level:finish_line ~19 ~ ~25
         fill ~ 41 ~29 ~49 41 ~25 minecraft:netherite_block
@@ -102,13 +102,13 @@ execute positioned coords.play_area.x (coords.play_area.y-19) coords.play_area.z
         fill ~69 41 ~-5 ~49 ~46 ~80 wallMaterial
         summon minecraft:text_display ~34 ~30 ~27 {Tags: ["band_display"], brightness:{sky:15,block:15}, alignment: "center", background: 0, billboard: "vertical", default_background: 0b, line_width: 200, view_range: 2f, see_through: 0b, shadow: 1b, text:{"color":"red","bold":true,"translate": "game.finish"}, text_opacity: -1b, transformation: {left_rotation: [0.0f, 0.0f, 0.0f, 1.0f], right_rotation: [0.0f, 0.0f, 0.0f, 1.0f], scale: [50.0f, 50.0f, 50.0f], translation: [0.0f, 0.0f, 0.0f]}}
         summon minecraft:marker ~34 ~17 ~50 {Tags: ["gameplay.killer.backdoor.final_warp"]}
-        execute positioned ~34 ~30 ~25 run scoreboard players operation @n[type=text_display,tag=band_display] segments.elapsed = $segments segments.elapsed
+        execute positioned ~34 ~30 ~25 run scoreboard players operation @n[type=text_display,tag=band_display] segments.elapsed = #segments segments.elapsed
         forceload remove ~69 ~ ~49 ~80
-    unless score $segments segments.remaining matches ..0 positioned ~ ~ ~30 run function level:segment/create
+    unless score #segments segments.remaining matches ..0 positioned ~ ~ ~30 run function level:segment/create
 
     forceload remove ~ ~
-scoreboard players operation $prev.segments segments.elapsed = $segments segments.elapsed
-execute if score $gamestate gamestate.generating matches 1 run function game:finish_generation
+scoreboard players operation #prev.segments segments.elapsed = #segments segments.elapsed
+execute if score #gamestate gamestate.generating matches 1 run function game:finish_generation
 
 # Disable command blocks
 schedule function level:disable_command_blocks 10t

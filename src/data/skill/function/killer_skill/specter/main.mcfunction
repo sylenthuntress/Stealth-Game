@@ -1,8 +1,8 @@
 execute if score @s skill.killer.specter.cooldown matches 1.. run function ./tick_cooldown:
     scoreboard players remove @s skill.killer.specter.cooldown 1
 
-    scoreboard players operation $display time.display_sec = @s skill.killer.specter.cooldown
-    scoreboard players operation $display time.display_sec /= $20 math.const
+    scoreboard players operation #display time.display_sec = @s skill.killer.specter.cooldown
+    scoreboard players operation #display time.display_sec /= #20 math.const
 
     item modify entity @s {"type":"minecraft:filtered","slot_source":"util:inventory","item_filter":{"items":"minecraft:barrier","predicates":{"minecraft:custom_data":{"skill.killer.specter.cooldown":true}}}} {
             "type": "minecraft:set_name",
@@ -22,7 +22,7 @@ execute if score @s skill.killer.specter.cooldown matches 1.. run function ./tic
                     "with": [
                         {
                             "score": {
-                                "name": "$display",
+                                "name": "#display",
                                 "objective": "time.display_sec"
                             },
                             "bold": true,

@@ -1,6 +1,6 @@
 schedule function game:start 200t
 
-scoreboard players set $gamestate gamestate.generating 0
+scoreboard players set #gamestate gamestate.generating 0
 execute as @a[tag=game.viewing] expand:
     gamemode spectator 
     effect clear @s

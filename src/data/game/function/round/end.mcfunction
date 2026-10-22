@@ -30,8 +30,8 @@ execute as @e[type=mannequin,tag=game.runner_corpse] run function game:gameplay/
 gamemode spectator @a[tag=game.playing]
 
 # Set variables
-scoreboard players set $gamestate gamestate.round_active 0
-scoreboard players set $gamestate gamestate.band_progression 0
-scoreboard players set $gamestate gamestate.crossed_finish 0
-scoreboard players set $time time.round_cooldown 100
-scoreboard players reset $time time.start_sequence
+scoreboard players set #gamestate gamestate.round_active 0
+scoreboard players set #gamestate gamestate.band_progression 0
+scoreboard players set #gamestate gamestate.crossed_finish 0
+scoreboard players set #time time.round_cooldown 100
+scoreboard players reset #time time.start_sequence

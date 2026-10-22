@@ -10,8 +10,8 @@ tag @s remove this.self
 execute if score @s skill.runner.warper.cooldown matches 1.. run function ./tick_cooldown:
     scoreboard players remove @s skill.runner.warper.cooldown 1
 
-    scoreboard players operation $display time.display_sec = @s skill.runner.warper.cooldown
-    scoreboard players operation $display time.display_sec /= $20 math.const
+    scoreboard players operation #display time.display_sec = @s skill.runner.warper.cooldown
+    scoreboard players operation #display time.display_sec /= #20 math.const
 
     item modify entity @s ./ability ./disable_ability
     item modify entity @s ./cooldown ./set_cooldown

@@ -1,4 +1,4 @@
-scoreboard players operation @s game.player.target_band = $gamestate gamestate.band_progression
+scoreboard players operation @s game.player.target_band = #gamestate gamestate.band_progression
 scoreboard players add @s game.player.target_band 2
 
 slot_source items:/backdoor {
@@ -21,7 +21,7 @@ execute unless slots entity @s game:gameplay/killer/backdoor expand:
         },
         custom_data={"item.killer.backdoor": true}
     ]
-execute if score $gamestate gamestate.band_progression matches 2.. run item modify entity @s items:backdoor {
+execute if score #gamestate gamestate.band_progression matches 2.. run item modify entity @s items:backdoor {
     "type": "minecraft:sequence",
     "functions": [
         {
@@ -75,7 +75,7 @@ execute if score $gamestate gamestate.band_progression matches 2.. run item modi
         }
     ]
 }
-execute if score @s game.player.target_band >= $segments segments.elapsed run item modify entity @s items:backdoor {
+execute if score @s game.player.target_band >= #segments segments.elapsed run item modify entity @s items:backdoor {
     "type": "minecraft:sequence",
     "functions": [
         {

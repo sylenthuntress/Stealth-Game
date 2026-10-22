@@ -14,8 +14,8 @@ execute as @e[tag=skill.weapon.foreseer.spectral_bow.projectile,nbt={inGround:1b
 execute if score @s skill.weapon.foreseer.cooldown matches 1.. run function skill:weapon/foreseer/tick_cooldown:
     scoreboard players remove @s skill.weapon.foreseer.cooldown 1
 
-    scoreboard players operation $display time.display_sec = @s skill.weapon.foreseer.cooldown
-    scoreboard players operation $display time.display_sec /= $20 math.const
+    scoreboard players operation #display time.display_sec = @s skill.weapon.foreseer.cooldown
+    scoreboard players operation #display time.display_sec /= #20 math.const
 
     item modify entity @s skill:weapon/foreseer/spectral_arrow skill:weapon/foreseer/disable_arrow
     item modify entity @s skill:weapon/foreseer/cooldown skill:weapon/foreseer/set_cooldown

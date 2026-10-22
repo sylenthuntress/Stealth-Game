@@ -1,8 +1,8 @@
 execute function .tick_tracking:
     scoreboard players remove @s skill.killer.locator.tracking_timer 1
 
-    scoreboard players operation $display time.display_sec = @s skill.killer.locator.tracking_timer
-    scoreboard players operation $display time.display_sec /= $20 math.const
+    scoreboard players operation #display time.display_sec = @s skill.killer.locator.tracking_timer
+    scoreboard players operation #display time.display_sec /= #20 math.const
 
     item modify entity @s {"type":"minecraft:filtered","slot_source":"util:inventory","item_filter":{"items":"minecraft:compass","predicates":{"minecraft:custom_data":{"skill.killer.locator.locked":true}}}} {
         "type": "minecraft:set_name",
@@ -29,7 +29,7 @@ execute function .tick_tracking:
                 "with": [
                     {
                         "score": {
-                            "name": "$display",
+                            "name": "#display",
                             "objective": "time.display_sec"
                         },
                         "bold": true,
@@ -73,8 +73,8 @@ execute function .tick_tracking:
 
 execute unless score @s skill.killer.locator.cooldown matches 1.. unless score @s skill.killer.locator.tracking_timer matches 0.. function ./passive_tracking:
     scoreboard objectives add var.runners dummy
-    execute at @s store result score $var var.runners if entity @a[team=runner,distance=12..48]
-    execute if score $var var.runners matches ..1 run return run function ./fail_tracking:
+    execute at @s store result score #var var.runners if entity @a[team=runner,distance=12..48]
+    execute if score #var var.runners matches ..1 run return run function ./fail_tracking:
         scoreboard objectives remove var.runners
 
     scoreboard players set @s skill.killer.locator.tracking_timer 2
@@ -103,8 +103,8 @@ function ./point_compass with storage skill:data KillerSkills.Locator.Tracked
 execute unless score @s skill.killer.locator.tracking_timer matches 0.. if score @s skill.killer.locator.cooldown matches 1.. run function ./tick_cooldown:
     scoreboard players remove @s skill.killer.locator.cooldown 1
 
-    scoreboard players operation $display time.display_sec = @s skill.killer.locator.cooldown
-    scoreboard players operation $display time.display_sec /= $20 math.const
+    scoreboard players operation #display time.display_sec = @s skill.killer.locator.cooldown
+    scoreboard players operation #display time.display_sec /= #20 math.const
 
     item modify entity @s {"type":"minecraft:filtered","slot_source":"util:inventory","item_filter":{"items":"minecraft:compass","predicates":{"minecraft:custom_data":{"skill.killer.locator.ability":true}}}} {
             "type": "minecraft:sequence",
@@ -127,7 +127,7 @@ execute unless score @s skill.killer.locator.tracking_timer matches 0.. if score
                             "with": [
                                 {
                                     "score": {
-                                        "name": "$display",
+                                        "name": "#display",
                                         "objective": "time.display_sec"
                                     },
                                     "bold": true,

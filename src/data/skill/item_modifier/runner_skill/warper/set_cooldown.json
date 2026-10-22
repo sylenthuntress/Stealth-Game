@@ -16,7 +16,7 @@
             "with": [
                 {
                     "score": {
-                        "name": "$display",
+                        "name": "#display",
                         "objective": "time.display_sec"
                     },
                     "bold": true,

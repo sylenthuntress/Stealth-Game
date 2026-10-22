@@ -1,14 +1,14 @@
 # Set Variables
-scoreboard players set $gamestate gamestate.round_active 1
-scoreboard players reset $time time.start_sequence
+scoreboard players set #gamestate gamestate.round_active 1
+scoreboard players reset #time time.start_sequence
 
 # Set timer
-execute store result score $time time.round_timer run function util:get/base_timer
-execute store result bossbar game:time/round_timer max run scoreboard players get $time time.round_timer
-execute store result bossbar game:time/round_timer value run scoreboard players get $time time.round_timer
+execute store result score #time time.round_timer run function util:get/base_timer
+execute store result bossbar game:time/round_timer max run scoreboard players get #time time.round_timer
+execute store result bossbar game:time/round_timer value run scoreboard players get #time time.round_timer
 bossbar set game:time/endgame_timer players
 bossbar set game:time/round_timer players @a[tag=game.viewing]
-scoreboard players reset $time time.endgame_timer
+scoreboard players reset #time time.endgame_timer
 
 execute as @a[tag=game.playing] at @s run function game:round/start_moving:
     attribute @s minecraft:movement_speed modifier remove game:round/start_sequence

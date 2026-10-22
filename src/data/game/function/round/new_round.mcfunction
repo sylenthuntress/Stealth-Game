@@ -1,10 +1,10 @@
 import util:coordinates as coords
 
 # Set variables
-scoreboard players add $gamestate gamestate.round_count 1
-scoreboard players set $time time.start_sequence 300
-scoreboard players reset $time time.round_cooldown
-scoreboard players reset $time time.round_timer
+scoreboard players add #gamestate gamestate.round_count 1
+scoreboard players set #time time.start_sequence 300
+scoreboard players reset #time time.round_cooldown
+scoreboard players reset #time time.round_timer
 bossbar set game:time/round_timer players
 execute as @e[type=text_display,tag=band_display] run data modify entity @s text.color set value red
 function game:points/clear_logs
@@ -12,15 +12,15 @@ function game:points/clear_logs
 # Distribute teams for everyone
 scoreboard players reset @a game.player.team_id
 
-execute if score $config config.team_selection matches 0 expand:
+execute if score #config config.team_selection matches 0 expand:
     scoreboard players set @a[tag=game.playing] game.player.team_id 1
-    scoreboard players set $queue game.player.killer_queue 999
-    execute as @a[tag=game.playing] if score @s game.player.killer_queue matches 1.. run scoreboard players operation $queue game.player.killer_queue < @s game.player.killer_queue
-    execute as @a[tag=game.playing] if score @s game.player.killer_queue = $queue game.player.killer_queue expand:
+    scoreboard players set #queue game.player.killer_queue 999
+    execute as @a[tag=game.playing] if score @s game.player.killer_queue matches 1.. run scoreboard players operation #queue game.player.killer_queue < @s game.player.killer_queue
+    execute as @a[tag=game.playing] if score @s game.player.killer_queue = #queue game.player.killer_queue expand:
         scoreboard players set @s game.player.team_id 2
         scoreboard players reset @s game.player.killer_queue
-execute store result score $gamestate gamestate.runners if entity @a[scores={game.player.team_id=1}]
-execute store result score $gamestate gamestate.killers if entity @a[scores={game.player.team_id=2}]
+execute store result score #gamestate gamestate.runners if entity @a[scores={game.player.team_id=1}]
+execute store result score #gamestate gamestate.killers if entity @a[scores={game.player.team_id=2}]
 
 team leave @a[tag=game.playing]
 execute as @a[tag=game.playing] run function game:round/join_round:
@@ -46,13 +46,13 @@ execute as @a[scores={game.player.team_id=1}] run function game:round/join_runne
 
     scoreboard players set @s game.player.kill_threshold 300
 
-    scoreboard players operation $math gamestate.runners = $gamestate gamestate.runners
-    scoreboard players operation $math gamestate.runners /= $2 math.const
-    scoreboard players add $math gamestate.runners 1
-    scoreboard players operation @s game.player.kill_threshold /= $math gamestate.runners
-    scoreboard players reset $math gamestate.runners
+    scoreboard players operation #math gamestate.runners = #gamestate gamestate.runners
+    scoreboard players operation #math gamestate.runners /= #2 math.const
+    scoreboard players add #math gamestate.runners 1
+    scoreboard players operation @s game.player.kill_threshold /= #math gamestate.runners
+    scoreboard players reset #math gamestate.runners
 
-    scoreboard players operation @s game.player.kill_threshold *= $gamestate gamestate.killers
+    scoreboard players operation @s game.player.kill_threshold *= #gamestate gamestate.killers
 
     execute if score @s game.player.kill_threshold matches ..50 run scoreboard players set @s game.player.kill_threshold 50
 

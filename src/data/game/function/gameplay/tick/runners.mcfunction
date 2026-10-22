@@ -19,9 +19,9 @@ execute function game:gameplay/runner/tick_hiding:
         tp @s ~ ~ ~
 
     execute if predicate {type:"minecraft:entity_properties",entity:"this",predicate:{"minecraft:effects":{"minecraft:glowing":{}}}} run function game:gameplay/runner/glow_hiding:
-        execute store result score $var time.entity.glow_timer run data get entity @s active_effects[{id:"minecraft:glowing"}].duration
-        scoreboard players operation @n[type=item_display,tag=this.display] time.entity.glow_timer += $var time.entity.glow_timer
-        scoreboard players reset $var time.entity.glow_timer
+        execute store result score #var time.entity.glow_timer run data get entity @s active_effects[{id:"minecraft:glowing"}].duration
+        scoreboard players operation @n[type=item_display,tag=this.display] time.entity.glow_timer += #var time.entity.glow_timer
+        scoreboard players reset #var time.entity.glow_timer
         data merge entity @n[type=item_display,tag=this.display] {Glowing:1b}
         effect clear @s minecraft:glowing
     scoreboard players remove @n[type=item_display,tag=this.display,scores={time.entity.glow_timer=1..}] time.entity.glow_timer 1
@@ -66,19 +66,19 @@ execute if score @s time.player.heal_timer matches 1 positioned ~-3 ~-1 ~-3 as @
 execute if block ~ 41 ~ minecraft:diamond_block unless score @s game.player.band_progression >= @e[type=text_display,tag=band_display,limit=1,sort=nearest] segments.elapsed run function game:gameplay/runner/cross_band:
     scoreboard players add @s game.player.band_progression 1
     scoreboard players add @s game.player.due_points 5
-    execute if score @s game.player.band_progression > $gamestate gamestate.band_progression expand:
+    execute if score @s game.player.band_progression > #gamestate gamestate.band_progression expand:
         scoreboard players add @s game.player.due_points 5
         scoreboard players reset @s time.player.assist_timer
         scoreboard players add @a[scores={time.player.assist_timer=1..}] game.player.due_points 5
         tellraw @a[tag=game.viewing] {"translate": "game.cross_band", "color": "red", with: [["",{text:"#",color:"dark_red","bold":true},{score:{name:"@s",objective:"game.player.band_progression"},color:"dark_red","bold":true}]]}
         as @a at @s run playsound block.note_block.chime master @s ~ ~ ~ 1 0.5
-    execute unless score @s game.player.band_progression > $gamestate gamestate.band_progression run playsound block.note_block.bit master @s ~ ~ ~ 1 0.5
+    execute unless score @s game.player.band_progression > #gamestate gamestate.band_progression run playsound block.note_block.bit master @s ~ ~ ~ 1 0.5
 
     tag @s add self
     execute as @e[type=text_display,tag=band_display] if score @s segments.elapsed <= @p[tag=self] game.player.band_progression run data modify entity @s text.color set value 'green'
     tag @s remove self
     
-    scoreboard players operation $gamestate gamestate.band_progression > @s game.player.band_progression
+    scoreboard players operation #gamestate gamestate.band_progression > @s game.player.band_progression
     function skill:cross_band
     execute as @a run function #skill:event/band_claimed
 
@@ -87,17 +87,17 @@ execute if block ~ 41 ~ minecraft:netherite_block run function game:gameplay/run
     team join finished
     playsound minecraft:block.note_block.bell master @a ~ ~ ~ 2 1 1
 
-    scoreboard players operation $math game.player.due_points = $segments segments.elapsed
-    scoreboard players operation $math game.player.due_points *= $10 math.const
-    scoreboard players operation $math game.player.due_points /= $2 math.const
-    execute if score $gamestate gamestate.crossed_finish matches 1 run scoreboard players remove $math game.player.due_points 10
-    scoreboard players operation @s game.player.due_points += $math game.player.due_points
+    scoreboard players operation #math game.player.due_points = #segments segments.elapsed
+    scoreboard players operation #math game.player.due_points *= #10 math.const
+    scoreboard players operation #math game.player.due_points /= #2 math.const
+    execute if score #gamestate gamestate.crossed_finish matches 1 run scoreboard players remove #math game.player.due_points 10
+    scoreboard players operation @s game.player.due_points += #math game.player.due_points
 
-    execute unless score $gamestate gamestate.crossed_finish matches 1 scoreboard players set $time time.endgame_timer 600
-    scoreboard players set $gamestate gamestate.crossed_finish 1
+    execute unless score #gamestate gamestate.crossed_finish matches 1 scoreboard players set #time time.endgame_timer 600
+    scoreboard players set #gamestate gamestate.crossed_finish 1
     bossbar set game:time/round_timer players
     bossbar set game:time/endgame_timer players @a[tag=game.viewing]
-    execute store result bossbar game:time/endgame_timer value run scoreboard players get $time time.endgame_timer
+    execute store result bossbar game:time/endgame_timer value run scoreboard players get #time time.endgame_timer
     
     execute unless score @s skill.runner.medic.revive_uid matches 0.. run tellraw @a {"translate": "game.cross_finish", "color": "red", with:[{"selector":"@s"}]}
     execute if score @s skill.runner.medic.revive_uid matches 0.. run function skill:runner_skill/medic/award_points
