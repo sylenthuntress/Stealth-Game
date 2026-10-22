@@ -21,5 +21,6 @@ execute on attacker expand:
 scoreboard players reset $var game.player.due_points
 scoreboard players reset $var game.player.damage
 
-# Play death noise
+# FX
 playsound minecraft:entity.bat.death player @a ~ ~ ~ 1 2 0.1
+tellraw @a[tag=game.viewing] {"translate": "gameplay.player.death_message", "color": "gold", "bold": true, "with": [{"selector": "@s", "color": "dark_red", "bold": false}]}
