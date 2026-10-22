@@ -119,9 +119,10 @@ execute unless score $time time.endgame_timer matches 1.. run return run functio
             execute if score $time timer <= $result math.result run bossbar set game:time/round_timer color red
         
     # Play final warning as timer reaches zero
-    execute if score $time timer matches ..200 function render:time/round_timer/final_warning:
-        execute if score $time timer matches 200 tellraw @a[tag=game.viewing,scores={game.player.team_id=1}] {"translate": "game.round_timer.runner_warning","color":"gray"}
-        execute if score $time timer matches 200 tellraw @a[tag=game.viewing,scores={game.player.team_id=2}] {"translate": "game.round_timer.killer_warning","color":"red"}
+    execute if score $time timer matches ..300 function render:time/round_timer/final_warning:
+        bossbar set game:time/round_timer max 200
+        execute if score $time timer matches 300 tellraw @a[tag=game.viewing,scores={game.player.team_id=1}] {"translate": "game.round_timer.runner_warning","color":"gray"}
+        execute if score $time timer matches 300 tellraw @a[tag=game.viewing,scores={game.player.team_id=2}] {"translate": "game.round_timer.killer_warning","color":"red"}
         for n in range(1, 21):
             execute if score $time timer matches (n*20) run expand:
                 playsound minecraft:block.note_block.didgeridoo master @a[tag=game.viewing] 0 0 0 1 (2-(n*0.01)) 1
