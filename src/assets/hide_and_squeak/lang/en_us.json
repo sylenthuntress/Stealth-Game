@@ -1,9 +1,10 @@
 {
     "main.new_join": "Hey, %s. Welcome to %s!",
     "main.game_name": "Hide & Squeak",
-    "game.end": "The game has ended!",
+    "game.end": "%s has ended!",
     "game.end.winners": "%s won the game with %s points!",
     "game.end.rankings": "%s had %s points",
+    "game.new_match": "%s starting soon...",
     "game.round_timer": "Time remaining: %s",
     "game.endgame_timer": "Game is Ending: %s",
     "game.round_timer.runner_warning": "Time is almost up. Run to the finish line!",

@@ -51,7 +51,7 @@ team modify runner prefix {
 
 # Dead
 team add dead "Dead"
-team modify dead color dark_gray
+team modify dead color gray
 team modify dead prefix {
     "text":"☠ ",
     "bold":false,

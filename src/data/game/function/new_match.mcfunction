@@ -6,6 +6,11 @@ tag @a[tag=game.playing] add game.viewing
 tag @a[tag=game.playing] remove lobby
 scoreboard players set @a[tag=game.playing] game.player.in_game 1
 
+# Tellraw
+tellraw @a {"text":"\n"}
+tellraw @a {"text":"=======================","color":"gold","bold":true}
+tellraw @a {"translate":"game.new_match","color":"gray","bold":false,"with": [{"translate":"main.game_name","color":"gold","bold":true}]}
+
 # Start map generation
 execute as @a[tag=game.viewing] expand: 
     clear @s
