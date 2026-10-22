@@ -27,6 +27,7 @@ runner_skills = {
 
 killer_skills = {
     "athlete": register("minecraft:mob_effect/speed", "minecraft:gui"),
+    "breeze": register("minecraft:mob_effect/wind_charged", "minecraft:gui"),
 #    "acrobat": register("minecraft:mob_effect/jump_boost", "minecraft:gui"),
 #    "winged": register("minecraft:item/elytra", "minecraft:items"),
     "trapper": register("minecraft:block/tripwire_hook", "minecraft:blocks"),
