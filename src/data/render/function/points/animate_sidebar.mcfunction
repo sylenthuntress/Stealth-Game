@@ -64,3 +64,6 @@ pointsText = makePointsText()
 for n in range(pointsTextLength):
     sidebarText.insert(n + 2, pointsText[n])
 execute if score $time animations.sidebar.name matches (0, animDuration - (pointsTextLength * 2)) run scoreboard objectives modify game.player.points displayname sidebarText
+
+## Remove spectators from sidebar
+scoreboard players reset @a[tag=!game.playing] game.player.points

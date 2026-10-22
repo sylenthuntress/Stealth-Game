@@ -13,6 +13,8 @@
     "game.cross_finish": "%s has reached the finish line!",
     "game.finish": "🏆",
     "game.generating": "Generating map segments...",
+    "game.player.spectator": "You are spectating the current match!\nClick %s to return to lobby.",
+    "game.player.leave_spectate": "[HERE]",
     "game.player.killer_queue": "You are %s in line to play Killer.",
     "game.player.killer_queue.team": "Your killer team: %s",
     "game.player.uneven_players": "Can't balance teams. %s is not playing killer.",

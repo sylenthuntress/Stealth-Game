@@ -52,6 +52,8 @@ execute if entity @a[tag=!winner,scores={game.player.points=1..}] run function g
     tag @a remove selected
     execute if entity @a[tag=!winner,scores={game.player.points=1..}] run function game:rankings/broadcast_all
     del points
-scoreboard objectives setdisplay sidebar
+    scoreboard objectives setdisplay sidebar.team.gray
+    scoreboard objectives setdisplay sidebar.team.gold
+    scoreboard objectives setdisplay sidebar.team.dark_gray
 scoreboard players reset * game.player.points
 tag @a remove winner

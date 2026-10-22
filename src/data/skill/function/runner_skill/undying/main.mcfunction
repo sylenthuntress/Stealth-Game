@@ -29,11 +29,11 @@ execute if entity @s[gamemode=spectator,team=dead] at @s run function ./attempt_
         scoreboard players add @s game.player.points_split 1
         function skill:on_disable
         function skill:disable_skills
-        execute at @s run playsound minecraft:item.totem.use master @a[tag=game.playing] ~ ~ ~ 1 1 1
-        execute at @s run playsound minecraft:entity.wither.spawn player @a[tag=game.playing] ~ ~ ~ 0.5 2 0.5
+        execute at @s run playsound minecraft:item.totem.use master @a[tag=game.viewing] ~ ~ ~ 1 1 1
+        execute at @s run playsound minecraft:entity.wither.spawn player @a[tag=game.viewing] ~ ~ ~ 0.5 2 0.5
         execute as @n[type=mannequin,tag=this.selected] at @s expand:
             function game:gameplay/runner/kill_corpse
-        tellraw @a[tag=game.playing] {"color":"#56add8","translate":"skill.runner.undying.revive","with":[{"selector":"@s"}]}
+        tellraw @a[tag=game.viewing] {"color":"#56add8","translate":"skill.runner.undying.revive","with":[{"selector":"@s"}]}
         
         scoreboard players reset @s skill.runner.medic.revive_uid
     tag @e remove this.selected

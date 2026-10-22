@@ -25,7 +25,7 @@ def addData(criteria):
     obj = "data.player." + criteria.replace('minecraft.custom:minecraft.', '')
     append function main:tick:
         scoreboard players reset @a obj
-    raw f"scoreboard objectives add {ob} {criteria}"
+    scoreboard objectives add obj criteria
 
 addData("health")
 addData("minecraft.custom:minecraft.damage_taken")
@@ -51,6 +51,8 @@ scoreboard objectives add gamestate.ranked_players dummy
 # Game
 scoreboard objectives add game.player.in_game dummy
 scoreboard objectives add game.player.in_round dummy
+scoreboard objectives add game.player.spectating dummy
+scoreboard objectives add game.player.leave_spectator trigger
 scoreboard objectives add game.player.killer_queue dummy
 scoreboard objectives add game.player.team_id dummy
 

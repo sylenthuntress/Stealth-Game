@@ -47,11 +47,11 @@ execute as @e[type=mannequin,tag=this.selected] at @s run function ./tick_puppet
                 execute if entity @n[tag=this.selected,tag=skill.runner_skill.puppeteer.small_puppet] run effect give @s darkness 4 0 false
                 execute if entity @n[tag=this.selected,tag=skill.runner_skill.puppeteer.large_puppet] run effect give @s blindness 7 0 false
 
-                execute if entity @n[tag=this.selected,tag=skill.runner_skill.puppeteer.small_puppet] run tellraw @a[tag=game.playing] {"translate":"skill.runner.puppeteer.small_puppet.announce","color":"#caa541","with":[{"selector":"@s"}]}
-                execute if entity @n[tag=this.selected,tag=skill.runner_skill.puppeteer.large_puppet] run tellraw @a[tag=game.playing] {"translate":"skill.runner.puppeteer.large_puppet.announce","color":"#caa541","with":[{"selector":"@s"}]}
-                playsound minecraft:block.netherite_block.break master @a[tag=game.playing] ~ ~ ~ 1000 0.5
-                playsound minecraft:block.netherite_block.break master @a[tag=game.playing] ~ ~ ~ 1000 0.67
-                playsound minecraft:block.netherite_block.break master @a[tag=game.playing] ~ ~ ~ 1000 0.75
+                execute if entity @n[tag=this.selected,tag=skill.runner_skill.puppeteer.small_puppet] run tellraw @a[tag=game.viewing] {"translate":"skill.runner.puppeteer.small_puppet.announce","color":"#caa541","with":[{"selector":"@s"}]}
+                execute if entity @n[tag=this.selected,tag=skill.runner_skill.puppeteer.large_puppet] run tellraw @a[tag=game.viewing] {"translate":"skill.runner.puppeteer.large_puppet.announce","color":"#caa541","with":[{"selector":"@s"}]}
+                playsound minecraft:block.netherite_block.break master @a[tag=game.viewing] ~ ~ ~ 1000 0.5
+                playsound minecraft:block.netherite_block.break master @a[tag=game.viewing] ~ ~ ~ 1000 0.67
+                playsound minecraft:block.netherite_block.break master @a[tag=game.viewing] ~ ~ ~ 1000 0.75
             
             execute as @n[type=item_display,tag=skill.runner_skill.puppeteer.little_mouse] if score @s uid.entity = @n[type=mannequin,tag=this.selected] uid.entity kill @s
             kill @s

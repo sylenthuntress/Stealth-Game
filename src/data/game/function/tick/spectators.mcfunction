@@ -1,5 +1,7 @@
 import util:coordinates as coords
 
+execute if score @s game.player.leave_spectator matches 1.. run function game:spectate/leave_spectator
+# Out of Bounds
 execute if block ~ 41 ~ minecraft:black_concrete expand:
     title @s actionbar {"translate": "game.spectator.too_far", "color": "red"}
     playsound minecraft:block.note_block.didgeridoo master @s ~ ~ ~ 1 0.5 1
