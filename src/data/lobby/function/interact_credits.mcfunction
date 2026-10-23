@@ -22,3 +22,4 @@ advancement ~/ {
 advancement revoke @s only ~/
 
 dialog show @s menu:credits
+scoreboard players add @s lobby.credits.play_music 30
