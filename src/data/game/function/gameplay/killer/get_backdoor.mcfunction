@@ -1,10 +1,10 @@
 scoreboard players operation @s game.player.target_band = #gamestate gamestate.band_progression
 scoreboard players add @s game.player.target_band 2
 
-slot_source items:/backdoor {
+slot_source items:backdoor {
     "type": "minecraft:filtered","slot_source": "util:inventory","item_filter": {"items": "minecraft:dark_oak_door","components": {"minecraft:custom_data": {"item.killer.backdoor": true}}}
 }
-execute unless slots entity @s game:gameplay/killer/backdoor expand:
+execute unless slots entity @s items:backdoor expand:
     if slots entity @s {type:"minecraft:filtered",slot_source:{type:"minecraft:slot_range",slots:"hotbar.4"},item_filter:{items:"minecraft:air"}} run item replace entity @s hotbar.4 with minecraft:dark_oak_door[
         custom_name={
             "color": "dark_gray",
