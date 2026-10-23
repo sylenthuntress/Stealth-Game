@@ -5,7 +5,7 @@ advancement ./throw_small_puppet: {
             "conditions": {
                 "item": {
                     "predicates": {
-                        "minecraft:custom_data": "{skill.runner.puppeteer.large_puppet: true}"
+                        "minecraft:custom_data": "{skill.runner.puppeteer.small_puppet: true}"
                     }
                 }
             }
