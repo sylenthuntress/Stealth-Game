@@ -3,7 +3,7 @@ tag @s add this.projectile
 execute on origin run tag @s add this.origin
 
 # Get initial motion based on charge time
-execute on origin rotated as @s positioned 0.0 0.0 0.0 summon area_effect_cloud if function skill:weapon/foreseer/calculate_motion run data modify entity @n[tag=this.projectile] Motion set from entity @s Pos
+execute on origin rotated as @s positioned 0.0 0.0 0.0 summon area_effect_cloud store success entity @s Duration int 1 if function skill:weapon/foreseer/calculate_motion run data modify entity @n[tag=this.projectile] Motion set from entity @s Pos
 function skill:weapon/foreseer/calculate_motion:
     execute unless score @p[tag=this.origin] skill.weapon.foreseer.charge_time matches 1.. run return run tp ~ ~ ~
     scoreboard players remove @p[tag=this.origin] skill.weapon.foreseer.charge_time 1

@@ -20,7 +20,7 @@ advancement revoke @s only ~/
 scoreboard players remove @s skill.killer.breeze.count 1
 execute anchored eyes run summon breeze_wind_charge ~ ~1.25 ~ {Tags:["skill.killer.breeze.wind_charge","this.projectile"]}
 data modify entity @n[type=breeze_wind_charge,tag=this.projectile] Thrower set from entity @s UUID
-execute rotated as @s positioned 0.0 0.0 0.0 positioned ^ ^0.2 ^3 summon area_effect_cloud run data modify entity @n[type=breeze_wind_charge,tag=this.projectile] Motion set from entity @s Pos
+execute rotated as @s positioned 0.0 0.0 0.0 positioned ^ ^0.2 ^3 summon area_effect_cloud store success entity @s Duration int 1 run data modify entity @n[type=breeze_wind_charge,tag=this.projectile] Motion set from entity @s Pos
 tag @n[tag=this.projectile] remove this.projectile
 
 execute if score @s skill.killer.breeze.count matches 0 run item modify entity @s {"type":"minecraft:filtered","slot_source":"util:inventory","item_filter":{"items":"minecraft:coal","predicates":{"minecraft:custom_data":{"skill.killer.breeze.ability":true}}}} {

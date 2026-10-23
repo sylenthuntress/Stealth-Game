@@ -23,7 +23,7 @@ advancement revoke @s only ./throw_blinding_flask
 item modify entity @s ./stagger_flask util:decrement
 
 summon snowball ~ ~1 ~ {Tags:["skill.runner_skill.alchemist.blinding_flask","this.projectile"],Item:{id:"minecraft:coal",count:1,components:{"minecraft:item_model":"hide_and_squeak:blinding_flask"}}}
-execute rotated as @s positioned 0.0 0.0 0.0 positioned ^ ^ ^1.5 summon area_effect_cloud run data modify entity @n[type=snowball,tag=this.projectile] Motion set from entity @s Pos
+execute rotated as @s positioned 0.0 0.0 0.0 positioned ^ ^ ^1.5 summon area_effect_cloud store success entity @s Duration int 1 run data modify entity @n[type=snowball,tag=this.projectile] Motion set from entity @s Pos
 data modify entity  @n[type=snowball,tag=this.projectile] Owner set from entity @s UUID
 summon marker ~ ~ ~ {Tags:["skill.runner_skill.alchemist.flask"]}
 ride @n[type=marker,tag=skill.runner_skill.alchemist.flask] mount @n[type=snowball,tag=this.projectile]

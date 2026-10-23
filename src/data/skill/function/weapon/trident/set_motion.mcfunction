@@ -3,7 +3,7 @@ tag @s add this.projectile
 execute on origin run tag @s add this.origin
 
 # Get initial motion based on charge time
-execute on origin rotated as @s positioned 0.0 0.0 0.0 positioned ^ ^ ^3 summon area_effect_cloud run data modify entity @n[tag=this.projectile] Motion set from entity @s Pos
+execute on origin rotated as @s positioned 0.0 0.0 0.0 positioned ^ ^ ^3 summon area_effect_cloud store success entity @s Duration int 1 run data modify entity @n[tag=this.projectile] Motion set from entity @s Pos
 
 # Add player motion to arrow
 execute as @p[tag=this.origin] expand:

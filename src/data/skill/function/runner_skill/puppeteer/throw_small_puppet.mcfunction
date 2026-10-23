@@ -62,7 +62,7 @@ item modify entity @s {"type":"minecraft:filtered","slot_source":"util:inventory
 }
 
 summon snowball ~ ~1 ~ {Tags:["skill.runner_skill.puppeteer.puppet","this.projectile"],Item:{id:"minecraft:snowball","count":1,"components":{"minecraft:item_model":"minecraft:air"}}}
-execute rotated as @s positioned 0.0 0.0 0.0 positioned ^ ^ ^1.5 summon area_effect_cloud run data modify entity @n[type=snowball,tag=this.projectile] Motion set from entity @s Pos
+execute rotated as @s positioned 0.0 0.0 0.0 positioned ^ ^ ^1.5 summon area_effect_cloud store success entity @s Duration int 1 run data modify entity @n[type=snowball,tag=this.projectile] Motion set from entity @s Pos
 data modify entity  @n[type=snowball,tag=this.projectile] Owner set from entity @s UUID
 summon marker ~ ~ ~ {Tags:["skill.runner_skill.puppeteer.small_puppet","skill.runner_skill.puppeteer.puppet"]}
 ride @n[type=marker,tag=skill.runner_skill.puppeteer.small_puppet] mount @n[type=snowball,tag=this.projectile]
