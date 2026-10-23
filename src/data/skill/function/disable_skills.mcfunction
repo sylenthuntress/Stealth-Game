@@ -1,3 +1,4 @@
+function skill:on_disable
 data remove storage skill:selection selector
 execute store result storage skill:selection selector.uid int 1 run scoreboard players get @s uid.player
 

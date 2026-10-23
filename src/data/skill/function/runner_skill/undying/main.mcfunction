@@ -27,7 +27,6 @@ execute if entity @s[gamemode=spectator,team=dead] at @s run function ./attempt_
         scoreboard players operation @s game.player.damage /= #2 math.const
         function game:gameplay/runner/update_injury
         scoreboard players add @s game.player.points_split 1
-        function skill:on_disable
         function skill:disable_skills
         execute at @s run playsound minecraft:item.totem.use master @a[tag=game.viewing] ~ ~ ~ 1 1 1
         execute at @s run playsound minecraft:entity.wither.spawn player @a[tag=game.viewing] ~ ~ ~ 0.5 2 0.5

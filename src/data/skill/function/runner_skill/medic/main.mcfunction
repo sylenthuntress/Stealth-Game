@@ -60,7 +60,6 @@ execute at @s if score @s time.player.heal_timer matches -10.. positioned ~-3 ~-
                 scoreboard players reset @s game.player.injury
                 scoreboard players reset @s game.player.damage
                 scoreboard players add @s game.player.points_split 1
-                function skill:on_disable
                 function skill:disable_skills
                 at @s run playsound minecraft:item.totem.use master @a[tag=game.viewing] ~ ~ ~ 2 1 1
             execute as @n[type=mannequin,tag=game.runner_corpse] at @s expand:

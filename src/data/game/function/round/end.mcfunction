@@ -6,7 +6,6 @@ execute as @a run function game:round/leave_round:
     execute if entity @s[tag=hiding] run function game:gameplay/runner/stop_hiding
     function game:points/add_points
 
-    function skill:on_disable
     function skill:disable_skills
 
     function game:gameplay/reset_attributes
