@@ -33,8 +33,11 @@
     "pipeline": [ "mecha" ],
     "output": "build",
     "meta": {
+        "bolt": {
+            "entrypoint": ["menu:credits"]
+        },
         "bolt_expressions": {
-            "init_path": "setup:scores",
+            "init_path": "setup:math",
             "const_objective": "math.const",
             "const_score_prefix": "#",
             "temp_objective": "math.const",

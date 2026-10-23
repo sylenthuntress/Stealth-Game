@@ -4,6 +4,7 @@ import util:coordinates as coords
 tag @a[scores={lobby.ready=1}] add game.playing
 tag @a[tag=game.playing] add game.viewing
 tag @a[tag=game.playing] remove lobby
+tag @a remove game.winner
 scoreboard players set @a[tag=game.playing] game.player.in_game 1
 
 # Tellraw

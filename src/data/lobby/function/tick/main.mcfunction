@@ -50,3 +50,10 @@ execute if score #time time.start_timer matches 0.. run function lobby:countdown
     execute if score #players var.players matches ..1 run function lobby:cancel_game
     scoreboard objectives remove var.players
 execute if score #time time.start_timer matches 0 run function game:new_match
+
+# Manage mannequin
+execute as @e[type=mannequin,tag=lobby.menu.credits.mannequin] at @s expand:
+    if entity @a[tag=winner] rotate @s facing entity @p[tag=winner]
+    unless entity @a[tag=winner] expand: 
+        if entity SylentHuntress rotate @s facing entity SylentHuntress
+        unless entity SylentHuntress run rotate @s facing entity @p[tag=lobby]

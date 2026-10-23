@@ -58,4 +58,3 @@ scoreboard objectives setdisplay sidebar.team.gray
 scoreboard objectives setdisplay sidebar.team.gold
 scoreboard objectives setdisplay sidebar.team.dark_gray
 scoreboard players reset * game.player.points
-tag @a remove game.winner

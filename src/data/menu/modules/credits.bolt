@@ -1,0 +1,161 @@
+main_credits = []
+def add_main_credit(name, role):
+    main_credits.append(
+        {
+            "type": "minecraft:plain_message",
+            "width": 250,
+            "contents": {
+                "translate": "menu.credits.credit",
+                "color": "dark_gray",
+                "with": [name, role]
+            }
+        }
+    )
+
+builders = []
+def add_builder(name):
+    if builders:
+        builders.append(", ")
+    if (type(name)) == str:
+        builders.append({"text": name, "color": "gray", "bold": false})
+    else: 
+        builders.append(name)
+
+def add_builders(*names):
+    for name in names:
+        add_builder(name)
+
+testers = []
+def add_tester(name):
+    if testers:
+        testers.append(", ")
+    if (type(name)) == str:
+        testers.append({"text": name, "color": "gray", "bold": false})
+    else: 
+        testers.append(name)
+
+def add_testers(*names):
+    for name in names:
+        add_tester(name)
+
+special_thanks = []
+def add_special(name):
+    if special_thanks:
+        special_thanks.append(", ")
+    if (type(name)) == str:
+        special_thanks.append({"text": name, "color": "gray", "bold": false})
+    else:
+        special_thanks.append(name)
+
+def add_specials(*names):
+    for name in names:
+        add_special(name)
+
+class TextBuilder:
+    def __add_credit__(name, role):
+        credits.append(
+            {
+                "type": "minecraft:plain_message",
+                "contents": {
+                    "translate": "menu.credits.credit",
+                    "with": [name, role]
+                }
+            }
+        )
+
+    def __init__(self, string):
+        self._string = string
+        self._bold = false
+        self._color = "white"
+
+    def color(self, color: str):
+        self._color = color
+        return self
+    
+    def bold(self):
+        self._bold = true
+        return self
+
+    def build(self):
+        Text = {
+            "text": self._string,
+            "color": self._color,
+            "bold": self._bold
+        }
+        return Text
+
+
+add_main_credit(TextBuilder("SylentHuntress")
+    .color("dark_green")
+    .bold()
+    .build(), TextBuilder("Creator")
+    .color("green")
+    .bold()
+    .build())
+
+add_main_credit(TextBuilder("Command Realm")
+    .color("dark_aqua")
+    .bold()
+    .build(), TextBuilder("Creators of Stealthiators; the original inspiration.")
+    .color("aqua")
+    .build())
+
+add_builders("ABeeInATree (partial)")
+add_testers("Arlette", "the fanmade Stealthiators community")
+add_special("My Girlfriends <3")
+
+credits = main_credits
+credits.append({"type": "minecraft:plain_message", "width": 300, "contents": {"translate": "menu.credits.builders", "color": "blue", "bold": true, "with": [builders]}})
+credits.append({"type": "minecraft:plain_message", "width": 300, "contents": {"translate": "menu.credits.testers", "color": "gold", "bold": true, "with": [testers]}})
+credits.append({"type": "minecraft:plain_message", "width": 300, "contents": {"translate": "menu.credits.special_thanks", "color": "#9F2B68", "bold": true, "with": [special_thanks]}})
+
+
+dialog = {
+  "type": "minecraft:multi_action",
+  "title": {
+    "translate": "menu.credits"
+  },
+  "body": credits,
+  "columns": 3,
+  "pause": false,
+  "actions": [
+    {
+      "label": {
+        "translate": "menu.credits.projects_discord",
+        "color": "blue",
+        "underlined": true
+      },
+        "action": {
+          "type": "open_url",
+          "url": "https://discord.gg/gYWwjRfNH7"
+        }
+    },
+    {
+      "label": {
+        "translate": "menu.credits.game_discord",
+        "color": "blue",
+        "underlined": true
+      },
+        "action": {
+          "type": "open_url",
+          "url": "https://discord.gg/RSzekrTsys"
+        },
+        "width": 100
+    },
+    {
+      "label": {
+        "translate": "menu.credits.stealthiators",
+        "color": "blue",
+        "underlined": true
+      },
+        "action": {
+          "type": "open_url",
+          "url": "https://www.planetminecraft.com/project/stealthiators"
+        }
+    }
+  ]
+}
+dialog menu:credits dialog
+append dialog_tag minecraft:pause_screen_additions {
+    "values": [(~/)]
+}

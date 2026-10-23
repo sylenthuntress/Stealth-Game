@@ -84,6 +84,7 @@ scoreboard objectives add segments.remaining_large dummy
 
 # Lobby
 scoreboard objectives add lobby.ready dummy
+scoreboard objectives add lobby.credits.play_music dummy
 
 # Math
 scoreboard objectives add math.const dummy

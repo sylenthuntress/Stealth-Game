@@ -33,6 +33,7 @@
     "item.killer.backdoor": "Click to warp to %s",
     "item.killer.backdoor.band": "Band",
     "item.killer.backdoor.finish_line": "Finish Line",
+    "lobby.menu.credits": "Click to see Credits\nor join Discord.",
     "lobby.join_spectator": "Click to spectate game.",
     "lobby.ready_button.ready": "Click to leave game.",
     "lobby.ready_button.not_ready": "Click to join game.",

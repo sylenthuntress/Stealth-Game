@@ -1,0 +1,12 @@
+{
+    "menu.return": "Return to Navigation",
+    "menu.title": "Navigation",
+    "menu.credits": "Credits",
+    "menu.credits.credit": "%s - %s",
+    "menu.credits.builders": "Builders: %s",
+    "menu.credits.testers": "Testers: %s",
+    "menu.credits.special_thanks": "Special Thanks: %s",
+    "menu.credits.projects_discord": "Follow my other projects",
+    "menu.credits.game_discord": "Join our community",
+    "menu.credits.stealthiators": "Check out Stealthiators"
+}
