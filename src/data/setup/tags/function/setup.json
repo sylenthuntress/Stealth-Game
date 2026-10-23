@@ -3,6 +3,7 @@
         "setup:scores",
         "setup:gamerules",
         "setup:teams",
-        "setup:bossbars"
+        "setup:bossbars",
+        "setup:math"
     ]
 }
