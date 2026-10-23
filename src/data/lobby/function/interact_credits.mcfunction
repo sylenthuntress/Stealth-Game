@@ -22,4 +22,4 @@ advancement ~/ {
 advancement revoke @s only ~/
 
 dialog show @s menu:credits
-scoreboard players add @s lobby.credits.play_music 30
+execute if score @s lobby.credits.play_music matches ..29 run scoreboard players set @s lobby.credits.play_music 29
