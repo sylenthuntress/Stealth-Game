@@ -1,6 +1,7 @@
 gamemode spectator
 team join dead
 scoreboard players reset @s skill.runner.medic.revive_uid
+attribute @s minecraft:movement_speed modifier remove game:gameplay/runner/damaged
 
 # Spawn corpse
 execute function game:gameplay/runner/find_ground:
