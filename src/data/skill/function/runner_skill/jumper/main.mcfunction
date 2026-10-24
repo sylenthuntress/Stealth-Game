@@ -66,7 +66,7 @@ execute if entity @s[tag=hiding,predicate=util:is_moving,scores={skill.runner.ju
         execute if score @s skill.runner.jumper.charge matches n scoreboard players set @s skill.runner.jumper.charge_cooldown (chargeCooldown+int(n*chargeMult))
 execute if entity @s[tag=hiding,predicate=!util:is_sneaking,scores={skill.runner.jumper.charge_cooldown=1..}] run function ./moving
 
-execute at @s if score @s data..jump matches 1 if score @s skill.runner.jumper.charge matches 1.. run function ./jump:
+execute at @s if score @s data.jump matches 1 if score @s skill.runner.jumper.charge matches 1.. run function ./jump:
     function game:gameplay/runner/stop_hiding
     playsound minecraft:block.note_block.bit master @s ~ ~ ~ 1 2
     for n in range(1, maxCharge+1):

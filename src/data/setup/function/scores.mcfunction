@@ -20,9 +20,9 @@ scoreboard objectives add uid.player dummy
 scoreboard objectives add uid.entity dummy
 
 # Data
-## Example: data..<raw_criteria>
+## Example: data.<raw_criteria>
 def addData(criteria):
-    obj = "data.." + criteria.replace('minecraft.custom:minecraft.', '')
+    obj = "data." + criteria.replace('minecraft.custom:minecraft.', '')
     append function main:tick:
         scoreboard players reset @a obj
     scoreboard objectives add obj criteria

@@ -33,7 +33,7 @@ execute function game:gameplay/runner/tick_hiding:
     tag @s remove this.self
 
 # Manage Health
-execute if score @s data..damage_taken matches 1.. run function game:gameplay/runner/take_damage
+execute if score @s data.damage_taken matches 1.. run function game:gameplay/runner/take_damage
 execute if score @s time.player.damage_timer matches 1.. run scoreboard players remove @s time.player.damage_timer 1
 execute if score @s time.player.damage_timer matches 0 expand:
     attribute @s minecraft:movement_speed modifier remove game:gameplay/runner/damaged
