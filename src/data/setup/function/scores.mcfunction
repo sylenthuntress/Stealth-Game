@@ -102,6 +102,9 @@ scoreboard objectives add math.division dummy
 scoreboard objectives add math.percentage dummy
 scoreboard objectives add math.result dummy
 
+# Menu
+scoreboard objectives add menu.guidebook.selected_page trigger
+
 # Skill
 scoreboard objectives add skill.slots.runner.occupied dummy
 scoreboard objectives add skill.slots.runner.random_selected dummy
