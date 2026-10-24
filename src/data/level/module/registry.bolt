@@ -10,8 +10,8 @@ segments = {
     "dappled_trees": registerBiome(10, "minecraft:dappled_forest"),
     "birch_trees": registerBiome(10, "minecraft:birch_forest"),
     "desert": register(10, "minecraft:desert", 1, 1, 0),
-    "spores_cave": register(5, "minecraft:lush_caves", 0, 0, 1),
-    "spores_field": registerBiome(5, "minecraft:lush_caves"),
+#    "spores_cave": register(0, "minecraft:lush_caves", 0, 0, 1),
+    "spores_field": registerBiome(10, "minecraft:lush_caves"),
     "skull_peak": registerBiome(10, "minecraft:warm_ocean"),
     "trial_chambers": registerUniversal(10)
 }
