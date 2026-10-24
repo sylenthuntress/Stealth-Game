@@ -20,7 +20,7 @@ execute unless slots entity @s {"type":"minecraft:filtered","slot_source":"util:
         ]
     },
     consumable={
-        consume_seconds: 1.0,
+        consume_seconds: 0.5,
         has_consume_particles: false,
         animation: "bow",
         sound:{sound_id:""}
@@ -56,7 +56,7 @@ item modify entity @s {"type":"minecraft:filtered","slot_source":"util:inventory
                         ]
                         },
                         "consumable": {
-                            "consume_seconds": 1.0,
+                            "consume_seconds": 0.5,
                             "has_consume_particles": false,
                             "animation": "bow",
                             "sound": {
