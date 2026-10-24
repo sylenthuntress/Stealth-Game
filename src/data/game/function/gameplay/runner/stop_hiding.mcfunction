@@ -12,7 +12,6 @@ function ./transfer_hiding:
 data remove storage var:glow_timer duration
 
 attribute @s minecraft:camera_distance modifier remove game:gameplay/runner/hiding
-attribute @s minecraft:scale modifier remove game:gameplay/runner/hiding
 attribute @s minecraft:sneaking_speed modifier remove game:gameplay/runner/hiding
 attribute @s minecraft:attack_damage modifier remove game:gameplay/runner/hiding
 attribute @s minecraft:jump_strength modifier remove game:gameplay/runner/hiding

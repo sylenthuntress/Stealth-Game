@@ -14,7 +14,6 @@ execute as @e[type=marker,tag=skill.runner_skill.puppeteer.small_puppet] at @s u
         data merge entity @s {pose:"crouching"}
         item fill entity @s armor.* with air
         effect give @s invisibility infinite 0 true
-        attribute @s minecraft:scale modifier add game:gameplay/runner/hiding -0.05 add_multiplied_base
         attribute @s minecraft:gravity modifier add game:gameplay/runner/hiding 0.02 add_value
 
         summon minecraft:item_display ~ ~ ~ {Tags:["skill.runner_skill.puppeteer.little_mouse"], teleport_duration: 1, item: {components: {"minecraft:custom_name": {bold: 1b, color: "gold", italic: 0b, text: "Field Mouse", underlined: 1b}, "minecraft:lore": [{color: "gray", italic: 0b, text: "Custom Head ID: 110695"}, {color: "blue", italic: 0b, text: "www.minecraft-heads.com"}], "minecraft:profile": {properties: [{name: "textures", value: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjM3OWUwOTI1MjgxNzMxNGJkMGI2OTRmN2Q1M2I0OGFmMmM3ZmE4NDk5MTA5ODAyYTQxYmIyOTRkMmY5M2UzZSJ9fX0="}]}}, count: 1, id: "minecraft:player_head"}, item_display: "head"}

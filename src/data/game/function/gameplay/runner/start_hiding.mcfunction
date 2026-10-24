@@ -3,7 +3,6 @@ particle minecraft:block_crumble{block_state:"minecraft:white_wool"} ~ ~ ~ 0.2 0
 item fill entity @s armor.* with air
 effect give @s invisibility infinite 0 true
 attribute @s minecraft:camera_distance modifier add game:gameplay/runner/hiding 1.5 add_multiplied_base
-attribute @s minecraft:scale modifier add game:gameplay/runner/hiding -0.05 add_multiplied_base
 attribute @s minecraft:attack_damage modifier add game:gameplay/runner/hiding -1 add_multiplied_base
 attribute @s minecraft:sneaking_speed modifier add game:gameplay/runner/hiding 0.7 add_value
 attribute @s minecraft:jump_strength modifier add game:gameplay/runner/hiding -0.1 add_value
