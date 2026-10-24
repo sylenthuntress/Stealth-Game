@@ -1,62 +1,179 @@
-from menu:builder import DialogBuilder, TextBuilder
+from menu:builder import TextBuilder
+
+dialogs = []
+class DialogBuilder:
+    def __init__(self, id):
+        self._id = f"menu:{id}"
+        self._title = {"translate": f"menu.{id}".replace("/", ".")}
+        self._exit = {
+            "label": {
+                "translate": "menu.close"
+            }
+        }
+        self._actions = []
+        self._body = []
+        self._columns = 3
+        self._index = len(dialogs) + 1
+        self._guidebook = false
+
+    def translate_title(self, translation):
+        translation = {self._title.get("translate"): translation}
+        merge language menu:en_us {**translation}
+        return self
+
+    def page(self, dialog):
+        value = 0
+        global dialogs
+        for index in range(len(dialogs)):
+            entry = dialogs[index]
+            if entry.get("id") == f"menu:{dialog}":
+                value = entry.get("index")
+                break
+        if value == 0:
+            value += len(dialogs) + 2
+            dialogs.append({"index": value, "id": f"menu:{dialog}", "dialog": {}})
+        self._actions.append({
+            "label": {
+                "translate": f"menu.{dialog}".replace("/", "."),
+                "color": "white"
+            },
+            "action": {
+                "type": "minecraft:run_command",
+                "command": f"trigger menu.guidebook.selected_page set {value}"
+            }
+        })
+        return self
+
+    def prev(self, dialog):
+        value = 1
+        global dialogs
+        for entry in dialogs:
+            if entry.get("id") == f"menu:{dialog}":
+                value = entry.get("index")
+        self._exit = {
+            "label": {
+                "translate": f"menu.{dialog}".replace("/", "."),
+                "color": "white"
+            },
+            "action": {
+                "type": "minecraft:run_command",
+                "command": f"trigger menu.guidebook.selected_page set {value}"
+            }
+        }
+        return self
+
+    def columns(self, columns):
+        self._columns = columns
+        return self
+
+    def line(self, text):
+        self._body.append ({
+            "type": "minecraft:plain_message",
+            "width": 300,
+            "contents": [
+                text
+            ]
+        })
+        return self
+
+    def line_item(self, description, item):
+        self._body.append({
+            "type": "minecraft:item",
+            "description": description,
+            "show_tooltip": false,
+            "item": item
+        })
+
+        return self
+
+    def build(self):
+        global dialogs
+        if not self._actions:
+            for entry in dialogs:
+                parent_dialog = entry.get("dialog")
+                if parent_dialog and parent_dialog.get("title").get("translate") == self._exit.get("label").get("translate"):
+                    for page in entry.get("dialog").get("actions"):
+                        if page.get("label").get("translate") != self._title.translate:
+                            self._actions.append(page)
+                    break   
+
+        dialog = {
+            "type": "minecraft:multi_action",
+            "pause": false,
+            "after_action": "close",
+            "title": self._title,
+            "actions": self._actions,
+            "body": self._body,
+            "exit_action": self._exit
+        }
+
+        index = self._index
+        for entry in dialogs:
+            if entry.get("id") == self._id:
+                index = entry.get("index")
+                dialogs.remove(entry)
+                break
+        return_value = {"id": self._id, "dialog": dialog, "index": index}
+        dialogs.append(return_value)
+        return return_value
 
 pages = []
 
 # Main Guidebook
-pages.append(DialogBuilder("guidebook")
+pages.append(DialogBuilder("guidebook/intro")
     .translate_title("Guidebook")
     .line(TextBuilder("menu.guidebook.1")
         .translate("Welcome to Hide & Squeak! H&S is an asymmetrical game of Cat & Mouse. To summarize, it's a very silly game where the Runners must try and reach the end of a randomly-generated map without getting caught by the deadly Hunters.")
         .color("gray")
         .build())
     .columns(4)
-    .page("core_gameplay")
-    .page("runners")
-    .page("killers")
+    .page("guidebook/core_gameplay")
+    .page("guidebook/runners")
+    .page("guidebook/killers")
     .build())
 
 # Core Gameplay
-pages.append(DialogBuilder("core_gameplay")
+pages.append(DialogBuilder("guidebook/core_gameplay")
     .translate_title("§5Core Gameplay")
     .line(TextBuilder("menu.guidebook.core_gameplay.1")
         .translate("Lorem ipsum dolor")
         .color("gray")
         .build())
-    .page("map_generation")
-    .page("points")
-    .page("skills")
-    .prev("guidebook")
+    .page("guidebook/map_generation")
+    .page("guidebook/points")
+    .page("guidebook/skills")
+    .prev("guidebook/intro")
     .build())
 
-pages.append(DialogBuilder("map_generation")
+pages.append(DialogBuilder("guidebook/map_generation")
     .translate_title("Map Generation")
     .line(TextBuilder("menu.guidebook.map_generation.1")
         .translate("Lorem ipsum dolor")
         .color("gray")
         .build())
-    .prev("core_gameplay")
+    .prev("guidebook/core_gameplay")
     .build())
 
-pages.append(DialogBuilder("points")
+pages.append(DialogBuilder("guidebook/points")
     .translate_title("Points")
     .line(TextBuilder("menu.guidebook.points.1")
         .translate("Lorem ipsum dolor")
         .color("gray")
         .build())
-    .prev("core_gameplay")
+    .prev("guidebook/core_gameplay")
     .build())
 
-pages.append(DialogBuilder("skills")
+pages.append(DialogBuilder("guidebook/skills")
     .translate_title("Skills")
     .line(TextBuilder("menu.guidebook.skills.1")
         .translate("Lorem ipsum dolor")
         .color("gray")
         .build())
-    .prev("core_gameplay")
+    .prev("guidebook/core_gameplay")
     .build())
 
 # Team: Runners
-pages.append(DialogBuilder("runners")
+pages.append(DialogBuilder("guidebook/runners")
     .translate_title("§l§7Team: Runners")
     .line(TextBuilder("menu.guidebook.runners.1")
         .translate("The runners have a simple goal: §lsurvival§r§7. Start on one end of the map, and §lsneak§r§7 §lor§r§7 §ldash§r§7 §lyour§r§7 §lway§r §lto§7 §lthe§r§7 §lend§r§7 under the noses of the hunters. Your teammates care naught for your survival, and may only choose to help you if it benefits them.")
@@ -71,12 +188,12 @@ pages.append(DialogBuilder("runners")
             \n§4[!]§r§c Map progress is marked by bands between each segment. §lThe first to each band is awarded extra points!")
         .color("gray")
         .build())
-    .page("health")
-    .page("hiding")
-    .prev("guidebook")
+    .page("guidebook/health")
+    .page("guidebook/hiding")
+    .prev("guidebook/intro")
     .build())
 
-pages.append(DialogBuilder("hiding")
+pages.append(DialogBuilder("guidebook/hiding")
     .translate_title("§7Mechanic: Hiding")
     .line(TextBuilder("menu.guidebook.hiding.1")
         .translate("Runners have more than one way to achieve stealth. Besides their short stature and their lack of audible movement, they're capable of reducing their form even further on command.")
@@ -115,10 +232,10 @@ pages.append(DialogBuilder("hiding")
         .translate("While §lHiding§r§7, you lose the ability to punch the killers, and you become significantly less nimble. However, you're much harder to spot, and blend into more areas.")
         .color("gray")
         .build())
-    .prev("runners")
+    .prev("guidebook/runners")
     .build())
 
-pages.append(DialogBuilder("health")
+pages.append(DialogBuilder("guidebook/health")
     .translate_title("§7Mechanic: Health/Injury")
     .line(TextBuilder("menu.guidebook.health.1")
         .translate("Prey are fragile little things. With each attack from the killer, or bump into a hazard, you lose health and rack up injuries.")
@@ -153,11 +270,11 @@ pages.append(DialogBuilder("health")
         \n§4[!]§r§c In a 1v1, your vitality is greatly increased, eliminating injury-based penalties.")
         .color("gray")
         .build())
-    .prev("runners")
+    .prev("guidebook/runners")
     .build())
 
 # Team: Killers
-pages.append(DialogBuilder("killers")
+pages.append(DialogBuilder("guidebook/killers")
     .translate_title("§l§6Team: Killers")
     .line(TextBuilder("menu.guidebook.killers.1")
         .translate("Despite bearing the job of a hunter, killers are often put under pressure to guard the §lFinish Line§r§7. Your primary goal is to get rid of the runners, and if they reach the other side of the map, you have no way of following them.")
@@ -167,12 +284,12 @@ pages.append(DialogBuilder("killers")
         .translate("This means your gameplay is as much §orisk management§r§7 as it is of being the risk. Every chase gives the other runners time to advance, so don't overcommit, and don't get too confident in guesses.")
         .color("gray")
         .build())
-    .page("attacking")
-    .page("backdoor")
-    .prev("guidebook")
+    .page("guidebook/attacking")
+    .page("guidebook/backdoor")
+    .prev("guidebook/intro")
     .build())
 
-pages.append(DialogBuilder("attacking")
+pages.append(DialogBuilder("guidebook/attacking")
     .translate_title("§6Mechanic: Attacking")
     .line(TextBuilder("menu.guidebook.attacking.1")
         .translate("The opposing runners rarely die from a single strike. However, the more the runners outnumber you, the more vulnerable they are to your attacks, even dying in two hits!")
@@ -200,10 +317,10 @@ pages.append(DialogBuilder("attacking")
         .translate("Each hit grants you some amount of points, and if present, even shares a little with your team.\nThis is based on the §opercentage§r§7 of damage you deal, §lrewarding you the same no matter how you spread out hits.")
         .color("gray")
         .build())
-    .prev("killers")
+    .prev("guidebook/killers")
     .build())
 
-pages.append(DialogBuilder("backdoor")
+pages.append(DialogBuilder("guidebook/backdoor")
     .translate_title("§7Mechanic: Backdoor")
     .line(TextBuilder("menu.guidebook.backdoor.1")
         .translate("By instinct, you know many routes that the runners do not. As the runners advance ahead of you, you may use the §l§cBackdoor§r§7 to quickly teleport ahead of their current progress, and regain your position.")
@@ -227,7 +344,7 @@ pages.append(DialogBuilder("backdoor")
         .translate("Furthermore, the warp is audible to every runner. Many runners may try to bait the warp by 'claiming' bands without crossing through the next segment, and every runner will know to advance when you warp.")
         .color("gray")
         .build())
-    .prev("killers")
+    .prev("guidebook/killers")
     .build())
 
 for page in pages:

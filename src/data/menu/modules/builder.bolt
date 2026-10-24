@@ -1,119 +1,3 @@
-dialogs = []
-class DialogBuilder:
-    def __init__(self, id):
-        self._id = f"menu:guidebook/{id}"
-        self._title = {"translate": f"menu.guidebook.{id}"}
-        self._exit = {
-            "label": {
-                "translate": "menu.guidebook.close"
-            }
-        }
-        self._actions = []
-        self._body = []
-        self._columns = 3
-        self._index = len(dialogs) + 1
-
-    def translate_title(self, translation):
-        translation = {self._title.get("translate"): translation}
-        merge language menu:en_us {**translation}
-        return self
-
-    def page(self, dialog):
-        value = 1
-        global dialogs
-        for index in range(len(dialogs)):
-            entry = dialogs[index]
-            if entry.get("id") == f"menu:guidebook/{dialog}":
-                value = entry.get("index")
-                break
-        if value == 1:
-            value += len(dialogs) + 1
-            dialogs.append({"index": value, "id": f"menu:guidebook/{dialog}", "dialog": {}})
-        self._actions.append({
-            "label": {
-                "translate": f"menu.guidebook.{dialog}",
-                "color": "white"
-            },
-            "action": {
-                "type": "minecraft:run_command",
-                "command": f"trigger menu.guidebook.selected_page set {value}"
-            }
-        })
-        return self
-
-    def prev(self, dialog):
-        value = 1
-        global dialogs
-        for entry in dialogs:
-            if entry.get("id") == f"menu:guidebook/{dialog}":
-                value = entry.get("index")
-        self._exit = {
-            "label": {
-                "translate": f"menu.guidebook.{dialog}",
-                "color": "white"
-            },
-            "action": {
-                "type": "minecraft:run_command",
-                "command": f"trigger menu.guidebook.selected_page set {value}"
-            }
-        }
-        return self
-
-    def columns(self, columns):
-        self._columns = columns
-        return self
-
-    def line(self, text):
-        self._body.append ({
-            "type": "minecraft:plain_message",
-            "width": 300,
-            "contents": [
-                text
-            ]
-        })
-        return self
-
-    def line_item(self, description, item):
-        self._body.append({
-            "type": "minecraft:item",
-            "description": description,
-            "show_tooltip": false,
-            "item": item
-        })
-
-        return self
-
-    def build(self):
-        global dialogs
-        if not self._actions:
-            for entry in dialogs:
-                parent_dialog = entry.get("dialog")
-                if parent_dialog and parent_dialog.get("title").get("translate") == self._exit.get("label").get("translate"):
-                    for page in entry.get("dialog").get("actions"):
-                        if page.get("label").get("translate") != self._title.translate:
-                            self._actions.append(page)
-                    break   
-
-        dialog = {
-            "type": "minecraft:multi_action",
-            "pause": false,
-            "after_action": "wait_for_response",
-            "title": self._title,
-            "actions": self._actions,
-            "body": self._body,
-            "exit_action": self._exit
-        }
-
-        index = self._index
-        for entry in dialogs:
-            if entry.get("id") == self._id:
-                index = entry.get("index")
-                dialogs.remove(entry)
-                break
-        return_value = {"id": self._id, "dialog": dialog, "index": index}
-        dialogs.append(return_value)
-        return return_value
-
 class TextBuilder:
     _string: str
 
@@ -144,11 +28,14 @@ class TextBuilder:
         self._bold = true
         return self
 
+    def translated(self):
+        self._translate = true
+        return self
+    
     def translate(self, translation):
         translation = {self._string: translation}
         merge language menu:en_us {**translation}
-        self._translate = true
-        return self
+        return self.translated()
 
     def with_text(self, text):
         self._with.append(text)

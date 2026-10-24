@@ -1,5 +1,5 @@
 {
-    "menu.return": "Return to Navigation",
+    "menu.close": "Return to Game",
     "menu.title": "Navigation",
     "menu.credits": "Credits",
     "menu.credits.credit": "%s - %s",
