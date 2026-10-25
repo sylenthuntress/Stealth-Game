@@ -13,7 +13,8 @@ segments = {
 #    "spores_cave": register(0, "minecraft:lush_caves", 0, 0, 1),
     "spores_field": registerBiome(10, "minecraft:lush_caves"),
     "skull_peak": registerBiome(10, "minecraft:warm_ocean"),
-    "trial_chambers": registerUniversal(10)
+    "trial_chambers": registerUniversal(10),
+    "canyon": registerBiome(10, "minecraft:badlands")
 }
 
 bands = {
