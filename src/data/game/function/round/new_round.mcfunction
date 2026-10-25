@@ -56,7 +56,7 @@ execute as @a[scores={game.player.team_id=1}] run function game:round/join_runne
 
     execute if score @s game.player.kill_threshold matches ..50 run scoreboard players set @s game.player.kill_threshold 50
 
-    tp @s coords.runner_spawn.x coords.runner_spawn.y coords.runner_spawn.z
+    tp @s coords.runner_spawn.x coords.runner_spawn.y coords.runner_spawn.z 0 0
 execute as @a[scores={game.player.team_id=2}] run function game:round/join_killer:
     gamemode adventure @s
     team join killer @s
@@ -68,7 +68,7 @@ execute as @a[scores={game.player.team_id=2}] run function game:round/join_kille
     attribute @s minecraft:entity_interaction_range modifier add game:teams/killer 0.33 add_multiplied_base
     attribute @s minecraft:movement_speed modifier add game:teams/killer 0.15 add_multiplied_base
 
-    tp @s coords.killer_spawn.x coords.killer_spawn.y coords.killer_spawn.z
+    tp @s coords.killer_spawn.x coords.killer_spawn.y coords.killer_spawn.z 180 20
 
 # Update round total
 function game:round/check_total
