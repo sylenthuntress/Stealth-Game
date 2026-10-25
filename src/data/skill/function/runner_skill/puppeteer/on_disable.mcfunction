@@ -5,3 +5,6 @@ tag @s remove this.self
 
 item fill entity @s {"type":"minecraft:filtered","slot_source":"util:inventory","item_filter":{"items":"minecraft:barrier","predicates":{"minecraft:custom_data":{"skill.runner.puppeteer.cooldown":true}}}} with air
 item fill entity @s {"type":"minecraft:filtered","slot_source":"util:inventory","item_filter":{"items":["minecraft:copper_nugget","minecraft:player_head"],"predicates":{"minecraft:custom_data":{"skill.runner.puppeteer.ability":true}}}} with air
+
+# Scores
+scoreboard players reset @s skill.runner.puppeteer.cooldown

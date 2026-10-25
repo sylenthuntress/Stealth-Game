@@ -31,3 +31,8 @@ give @s compass[
     },
     item_model="hide_and_squeak:pest_tracker"
 ]
+
+# Scores
+scoreboard players reset @s skill.killer.locator.cooldown
+scoreboard players reset @s skill.killer.locator.tracking_timer
+scoreboard players reset @s skill.killer.locator.tracking_uid

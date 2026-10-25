@@ -1,3 +1,4 @@
+# Spectral Bow
 give @s bow[
     custom_name={
         "color": "#ffe02e",
@@ -23,6 +24,7 @@ give @s bow[
     }
 ]
 
+# Spectral Arrow
 execute unless slots entity @s skill:weapon/foreseer/spectral_arrow expand:
     if slots entity @s {type:"minecraft:filtered",slot_source:{type:"minecraft:slot_range",slots:"hotbar.8"},item_filter:{items:"minecraft:air"}} run item replace entity @s hotbar.8 with minecraft:spectral_arrow[
         custom_name={
@@ -54,3 +56,6 @@ execute unless slots entity @s skill:weapon/foreseer/spectral_arrow expand:
         },
         custom_data={"skill.weapon.foreseer.spectral_arrow": true}
     ]
+
+# Cooldowns
+scoreboard players reset @s skill.weapon.foreseer.cooldown

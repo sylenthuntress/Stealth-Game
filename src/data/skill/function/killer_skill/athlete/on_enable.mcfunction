@@ -22,3 +22,6 @@ give @s feather[
     },
     minecraft:item_model="hide_and_squeak:dash"
 ]
+
+# Scores
+scoreboard players reset @s skill.killer.athlete.dash_timer

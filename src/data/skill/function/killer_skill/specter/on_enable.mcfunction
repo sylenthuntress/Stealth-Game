@@ -22,3 +22,6 @@ give @s amethyst_shard[
     },
     minecraft:item_model="hide_and_squeak:specter"
 ]
+
+# Scores
+scoreboard players reset @s skill.killer.specter.cooldown

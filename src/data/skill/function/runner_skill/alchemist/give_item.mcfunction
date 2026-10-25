@@ -41,7 +41,7 @@ execute unless slots entity @s skill:runner_skill/alchemist/blinding_flask unles
         skill.runner.alchemist.ability: true
     },
     minecraft:item_model="hide_and_squeak:blinding_flask"
-] 3
+]
 
 execute unless slots entity @s skill:runner_skill/alchemist/stagger_flask unless slots entity @s skill:runner_skill/alchemist/stagger_flask_cooldown run give @s coal[
     custom_name={
@@ -81,7 +81,7 @@ execute unless slots entity @s skill:runner_skill/alchemist/stagger_flask unless
         skill.runner.alchemist.ability: true
     },
     minecraft:item_model="hide_and_squeak:stagger_flask"
-] 3
+]
 
 execute if score @s skill.runner.alchemist.cooldown matches 1.. run item modify entity @s skill:runner_skill/alchemist/blinding_flask skill:runner_skill/alchemist/disable_blinding_flask
 execute if score @s skill.runner.alchemist.cooldown matches 1.. run item modify entity @s skill:runner_skill/alchemist/stagger_flask skill:runner_skill/alchemist/disable_stagger_flask
