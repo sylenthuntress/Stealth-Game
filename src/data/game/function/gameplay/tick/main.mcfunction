@@ -5,7 +5,7 @@ execute as @a[scores={game.player.team_id=2},gamemode=adventure] at @s run funct
 
 # Manage all players
 execute as @a[scores={data.jump=1..}] run function game:gameplay/validate_jump
-execute as @a[scores={time.player.stun_timer=1..}] run function game:gameplay/manage_stun
+execute as @a[scores={time.player.stun_timer=-2147483648..}] run function ./../movement_penalty/stun
 
 # Apply due points
 execute as @a[scores={game.player.due_points=1..}] at @s run function game:points/add_points
