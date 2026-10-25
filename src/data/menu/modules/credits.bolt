@@ -155,7 +155,5 @@ dialog = {
     }
   ]
 }
-dialog menu:credits dialog
-append dialog_tag minecraft:pause_screen_additions {
-    "values": [(~/)]
-}
+function menu:open_credits:
+    dialog show @s dialog
