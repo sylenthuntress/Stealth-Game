@@ -7,6 +7,7 @@ gamemode spectator
 team join dead
 scoreboard players reset @s skill.runner.medic.revive_uid
 attribute @s minecraft:movement_speed modifier remove game:gameplay/runner/damaged
+attribute @s minecraft:movement_speed modifier remove game:gameplay/movement_penalty/injury
 
 # Spawn corpse
 data modify storage game:data Corpse.UUID set from entity @s UUID
