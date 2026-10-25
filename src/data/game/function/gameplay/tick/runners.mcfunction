@@ -3,7 +3,7 @@ attribute @s[predicate=!util:is_sprinting] minecraft:movement_speed modifier add
 
 # Sneak to hide
 execute function game:gameplay/runner/tick_hiding:
-    execute if entity @s[predicate=util:is_sneaking] if score @s time.player.hide_timer matches ..15 run scoreboard players add @s time.player.hide_timer 1
+    execute if entity @s[predicate=util:is_sneaking] unless score @s time.player.hide_timer matches 16.. run scoreboard players add @s time.player.hide_timer 1
     execute if score @s time.player.hide_timer matches 16.. run scoreboard players remove @s time.player.hide_timer 1
     execute if entity @s[predicate=!util:is_sneaking] if score @s time.player.hide_timer matches 1.. run scoreboard players remove @s time.player.hide_timer 1
     execute if score @s[tag=!hiding] time.player.hide_timer matches 15 run function game:gameplay/runner/start_hiding
