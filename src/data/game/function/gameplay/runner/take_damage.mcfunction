@@ -53,4 +53,4 @@ if damage_taken["@s"] >= 10:
     execute function ./damage_boost:
         scoreboard players add @s time.player.damage_timer 45
         scoreboard players remove @s time.player.stun_timer 45
-        attribute @s minecraft:movement_speed modifier add game:gameplay/runner/damaged 0.1 add_value
+        attribute @s minecraft:movement_speed modifier add game:gameplay/runner/damaged 0.06 add_value
