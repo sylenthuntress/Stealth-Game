@@ -29,5 +29,5 @@ points["@a[tag=!this.killer,scores={game.player.team_id=2}]"] + (points["#var"]+
 tag @e remove this.killer
 
 # FX
-playsound minecraft:entity.bat.death player @a ~ ~ ~ 1 2 0.1
+playsound minecraft:entity.bat.death player @a[tag=game.viewing] ~ ~ ~ 1 2 0.1
 tellraw @a[tag=game.viewing] {"translate": "gameplay.player.death_message", "color": "red", "bold": true, "with": [{"selector": "@s", "color": "dark_red", "bold": false}]}
