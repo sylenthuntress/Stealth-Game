@@ -14,7 +14,7 @@ scoreboard players set #config config.loaded_defaults 1
 
 # Id
 scoreboard objectives add uid.index dummy
-scoreboard players set #uid.index uid.index 0
+execute unless score #uid.index uid.index matches 0.. run scoreboard players set #uid.index uid.index 0
 
 scoreboard objectives add uid.player dummy
 scoreboard objectives add uid.entity dummy
