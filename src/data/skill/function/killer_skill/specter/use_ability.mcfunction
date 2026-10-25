@@ -1,4 +1,4 @@
-advancement ./use_abiility: {
+advancement ./use_ability: {
     "criteria": {
         "requirement": {
             "trigger": "minecraft:consume_item",
