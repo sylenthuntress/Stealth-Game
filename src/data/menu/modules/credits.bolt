@@ -101,7 +101,7 @@ add_main_credit(TextBuilder("Command Realm")
     .build())
 
 add_builders("ABeeInATree (partial)")
-add_testers("FlourCuddle7", "the fanmade Stealthiators community")
+add_testers("FlourCuddle7", "3trobe", "AspN_", "breadpvper", "systolictomneko", "Connop")
 add_special("My Girlfriends <3")
 
 credits = main_credits
