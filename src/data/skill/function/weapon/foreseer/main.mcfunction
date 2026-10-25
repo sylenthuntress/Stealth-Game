@@ -3,6 +3,7 @@ execute unless slots entity @s {type:"minecraft:filtered",slot_source:{type:"min
 execute as @e[tag=skill.weapon.foreseer.spectral_bow.projectile,nbt={inGround:1b}] expand:
     at @s[type=spectral_arrow] run function skill:weapon/foreseer/land_arrow:
         playsound minecraft:entity.elder_guardian.curse master @a ~ ~ ~ 1 2
+        execute on origin run playsound minecraft:entity.elder_guardian.curse master @s ~ ~ ~ 1 2 0.1
 
         execute positioned ~ ~-1 ~ as @a[tag=game.playing,team=runner,distance=..6] expand:
             effect give @s glowing 3 0 false
