@@ -9,12 +9,15 @@ scoreboard players reset @s skill.runner.medic.revive_uid
 attribute @s minecraft:movement_speed modifier remove game:gameplay/runner/damaged
 
 # Spawn corpse
+data modify storage game:data Corpse.UUID set from entity @s UUID
+data modify storage game:data Corpse.Rotation set from entity @s Rotation
+data modify storage game:data Corpse.attributes set from entity @s attributes
 execute function game:gameplay/runner/find_ground:
-    execute positioned ~ ~-0.1 ~ if block ~ ~ ~ air run function game:gameplay/runner/find_ground
-    execute unless block ~ ~-0.1 ~ air run function game:gameplay/runner/spawn_corpse with entity @s
+    execute positioned ~ ~-0.1 ~ if block ~ ~ ~ air run return run function ~/
+    execute unless block ~ ~-0.1 ~ air run function ./spawn_corpse with storage game:data Corpse
 
 # Give killer credit
-points["#var"] = (kill_threshold["@s"]+5) / 2
+points["#var"] = (kill_threshold["@s"]+5) / 4
 execute on attacker run tag @s add this.killer
 execute unless predicate {type:"minecraft:entity_properties",entity:"attacker",predicate:{}} run tag @a[scores={game.player.team_id=2}] add this.killer
 
