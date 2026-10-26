@@ -266,7 +266,7 @@ pages.append(DialogBuilder("guidebook/health")
         .color("gray")
         .build())
     .line(TextBuilder("menu.guidebook.health.7")
-        .translate("§lThough damage is permanent§r§7, your wounds are not. When encountering another runner, you can '§l§6dance§r§7' at each-other by repeatedly crouching. This is known as '§d§lsharing love§r§7', and decreases the movement penalties of both runners, at the cost of being quite loud..\
+        .translate("§lThough damage is semi-permanent§r§7, your wounds are not. When encountering another runner, you can '§l§6dance§r§7' at each-other by repeatedly crouching. This is known as '§d§lsharing love§r§7' and decreases the movement penalties of both runners, and up to a third of their damage, at the cost of being quite loud.\
         \n§4[!]§r§c In a 1v1, your vitality is greatly increased, eliminating injury-based penalties.")
         .color("gray")
         .build())
