@@ -40,3 +40,4 @@ scoreboard players reset #time time.start_sequence
 data remove storage skill:data RunnerSkill
 data remove storage skill:data KillerSkill
 data remove storage skill:data Weapon
+data remove storage skill:selection RoundSelections
