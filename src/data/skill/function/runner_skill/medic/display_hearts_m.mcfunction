@@ -1,1 +1,1 @@
-$title @s actionbar {"color":"red","translate":"skill.runner.medic.display_hearts","with":[{"selector":"@n[type=mannequin,tag=game.runner_corpse]"},{"color": "red","bold": true,"italic": false,"translate": "skill.cooldown","with": [$(hearts)]}]}
+$function render:actionbar/set_actionbar {"duration": 20, "text": {"color":"gray","translate":"skill.runner.medic.display_hearts","with":[{"color": "red","bold": true,"italic": false,"translate": "skill.cooldown","with": [$(hearts)]},{"selector":"@n[type=mannequin,tag=game.runner_corpse]"}]}}

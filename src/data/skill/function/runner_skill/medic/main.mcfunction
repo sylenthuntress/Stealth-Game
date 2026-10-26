@@ -43,7 +43,7 @@ execute at @s if score @s time.player.heal_timer matches -10.. positioned ~-3 ~-
     for n in range(200):
         if n % 20 == 0:
             execute if score @n[type=mannequin,tag=game.runner_corpse] skill.runner.medic.revive_timer matches n run playsound minecraft:item.flintandsteel.use master @s ~ ~ ~ 1 (0.5 + i/40)
-            execute if score @n[type=mannequin,tag=game.runner_corpse] skill.runner.medic.revive_timer matches n run title @s actionbar [{"text":completeHearts,"color":"red"},{"text":incompleteHearts,"color":"dark_gray"}]
+            execute if score @n[type=mannequin,tag=game.runner_corpse] skill.runner.medic.revive_timer matches n run function render:actionbar/set_actionbar {"duration": 30, "text": [{"text": "[", "color":"dark_red"},{"text":completeHearts,"color":"red"},{"text":incompleteHearts,"color":"dark_gray"},{"text": "]", "color":"dark_red"}]}
             completeHearts += "❤"
             incompleteHearts = incompleteHearts[:-1]
             i += 1
@@ -60,7 +60,7 @@ execute at @s if score @s time.player.heal_timer matches -10.. positioned ~-3 ~-
     execute if score @s time.player.heal_timer matches 1 run function ./attempt_revive:
         particle minecraft:heart ~ ~.5 ~ 0.75 0.2 0.75 0.6 3 normal @a
         playsound minecraft:entity.bat.ambient player @a ~ ~ ~ 0.1 0.7
-        execute unless score @n[type=mannequin,tag=game.runner_corpse] skill.runner.medic.revive_timer matches 200.. run return fail # Guard Return
+        execute unless score @n[type=mannequin,tag=game.runner_corpse] skill.runner.medic.revive_timer matches 201.. run return fail # Guard Return
 
         # If successful:
         ## Respawn the selected runner
