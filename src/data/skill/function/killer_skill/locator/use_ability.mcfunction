@@ -46,7 +46,7 @@ tag @s add this.self
 execute as @a[team=runner] if score @s uid.player = @p[tag=this.self] skill.killer.locator.tracking_uid at @s expand:
     playsound minecraft:item.lodestone_compass.lock master @s ~ ~ ~ 2 1
     playsound minecraft:entity.evoker.prepare_attack master @s ~ ~ ~ 0.5 2
-    tellraw @s {"color":"#C68346","translate":"skill.killer.locator.notification","with":[{"selector":"@a[tag=this.self]"}]}
+    function render:actionbar/set_actionbar {"duration": 30, "text": {"color":"#C68346","translate":"skill.killer.locator.notification"}}
 tag @s remove this.self
 
 title @s actionbar {"color":"#C68346","translate":"skill.killer.locator.use_ability"}

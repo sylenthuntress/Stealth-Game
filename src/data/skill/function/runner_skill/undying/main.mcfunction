@@ -10,7 +10,7 @@ execute if entity @s[gamemode=spectator,team=dead] at @s run function ./attempt_
         if n % 40 == 0:
             execute if score @n[type=mannequin,tag=this.selected] time.player.corpse_age matches (n, n+40) run playsound minecraft:block.note_block.bit master @s ~ ~ ~ (1 - (i/13)) 0.5
             execute if score @n[type=mannequin,tag=this.selected] time.player.corpse_age matches n run playsound minecraft:entity.wither.shoot master @s ~ ~ ~ (0 + (i/13)) (0.5 + i/40)
-            execute if score @n[type=mannequin,tag=this.selected] time.player.corpse_age matches n run title @s actionbar [{"text":completeHearts,"color":"#56add8"},{"text":incompleteHearts,"color":"dark_gray"}]
+            execute if score @n[type=mannequin,tag=this.selected] time.player.corpse_age matches n run function render:actionbar/set_actionbar {"duration": 50, "text": [{"text": "[","color":"#106189"},{"text":completeHearts,"color":"#56add8"},{"text":incompleteHearts,"color":"dark_gray"},{"text": "]","color":"#106189"}]}
             completeHearts += "❤"
             incompleteHearts = incompleteHearts[:-1]
             i += 1
