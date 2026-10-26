@@ -20,4 +20,4 @@ attribute @s minecraft:step_height modifier remove game:gameplay/runner/hiding
 scoreboard players set @s time.player.hide_timer 0
 
 tag @s remove this.self
-kill @n[type=item_display,tag=this.display]
+kill @e[type=item_display,tag=this.display]
