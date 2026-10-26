@@ -133,7 +133,7 @@ scoreboard objectives add skill.runner.alchemist.cooldown dummy
 scoreboard objectives add skill.runner.jumper.charge_cooldown dummy
 scoreboard objectives add skill.runner.jumper.charge dummy
 scoreboard objectives add skill.runner.medic.revive_timer dummy
-scoreboard objectives add skill.runner.medic.revive_uid dummy
+scoreboard objectives add skill.runner.medic.reviving_uid dummy
 scoreboard objectives add skill.runner.medic.count dummy
 scoreboard objectives add skill.runner.medic.uses dummy
 scoreboard objectives add skill.runner.medic.heartbeat dummy

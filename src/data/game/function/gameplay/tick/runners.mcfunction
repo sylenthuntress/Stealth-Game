@@ -88,8 +88,7 @@ execute if block ~ 41 ~ minecraft:netherite_block run function game:gameplay/run
     playsound minecraft:block.note_block.bell master @a ~ ~ ~ 2 1 1
 
     scoreboard players operation #math game.player.due_points = #segments segments.elapsed
-    scoreboard players operation #math game.player.due_points *= #10 math.const
-    scoreboard players operation #math game.player.due_points /= #2 math.const
+    scoreboard players operation #math game.player.due_points *= #5 math.const
     execute if score #gamestate gamestate.crossed_finish matches 1 run scoreboard players remove #math game.player.due_points 10
     scoreboard players operation @s game.player.due_points += #math game.player.due_points
 
@@ -99,8 +98,8 @@ execute if block ~ 41 ~ minecraft:netherite_block run function game:gameplay/run
     bossbar set game:time/endgame_timer players @a[tag=game.viewing]
     execute store result bossbar game:time/endgame_timer value run scoreboard players get #time time.endgame_timer
     
-    execute unless score @s skill.runner.medic.revive_uid matches 0.. run tellraw @a {"translate": "game.cross_finish", "color": "red", with:[{"selector":"@s"}]}
-    execute if score @s skill.runner.medic.revive_uid matches 0.. run function skill:runner_skill/medic/award_points
+    execute unless entity @s[tag=skill.runner.medic.revived] run tellraw @a[tag=game.viewing] {"translate": "game.cross_finish", "color": "red", with:[{"selector":"@s"}]}
+    execute if entity @s[tag=skill.runner.medic.revived] run function skill:runner_skill/medic/award_points
 
     function skill:disable_skills
     execute as @e[type=text_display,tag=band_display] run data modify entity @s text.color set value 'gold'

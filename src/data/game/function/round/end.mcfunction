@@ -4,6 +4,8 @@ import skill:registry as skill_registry
 execute as @a run function game:round/leave_round:
     effect clear @s
     execute if entity @s[tag=hiding] run function game:gameplay/runner/stop_hiding
+    tag @s remove skill.runner.medic.revived
+
     function game:points/add_points
 
     function skill:disable_skills
@@ -34,3 +36,7 @@ scoreboard players set #gamestate gamestate.band_progression 0
 scoreboard players set #gamestate gamestate.crossed_finish 0
 scoreboard players set #time time.round_cooldown 100
 scoreboard players reset #time time.start_sequence
+
+data remove storage skill:data RunnerSkill
+data remove storage skill:data KillerSkill
+data remove storage skill:data Weapon
