@@ -18,9 +18,10 @@ execute function game:gameplay/runner/find_ground:
     execute unless block ~ ~-0.1 ~ air run function ./spawn_corpse with storage game:data Corpse
 
 # Give killer credit
-points["#var"] = (kill_threshold["@s"]+5) / 4
+points["#var"] = (kill_threshold["@s"]+5) / 2
 execute on attacker run tag @s add this.killer
-execute unless predicate {type:"minecraft:entity_properties",entity:"attacker",predicate:{}} run tag @a[scores={game.player.team_id=2}] add this.killer
+execute on attacker on origin run tag @s add this.killer
+execute unless entity @a[tag=this.killer] run tag @a[scores={game.player.team_id=2}] add this.killer
 
 execute as @a[tag=this.killer] function ./kill_credit:
     points["@s"] += points["#var"]

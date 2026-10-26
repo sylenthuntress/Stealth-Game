@@ -31,10 +31,13 @@ function util:display_actionbar with storage var:injury
 
 # Give points to attacker
 points = Scoreboard("game.player.due_points")
-points["#var"] = (total_damage["@s"] - prev_damage["@s"] + 5)/4
-execute on attacker run function ./damage_credit:
+points["#var"] = (total_damage["@s"] - prev_damage["@s"] + 5)/2
+execute on attacker run tag @s add this.attacker
+execute on attacker on origin run tag @s add this.attacker
+execute unless entity @a[tag=this.attacker] as @a[scores={game.player.team_id=2}] run tag @s add this.attacker
+execute as @a[tag=this.attacker] run function ./damage_credit:
     points["@s"] = points["#var"]
-execute unless predicate {type:"minecraft:entity_properties",entity:"attacker",predicate:{}} as @a[scores={game.player.team_id=2}] function ./damage_credit
+tag @a remove this.attacker
 
 # Reveal attacker
 execute on attacker expand:
