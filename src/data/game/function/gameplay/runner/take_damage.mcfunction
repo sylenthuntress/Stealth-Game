@@ -45,8 +45,11 @@ execute on attacker expand:
     if score @s f"data.damage_dealt" matches 1.. run function game:gameplay/killer/land_hit
 
 # Kill player at high damage
+execute on attacker run tag @s add this.attacker
+execute on attacker on origin run tag @s add this.attacker
 if total_damage["@s"] >= kill_threshold["@s"] and prev_damage["@s"] > 1:
-    function ./death
+    execute if entity @a[tag=this.attacker] run function ./death
+tag @a remove this.attacker
 
 # Refresh health-based penalties
 function game:gameplay/runner/update_injury
