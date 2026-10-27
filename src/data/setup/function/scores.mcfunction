@@ -170,6 +170,7 @@ scoreboard objectives add time.start_timer dummy
 scoreboard objectives add time.start_sequence dummy
 scoreboard objectives add time.round_timer dummy
 scoreboard objectives add time.endgame_timer dummy
+scoreboard objectives add time.player.standing_still dummy
 scoreboard objectives add time.player.corpse_age dummy
 scoreboard objectives add time.player.dance_timer dummy
 scoreboard objectives add time.player.heal_timer dummy
