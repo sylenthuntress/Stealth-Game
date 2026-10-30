@@ -1,3 +1,29 @@
+advancement ~/ {
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:tick",
+      "conditions": {
+        "player": {
+          "type": "minecraft:entity_properties",
+          "entity": "this",
+          "predicate": {
+            "minecraft:entity_tags": {
+              "any_of": [
+                "skill.runner.undying"
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "rewards": {
+    "function": (~/)
+  }
+}
+
+advancement revoke @s only ~/
+
 execute if entity @s[gamemode=spectator,team=dead] at @s run function ./attempt_revive:
     tag @s add this.selector
     execute as @e[type=mannequin,tag=game.runner_corpse] if score @s uid.entity = @p[tag=this.selector] uid.player run tag @s add this.selected

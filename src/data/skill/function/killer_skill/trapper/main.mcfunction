@@ -1,5 +1,31 @@
+advancement ~/ {
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:tick",
+      "conditions": {
+        "player": {
+          "type": "minecraft:entity_properties",
+          "entity": "this",
+          "predicate": {
+            "minecraft:entity_tags": {
+              "any_of": [
+                "skill.killer.trapper"
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "rewards": {
+    "function": (~/)
+  }
+}
+
+advancement revoke @s only ~/
+
 tag @s add this.selector
-execute as @e[type=item,tag=skill.killer.trapper.dropped] at @s run function ./tick_item:
+execute as @e[type=item,tag=skill.killer.trapper.dropped] at @s run function ~/_item:
     execute if predicate {type:"minecraft:entity_properties",entity:"this",predicate:{"minecraft:flags":{is_on_ground:1b}}} run function ./set_trap:
         execute positioned ~-0.5 ~-0.1 ~-0.5 as @a[dx=1,dy=0.2,dz=1,team=runner] run return fail
 
@@ -17,7 +43,7 @@ execute as @e[tag=skill.killer.trapper.trap] if score @s uid.entity = @p[tag=thi
 execute unless score @s skill.killer.trapper.count matches 3 run function ./display_prompt:
     execute at @s anchored eyes facing entity @n[type=interaction,tag=this.selected,distance=..4] eyes anchored feet positioned ^ ^ ^1 rotated as @s positioned ^ ^ ^-1 if entity @s[distance=..0.1] run title @s actionbar {"translate":"skill.killer.trapper.prompt","with":[[{"translate":"skill.use","color":"#c46e3c"},{"text":"/","color":"#c46e3c"},{"translate":"skill.attack","color":"#c46e3c"}],{"color":"#866654","translate":"skill.killer.trapper.ability.name","italic":false,"with":[{"sprite":"minecraft:block/tripwire_hook","atlas":"minecraft:blocks","color":"white"}]}]}
 
-execute as @e[tag=this.selected] at @s run function ./tick_trap:
+execute as @e[tag=this.selected] at @s run function ~/_trap:
     execute if entity @s[type=marker,tag=skill.killer.trapper.trap.armed] positioned ~-0.5 ~-0.1 ~-0.5 as @a[dx=1,dy=0.2,dz=1,team=runner] at @s run function ./trigger_trap:
         damage @s 6.0 minecraft:magic by @p[tag=this.selector]
         scoreboard players add @s time.player.stun_timer 145

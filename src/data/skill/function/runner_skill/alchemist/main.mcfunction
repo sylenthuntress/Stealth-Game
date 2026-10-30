@@ -1,7 +1,31 @@
+advancement ~/ {
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:tick",
+      "conditions": {
+        "player": {
+          "type": "minecraft:entity_properties",
+          "entity": "this",
+          "predicate": {
+            "minecraft:entity_tags": {
+              "any_of": [
+                "skill.runner.alchemist"
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "rewards": {
+    "function": (~/)
+  }
+}
 
+advancement revoke @s only ~/
 
 tag @s add this.selector
-execute as @e[type=snowball,tag=skill.runner_skill.alchemist.blinding_flask] at @s run function ./tick_blinding_flask:
+execute as @e[type=snowball,tag=skill.runner_skill.alchemist.blinding_flask] at @s run function ~/_blinding_flask:
     execute on origin run tag @s add this.selected
     execute if entity @a[tag=this.selected,tag=this.selector] if entity @a[team=killer,distance=..3] function ./land_blinding_flask:
             effect give @a[team=killer,distance=..3] minecraft:blindness 5 0 false
@@ -16,7 +40,7 @@ execute as @e[type=snowball,tag=skill.runner_skill.alchemist.blinding_flask] at 
             execute on passengers run kill @s
     tag @a remove this.selected
 
-execute as @e[type=snowball,tag=skill.runner_skill.alchemist.stagger_flask] at @s run function ./tick_stagger_flask:
+execute as @e[type=snowball,tag=skill.runner_skill.alchemist.stagger_flask] at @s run function ~/_stagger_flask:
     execute on origin run tag @s add this.selected
     execute if entity @a[tag=this.selected,tag=this.selector] if entity @a[team=killer,distance=..3] function ./land_stagger_flask:
             scoreboard players add @a[team=killer,distance=..3] time.player.stun_timer 50
@@ -35,7 +59,7 @@ execute as @e[type=marker,tag=skill.runner_skill.alchemist.flask] at @s unless p
     playsound minecraft:block.glass.break player @a ~ ~ ~ 1 0.8
     kill @s
 
-execute if score @s skill.runner.alchemist.cooldown matches 1.. run function ./tick_cooldown:
+execute if score @s skill.runner.alchemist.cooldown matches 1.. run function ~/_cooldown:
     scoreboard players remove @s skill.runner.alchemist.cooldown 1
 
     scoreboard players operation #display time.display_sec = @s skill.runner.alchemist.cooldown

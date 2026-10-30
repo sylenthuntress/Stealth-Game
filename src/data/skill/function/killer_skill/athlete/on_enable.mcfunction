@@ -1,3 +1,9 @@
+append function_tag skill:event/on_enable {
+    "values": [(~/)]
+}
+
+execute unless entity @s[tag=skill.killer.athlete] run return fail
+
 give @s feather[
     custom_name={
         "color": "#9dfff5",

@@ -1,3 +1,29 @@
+advancement ~/ {
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:tick",
+      "conditions": {
+        "player": {
+          "type": "minecraft:entity_properties",
+          "entity": "this",
+          "predicate": {
+            "minecraft:entity_tags": {
+              "any_of": [
+                "skill.weapon.foreseer"
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "rewards": {
+    "function": (~/)
+  }
+}
+
+advancement revoke @s only ~/
+
 execute unless slots entity @s {type:"minecraft:filtered",slot_source:{type:"minecraft:slot_range",slots:"weapon.mainhand"},item_filter:{items:"minecraft:bow"}} run scoreboard players reset @s skill.weapon.foreseer.charge_time
 
 execute as @e[tag=skill.weapon.foreseer.spectral_bow.projectile,nbt={inGround:1b}] expand:

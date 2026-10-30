@@ -1,3 +1,29 @@
+advancement ~/ {
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:tick",
+      "conditions": {
+        "player": {
+          "type": "minecraft:entity_properties",
+          "entity": "this",
+          "predicate": {
+            "minecraft:entity_tags": {
+              "any_of": [
+                "skill.killer.breeze"
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "rewards": {
+    "function": (~/)
+  }
+}
+
+advancement revoke @s only ~/
+
 item modify entity @s {"type":"minecraft:filtered","slot_source":"util:inventory","item_filter":{"items":"minecraft:coal","predicates":{"minecraft:custom_data":{"skill.killer.breeze.ability":true}}}} {
         "type": "minecraft:set_name",
         "entity": "this",
@@ -23,7 +49,7 @@ item modify entity @s {"type":"minecraft:filtered","slot_source":"util:inventory
         ]
     }
 
-execute if score @s skill.killer.breeze.cooldown matches 1.. unless score @s skill.killer.breeze.count matches 3.. run function ./tick_cooldown:
+execute if score @s skill.killer.breeze.cooldown matches 1.. unless score @s skill.killer.breeze.count matches 3.. run function ~/_cooldown:
     scoreboard players remove @s skill.killer.breeze.cooldown 1
     execute if score @s skill.killer.breeze.cooldown matches 0 expand:
         function ./give_item

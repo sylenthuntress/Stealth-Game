@@ -1,3 +1,9 @@
+append function_tag skill:event/on_enable {
+    "values": [(~/)]
+}
+
+execute unless entity @s[tag=skill.killer.locator] run return fail
+
 give @s compass[
     custom_name={
         "color": "#C68346",

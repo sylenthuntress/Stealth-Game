@@ -1,3 +1,9 @@
+append function_tag skill:event/on_enable {
+    "values": [(~/)]
+}
+
+execute unless entity @s[tag=skill.weapon.foreseer] run return fail
+
 # Spectral Bow
 give @s bow[
     custom_name={

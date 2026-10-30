@@ -1,3 +1,29 @@
+advancement ~/ {
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:tick",
+      "conditions": {
+        "player": {
+          "type": "minecraft:entity_properties",
+          "entity": "this",
+          "predicate": {
+            "minecraft:entity_tags": {
+              "any_of": [
+                "skill.killer.gemini"
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "rewards": {
+    "function": (~/)
+  }
+}
+
+advancement revoke @s only ~/
+
 tag @s add this.selector
 execute as @e[type=mannequin,tag=skill.killer_skill.gemini.clone] if score @s uid.entity = @p[tag=this.selector] uid.player run tag @s add this.selected
 

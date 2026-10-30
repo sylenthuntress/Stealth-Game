@@ -1,3 +1,9 @@
+append function_tag skill:event/on_enable {
+    "values": [(~/)]
+}
+
+execute unless entity @s[tag=skill.killer.specter] run return fail
+
 give @s amethyst_shard[
     custom_name={
         "color": "#861c8e",

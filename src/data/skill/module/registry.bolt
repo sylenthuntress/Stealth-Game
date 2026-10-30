@@ -1,3 +1,143 @@
+numid_index = 0
+class SkillBuilder():
+    def __init__(self, identifier, registry):
+        self._identifier = identifier
+        global numid_index
+        numid_index += 1
+        self._numid = numid_index
+        self._desc = {"translate": identifier+".desc"}
+        self._type = registry
+        self._icon = {"sprite": "minecraft:item/barrier", "atlas": "minecraft:items"}
+        self._predicate = {}
+        self._components = {}
+
+    def desc(self, text):
+        self._desc = text
+        return self
+
+    def icon(self, sprite, atlas):
+        self._icon = {"sprite": sprite, "atlas": atlas}
+        return self
+
+    def is_random(self):
+        self._components.update({"skill:random": true})
+        return self
+
+    def exclude_random(self):
+        self._components.update({"skill:exclude_random": true})
+        return self
+
+    def team_only(self, team_size):
+        self._components.update({"skill:team_only": team_size})
+        return self
+
+    def predicate(self, predicate):
+        self._predicate = predicate
+        return self
+
+    def build(self):
+        nbt = {
+            "type": self._type,
+            "id": self._identifier,
+            "numid": self._numid,
+            "desc": self._desc,
+            "icon": self._icon,
+            "components": self._components
+        }
+        append function setup:skills:
+            data modify storage skill:data Registry append value nbt
+        return nbt
+    
+
+# Runner Skills
+def runner_skill(name):
+    name = "skill.runner." + name
+    return SkillBuilder(name, "skill:runner")
+
+runner_skills = [
+    runner_skill("camouflage")
+        .icon("minecraft:block/bush", "minecraft:blocks")
+        .build(),
+    runner_skill("brawler")
+        .icon("minecraft:mob_effect/strength", "minecraft:gui")
+        .build(),
+    runner_skill("jumper")
+        .icon("minecraft:mob_effect/jump_boost", "minecraft:gui")
+        .build(),
+    runner_skill("medic")
+        .icon("minecraft:mob_effect/regeneration", "minecraft:gui")
+        .team_only(2)
+        .build(),
+    runner_skill("undying")
+        .icon("minecraft:item/totem_of_undying", "minecraft:items") 
+        .build(),
+    runner_skill("puppeteer")
+        .icon("hide_and_squeak:item/small_puppet", "minecraft:items")
+        .build(),
+    runner_skill("warper")
+        .icon("hide_and_squeak:item/warp", "minecraft:items")
+        .build(),
+    runner_skill("alchemist")
+        .icon("hide_and_squeak:item/alchemist", "minecraft:items")
+        .build(),
+    runner_skill("random")
+        .icon("hide_and_squeak:item/random", "minecraft:items")
+        .is_random()
+        .build()
+]
+
+# Killer Skills
+def killer_skill(name):
+    name = "skill.killer." + name
+    return SkillBuilder(name, "skill:killer")
+killer_skills = [
+    killer_skill("athlete")
+        .icon("minecraft:mob_effect/speed", "minecraft:gui")
+        .build(),
+    killer_skill("breeze")
+        .icon("minecraft:mob_effect/wind_charged", "minecraft:gui")
+        .build(),
+    killer_skill("trapper")
+        .icon("minecraft:block/tripwire_hook", "minecraft:blocks")
+        .build(),
+    killer_skill("locator")
+        .icon("minecraft:item/compass_00", "minecraft:items")
+        .build(),
+    killer_skill("specter")
+        .icon("hide_and_squeak:item/specter", "minecraft:items") 
+        .build(),
+    killer_skill("gemini")
+        .icon("hide_and_squeak:item/swap_bodies", "minecraft:items")
+        .build(),
+    killer_skill("random")
+        .icon("hide_and_squeak:item/random", "minecraft:items")
+        .is_random()
+        .build()
+]
+
+# Weapons
+def weapon(name):
+    name = "skill.weapon." + name
+    return SkillBuilder(name, "skill:weapon")
+weapons = [
+    weapon("dagger")
+        .icon("hide_and_squeak:item/dagger", "minecraft:items")
+        .build(),
+    weapon("trident")
+        .icon("minecraft:item/trident", "minecraft:items")
+        .build(),
+    weapon("foreseer")
+        .icon("minecraft:item/bow", "minecraft:items")
+        .build(),
+    weapon("random")
+        .icon("hide_and_squeak:item/random", "minecraft:items")
+        .is_random()
+        .build()
+]
+
+
+# Old code
+
 id_index = 0
 def register(icon, atlas):
     global id_index

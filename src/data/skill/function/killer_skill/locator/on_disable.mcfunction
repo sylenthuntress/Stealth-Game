@@ -1,3 +1,9 @@
+append function_tag skill:event/on_disable {
+    "values": [(~/)]
+}
+
+execute unless entity @s[tag=skill.killer.locator] run return fail
+
 # Scores
 scoreboard players reset @s skill.killer.locator.cooldown
 scoreboard players reset @s skill.killer.locator.tracking_timer

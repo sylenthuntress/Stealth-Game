@@ -1,10 +1,7 @@
-function skill:on_disable
-data remove storage skill:selection selector
-execute store result storage skill:selection selector.uid int 1 run scoreboard players get @s uid.player
+function #skill:event/on_disable
+data remove storage skill:data Selection.selector
+execute store result storage skill:data Selection.selector.uid int 1 run scoreboard players get @s uid.player
 
-data remove storage skill:selection Recursive
-data modify storage skill:selection Recursive append from storage skill:registry RunnerSkills[]
-data modify storage skill:selection Recursive append from storage skill:registry KillerSkills[]
-data modify storage skill:selection Recursive append from storage skill:registry WeaponRegistry[]
+data modify storage skill:data Selection.Recursive set from storage skill:data Registry
 
-function skill:remove_tags with storage skill:selection Recursive[0]
+function skill:remove_tags with storage skill:data Selection.Recursive[0]

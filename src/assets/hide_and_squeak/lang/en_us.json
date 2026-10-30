@@ -44,6 +44,8 @@
     "skill.selection.gui": "Skill Selection",
     "skill.selection.gui.weapon": "Weapon Selection",
     "skill.selection.gui.ready": "Ready",
+    "skill.selection.locked": "LOCKED: %s",
+    "skill.selection.locked.team_only": "Requires at least %s teammates to select.",
     "skill.slot": "Selected: %s",
     "skill.cooldown": "[%s]",
     "skill.use": "Use",

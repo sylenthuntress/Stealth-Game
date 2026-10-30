@@ -1,5 +1,31 @@
+advancement ~/ {
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:tick",
+      "conditions": {
+        "player": {
+          "type": "minecraft:entity_properties",
+          "entity": "this",
+          "predicate": {
+            "minecraft:entity_tags": {
+              "any_of": [
+                "skill.runner.puppeteer"
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "rewards": {
+    "function": (~/)
+  }
+}
+
+advancement revoke @s only ~/
+
 tag @s add this.selector
-execute as @e[type=marker,tag=skill.runner_skill.puppeteer.puppet] at @s run function ./tick_snowball:
+execute as @e[type=marker,tag=skill.runner_skill.puppeteer.puppet] at @s run function ~/_snowball:
     particle minecraft:block_crumble{block_state:"minecraft:white_wool"} ~ ~ ~ 0.1 0.1 0.1 0.1 3 force @a[team=runner]
 
 execute as @e[type=marker,tag=skill.runner_skill.puppeteer.large_puppet] at @s unless predicate {type:"minecraft:entity_properties",entity:"this",predicate:{vehicle:{}}} run function ./land_large_puppet:
@@ -24,9 +50,9 @@ execute as @e[type=marker,tag=skill.runner_skill.puppeteer.small_puppet] at @s u
 
 execute as @e[type=mannequin,tag=skill.runner_skill.puppeteer.puppet] if score @s uid.entity = @p[tag=this.selector] uid.player run tag @s add this.selected
 
-execute as @e[type=mannequin,tag=this.selected] at @s run function ./tick_puppet:
+execute as @e[type=mannequin,tag=this.selected] at @s run function ~/_puppet:
     execute positioned ~ ~0.55 ~ unless entity @e[distance=..0.001,type=item_display,tag=skill.runner_skill.puppeteer.little_mouse] as @e[type=item_display,tag=skill.runner_skill.puppeteer.little_mouse] if score @s uid.entity = @n[type=mannequin,tag=this.selected,tag=skill.runner_skill.puppeteer.small_puppet] uid.entity run tag @s add this.display
-    execute as @n[type=item_display,tag=this.display] run function ./tick_hiding:
+    execute as @n[type=item_display,tag=this.display] run function ~/_hiding:
         at @s facing entity @n[type=mannequin,tag=this.selected] eyes run rotate @s ~180 0
         tp @s ~ ~0.55 ~
         tag @e remove this.display
@@ -60,7 +86,7 @@ execute as @e[type=mannequin,tag=this.selected] at @s run function ./tick_puppet
     tag @s remove this.selected
 tag @s remove this.selector
 
-execute if score @s skill.runner.puppeteer.cooldown matches 1.. run function ./tick_cooldown:
+execute if score @s skill.runner.puppeteer.cooldown matches 1.. run function ~/_cooldown:
     scoreboard players remove @s skill.runner.puppeteer.cooldown 1
 
     scoreboard players operation #display time.display_sec = @s skill.runner.puppeteer.cooldown

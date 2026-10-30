@@ -1,3 +1,29 @@
+advancement ~/ {
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:tick",
+      "conditions": {
+        "player": {
+          "type": "minecraft:entity_properties",
+          "entity": "this",
+          "predicate": {
+            "minecraft:entity_tags": {
+              "any_of": [
+                "skill.killer.locator"
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "rewards": {
+    "function": (~/)
+  }
+}
+
+advancement revoke @s only ~/
+
 execute function .tick_tracking:
     scoreboard players remove @s skill.killer.locator.tracking_timer 1
 
@@ -100,7 +126,7 @@ tag @s remove this.self
 
 function ./point_compass with storage skill:data KillerSkills.Locator.Tracked
 
-execute unless score @s skill.killer.locator.tracking_timer matches 0.. if score @s skill.killer.locator.cooldown matches 1.. run function ./tick_cooldown:
+execute unless score @s skill.killer.locator.tracking_timer matches 0.. if score @s skill.killer.locator.cooldown matches 1.. run function ~/_cooldown:
     scoreboard players remove @s skill.killer.locator.cooldown 1
 
     scoreboard players operation #display time.display_sec = @s skill.killer.locator.cooldown

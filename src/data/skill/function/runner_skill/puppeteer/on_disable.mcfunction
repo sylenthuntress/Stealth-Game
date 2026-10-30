@@ -1,3 +1,9 @@
+append function_tag skill:event/on_disable {
+    "values": [(~/)]
+}
+
+execute unless entity @s[tag=skill.runner.puppeteer] run return fail
+
 tag @s add this.self
 execute as @e[tag=skill.runner_skill.puppeteer.puppet] if score @s uid.entity = @p[tag=this.self] uid.player run kill @s
 execute as @e[tag=skill.runner_skill.puppeteer.little_mouse] if score @s uid.entity = @p[tag=this.self] uid.player run kill @s

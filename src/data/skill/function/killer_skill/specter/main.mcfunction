@@ -1,4 +1,30 @@
-execute if score @s skill.killer.specter.cooldown matches 1.. run function ./tick_cooldown:
+advancement ~/ {
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:tick",
+      "conditions": {
+        "player": {
+          "type": "minecraft:entity_properties",
+          "entity": "this",
+          "predicate": {
+            "minecraft:entity_tags": {
+              "any_of": [
+                "skill.killer.specter"
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "rewards": {
+    "function": (~/)
+  }
+}
+
+advancement revoke @s only ~/
+
+execute if score @s skill.killer.specter.cooldown matches 1.. run function ~/_cooldown:
     scoreboard players remove @s skill.killer.specter.cooldown 1
 
     scoreboard players operation #display time.display_sec = @s skill.killer.specter.cooldown

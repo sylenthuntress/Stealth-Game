@@ -1,3 +1,29 @@
+advancement ~/ {
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:tick",
+      "conditions": {
+        "player": {
+          "type": "minecraft:entity_properties",
+          "entity": "this",
+          "predicate": {
+            "minecraft:entity_tags": {
+              "any_of": [
+                "skill.runner.brawler"
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "rewards": {
+    "function": (~/)
+  }
+}
+
+advancement revoke @s only ~/
+
 tag @s add this.self
 execute if score @s data.damage_dealt matches 1.. as @a[scores={game.player.team_id=2}] run tag @s add this.selected
 execute as @a[tag=this.selected] run function ./attack_killer:
@@ -14,7 +40,7 @@ execute as @a[tag=this.selected] run function ./attack_killer:
 tag @s remove this.self
 tag @a remove this.selected
 
-execute if score @s skill.runner.brawler.cooldown matches 1.. run function ./tick_cooldown:
+execute if score @s skill.runner.brawler.cooldown matches 1.. run function ~/_cooldown:
     scoreboard players remove @s skill.runner.brawler.cooldown 1
     execute if score @s skill.runner.brawler.uses matches 3 expand:
         attribute @s minecraft:attack_damage modifier add ./cooldown -1 add_multiplied_base
