@@ -72,17 +72,30 @@ execute positioned coords.play_area.x (coords.play_area.y-19) coords.play_area.z
     function level:segment/place with storage level:pool
 
     # TODO: add better wall generation
-    wallMaterial = "black_concrete"
-    fill ~-1 41 ~-5 ~-6 ~46 ~35 wallMaterial
-    fill ~69 41 ~-5 ~75 ~46 ~35 wallMaterial
-    fill ~ ~47 ~ ~70 ~47 ~35 barrier
-    # Shrink map segment to medium
-    execute if score #segments segments.remaining_large matches 0 if score #segments segments.remaining_med matches 1.. run fill ~ 41 ~-5 ~9 ~46 ~35 wallMaterial
-    execute if score #segments segments.remaining_large matches 0 if score #segments segments.remaining_med matches 1.. run fill ~69 41 ~-5 ~59 ~46 ~35 wallMaterial
+    execute function ./place_wall:
+        execute store result score #random walls.random run random value 1..5
+        for n in range(1, 6):
+            execute if score #random walls.random matches n expand:
+                place template f"level:wall/night_{n}" ~-7 41 ~
+                place template f"level:wall/night_{n}" ~69 41 ~
+                execute if score #segments segments.remaining_large matches 0 if score #segments segments.remaining_med matches 1.. run place template f"level:wall/night_{n}" ~2 41 ~
+                execute if score #segments segments.remaining_large matches 0 if score #segments segments.remaining_med matches 1.. run place template f"level:wall/night_{n}" ~59 41 ~
+                execute if score #segments segments.remaining_large matches 0 if score #segments segments.remaining_med matches 0 run place template f"level:wall/night_{n}" ~15 41 ~
+                execute if score #segments segments.remaining_large matches 0 if score #segments segments.remaining_med matches 0 run place template f"level:wall/night_{n}" ~49 41 ~
 
-    # Shrink map segment to small
-    execute if score #segments segments.remaining_large matches 0 if score #segments segments.remaining_med matches 0 run fill ~ 41 ~-5 ~19 ~46 ~35 wallMaterial
-    execute if score #segments segments.remaining_large matches 0 if score #segments segments.remaining_med matches 0 run fill ~69 41 ~-5 ~49 ~46 ~35 wallMaterial
+        wallMaterial = "black_concrete"
+        borderMaterial = "gray_glazed_terracotta"
+        fill ~ 41 ~-1 ~-9 ~46 ~-5 borderMaterial
+        fill ~68 41 ~-1 ~77 ~46 ~-5 borderMaterial
+        fill ~ ~47 ~ ~70 ~47 ~35 barrier
+        execute if score #segments segments.elapsed matches 1.. expand:
+            # Shrink map segment to medium
+            execute if score #segments segments.remaining_large matches 0 if score #segments segments.remaining_med matches 1.. run fill ~-1 41 ~-1 ~9 ~46 ~-5 borderMaterial
+            execute if score #segments segments.remaining_large matches 0 if score #segments segments.remaining_med matches 1.. run fill ~69 41 ~-1 ~58 ~46 ~-5 borderMaterial
+
+            # Shrink map segment to small
+            execute if score #segments segments.remaining_large matches 0 if score #segments segments.remaining_med matches 0 run fill ~-1 41 ~-1 ~22 ~46 ~-5 borderMaterial
+            execute if score #segments segments.remaining_large matches 0 if score #segments segments.remaining_med matches 0 run fill ~69 41 ~-1 ~48 ~46 ~-5 borderMaterial
 
     # Place pipes
     # execute if score #segments segments.elapsed matches 3.. run place template level:pipes ~45 ~32 ~-6
@@ -98,8 +111,10 @@ execute positioned coords.play_area.x (coords.play_area.y-19) coords.play_area.z
         forceload add ~69 ~ ~49 ~80
         place template level:finish_line ~19 ~ ~25
         fill ~ 41 ~29 ~49 41 ~25 minecraft:netherite_block
-        fill ~ 41 ~-5 ~19 ~46 ~80 wallMaterial
-        fill ~69 41 ~-5 ~49 ~46 ~80 wallMaterial
+        execute positioned ~ ~ ~30 expand: 
+            function ./place_wall
+            execute positioned ~ ~ ~25 run place template f"level:wall/night_{n}" ~15 41 ~
+            execute positioned ~ ~ ~25 run place template f"level:wall/night_{n}" ~49 41 ~
         summon minecraft:text_display ~34 ~30 ~27 {Tags: ["band_display"], brightness:{sky:15,block:15}, alignment: "center", background: 0, billboard: "vertical", default_background: 0b, line_width: 200, view_range: 2f, see_through: 0b, shadow: 1b, text:{"color":"red","bold":true,"translate": "game.finish"}, text_opacity: -1b, transformation: {left_rotation: [0.0f, 0.0f, 0.0f, 1.0f], right_rotation: [0.0f, 0.0f, 0.0f, 1.0f], scale: [50.0f, 50.0f, 50.0f], translation: [0.0f, 0.0f, 0.0f]}}
         summon minecraft:marker ~34 ~17 ~50 {Tags: ["gameplay.killer.backdoor.final_warp"]}
         execute positioned ~34 ~30 ~25 run scoreboard players operation @n[type=text_display,tag=band_display] segments.elapsed = #segments segments.elapsed

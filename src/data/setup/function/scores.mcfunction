@@ -76,6 +76,7 @@ scoreboard objectives modify game.player.points displayname {
 }
 
 # Generation
+scoreboard objectives add walls.random dummy
 scoreboard objectives add segments.elapsed dummy
 scoreboard objectives add segments.remaining dummy
 scoreboard objectives add segments.remaining_small dummy
