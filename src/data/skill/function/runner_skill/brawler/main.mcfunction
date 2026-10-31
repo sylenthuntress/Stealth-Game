@@ -40,7 +40,7 @@ execute as @a[tag=this.selected] run function ./attack_killer:
 tag @s remove this.self
 tag @a remove this.selected
 
-execute if score @s skill.runner.brawler.cooldown matches 1.. run function ~/_cooldown:
+execute if score @s skill.runner.brawler.cooldown matches 1.. run function ./tick_cooldown:
     scoreboard players remove @s skill.runner.brawler.cooldown 1
     execute if score @s skill.runner.brawler.uses matches 3 expand:
         attribute @s minecraft:attack_damage modifier add ./cooldown -1 add_multiplied_base

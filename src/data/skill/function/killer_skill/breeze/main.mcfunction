@@ -49,7 +49,7 @@ item modify entity @s {"type":"minecraft:filtered","slot_source":"util:inventory
         ]
     }
 
-execute if score @s skill.killer.breeze.cooldown matches 1.. unless score @s skill.killer.breeze.count matches 3.. run function ~/_cooldown:
+execute if score @s skill.killer.breeze.cooldown matches 1.. unless score @s skill.killer.breeze.count matches 3.. run function ./tick_cooldown:
     scoreboard players remove @s skill.killer.breeze.cooldown 1
     execute if score @s skill.killer.breeze.cooldown matches 0 expand:
         function ./give_item

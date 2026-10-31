@@ -26,7 +26,7 @@ advancement revoke @s only ~/
 
 scoreboard players remove @s[tag=skill.killer_skill.athlete.dashing] skill.killer.athlete.dash_timer 1
 scoreboard players remove @s[tag=skill.killer_skill.athlete.dashing] time.player.stun_timer 1
-execute if score @s skill.killer.athlete.cooldown matches 1.. run function ~/_cooldown:
+execute if score @s skill.killer.athlete.cooldown matches 1.. run function ./tick_cooldown:
     scoreboard players remove @s skill.killer.athlete.cooldown 1
 
     scoreboard players operation #display time.display_sec = @s skill.killer.athlete.cooldown

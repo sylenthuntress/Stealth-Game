@@ -24,7 +24,7 @@ advancement ~/ {
 
 advancement revoke @s only ~/
 
-execute if score @s skill.killer.specter.cooldown matches 1.. run function ~/_cooldown:
+execute if score @s skill.killer.specter.cooldown matches 1.. run function ./tick_cooldown:
     scoreboard players remove @s skill.killer.specter.cooldown 1
 
     scoreboard players operation #display time.display_sec = @s skill.killer.specter.cooldown

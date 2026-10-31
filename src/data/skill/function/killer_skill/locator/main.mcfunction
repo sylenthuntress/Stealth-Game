@@ -126,7 +126,7 @@ tag @s remove this.self
 
 function ./point_compass with storage skill:data KillerSkills.Locator.Tracked
 
-execute unless score @s skill.killer.locator.tracking_timer matches 0.. if score @s skill.killer.locator.cooldown matches 1.. run function ~/_cooldown:
+execute unless score @s skill.killer.locator.tracking_timer matches 0.. if score @s skill.killer.locator.cooldown matches 1.. run function ./tick_cooldown:
     scoreboard players remove @s skill.killer.locator.cooldown 1
 
     scoreboard players operation #display time.display_sec = @s skill.killer.locator.cooldown
