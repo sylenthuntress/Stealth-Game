@@ -13,7 +13,7 @@ execute function game:gameplay/runner/tick_hiding:
 
     tag @s add this.self
     execute as @e[type=item_display,tag=little_mouse] if score @s uid.entity = @a[tag=this.self,limit=1] uid.player run tag @s add this.display
-    execute positioned ~ ~0.55 ~ as @n[type=item_display,tag=this.display,distance=0.1..] expand:
+    execute positioned ~ ~0.55 ~ as @n[type=item_display,tag=this.display,distance=0.125..] expand:
         rotate @s facing entity @a[tag=this.self,limit=1] eyes
         at @s run rotate @s ~180 0
         tp @s ~ ~ ~

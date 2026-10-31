@@ -51,7 +51,7 @@ execute as @e[type=marker,tag=skill.runner_skill.puppeteer.small_puppet] at @s u
 execute as @e[type=mannequin,tag=skill.runner_skill.puppeteer.puppet] if score @s uid.entity = @p[tag=this.selector] uid.player run tag @s add this.selected
 
 execute as @e[type=mannequin,tag=this.selected] at @s run function ./tick_puppet:
-    execute positioned ~ ~0.55 ~ unless entity @e[distance=..0.001,type=item_display,tag=skill.runner_skill.puppeteer.little_mouse] as @e[type=item_display,tag=skill.runner_skill.puppeteer.little_mouse] if score @s uid.entity = @n[type=mannequin,tag=this.selected,tag=skill.runner_skill.puppeteer.small_puppet] uid.entity run tag @s add this.display
+    execute positioned ~ ~0.55 ~ unless entity @e[distance=..0.125,type=item_display,tag=skill.runner_skill.puppeteer.little_mouse] as @e[type=item_display,tag=skill.runner_skill.puppeteer.little_mouse] if score @s uid.entity = @n[type=mannequin,tag=this.selected,tag=skill.runner_skill.puppeteer.small_puppet] uid.entity run tag @s add this.display
     execute as @n[type=item_display,tag=this.display] run function ./tick_hiding:
         at @s facing entity @n[type=mannequin,tag=this.selected] eyes run rotate @s ~180 0
         tp @s ~ ~0.55 ~
