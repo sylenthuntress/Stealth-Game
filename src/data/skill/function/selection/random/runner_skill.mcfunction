@@ -6,10 +6,10 @@ execute store result storage skill:data Random.args.max_index int 1 run scoreboa
 execute store result storage skill:data Random.args.uid int 1 run scoreboard players get @s uid.player
 data modify storage skill:data Random.list set value []
 data modify storage skill:data Random.list append from storage skill:data Registry[{"type":"skill:runner"}]
-data modify storage skill:data Random.args.registry set value "runner_skill"
+data modify storage skill:data Random.args.registry set value "runner"
 
 scoreboard objectives add var.times dummy
-scoreboard players operation #var var.times = #config config.slots.runner_skill
+scoreboard players operation #var var.times = #config config.slots.runner
 
 function ./random_loop
 

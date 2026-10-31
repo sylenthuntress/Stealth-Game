@@ -13,7 +13,7 @@ data modify storage skill:data Selection.dialog set value {
 data modify storage skill:data Selection.Recursive set value []
 data modify storage skill:data Selection.Recursive append from storage skill:data Registry[{"type": "skill:runner"}]
 advancement revoke @s only skill:selection/runner_gui
-tag @s add skill.selection.runner_skill
+tag @s add skill.selection.runner
 
 data modify storage skill:data Selection.dialog.title set value {"translate": "skill.selection.gui"}
 

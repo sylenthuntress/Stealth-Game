@@ -99,7 +99,7 @@ execute if block ~ 41 ~ minecraft:netherite_block run function game:gameplay/run
     execute store result bossbar game:time/endgame_timer value run scoreboard players get #time time.endgame_timer
     
     execute unless entity @s[tag=skill.runner.medic.revived] run tellraw @a[tag=game.viewing] {"translate": "game.cross_finish", "color": "red", with:[{"selector":"@s"}]}
-    execute if entity @s[tag=skill.runner.medic.revived] run function skill:runner_skill/medic/award_points
+    execute if entity @s[tag=skill.runner.medic.revived] run function skill:runner/medic/award_points
 
     function skill:disable_skills
     execute as @e[type=text_display,tag=band_display] run data modify entity @s text.color set value 'gold'

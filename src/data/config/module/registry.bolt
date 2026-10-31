@@ -6,8 +6,8 @@ options = {
     "segments_small": 3,
     "segments_med": 4,
     "segments_large": 5,
-    "slots.runner_skill": 2,
-    "slots.killer_skill": 2,
+    "slots.runner": 2,
+    "slots.killer": 2,
     "slots.weapon": 1
 }
 

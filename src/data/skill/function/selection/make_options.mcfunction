@@ -36,8 +36,8 @@ execute if data storage skill:data Selection.Recursive[0] run return run functio
 scoreboard objectives add var.occupied_slots dummy
 execute store result score @s var.occupied_slots if data storage skill:data Selection.dialog.actions[{equipped:true}]
 
-execute if score @s[tag=skill.selection.runner_skill] var.occupied_slots >= #config config.slots.runner_skill run function ./lock_options
-execute if score @s[tag=skill.selection.killer_skill] var.occupied_slots >= #config config.slots.killer_skill run function ./lock_options
+execute if score @s[tag=skill.selection.runner] var.occupied_slots >= #config config.slots.runner run function ./lock_options
+execute if score @s[tag=skill.selection.killer] var.occupied_slots >= #config config.slots.killer run function ./lock_options
 execute if score @s[tag=skill.selection.weapon] var.occupied_slots >= #config config.slots.weapon run function ./lock_options
 function ./lock_options:
     data modify storage skill:data Selection.dialog.actions[{equipped:false}].label.color set value "dark_gray"

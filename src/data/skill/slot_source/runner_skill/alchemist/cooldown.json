@@ -1,7 +1,0 @@
-{
-  "type": "minecraft:group",
-  "terms": [
-    "skill:runner_skill/alchemist/blinding_flask_cooldown",
-    "skill:runner_skill/alchemist/stagger_flask_cooldown"
-  ]
-}

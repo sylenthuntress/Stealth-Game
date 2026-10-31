@@ -1,0 +1,66 @@
+advancement ~/ {
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:tick",
+      "conditions": {
+        "player": {
+          "type": "minecraft:entity_properties",
+          "entity": "this",
+          "predicate": {
+            "minecraft:entity_tags": {
+              "any_of": [
+                "skill.runner.undying"
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "rewards": {
+    "function": (~/)
+  }
+}
+
+advancement revoke @s only ~/
+
+execute if entity @s[gamemode=spectator,team=dead] at @s run function ./attempt_revive:
+    tag @s add this.selector
+    execute as @e[type=mannequin,tag=game.runner_corpse] if score @s uid.entity = @p[tag=this.selector] uid.player run tag @s add this.selected
+    tag @s remove this.selector
+
+    i = 0
+    completeHearts = ""
+    incompleteHearts = "♡♡♡♡♡♡♡♡♡♡"
+    for n in range(400):
+        if n % 40 == 0:
+            execute if score @n[type=mannequin,tag=this.selected] time.player.corpse_age matches (n, n+40) run playsound minecraft:block.note_block.bit master @s ~ ~ ~ (1 - (i/13)) 0.5
+            execute if score @n[type=mannequin,tag=this.selected] time.player.corpse_age matches n run playsound minecraft:entity.wither.shoot master @s ~ ~ ~ (0 + (i/13)) (0.5 + i/40)
+            execute if score @n[type=mannequin,tag=this.selected] time.player.corpse_age matches n run function render:actionbar/set_actionbar {"duration": 50, "text": [{"text": "[","color":"#106189"},{"text":completeHearts,"color":"#56add8"},{"text":incompleteHearts,"color":"dark_gray"},{"text": "]","color":"#106189"}]}
+            completeHearts += "❤"
+            incompleteHearts = incompleteHearts[:-1]
+            i += 1
+    tag @n[tag=this.selected] add skill.runner.undying.reviving
+
+    spectate @n[type=mannequin,tag=this.selected]
+    execute unless score @n[tag=this.selected] time.player.corpse_age matches 300.. unless entity @a[scores={game.player.team_id=1},gamemode=!spectator] run scoreboard players add @n[tag=this.selected] time.player.corpse_age 300
+    execute if score @n[tag=this.selected] time.player.corpse_age matches 300.. run effect give @n[tag=this.selected] glowing 5 0 true
+    execute if score @n[tag=this.selected] time.player.corpse_age matches 400.. run function ./revive:
+        team join runner
+        gamemode adventure
+        teleport @n[type=mannequin,tag=this.selected]
+        scoreboard players operation @s game.player.damage > @s game.player.kill_threshold
+        scoreboard players operation @s game.player.injury > @s game.player.kill_threshold
+        scoreboard players operation @s game.player.injury /= #2 math.const
+        scoreboard players operation @s game.player.damage /= #2 math.const
+        function game:gameplay/runner/update_injury
+        scoreboard players add @s game.player.points_split 1
+        function skill:disable_skills
+        execute at @s run playsound minecraft:item.totem.use master @a[tag=game.viewing] ~ ~ ~ 1 1 1
+        execute at @s run playsound minecraft:entity.wither.spawn player @a[tag=game.viewing] ~ ~ ~ 0.5 2 0.5
+        execute as @n[type=mannequin,tag=this.selected] at @s expand:
+            function game:gameplay/runner/kill_corpse
+        tellraw @a[tag=game.viewing] {"color":"#56add8","translate":"skill.runner.undying.revive","with":[{"selector":"@s"}]}
+        
+        scoreboard players reset @s skill.runner.medic.revive_uid
+    tag @e remove this.selected

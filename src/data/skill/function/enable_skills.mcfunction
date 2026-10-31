@@ -23,6 +23,6 @@ execute function ./../random/filter_tags:
     function skill:remove_tags with storage skill:data Selection.Recursive[0]
 
 # Add random skills to random players
-execute if score @s[tag=skill.runner.random] game.player.team_id matches 1 run function ./selection/random/runner_skill
-execute if score @s[tag=skill.killer.random] game.player.team_id matches 2 run function ./selection/random/killer_skill
+execute if score @s[tag=skill.runner.random] game.player.team_id matches 1 run function ./selection/random/runner
+execute if score @s[tag=skill.killer.random] game.player.team_id matches 2 run function ./selection/random/killer
 execute if score @s[tag=skill.weapon.random] game.player.team_id matches 2 run function ./selection/random/weapon

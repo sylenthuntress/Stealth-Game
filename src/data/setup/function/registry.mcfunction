@@ -43,29 +43,29 @@ data remove storage skill:registry RunnerSkills
 data remove storage skill:registry KillerSkills
 data remove storage skill:registry WeaponRegistry
 
-runner_skills = skill_registry.getRunnerSkills()
-for runner_skill in runner_skills:
+runners = skill_registry.getRunnerSkills()
+for runner in runners:
     data modify storage skill:registry RunnerSkills append value {
-        'id': runner_skill,
-        'desc': (runner_skill + ".desc"),
-        'numid': skill_registry.runner_skills[runner_skill[len(skill_registry.runner_prefix):]].id,
-        'icon': skill_registry.runner_skills[runner_skill[len(skill_registry.runner_prefix):]].icon,
-        'atlas': skill_registry.runner_skills[runner_skill[len(skill_registry.runner_prefix):]].atlas
+        'id': runner,
+        'desc': (runner + ".desc"),
+        'numid': skill_registry.runners[runner[len(skill_registry.runner_prefix):]].id,
+        'icon': skill_registry.runners[runner[len(skill_registry.runner_prefix):]].icon,
+        'atlas': skill_registry.runners[runner[len(skill_registry.runner_prefix):]].atlas
     }
-    isRandom = skill_registry.runner_skills[runner_skill[len(skill_registry.runner_prefix):]].isRandom
+    isRandom = skill_registry.runners[runner[len(skill_registry.runner_prefix):]].isRandom
     if isRandom == 1:
         data modify storage skill:registry RunnerSkills[-1].is_random set value isRandom
 
-killer_skills = skill_registry.getKillerSkills()
-for killer_skill in killer_skills:
+killers = skill_registry.getKillerSkills()
+for killer in killers:
     data modify storage skill:registry KillerSkills append value {
-        'id': killer_skill,
-        'desc': (killer_skill + ".desc"),
-        'numid': skill_registry.killer_skills[killer_skill[len(skill_registry.killer_prefix):]].id,
-        'icon': skill_registry.killer_skills[killer_skill[len(skill_registry.killer_prefix):]].icon,
-        'atlas': skill_registry.killer_skills[killer_skill[len(skill_registry.killer_prefix):]].atlas
+        'id': killer,
+        'desc': (killer + ".desc"),
+        'numid': skill_registry.killers[killer[len(skill_registry.killer_prefix):]].id,
+        'icon': skill_registry.killers[killer[len(skill_registry.killer_prefix):]].icon,
+        'atlas': skill_registry.killers[killer[len(skill_registry.killer_prefix):]].atlas
     }
-    isRandom = skill_registry.killer_skills[killer_skill[len(skill_registry.killer_prefix):]].isRandom
+    isRandom = skill_registry.killers[killer[len(skill_registry.killer_prefix):]].isRandom
     if isRandom == 1:
         data modify storage skill:registry KillerSkills[-1].is_random set value isRandom
 

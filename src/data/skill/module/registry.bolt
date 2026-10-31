@@ -50,66 +50,66 @@ class SkillBuilder():
     
 
 # Runner Skills
-def runner_skill(name):
+def runner(name):
     name = "skill.runner." + name
     return SkillBuilder(name, "skill:runner")
 
-runner_skills = [
-    runner_skill("camouflage")
+runners = [
+    runner("camouflage")
         .icon("minecraft:block/bush", "minecraft:blocks")
         .build(),
-    runner_skill("brawler")
+    runner("brawler")
         .icon("minecraft:mob_effect/strength", "minecraft:gui")
         .build(),
-    runner_skill("jumper")
+    runner("jumper")
         .icon("minecraft:mob_effect/jump_boost", "minecraft:gui")
         .build(),
-    runner_skill("medic")
+    runner("medic")
         .icon("minecraft:mob_effect/regeneration", "minecraft:gui")
         .team_only(2)
         .build(),
-    runner_skill("undying")
+    runner("undying")
         .icon("minecraft:item/totem_of_undying", "minecraft:items") 
         .build(),
-    runner_skill("puppeteer")
+    runner("puppeteer")
         .icon("hide_and_squeak:item/small_puppet", "minecraft:items")
         .build(),
-    runner_skill("warper")
+    runner("warper")
         .icon("hide_and_squeak:item/warp", "minecraft:items")
         .build(),
-    runner_skill("alchemist")
+    runner("alchemist")
         .icon("hide_and_squeak:item/alchemist", "minecraft:items")
         .build(),
-    runner_skill("random")
+    runner("random")
         .icon("hide_and_squeak:item/random", "minecraft:items")
         .is_random()
         .build()
 ]
 
 # Killer Skills
-def killer_skill(name):
+def killer(name):
     name = "skill.killer." + name
     return SkillBuilder(name, "skill:killer")
-killer_skills = [
-    killer_skill("athlete")
+killers = [
+    killer("athlete")
         .icon("minecraft:mob_effect/speed", "minecraft:gui")
         .build(),
-    killer_skill("breeze")
+    killer("breeze")
         .icon("minecraft:mob_effect/wind_charged", "minecraft:gui")
         .build(),
-    killer_skill("trapper")
+    killer("trapper")
         .icon("minecraft:block/tripwire_hook", "minecraft:blocks")
         .build(),
-    killer_skill("locator")
+    killer("locator")
         .icon("minecraft:item/compass_00", "minecraft:items")
         .build(),
-    killer_skill("specter")
+    killer("specter")
         .icon("hide_and_squeak:item/specter", "minecraft:items") 
         .build(),
-    killer_skill("gemini")
+    killer("gemini")
         .icon("hide_and_squeak:item/swap_bodies", "minecraft:items")
         .build(),
-    killer_skill("random")
+    killer("random")
         .icon("hide_and_squeak:item/random", "minecraft:items")
         .is_random()
         .build()
@@ -149,7 +149,7 @@ def registerRandom():
     id_index += 1
     return {"id": id_index, "icon": "hide_and_squeak:item/random", "atlas": "minecraft:items", "isRandom": 1}
 
-runner_skills = {
+runners = {
     "camouflage": register("minecraft:block/bush", "minecraft:blocks"),
     "brawler": register("minecraft:mob_effect/strength", "minecraft:gui"),
 #    "tank": register("minecraft:mob_effect/resistance", "minecraft:gui"),
@@ -165,7 +165,7 @@ runner_skills = {
     "random": registerRandom()
 }
 
-killer_skills = {
+killers = {
     "athlete": register("minecraft:mob_effect/speed", "minecraft:gui"),
     "breeze": register("minecraft:mob_effect/wind_charged", "minecraft:gui"),
 #    "acrobat": register("minecraft:mob_effect/jump_boost", "minecraft:gui"),
@@ -194,13 +194,13 @@ weapon_prefix = "skill.weapon."
 
 def getRunnerSkills():
     skills = []
-    for key in runner_skills.keys():
+    for key in runners.keys():
         skills.append(runner_prefix + key)
     return skills
 
 def getKillerSkills():
     skills = []
-    for key in killer_skills.keys():
+    for key in killers.keys():
         skills.append(killer_prefix + key)
     return skills
 
@@ -212,10 +212,10 @@ def getWeapons():
 
 def getFunctions():
     skills = []
-    for key in runner_skills.keys():
-        skills.append({"tag": runner_prefix + key, "path": "skill:runner_skill/" + key + "/"})
+    for key in runners.keys():
+        skills.append({"tag": runner_prefix + key, "path": "skill:runner/" + key + "/"})
     for key in weapons.keys():
         skills.append({"tag": weapon_prefix + key, "path": "skill:weapon/" + key + "/"})
-    for key in killer_skills.keys():
-        skills.append({"tag": killer_prefix + key, "path": "skill:killer_skill/" + key + "/"})
+    for key in killers.keys():
+        skills.append({"tag": killer_prefix + key, "path": "skill:killer/" + key + "/"})
     return skills

@@ -13,7 +13,7 @@ data modify storage skill:data Selection.dialog set value {
 data modify storage skill:data Selection.Recursive set value []
 data modify storage skill:data Selection.Recursive append from storage skill:data Registry[{"type": "skill:killer"}]
 advancement revoke @s only skill:selection/killer_gui
-tag @s add skill.selection.killer_skill
+tag @s add skill.selection.killer
 function skill:selection/make_options
 
 data modify storage skill:data Selection.dialog.title set value {"translate": "skill.selection.gui"}
