@@ -19,6 +19,10 @@ execute unless score #uid.index uid.index matches 0.. run scoreboard players set
 scoreboard objectives add uid.player dummy
 scoreboard objectives add uid.entity dummy
 
+# Cosmetics
+scoreboard objectives add cosmetic.selection trigger
+scoreboard objectives add cosmetic.close_selection trigger
+
 # Data
 ## Example: data.<raw_criteria>
 def addData(criteria):

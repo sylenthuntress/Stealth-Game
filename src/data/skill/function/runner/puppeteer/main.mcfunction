@@ -30,22 +30,26 @@ execute as @e[type=marker,tag=skill.runner.puppeteer.puppet] at @s run function 
 
 execute as @e[type=marker,tag=skill.runner.puppeteer.large_puppet] at @s unless predicate {type:"minecraft:entity_properties",entity:"this",predicate:{vehicle:{}}} run function ./land_large_puppet:
     function ./spawn_mannequin with entity @p[tag=this.selector]
+    item fill entity @n[type=mannequin,tag=skill.runner.puppeteer.puppet] armor.* from entity @p[tag=this.selector] armor.*
     tag @n[type=mannequin,tag=skill.runner.puppeteer.puppet] add skill.runner.puppeteer.large_puppet
     kill @s
 
 execute as @e[type=marker,tag=skill.runner.puppeteer.small_puppet] at @s unless predicate {type:"minecraft:entity_properties",entity:"this",predicate:{vehicle:{}}} run function ./land_small_puppet:
     function ./spawn_mannequin with entity @p[tag=this.selector]
+    item fill entity @n[type=mannequin,tag=skill.runner.puppeteer.puppet] armor.body from entity @p[tag=this.selector] armor.body
     tag @n[type=mannequin,tag=skill.runner.puppeteer.puppet] add skill.runner.puppeteer.small_puppet
     execute as @n[type=mannequin,tag=skill.runner.puppeteer.puppet] at @s run function ./start_hiding:
         data merge entity @s {pose:"crouching"}
-        item fill entity @s armor.* with air
         effect give @s invisibility infinite 0 true
         attribute @s minecraft:gravity modifier add game:gameplay/runner/hiding 0.02 add_value
 
-        summon minecraft:item_display ~ ~ ~ {Tags:["skill.runner.puppeteer.little_mouse"], teleport_duration: 1, item: {components: {"minecraft:custom_name": {bold: 1b, color: "gold", italic: 0b, text: "Field Mouse", underlined: 1b}, "minecraft:lore": [{color: "gray", italic: 0b, text: "Custom Head ID: 110695"}, {color: "blue", italic: 0b, text: "www.minecraft-heads.com"}], "minecraft:profile": {properties: [{name: "textures", value: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjM3OWUwOTI1MjgxNzMxNGJkMGI2OTRmN2Q1M2I0OGFmMmM3ZmE4NDk5MTA5ODAyYTQxYmIyOTRkMmY5M2UzZSJ9fX0="}]}}, count: 1, id: "minecraft:player_head"}, item_display: "head"}
-        execute as @n[type=item_display,tag=skill.runner.puppeteer.little_mouse] unless score @s uid.entity matches 0.. run scoreboard players operation @s uid.entity = @n[type=mannequin,tag=skill.runner.puppeteer.puppet] uid.entity
-        rotate @n[type=item_display,tag=skill.runner.puppeteer.little_mouse] ~180 0
-        tp @n[type=item_display,tag=skill.runner.puppeteer.little_mouse] ~ ~0.55 ~
+        summon minecraft:item_display ~ ~ ~ {Tags:["skill.runner.puppeteer.little_mouse","summoned"], teleport_duration: 1, item: {components: {"minecraft:profile": {properties: [{name: "textures", value: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjM3OWUwOTI1MjgxNzMxNGJkMGI2OTRmN2Q1M2I0OGFmMmM3ZmE4NDk5MTA5ODAyYTQxYmIyOTRkMmY5M2UzZSJ9fX0="}]}}, count: 1, id: "minecraft:player_head"}, item_display: "head"}
+        data modify entity @n[type=item_display,tag=skill.runner.puppeteer.little_mouse,tag=summoned] item set from entity @s equipment.body
+        execute as @n[type=item_display,tag=skill.runner.puppeteer.little_mouse,tag=summoned] expand: 
+            scoreboard players operation @s uid.entity = @n[type=mannequin,tag=skill.runner.puppeteer.puppet] uid.entity
+            rotate @n[type=item_display,tag=skill.runner.puppeteer.little_mouse] ~180 0
+            tp @n[type=item_display,tag=skill.runner.puppeteer.little_mouse] ~ ~0.55 ~
+            tag @s remove summoned
     kill @s
 
 execute as @e[type=mannequin,tag=skill.runner.puppeteer.puppet] if score @s uid.entity = @p[tag=this.selector] uid.player run tag @s add this.selected

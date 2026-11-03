@@ -1,0 +1,131 @@
+#version 330
+#extension GL_ARB_separate_shader_objects : require
+
+#ifdef GLINT
+#include <minecraft:globals.glsl>
+#endif
+#include <minecraft:fog.glsl>
+#include <minecraft:dynamictransforms.glsl>
+#include <minecraft:oit.glsl>
+
+uniform sampler2D Sampler0;
+
+#ifdef DISSOLVE
+uniform sampler2D DissolveMaskSampler;
+#endif
+
+#ifdef GLINT
+uniform sampler2D GlintSampler;
+#endif
+
+layout(location = 0) in float sphericalVertexDistance;
+layout(location = 1) in float cylindricalVertexDistance;
+#ifdef PER_FACE_LIGHTING
+layout(location = 2) in vec4 vertexPerFaceColorBack;
+layout(location = 3) in vec4 vertexPerFaceColorFront;
+#else
+layout(location = 2) in vec4 vertexColor;
+#endif
+
+#ifndef EMISSIVE
+layout(location = 4) in vec4 lightMapColor;
+#endif
+
+#ifndef NO_OVERLAY
+layout(location = 5) in vec4 overlayColor;
+#endif
+
+layout(location = 6) in vec2 texCoord0;
+#ifdef GLINT
+layout(location = 7) in vec2 texCoordGlint;
+#endif
+
+#ifndef OIT_ALPHA_ONLY
+layout(location = 0) out vec4 fragColor;
+#endif
+
+vec4 calculateFinalColor(vec4 color) {
+    #ifndef NO_OVERLAY
+    color.rgb = mix(overlayColor.rgb, color.rgb, overlayColor.a);
+    #endif
+
+    #ifndef EMISSIVE
+    color *= lightMapColor;
+    #endif
+
+    #ifdef GLINT
+    vec4 glintColor = GlintAlpha * texture(GlintSampler, texCoordGlint);
+    // Matches BlendFuntion.GLINT
+    color.rgb += glintColor.rgb * glintColor.rgb;
+    #endif
+
+    #ifdef OIT_ACCUMULATE
+    color = sampleColorForAccumulation(color);
+    vec4 fogColor = vec4(FogColor.rgb * color.a, FogColor.a);
+    #else
+    vec4 fogColor = FogColor;
+    #endif
+
+    return apply_fog(color, sphericalVertexDistance, cylindricalVertexDistance, FogEnvironmentalStart, FogEnvironmentalEnd, FogRenderDistanceStart, FogRenderDistanceEnd, fogColor);
+}
+
+layout(location = 8) in vec3 cornerTex1;
+layout(location = 9) in vec3 cornerTex2;
+layout(location = 10) flat in int special;
+
+vec2 uv = texCoord0;
+
+void main() {
+    if (special == 1) {
+        vec2 margin = .5/ vec2(textureSize(Sampler0, 0));
+        vec2 cornerPos1 = cornerTex1.xy / cornerTex1.z;
+        vec2 cornerPos2 = cornerTex2.xy / cornerTex2.z;
+        vec2 minCoords = min(cornerPos1, cornerPos2);
+        vec2 maxCoords = max(cornerPos1, cornerPos2);
+        vec2 newMin = minCoords + margin;
+        vec2 newMax = maxCoords - margin;
+        vec2 normCoord = (uv - newMin) / (newMax - newMin);
+        if (normCoord.x < 0. || normCoord.x > 1. || normCoord.y < 0. || normCoord.y > 1.) {
+            discard;
+        }
+    }
+
+    vec4 color = texture(Sampler0, uv);
+
+    #ifdef ALPHA_CUTOUT
+    if (color.a < ALPHA_CUTOUT) {
+        discard;
+    }
+    #endif
+
+    #ifdef PER_FACE_LIGHTING
+    color *= (gl_FrontFacing ? vertexPerFaceColorFront : vertexPerFaceColorBack) * ColorModulator;
+    #else
+    color *= vertexColor * ColorModulator;
+    #endif
+
+    #ifdef DISSOLVE
+    if (color.a < texture(DissolveMaskSampler, texCoord0).a) {
+        discard;
+    }
+    // The dissolve effect entirely replaces translucency
+    color.a = 1.0;
+    #endif
+
+    #ifdef GLINT
+    color.a = max(color.a, GlintAlpha);
+    #endif
+
+    #ifndef NO_OVERLAY
+    color.rgb = mix(overlayColor.rgb, color.rgb, overlayColor.a);
+    #endif
+    #ifndef EMISSIVE
+        color *= lightMapColor;
+    #endif
+
+    #ifdef OIT_ALPHA_ONLY
+    executeAlphaOnlyPhase(gl_FragCoord.z, color.a);
+    #else
+    fragColor = calculateFinalColor(color);
+    #endif
+}

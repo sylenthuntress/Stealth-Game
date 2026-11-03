@@ -5,6 +5,7 @@ $summon mannequin ~ ~ ~ {       \
     Rotation:$(Rotation),       \
     Health:999f,                \
     attributes:$(attributes),   \
+    equipment:$(equipment),     \
     CustomNameVisible:true,     \
     hide_description:true,      \
     pose:"sleeping"             \

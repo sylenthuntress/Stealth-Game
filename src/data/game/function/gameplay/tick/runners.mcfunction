@@ -32,6 +32,17 @@ execute function game:gameplay/runner/tick_hiding:
     tag @e remove this.display
     tag @s remove this.self
 
+# Manage invisibility
+execute if entity @s[tag=!game.player.invisible] if predicate {type:"minecraft:entity_properties",entity:"this",predicate:{"minecraft:effects":{"minecraft:invisibility":{}}}} function ./../runner/start_invisibility:
+    item replace entity @s armor.head with air
+    item replace entity @s armor.chest with air
+    item replace entity @s armor.legs with air
+    item replace entity @s armor.feet with air
+    tag @s add game.player.invisible
+execute if entity @s[tag=game.player.invisible] unless predicate {type:"minecraft:entity_properties",entity:"this",predicate:{"minecraft:effects":{"minecraft:invisibility":{}}}} function ./../runner/_invisibility:
+    function cosmetic:add_equipment
+    tag @s remove game.player.invisible
+
 # Manage Health
 execute if score @s data.damage_taken matches 1.. run function game:gameplay/runner/take_damage
 execute if score @s time.player.damage_timer matches 1.. run scoreboard players remove @s time.player.damage_timer 1

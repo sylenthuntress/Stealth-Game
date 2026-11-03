@@ -34,7 +34,7 @@
     "output": "build",
     "meta": {
         "bolt": {
-            "entrypoint": ["menu:credits", "menu:guidebook"]
+            "entrypoint": ["menu:credits", "menu:guidebook", "cosmetic:registry", "completion:registry"]
         },
         "bolt_expressions": {
             "init_path": "setup:math",

@@ -1,0 +1,1 @@
+execute if entity @s[tag=cosmetic.selection.runner_skin] run function ./runner_skin

@@ -4,6 +4,7 @@
         "setup:gamerules",
         "setup:teams",
         "setup:bossbars",
-        "setup:math"
+        "setup:math",
+        "setup:cosmetics"
     ]
 }

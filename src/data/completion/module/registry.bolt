@@ -1,0 +1,56 @@
+from util:builders import TextBuilder, AdvancementBuilder
+from cosmetic:registry import runner_skins
+
+(AdvancementBuilder("completion:hunter/root")
+    .criteria_always()
+    .translate_title("Hunter")
+    .icon_item("minecraft:trident", {})
+    .build())
+
+# Runner
+def get_cosmetic_name(target_id):
+    name = []
+    for skin in runner_skins:
+        if skin.identifier == target_id:
+            equipment = skin.get_equipment()
+            name = skin.get_name()
+            name.update({"color": "gray", "bold": false})
+            break
+    return name
+
+(AdvancementBuilder("completion:runner/root")
+        .criteria_always()
+        .translate_title("Runner")
+        .icon_player("hide_and_squeak:entity/player/cosmetic/runner_skin/field_mouse/head")
+        .build())
+
+(AdvancementBuilder("completion:runner/first_to_finish")
+    .translate_title("Hop, Skip, Jump!")
+    .desc(TextBuilder("completion.runner.first_to_finish.desc.1")
+        .translate("In a team game, reach the finish line before your teammates.")
+        .build())
+    .parent("completion:runner/root")
+    .build())
+function completion:runner/first_to_finish:
+    append function_tag event:cross_finish {"values": (~/)}
+    execute if score #gamestate gamestate.runners matches 1 run return fail
+    execute if score #gamestate gamestate.crossed_finish matches 1 run return fail
+
+    advancement grant @s only completion:runner/first_to_finish
+
+(AdvancementBuilder("completion:runner/find_bumblebee")
+    .translate_title("Royal Mourning")
+    .desc([
+        TextBuilder("completion.runner.find_bumblebee.desc.1")
+            .translate("Find the buzzing memory of a hive, its queen, and its fall to the spores.")
+            .build(),
+        TextBuilder("completion.runner.find_bumblebee.desc.2")
+            .translate("\n\nUnlocks: %s")
+            .color("green")
+            .with_text(get_cosmetic_name("cosmetic.runner_skin.bumblebee"))
+            .build()])
+    .parent("completion:runner/root")
+    .show_toast()
+    .announce_to_chat()
+    .icon_player("hide_and_squeak:entity/player/cosmetic/runner_skin/bumblebee/head")
+    .build())
