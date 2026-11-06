@@ -91,9 +91,10 @@ execute if block ~ 41 ~ minecraft:diamond_block unless score @s game.player.band
     
     scoreboard players operation #gamestate gamestate.band_progression > @s game.player.band_progression
     function skill:cross_band
-    execute as @a run function #skill:event/band_claimed
+    execute as @a run function event:band_claimed
 
 execute if block ~ 41 ~ minecraft:netherite_block run function game:gameplay/runner/cross_finish:
+    function event:cross_finish
     gamemode spectator
     team join finished
     playsound minecraft:block.note_block.bell master @a ~ ~ ~ 2 1 1

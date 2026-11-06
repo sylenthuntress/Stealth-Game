@@ -1,4 +1,4 @@
-append function_tag skill:event/on_kill {
+append function_tag event:on_kill {
     "values": [(./on_kill)]
 }
 

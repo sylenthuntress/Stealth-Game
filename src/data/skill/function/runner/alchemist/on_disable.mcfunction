@@ -1,4 +1,4 @@
-append function_tag skill:event/on_disable {
+append function_tag event:disable_skills {
     "values": [(~/)]
 }
 

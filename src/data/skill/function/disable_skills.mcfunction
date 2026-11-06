@@ -1,4 +1,4 @@
-function #skill:event/on_disable
+function event:disable_skills
 data remove storage skill:data Selection.selector
 execute store result storage skill:data Selection.selector.uid int 1 run scoreboard players get @s uid.player
 

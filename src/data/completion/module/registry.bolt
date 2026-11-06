@@ -32,7 +32,7 @@ def get_cosmetic_name(target_id):
     .parent("completion:runner/root")
     .build())
 function completion:runner/first_to_finish:
-    append function_tag event:cross_finish {"values": (~/)}
+    append function_tag event:cross_finish {"values": [(~/)]}
     execute if score #gamestate gamestate.runners matches 1 run return fail
     execute if score #gamestate gamestate.crossed_finish matches 1 run return fail
 

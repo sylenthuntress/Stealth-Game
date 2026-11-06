@@ -1,4 +1,4 @@
-append function_tag skill:event/band_claimed {
+append function_tag event:band_claimed {
     "values": [(./band_claimed)]
 }
 

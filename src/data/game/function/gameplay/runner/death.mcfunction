@@ -25,7 +25,7 @@ execute unless entity @a[tag=this.killer] run tag @a[scores={game.player.team_id
 
 execute as @a[tag=this.killer] function ./kill_credit:
     points["@s"] += points["#var"]
-    function #skill:event/on_kill
+    function event:on_kill
 points["@a[tag=!this.killer,scores={game.player.team_id=2}]"] + (points["#var"]+5) / 2
 tag @e remove this.killer
 

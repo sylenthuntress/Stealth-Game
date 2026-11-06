@@ -1,4 +1,4 @@
-append function_tag skill:event/cross_band {
+append function_tag event:cross_band {
     "values": [(~/)]
 }
 
