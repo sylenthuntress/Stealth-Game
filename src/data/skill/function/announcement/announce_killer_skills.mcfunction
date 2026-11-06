@@ -13,12 +13,17 @@ data modify storage skill:selection KillerSkillsAnnouncement.text.with[0][-1]."h
 execute unless data storage skill:data Selection.Recursive[0].skills[0] run data modify storage skill:selection KillerSkillsAnnouncement.text.with[0][-1] set value {"text": "None", "color": "gold"}
 
 # Loop function until all skills have been sorted
-execute if data storage skill:data Selection.Recursive[0].skills[1]."killer" expand:
+data remove storage skill:data Selection.type
+data remove storage skill:data Selection.next_type
+data modify storage skill:data Selection.type set from storage skill:data Selection.Recursive[0].skills[0].type
+data modify storage skill:data Selection.next_type set from storage skill:data Selection.Recursive[0].skills[1].type
+
+execute if data storage skill:data Selection{next_type:"skill:killer"} expand:
     data modify storage skill:selection KillerSkillsAnnouncement.text.with[0] append value {"text": "/","hover_event":{"action": "show_text","value":[{"text": ""}]}}
 
-execute if data storage skill:data Selection.Recursive[0].skills[1]."weapon" expand:
-    execute if data storage skill:data Selection.Recursive[0].skills[0]."killer" run data modify storage skill:selection KillerSkillsAnnouncement.text.with[0] append value {"text": "], [","color":"#712525","hover_event":{"action": "show_text","value":[{"text": ""}]}}
-    execute if data storage skill:data Selection.Recursive[0].skills[0]."weapon" run data modify storage skill:selection KillerSkillsAnnouncement.text.with[0] append value {"text": "/","hover_event":{"action": "show_text","value":[{"text": ""}]}}
+execute if data storage skill:data Selection{next_type:"skill:weapon"} expand:
+    execute if data storage skill:data Selection{type:"skill:killer"} run data modify storage skill:selection KillerSkillsAnnouncement.text.with[0] append value {"text": "], [","color":"#712525","hover_event":{"action": "show_text","value":[{"text": ""}]}}
+    execute if data storage skill:data Selection{type:"skill:weapon"} run data modify storage skill:selection KillerSkillsAnnouncement.text.with[0] append value {"text": "/","hover_event":{"action": "show_text","value":[{"text": ""}]}}
 
 data remove storage skill:data Selection.Recursive[0].skills[0]
 execute if data storage skill:data Selection.Recursive[0].skills[0] run return run function ~/

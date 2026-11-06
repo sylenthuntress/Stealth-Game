@@ -16,3 +16,4 @@ function ./random_loop
 scoreboard objectives remove var.max_index
 scoreboard objectives remove var.tag_applied
 scoreboard objectives remove var.times
+data remove storage skill:data Random

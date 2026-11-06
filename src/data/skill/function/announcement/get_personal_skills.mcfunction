@@ -14,12 +14,17 @@ data modify storage skill:selection SkillDisplay.text.with[0][-1]."with"[0]."spr
 data modify storage skill:selection SkillDisplay.text.with[0][-1]."with"[0]."atlas" set from storage skill:data Selection.Recursive[0].skills[0].icon.atlas
 data modify storage skill:selection SkillDisplay.text.with[0][-1]."hover_event"."value"[0] set from storage skill:data Selection.Recursive[0].skills[0].desc
 
-execute if data storage skill:data Selection.Recursive[0].skills[1] unless data storage skill:data Selection.Recursive[0].skills[1]."weapon" expand:
+data remove storage skill:data Selection.type
+data remove storage skill:data Selection.next_type
+data modify storage skill:data Selection.type set from storage skill:data Selection.Recursive[0].skills[0].type
+data modify storage skill:data Selection.next_type set from storage skill:data Selection.Recursive[0].skills[1].type
+
+execute if data storage skill:data Selection.Recursive[0].skills[1] unless data storage skill:data Selection{next_type:"skill:weapon"} expand:
     data modify storage skill:selection SkillDisplay.text.with[0] append value {"text": "/","hover_event":{"action": "show_text","value":[{"text": ""}]}}
 
-execute if data storage skill:data Selection.Recursive[0].skills[1]."weapon" expand:
-    execute unless data storage skill:data Selection.Recursive[0].skills[0]."weapon" run data modify storage skill:selection SkillDisplay.text.with[0] append value {"text": "], [","color":"#712525","hover_event":{"action": "show_text","value":[{"text": ""}]}}
-    execute if data storage skill:data Selection.Recursive[0].skills[0]."weapon" run data modify storage skill:selection SkillDisplay.text.with[0] append value {"text": "/","hover_event":{"action": "show_text","value":[{"text": ""}]}}
+execute if data storage skill:data Selection{next_type:"skill:weapon"} expand:
+    execute unless data storage skill:data Selection{type:"skill:weapon"} run data modify storage skill:selection SkillDisplay.text.with[0] append value {"text": "], [","color":"#712525","hover_event":{"action": "show_text","value":[{"text": ""}]}}
+    execute if data storage skill:data Selection{type:"skill:weapon"} run data modify storage skill:selection SkillDisplay.text.with[0] append value {"text": "/","hover_event":{"action": "show_text","value":[{"text": ""}]}}
 data remove storage skill:data Selection.Recursive[0].skills[0]
 execute if data storage skill:data Selection.Recursive[0].skills[0] run return run function ~/ with storage skill:data Selection.selector
 
