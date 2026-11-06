@@ -4,6 +4,7 @@ data modify storage cosmetic:temp Recursive set value []
 execute store result storage cosmetic:temp selector.uid int 1 run scoreboard players get @s uid.player
 function ./selection/get_selections with storage cosmetic:temp selector
 execute if entity @s[scores={game.player.team_id=1}] run data modify storage cosmetic:temp Recursive append from storage cosmetic:temp Selections.verbose[{"type": "cosmetic:runner/skin"}].components."cosmetic:equipment"[]
+execute if entity @s[scores={game.player.team_id=2}] run data modify storage cosmetic:temp Recursive append from storage cosmetic:temp Selections.verbose[{"type": "cosmetic:killer/skin"}].components."cosmetic:equipment"[]
 
 execute unless data storage cosmetic:temp Recursive[0] run return fail # Return function if no selection is found
 

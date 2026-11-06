@@ -109,7 +109,7 @@ execute positioned coords.play_area.x (coords.play_area.y-19) coords.play_area.z
     scoreboard players add #segments segments.elapsed 1
     execute if score #segments segments.remaining matches 0 expand:
         forceload add ~69 ~ ~49 ~80
-        place template level:finish_line ~19 ~ ~25
+        place template level:finish_line ~22 ~ ~25
         fill ~ 41 ~29 ~49 41 ~25 minecraft:netherite_block
         execute positioned ~ ~ ~30 expand: 
             function ./place_wall

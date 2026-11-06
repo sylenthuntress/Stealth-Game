@@ -1,1 +1,1 @@
-$data modify storage skill:selection RoundSelections[{"uid":$(uid)}].skills append value $(skill)
+$data modify storage skill:data Selection.RoundSelections[{"uid":$(uid)}].skills append value $(skill)

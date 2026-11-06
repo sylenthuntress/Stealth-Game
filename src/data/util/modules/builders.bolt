@@ -6,6 +6,7 @@ class TextBuilder:
         self._italic = false
         self._color = "white"
         self._with = []
+        self._hover_event = {}
         self._translate = false
 
     def color(self, color: str):
@@ -33,103 +34,22 @@ class TextBuilder:
         self._with.append(text)
         return self
 
+    def hover_text(self, *text):
+        self._hover_event = {"action": "show_text", "value": text}
+
     def build(self):
         string = {"text": self._string}
         if self._translate:
             string = {"translate": self._string}
 
-        Text = {
+        text = {
             **string,
             "color": self._color,
             "bold": self._bold,
             "italic": self._italic,
             "with": self._with
         }
-        return Text
 
-class AdvancementBuilder():
-    def root(category):
-       return AdvancementBuilder(f"completion:{category}/root")
-
-    def __init__(self, identifier):
-        self._identifier = identifier
-        self._parent = ""
-        self._icon = {"id": "minecraft:barrier"}
-        self._title = {"translate": identifier.replace("/", ".").replace(":", ".")}
-        self._desc = {"translate": identifier.replace("/", ".").replace(":", ".")+".desc"}
-        self._frame = "task"
-        self._hidden = false
-        self._show_toast = false
-        self._announce_to_chat = false
-        self._criteria = {"conditions": {"trigger": "minecraft:impossible"}}
-        self._rewards = {}
-
-    def parent(self, parent):
-        self._parent = parent
-        return self
-
-    def icon_player(self, texture):
-        self._icon = {"id": "minecraft:player_head", "components": {"profile": {"texture":texture}}}
-        return self
-
-    def icon_item(self, id, components):
-        self._icon = {"id": id, "components": components}
-        return self
-
-    def translate_title(self, translation):
-        translation = {self._title.get("translate"): translation}
-        merge language hide_and_squeak:en_us {**translation}
-        return self
-
-    def desc(self, text):
-        self._desc = text
-        return self
-
-    def frame(self, frame):
-        self._frame = frame
-        return self
-
-    def show_toast(self):
-        self._show_toast = true
-        return self
-
-    def announce_to_chat(self):
-        self._announce_to_chat = true
-        return self
-
-    def criteria_always(self):
-        self._criteria = {
-            "conditions": {
-                "trigger": "minecraft:tick"
-            }
-        }
-        return self
-
-    def function(self, function):
-        from beet import Context, Function
-        ctx.functions.setdefault(function, Function(function))
-
-        self._rewards.update({"function": function})
-        return self
-
-    def build(self):
-        advancement = {
-            "display": {
-                "icon": self._icon,
-                "title": self._title,
-                "description": self._desc,
-                "frame": self._frame,
-                "show_toast": self._show_toast,
-                "announce_to_chat": self._announce_to_chat,
-                "hidden": self._hidden,
-                "background": "minecraft:block/dirt"
-            },
-            "criteria": self._criteria
-        }
-
-        if self._parent != "":
-            advancement.update({"parent": self._parent})
-            advancement.get("display").pop("background")
-        advancement self._identifier: advancement
-
-        return self._identifier
+        if self._hover_event:
+            text.update({"hover_event": self._hover_event})
+        return text

@@ -1,1 +1,1 @@
-$data remove storage skill:selection RoundSelections[{"uid":$(uid)}].skills[{"id": "$(id)"}]
+$data remove storage skill:data Selection.RoundSelections[{"uid":$(uid)}].skills[{"id": "$(id)"}]

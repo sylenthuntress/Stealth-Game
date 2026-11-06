@@ -21,6 +21,6 @@ function skill:announcement/remove_name with storage skill:data Random.args
 function ./add_name with storage skill:data Random.args
 function ./add_name:
     function skill:announcement/add_name with storage skill:data Random.args
-    $data modify storage skill:selection RoundSelections[{"uid":$(uid)}].skills[-1].random_skill set value true
+    $data modify storage skill:data Selection.RoundSelections[{"uid":$(uid)}].skills[-1].random_skill set value true
 
 $return run tag @s add $(id)

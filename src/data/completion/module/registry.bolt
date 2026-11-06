@@ -1,5 +1,6 @@
-from util:builders import TextBuilder, AdvancementBuilder
-from cosmetic:registry import runner_skins
+from util:builders import TextBuilder
+from completion:builder import AdvancementBuilder
+from cosmetic:registry import cosmetics
 
 (AdvancementBuilder("completion:hunter/root")
     .criteria_always()
@@ -10,7 +11,7 @@ from cosmetic:registry import runner_skins
 # Runner
 def get_cosmetic_name(target_id):
     name = []
-    for skin in runner_skins:
+    for skin in cosmetics:
         if skin.identifier == target_id:
             equipment = skin.get_equipment()
             name = skin.get_name()
@@ -27,15 +28,15 @@ def get_cosmetic_name(target_id):
 (AdvancementBuilder("completion:runner/first_to_finish")
     .translate_title("Hop, Skip, Jump!")
     .desc(TextBuilder("completion.runner.first_to_finish.desc.1")
+        .color("green")
         .translate("In a team game, reach the finish line before your teammates.")
         .build())
     .parent("completion:runner/root")
     .build())
-function completion:runner/first_to_finish:
+function completion:earn_advancement/runner/first_to_finish:
     append function_tag event:cross_finish {"values": [(~/)]}
     execute if score #gamestate gamestate.runners matches 1 run return fail
     execute if score #gamestate gamestate.crossed_finish matches 1 run return fail
-
     advancement grant @s only completion:runner/first_to_finish
 
 (AdvancementBuilder("completion:runner/find_bumblebee")
@@ -43,14 +44,47 @@ function completion:runner/first_to_finish:
     .desc([
         TextBuilder("completion.runner.find_bumblebee.desc.1")
             .translate("Find the buzzing memory of a hive, its queen, and its fall to the spores.")
+            .color("green")
             .build(),
         TextBuilder("completion.runner.find_bumblebee.desc.2")
             .translate("\n\nUnlocks: %s")
-            .color("green")
+            .color("dark_green")
             .with_text(get_cosmetic_name("cosmetic.runner_skin.bumblebee"))
             .build()])
     .parent("completion:runner/root")
     .show_toast()
     .announce_to_chat()
     .icon_player("hide_and_squeak:entity/player/cosmetic/runner_skin/bumblebee/head")
+    .build())
+
+# Secret
+(AdvancementBuilder("completion:secret/root")
+    .translate_title("Secret")
+    .desc(TextBuilder("completion.secret.root.desc")
+        .translate("Find secrets hidden around the map to unlock cool cosmetics.")
+        .build())
+    .icon_item("minecraft:sniffer_egg", {})
+    .build())
+
+def secret(name):
+    return (AdvancementBuilder("completion:secret/" + name)
+        .append_to_reward("advancement grant @s only completion:secret/root")
+        .secret())
+
+(secret("find_sculk")
+    .translate_title("Darkness Spreads")
+    .desc([
+        TextBuilder("completion.secret.find_sculk.desc.1")
+            .color("green")
+            .translate("Discover an invasion making its way to the surface.")
+            .build(),
+        TextBuilder("completion.secret.find_sculk.desc.2")
+            .translate("\n\nUnlocks: %s")
+            .color("dark_green")
+            .with_text(get_cosmetic_name("cosmetic.killer_skin.warden"))
+            .build()])
+    .parent("completion:secret/root")
+    .show_toast()
+    .announce_to_chat()
+    .icon_item("minecraft:warden_spawn_egg", {})
     .build())

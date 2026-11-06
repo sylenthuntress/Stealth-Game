@@ -10,8 +10,16 @@ class Rarity(Enum):
     COMMON = rarity("Common", "gray")
     UNCOMMON = rarity("Uncommon", "light_green")
     RARE = rarity("Rare", "blue")
+    EPIC = rarity("Epic", "#964bad")
 
+cosmetics = []
 class Cosmetic():
+    def getCosmetic(name):
+        for cosmetic in cosmetics:
+            if cosmetic.identifier == name:
+                return cosmetic
+        return cosmetics[0]
+
     def __init__(self, nbt):
         self.identifier = nbt.id
         self._numid = nbt.numid
@@ -106,6 +114,10 @@ class CosmeticsBuilder():
         self._components.get("cosmetic:unlockable").update({"desc": [text,"\n\n"]})
         return self
 
+    def secret(self):
+        self._components.update({"cosmetic:secret": true})
+        return self
+
     def equipment(self, slot, item, components):
         self._components.setdefault("cosmetic:equipment", []).append({"slot": slot, "id": item, "components": components})
         return self
@@ -124,6 +136,22 @@ class CosmeticsBuilder():
         
         return self.equipment("armor.head", "minecraft:player_head", components)
 
+    def armor_item(self, slot, item_model, name_icon = ""):
+        import re
+        from beet import Context, Texture
+        from PIL import Image
+        components = {"item_model":item_model,"equippable":{"slot":slot,"equip_sound":"block.sand.step","damage_on_hurt":false},"enchantment_glint_override":false,"enchantments":{"binding_curse":1,"vanishing_curse":1},"tooltip_display":{"hide_tooltip":false,"hidden_components":["enchantments","attribute_modifiers"]}}
+
+        # Item name
+        if not name_icon:
+            name_icon = item_model
+        item_name = self._title.copy()
+        item_name.update({"with": [{"color": "white", "sprite": name_icon, "atlas": "minecraft:items"}]})
+        item_name.update({"italic": false})
+        components.update({"custom_name":item_name})
+        
+        return self.equipment(f"armor.{slot}", "minecraft:coal", components)
+
     def armor(self, slot):
         import re
         from beet import Context, Texture
@@ -138,7 +166,7 @@ class CosmeticsBuilder():
         # Item Model
         merge item_model item_texture {"model":{"type": "minecraft:model","model": item_texture.replace(":", ":item/")}}
         merge model item_texture.replace(":", ":item/") {"parent": "minecraft:item/generated","textures": {"layer0": item_texture.replace(":", ":item/")}}
-        placeholder = Image.open(f"./src/assets/hide_and_squeak/textures/item/cosmetic/runner_skin/placeholder/{slot}.png")
+        placeholder = Image.open(f"./src/assets/hide_and_squeak/textures/item/cosmetic/placeholder/{slot}.png")
         ctx.assets.textures.setdefault(item_texture.replace(":", ":item/"), Texture(placeholder))
         components.update({"item_model":item_texture})
 
@@ -192,66 +220,110 @@ class CosmeticsBuilder():
         append function setup:cosmetics:
             data modify storage cosmetic:data Registry append value nbt
                 
-        return Cosmetic(nbt)
+        cosmetic = Cosmetic(nbt)
+        cosmetics.append(cosmetic)
+        return cosmetic
 # Runner Skins
 def runner_skin(name):
     name = "cosmetic.runner_skin." + name
     return CosmeticsBuilder(name, "cosmetic:runner/skin")
-runner_skins = [
-    runner_skin("field_mouse")
-        .translate_title("Field Mouse")
-        .player("hide_and_squeak:entity/player/cosmetic/runner_skin/field_mouse")
-        .rarity(Rarity.COMMON)
-        .default()
-        .desc(TextBuilder("cosmetic.runner.skin.field_mouse.desc")
-            .translate("Common field mouse. Naive hope illuminates its eyes, but a ruthless nature underlies it.")
+(runner_skin("field_mouse")
+    .translate_title("Field Mouse")
+    .player("hide_and_squeak:entity/player/cosmetic/runner_skin/field_mouse")
+    .rarity(Rarity.COMMON)
+    .default()
+    .desc(TextBuilder("cosmetic.runner.skin.field_mouse.desc")
+        .translate("Common field mouse. Naive hope illuminates its eyes, but a ruthless nature underlies it.")
+        .color("gray")
+        .italic()
+        .build())
+    .equip_player_head("/head")
+    .armor("chest")
+    .armor("legs")
+    .armor("feet")
+    .hiding_form()
+    .build())
+(runner_skin("sewer_rat")
+    .translate_title("Sewer Rat")
+    .player("hide_and_squeak:entity/player/cosmetic/runner_skin/sewer_rat")
+    .rarity(Rarity.COMMON)
+    .desc(TextBuilder("cosmetic.runner.skin.sewer_rat.desc")
+        .translate("Contemptible rodent that makes its way through the sludge and filth of civilization.")
+        .color("gray")
+        .italic()
+        .build())
+    .equip_player_head("/head")
+    .armor("chest")
+    .armor("legs")
+    .armor("feet")
+    .hiding_form()
+    .build())
+(runner_skin("bumblebee")
+    .translate_title("Bumblebee")
+    .player("hide_and_squeak:entity/player/cosmetic/runner_skin/bumblebee")
+    .rarity(Rarity.RARE)
+    .desc(TextBuilder("cosmetic.runner_skin.bumblebee.desc")
+        .translate("Humble servant-worker of the hive, ripped away from her beloved queen after a tragedy.")
+        .color("gray")
+        .italic()
+        .build())
+    .unlockable("completion:runner/find_bumblebee")
+    .unlockable_desc(TextBuilder("cosmetic.runner_skin.bumblebee.locked")
+        .color("red")
+        .bold()
+        .translated()
+        .with_text(TextBuilder("completion.runner.find_bumblebee.desc.1")
             .color("gray")
-            .italic()
-            .build())
-        .equip_player_head("/head")
-        .armor("chest")
-        .armor("legs")
-        .armor("feet")
-        .hiding_form()
-        .build(),
-    runner_skin("sewer_rat")
-        .translate_title("Sewer Rat")
-        .player("hide_and_squeak:entity/player/cosmetic/runner_skin/sewer_rat")
-        .rarity(Rarity.COMMON)
-        .desc(TextBuilder("cosmetic.runner.skin.sewer_rat.desc")
-            .translate("Contemptible rodent that makes its way through the sludge and filth of civilization.")
-            .color("gray")
-            .italic()
-            .build())
-        .equip_player_head("/head")
-        .armor("chest")
-        .armor("legs")
-        .armor("feet")
-        .hiding_form()
-        .build(),
-    runner_skin("bumblebee")
-        .translate_title("Bumblebee")
-        .player("hide_and_squeak:entity/player/cosmetic/runner_skin/bumblebee")
-        .rarity(Rarity.RARE)
-        .desc(TextBuilder("cosmetic.runner_skin.bumblebee.desc")
-            .translate("Humble servant-worker of the hive, ripped away from her beloved queen after a tragedy.")
-            .color("gray")
-            .italic()
-            .build())
-        .unlockable("completion:runner/find_bumblebee")
-        .unlockable_desc(TextBuilder("cosmetic.runner_skin.bumblebee.locked")
-            .color("red")
-            .bold()
             .translated()
-            .with_text(TextBuilder("completion.runner.find_bumblebee.desc.1")
-                .color("gray")
-                .translated()
-                .build())
             .build())
-        .equip_player_head("/head")
-        .armor("chest")
-        .armor("legs")
-        .armor("feet")
-        .hiding_form()
-        .build()
-]
+        .build())
+    .secret()
+    .equip_player_head("/head")
+    .armor("chest")
+    .armor("legs")
+    .armor("feet")
+    .hiding_form()
+    .build())
+
+
+# Killer Skins
+def killer_skin(name):
+    name = "cosmetic.killer_skin." + name
+    return CosmeticsBuilder(name, "cosmetic:killer/skin")
+
+(killer_skin("hunter")
+    .translate_title("Hunter")
+    .custom_icon("minecraft:item/stick", "minecraft:items")
+    .rarity(Rarity.COMMON)
+    .default()
+    .desc(TextBuilder("cosmetic.killer_skin.hunter.desc")
+        .translate("LOREM IPSUM DOLOR")
+        .color("gray")
+        .italic()
+        .build())
+    .build())
+(killer_skin("warden")
+    .translate_title("Warden")
+    .custom_icon("minecraft:item/warden_spawn_egg", "minecraft:items")
+    .rarity(Rarity.EPIC)
+    .desc(TextBuilder("cosmetic.killer_skin.warden.desc")
+        .translate("Powerhouse of the Deep Dark, twisted by the Sculk to invade the surface.")
+        .color("gray")
+        .italic()
+        .build())
+    .unlockable("completion:secret/find_sculk")
+    .unlockable_desc(TextBuilder("cosmetic.killer_skin.warden.locked")
+        .color("red")
+        .bold()
+        .translated()
+        .with_text(TextBuilder("completion.secret.find_sculk.desc.1")
+            .color("gray")
+            .translated()
+            .build())
+        .build())
+    .secret()
+    .armor_item("head", "hide_and_squeak:cosmetic/killer_skin/warden/head", "minecraft:item/warden_spawn_egg")
+    .armor("chest")
+    .armor("legs")
+    .armor("feet")
+    .build())

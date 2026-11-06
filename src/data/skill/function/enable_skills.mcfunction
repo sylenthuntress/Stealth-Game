@@ -8,7 +8,7 @@ function ./get_skills:
     $execute if entity @s[scores={game.player.team_id=2}] run data modify storage skill:data Selection.Recursive append from storage skill:data Selection.players[{"uid": $(uid)}].skills[{"type": "skill:weapon"}]
 function ./announcement/set_team with storage skill:data Selection.selector
 function ./announcement/set_team:
-    $execute store result storage skill:selection RoundSelections[{"uid":$(uid)}].team_id int 1 run scoreboard players get @s game.player.team_id
+    $execute store result storage skill:data Selection.RoundSelections[{"uid":$(uid)}].team_id int 1 run scoreboard players get @s game.player.team_id
 execute unless data storage skill:data Selection.Recursive[0] run return fail # Return function if no selection is found
 
 execute at @s run function skill:add_tags with storage skill:data Selection.Recursive[0]

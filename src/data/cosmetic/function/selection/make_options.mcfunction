@@ -48,10 +48,17 @@ function ./check_equipped:
 execute if score #var var.locked matches 1 run function ./lock_option:
     data modify storage cosmetic:data Selection.dialog.actions[-1].label.color set value "dark_gray"
     data modify storage cosmetic:data Selection.dialog.actions[-1].label.with[0].color set value "dark_gray"
+    data modify storage cosmetic:data Selection.dialog.actions[-1].action.command set value "trigger cosmetic.selection set -1"
     data modify storage cosmetic:data Selection.dialog.actions[-1].label.strikethrough set value true
     data modify storage cosmetic:data Selection.dialog.actions[-1].equipped set value false
     data modify storage cosmetic:data Selection.dialog.actions[-1].locked set value true
-    data modify storage cosmetic:data Selection.dialog.actions[-1].action.command set value "trigger cosmetic.selection set -1" 
+    
+    execute if data storage cosmetic:data Selection.Recursive[0].components{"cosmetic:secret": true} run function ./hide_option:
+        data modify storage cosmetic:data Selection.dialog.actions[-1].label.color set value "black"
+        data modify storage cosmetic:data Selection.dialog.actions[-1].label.with[0].color set value "black"
+        data modify storage cosmetic:data Selection.dialog.actions[-1].tooltip[1] set value {"translate": "cosmetic.selection.hidden", "color": "dark_gray", "bold": false}
+        data modify storage cosmetic:data Selection.dialog.actions[-1].locked set value true
+
     execute if data storage cosmetic:data Selection.Recursive[0].components."cosmetic:unlockable" run 
         data modify storage cosmetic:data Selection.dialog.actions[-1].tooltip prepend from storage cosmetic:data Selection.Recursive[0].components."cosmetic:unlockable".desc
 

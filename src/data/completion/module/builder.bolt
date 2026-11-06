@@ -1,0 +1,117 @@
+from util:builders import TextBuilder
+class AdvancementBuilder():
+    def root(category):
+       return AdvancementBuilder(f"completion:{category}/root")
+
+    def __init__(self, identifier):
+        self._identifier = identifier
+        self._parent = ""
+        self._icon = {"id": "minecraft:barrier"}
+        self._title = {"translate": identifier.replace("/", ".").replace(":", ".")}
+        self._desc = {"translate": identifier.replace("/", ".").replace(":", ".")+".desc"}
+        self._frame = "task"
+        self._hidden = false
+        self._show_toast = false
+        self._secret = false
+        self._announce_to_chat = false
+        self._criteria = {"conditions": {"trigger": "minecraft:impossible"}}
+        
+        adv_function = identifier.replace(":", ":reward/")
+        self._rewards = {"function": adv_function}
+        from beet import Context, Function
+        ctx.data.functions.setdefault(adv_function, Function(""))
+
+    def parent(self, parent):
+        self._parent = parent
+        return self
+
+    def icon_player(self, texture):
+        self._icon = {"id": "minecraft:player_head", "components": {"profile": {"texture":texture}}}
+        return self
+
+    def icon_item(self, id, components):
+        self._icon = {"id": id, "components": components}
+        return self
+
+    def translate_title(self, translation):
+        translation = {self._title.get("translate"): translation}
+        merge language hide_and_squeak:en_us {**translation}
+        return self
+
+    def desc(self, text):
+        self._desc = text
+        return self
+
+    def frame(self, frame):
+        self._frame = frame
+        return self
+
+    def show_toast(self):
+        self._show_toast = true
+        return self
+
+    def secret(self):
+        self._secret = true
+        self._hidden = true
+        self._announce_to_chat = false
+        return self
+
+    def announce_to_chat(self):
+        if self._secret:
+            title = self._title.copy()
+            title.update({"bold": true})
+            title.update({"color": "#8a40c2"})
+            desc = self._desc.copy()
+            desc[0] = desc[0].copy()
+            desc[0].update({"italic": true})
+            desc[0].update({"color": "dark_gray"})
+
+            secret_text = str(TextBuilder("chat.type.advancement.secret")
+                .translate("You've found a secret! %s")
+                .color("gray")
+                .with_text([title, "\n", desc])
+                .build())
+            
+            self.append_to_reward("tellraw @s {'text':'=======================','color':'dark_gray','bold':true}")
+            self.append_to_reward("tellraw @s " + secret_text)
+            self.append_to_reward("tellraw @s {'text':'=======================','color':'dark_gray','bold':true}")
+            return self
+        self._announce_to_chat = true
+        return self
+
+    def criteria_always(self):
+        self._criteria = {
+            "conditions": {
+                "trigger": "minecraft:tick"
+            }
+        }
+        return self
+
+    def append_to_reward(self, command):
+        adv_function = self._rewards.get("function")
+        append function adv_function:
+            raw command
+        return self
+
+    def build(self):
+        advancement = {
+            "display": {
+                "icon": self._icon,
+                "title": self._title,
+                "description": self._desc,
+                "frame": self._frame,
+                "show_toast": self._show_toast,
+                "announce_to_chat": self._announce_to_chat,
+                "hidden": self._hidden,
+                "background": "minecraft:block/dirt"
+            },
+            "criteria": self._criteria,
+            "rewards": self._rewards
+        }
+
+        if self._parent != "":
+            advancement.update({"parent": self._parent})
+            advancement.get("display").pop("background")
+        advancement self._identifier: advancement
+
+        return self._identifier
