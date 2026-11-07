@@ -21,6 +21,7 @@ scoreboard objectives add uid.entity dummy
 
 # Cosmetics
 scoreboard objectives add cosmetic.selection trigger
+scoreboard objectives add cosmetic.switch_gui trigger
 scoreboard objectives add cosmetic.close_selection trigger
 
 # Data
