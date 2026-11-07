@@ -11,5 +11,8 @@ execute as @e[type=item] run function items:dropped/tick
 execute as @a unless score @s uid.player matches 0.. run function main:first_join
 execute as @a[scores={data.leave_game=1..}] run function main:consecutive_join
 
+# Handle events
+execute as @a if score @s data.jump matches 1.. run function event:on_jump
+
 # Reset data collection at end of tree
 ## (Appended from setup:scores#Data)
