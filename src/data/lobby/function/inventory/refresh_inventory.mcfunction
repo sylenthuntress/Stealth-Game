@@ -9,7 +9,7 @@ advancement ~/ {
   }
 }
 
-execute if entity @s[tag=!lobby,gamemode=adventure] run return run advancement revoke @s only ~/
+execute unless entity @s[tag=lobby,gamemode=adventure] run return run advancement revoke @s only ~/
 clear @s
 
 item replace entity @s hotbar.1 with minecraft:book[
