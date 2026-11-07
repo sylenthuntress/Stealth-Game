@@ -39,24 +39,6 @@ function completion:earn_advancement/runner/first_to_finish:
     execute if score #gamestate gamestate.crossed_finish matches 1 run return fail
     advancement grant @s only completion:runner/first_to_finish
 
-(AdvancementBuilder("completion:runner/find_bumblebee")
-    .translate_title("Royal Mourning")
-    .desc([
-        TextBuilder("completion.runner.find_bumblebee.desc.1")
-            .translate("Find the buzzing memory of a hive, its queen, and its fall to the spores.")
-            .color("green")
-            .build(),
-        TextBuilder("completion.runner.find_bumblebee.desc.2")
-            .translate("\n\nUnlocks: %s")
-            .color("dark_green")
-            .with_text(get_cosmetic_name("cosmetic.runner_skin.bumblebee"))
-            .build()])
-    .parent("completion:runner/root")
-    .show_toast()
-    .announce_to_chat()
-    .icon_player("hide_and_squeak:entity/player/cosmetic/runner_skin/bumblebee/head")
-    .build())
-
 # Secret
 (AdvancementBuilder("completion:secret/root")
     .translate_title("Secret")
@@ -68,8 +50,26 @@ function completion:earn_advancement/runner/first_to_finish:
 
 def secret(name):
     return (AdvancementBuilder("completion:secret/" + name)
+        .parent("completion:secret/root")
         .append_to_reward("advancement grant @s only completion:secret/root")
         .secret())
+
+(secret("find_bumblebee")
+    .translate_title("Royal Mourning")
+    .desc([
+        TextBuilder("completion.runner.find_bumblebee.desc.1")
+            .translate("Find the buzzing memory of a hive, its queen, and its fall to the spores.")
+            .color("green")
+            .build(),
+        TextBuilder("completion.runner.find_bumblebee.desc.2")
+            .translate("\n\nUnlocks: %s")
+            .color("dark_green")
+            .with_text(get_cosmetic_name("cosmetic.runner_skin.bumblebee"))
+            .build()])
+    .show_toast()
+    .announce_to_chat()
+    .icon_player("hide_and_squeak:entity/player/cosmetic/runner_skin/bumblebee/head")
+    .build())
 
 (secret("find_sculk")
     .translate_title("Darkness Spreads")
@@ -83,7 +83,6 @@ def secret(name):
             .color("dark_green")
             .with_text(get_cosmetic_name("cosmetic.killer_skin.warden"))
             .build()])
-    .parent("completion:secret/root")
     .show_toast()
     .announce_to_chat()
     .icon_item("minecraft:warden_spawn_egg", {})
