@@ -14,6 +14,7 @@ data modify storage skill:data Selection.Recursive set value []
 data modify storage skill:data Selection.Recursive append from storage skill:data Registry[{"type": "skill:weapon"}]
 advancement revoke @s only skill:selection/weapon
 tag @s add skill.selection.weapon
+function player:get/skill_selections
 function skill:selection/make_options
 
 data modify storage skill:data Selection.dialog.title set value {"translate": "skill.selection.gui.weapon"}
