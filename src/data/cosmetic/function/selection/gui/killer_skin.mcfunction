@@ -5,6 +5,7 @@ data modify storage cosmetic:data Selection.dialog set value {
         "contents": "\n\n"
     },
     "inputs": [],
+    "after_action": "none",
     "pause": false,
     "can_close_with_escape": true,
     "exit_action": {"label": {"translate": "cosmetic.selection.gui.ready", "color": "green"}, "action": {"type": "minecraft:run_command", "command": "trigger cosmetic.close_selection set 1"}},

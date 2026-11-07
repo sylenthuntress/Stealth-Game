@@ -6,6 +6,7 @@ data modify storage cosmetic:data Selection.dialog set value {
     },
     "inputs": [],
     "pause": false,
+    "after_action": "none",
     "can_close_with_escape": true,
     "exit_action": {"label": {"translate": "cosmetic.selection.gui.ready", "color": "green"}, "action": {"type": "minecraft:run_command", "command": "trigger cosmetic.close_selection set 1"}},
     "columns": 1
