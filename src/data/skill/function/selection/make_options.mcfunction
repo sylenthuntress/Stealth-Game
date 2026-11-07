@@ -7,6 +7,7 @@ data modify storage skill:data Selection.dialog.actions[-1].label.translate set 
 data modify storage skill:data Selection.dialog.actions[-1].label.with[0].sprite set from storage skill:data Selection.Recursive[0].icon.sprite
 data modify storage skill:data Selection.dialog.actions[-1].label.with[0].atlas set from storage skill:data Selection.Recursive[0].icon.atlas
 data modify storage skill:data Selection.dialog.actions[-1].tooltip set from storage skill:data Selection.Recursive[0].desc
+execute store success storage skill:data Selection.dialog.actions[-1].random byte 1 run data get storage skill:data Selection.Recursive[0].components{"skill:random":true}
 
 # Set on-click behavior
 execute store result storage skill:data Selection.Recursive[0].uid int 1 run scoreboard players get @s uid.player 
@@ -33,6 +34,10 @@ data remove storage skill:data Selection.Recursive[0]
 execute if data storage skill:data Selection.Recursive[0] run return run function ~/
 
 # Lock skills once all slots have been used
+execute if data storage skill:data Selection.dialog.actions[{equipped:true, random:true}] expand:
+    data modify storage skill:data Selection.dialog.actions[{random:false}].equipped set value false
+    function ./lock_options
+
 scoreboard objectives add var.occupied_slots dummy
 execute store result score @s var.occupied_slots if data storage skill:data Selection.dialog.actions[{equipped:true}]
 
