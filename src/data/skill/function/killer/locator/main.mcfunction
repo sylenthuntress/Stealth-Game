@@ -24,7 +24,7 @@ advancement ~/ {
 
 advancement revoke @s only ~/
 
-execute function .tick_tracking:
+execute function ./tick_tracking:
     scoreboard players remove @s skill.killer.locator.tracking_timer 1
 
     scoreboard players operation #display time.display_sec = @s skill.killer.locator.tracking_timer
