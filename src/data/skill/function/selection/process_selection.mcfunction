@@ -21,8 +21,10 @@ function ./enable_selection:
 
     function ./gui/refresh
     execute at @s run playsound minecraft:entity.item.pickup ui @s ~ ~ ~ 0.5 2
+    execute if data storage player:data players[-1].skills[-1].components{"skill:random":true} at @s run playsound minecraft:block.enchantment_table.use ui @s ~ ~ ~ 0.5 0.5
 
 function ./disable_selection:
+    $execute if data storage player:data players[-1].skills[{"numid": $(selectedoption)}].components{"skill:random":true} at @s run playsound minecraft:block.enchantment_table.use ui @s ~ ~ ~ 0.5 2
     $data remove storage player:data players[-1].skills[{"numid": $(selectedoption)}]
 
     function ./gui/refresh
