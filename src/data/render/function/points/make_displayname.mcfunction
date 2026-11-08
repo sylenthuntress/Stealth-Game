@@ -1,6 +1,6 @@
 data merge storage points:data {DisplayName:{"translate":"game.sidebar.name","with":[{"text":""}],"color":"dark_gray"}}
 
-execute at @s:
+execute positioned 0 0 0:
     loot spawn ~ ~ ~ loot {type:"minecraft:generic",pools:[{rolls:1,entries:[{type:"minecraft:item",name:"minecraft:player_head"}]}],modifier:{type:"minecraft:fill_player_head",entity:"this"}}
     data modify storage points:data DisplayName.with[0].text set from entity @n[type=item] Item.components."minecraft:profile".name
     kill @n[type=item]
