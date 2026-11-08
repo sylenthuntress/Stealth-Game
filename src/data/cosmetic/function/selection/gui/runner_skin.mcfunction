@@ -13,6 +13,7 @@ data modify storage cosmetic:data Selection.dialog set value {
 }
 data modify storage cosmetic:data Selection.Recursive set value []
 data modify storage cosmetic:data Selection.Recursive append from storage cosmetic:data Registry[{"type": "cosmetic:runner/skin"}]
+function player:get/cosmetics
 tag @s add cosmetic.selection.runner_skin
 
 data modify storage cosmetic:data Selection.dialog.title set value {"translate": "cosmetic.selection.gui"}

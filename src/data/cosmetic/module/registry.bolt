@@ -267,7 +267,7 @@ def runner_skin(name):
         .color("gray")
         .italic()
         .build())
-    .unlockable("completion:runner/find_bumblebee")
+    .unlockable("completion:secret/find_bumblebee")
     .unlockable_desc(TextBuilder("cosmetic.runner_skin.bumblebee.locked")
         .color("red")
         .bold()

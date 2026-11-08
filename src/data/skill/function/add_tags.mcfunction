@@ -5,9 +5,9 @@ scoreboard players set #var var.predicate 1
 function ./check_predicate with storage skill:data Selection.Recursive[0]
 function ./check_predicate:
     $execute unless predicate $(predicate) run scoreboard players set #var var.predicate 0
-execute if data storage skill:data Selection.Recursive[0].components."skill:team_only" run function ./check_teammates:
+execute if data storage skill:data Selection.Recursive[0].components{"skill:team_only":true} run function ./check_teammates:
     scoreboard objectives add var.teammates dummy
-    execute store result score @s var.teammates run data get storage skill:data Selection.Recursive[0].components."skill:team_only"
+    execute store result score @s var.teammates run data get storage skill:data Selection.Recursive[0].components{"skill:team_only":true}
     execute if score @s[scores={game.player.team_id=1}] var.teammates > #gamestate gamestate.runners run scoreboard players set #var var.predicate 0
     execute if score @s[scores={game.player.team_id=2}] var.teammates > #gamestate gamestate.killers run scoreboard players set #var var.predicate 0
     scoreboard objectives remove var.teammates

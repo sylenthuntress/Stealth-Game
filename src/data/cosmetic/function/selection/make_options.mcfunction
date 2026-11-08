@@ -35,15 +35,25 @@ execute store result score #var var.locked run function ./check_locked:
 
     return fail
 
-execute unless score #var var.locked matches 1 run function ./check_equipped with storage cosmetic:data Selection.Recursive[0]
+data modify storage cosmetic:data Selection.dialog.actions[-1].equipped set value false
+execute if function ./check_equipped run function ./equip_option
 function ./check_equipped:
-    $execute if data storage cosmetic:data Selection.players[{"uid": $(uid)}].cosmetics[{"id": "$(id)"}] run return run function cosmetic:selection/make_equipped_option
-    function cosmetic:selection/make_equipped_option:
-        data modify storage cosmetic:data Selection.dialog.actions[-1].label.color set value "green"
-        data modify storage cosmetic:data Selection.dialog.actions[-1].label.with[0].color set value "white"
-        data modify storage cosmetic:data Selection.dialog.actions[-1].label.strikethrough set value false
-        data modify storage cosmetic:data Selection.dialog.actions[-1].equipped set value true
-    data modify storage cosmetic:data Selection.dialog.actions[-1].equipped set value false
+    scoreboard objectives add var.list_size dummy
+    scoreboard objectives add var.list_success dummy
+    data modify storage player:data test.cosmetics set value []
+    data modify storage player:data test.cosmetics append from storage player:data selected.cosmetics[].id
+    execute store result score #var var.list_size if data storage player:data test.cosmetics[]
+    execute store result score #var var.list_success run data modify storage player:data test.cosmetics[] set from storage cosmetic:data Selection.Recursive[0].id
+    execute if score #var var.list_success < #var var.list_size run return 1
+
+    return fail
+scoreboard objectives remove var.list_size
+scoreboard objectives remove var.list_success
+function ./equip_option:
+    data modify storage cosmetic:data Selection.dialog.actions[-1].label.color set value "green"
+    data modify storage cosmetic:data Selection.dialog.actions[-1].label.with[0].color set value "white"
+    data modify storage cosmetic:data Selection.dialog.actions[-1].label.strikethrough set value false
+    data modify storage cosmetic:data Selection.dialog.actions[-1].equipped set value true
 
 execute if score #var var.locked matches 1 run function ./lock_option:
     data modify storage cosmetic:data Selection.dialog.actions[-1].label.color set value "dark_gray"

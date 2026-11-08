@@ -1,11 +1,10 @@
 data remove storage skill:data Selection.selector
 execute store result storage skill:data Selection.selector.uid int 1 run scoreboard players get @s uid.player
-function ./get_skills with storage skill:data Selection.selector
-function ./get_skills:
-    data modify storage skill:data Selection.Recursive set value []
-    $execute if entity @s[scores={game.player.team_id=1}] run data modify storage skill:data Selection.Recursive append from storage skill:data Selection.players[{"uid": $(uid)}].skills[{"type": "skill:runner"}]
-    $execute if entity @s[scores={game.player.team_id=2}] run data modify storage skill:data Selection.Recursive append from storage skill:data Selection.players[{"uid": $(uid)}].skills[{"type": "skill:killer"}]
-    $execute if entity @s[scores={game.player.team_id=2}] run data modify storage skill:data Selection.Recursive append from storage skill:data Selection.players[{"uid": $(uid)}].skills[{"type": "skill:weapon"}]
+function player:get/skill_selections
+data modify storage skill:data Selection.Recursive set value []
+execute if entity @s[scores={game.player.team_id=1}] run data modify storage skill:data Selection.Recursive append from storage player:data selected.skills[{"type": "skill:runner"}]
+execute if entity @s[scores={game.player.team_id=2}] run data modify storage skill:data Selection.Recursive append from storage player:data selected.skills[{"type": "skill:killer"}]
+execute if entity @s[scores={game.player.team_id=2}] run data modify storage skill:data Selection.Recursive append from storage player:data selected.skills[{"type": "skill:weapon"}]
 function ./announcement/set_team with storage skill:data Selection.selector
 function ./announcement/set_team:
     $execute store result storage skill:data Selection.RoundSelections[{"uid":$(uid)}].team_id int 1 run scoreboard players get @s game.player.team_id

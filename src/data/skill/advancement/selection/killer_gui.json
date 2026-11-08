@@ -15,6 +15,6 @@
     }
   },
   "rewards": {
-    "function": "skill:selection/killer_gui"
+    "function": "skill:selection/gui/killer_skills"
   }
 }
