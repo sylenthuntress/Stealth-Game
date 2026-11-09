@@ -132,8 +132,7 @@ scoreboard objectives add skill.current_slot trigger
 scoreboard objectives add skill.runner.brawler.uses dummy
 scoreboard objectives add skill.runner.brawler.cooldown dummy
 scoreboard objectives add skill.runner.warper.warp_spot dummy
-scoreboard objectives add skill.runner.warper.count dummy
-scoreboard objectives add skill.runner.warper.cooldown dummy
+scoreboard objectives add skill.runner.warper.warp_length dummy
 scoreboard objectives add skill.runner.alchemist.count dummy
 scoreboard objectives add skill.runner.alchemist.cooldown dummy
 scoreboard objectives add skill.runner.jumper.charge_cooldown dummy

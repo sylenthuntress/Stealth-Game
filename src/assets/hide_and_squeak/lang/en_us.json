@@ -81,7 +81,7 @@
     "skill.runner.puppeteer.small_puppet.announce": "%s attacked a fake mouse and been stunned!",
     "skill.runner.puppeteer.large_puppet.announce": "%s attacked a mannequin and been severely stunned!",
     "skill.runner.warper": "%s Warper",
-    "skill.runner.warper.desc": "Cross bands to gain §lTime§r §lWarps§r; upon use, your position warps 5 seconds back in time.\n\nCooldown: §l30s§r\nLimit: §l2",
+    "skill.runner.warper.desc": "Cross bands to gain §lTime§r §lWarp§r charges; when used, your position warps back in time, consuming all charges to send you further back.\n\nInitial Charge: §l2s§r\nAdditional Charges: §l3s",
     "skill.runner.warper.ability": "%s Time Warp [%s]",
     "skill.runner.ender": "%s Ender",
     "skill.runner.distorter": "%s Distorter",

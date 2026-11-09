@@ -16,16 +16,32 @@ advancement ./use_ability: {
     }
 }
 
+advancement revoke @s only ./use_ability
+
+item fill entity @s ./ability with air
+
 playsound minecraft:entity.enderman.teleport master @s ~ ~ ~ 1 2
 playsound minecraft:entity.enderman.teleport master @s ~ ~ ~ 1 1
 playsound minecraft:entity.enderman.teleport master @s ~ ~ ~ 1 0
+particle minecraft:reverse_portal ~ ~ ~ 0.3 0.5 0.3 0.025 30 normal @a
 
 scoreboard players remove @s skill.runner.warper.count 1
 scoreboard players set @s skill.runner.warper.cooldown 600
-advancement revoke @s only ./use_ability
+scoreboard players set @s skill.runner.warper.warp_length 0
 
-tag @s add this.self
-execute as @e[type=marker,tag=skill.runner.warper.warp_spot,scores={skill.runner.warper.warp_spot=100}] if score @s uid.entity = @a[tag=this.self,limit=1] uid.player run teleport @a[tag=this.self,limit=1] @s
-tag @s remove this.self
+tag @s add this.selector
+execute as @e[type=marker,tag=skill.runner.warper.warp_spot] if score @s uid.entity = @p[tag=this.selector] uid.player run tag @s add this.selected
 
-playsound minecraft:entity.enderman.teleport master @s ~ ~ ~ 1000 1
+execute as @e[type=marker,tag=this.selected] at @s run function ./find_warp:
+    particle minecraft:reverse_portal ~ ~ ~ 0.15 0.25 0.15 0.01 1 normal @a
+    scoreboard players operation #var skill.runner.warper.warp_spot > @s skill.runner.warper.warp_spot
+    execute if score @s skill.runner.warper.warp_spot = #var skill.runner.warper.warp_spot expand:
+        tag @e remove this.warp_spot
+        tag @s add this.warp_spot
+tp @s @n[tag=this.warp_spot]
+tag @s remove this.selector
+kill @e[type=marker,tag=this.selected]
+scoreboard players reset #var skill.runner.warper.warp_spot
+
+execute at @s run playsound minecraft:entity.enderman.teleport master @s ~ ~ ~ 1 1
+execute at @s run particle minecraft:portal ~ ~ ~ 0.3 0.5 0.3 0.025 30 normal @a
