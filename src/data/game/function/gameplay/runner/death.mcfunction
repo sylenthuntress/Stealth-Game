@@ -10,12 +10,9 @@ attribute @s minecraft:movement_speed modifier remove game:gameplay/runner/damag
 attribute @s minecraft:movement_speed modifier remove game:gameplay/movement_penalty/injury
 
 # Spawn corpse
-data modify storage game:data Corpse.UUID set from entity @s UUID
-data modify storage game:data Corpse.Rotation set from entity @s Rotation
-data modify storage game:data Corpse.attributes set from entity @s attributes
 execute function game:gameplay/runner/find_ground:
     execute positioned ~ ~-0.1 ~ if block ~ ~ ~ air run return run function ~/
-    execute unless block ~ ~-0.1 ~ air run function ./spawn_corpse with storage game:data Corpse
+    execute unless block ~ ~-0.1 ~ air run function ./spawn_corpse with entity @s
 
 # Give killer credit
 points["#var"] = (kill_threshold["@s"]+5) / 2
