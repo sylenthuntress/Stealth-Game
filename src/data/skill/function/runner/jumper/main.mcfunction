@@ -45,13 +45,22 @@ for n in range(1, maxCharge+1):
         "italic": false,
         "translate": "skill.cooldown",
         "with": [
-            {
+           [ {
                 "score": {
                     "name": "@s",
                     "objective": "skill.runner.jumper.charge"
                 },
                 "bold": true,
                 "color": hexify_tuple(new_green)
-            }
+            },
+            {
+				"text": "/",
+				"bold": false
+            },
+            {
+				"text": str(maxCharge),
+				"color": hexify_tuple((green[0], int(green[1]/2), green[2])),
+				"bold": false
+            }]
         ]
     }}
