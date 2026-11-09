@@ -7,4 +7,4 @@ data modify storage player:data test set from storage player:data players[-1].ui
 execute store result score #var var.test run data modify storage player:data test set from storage player:data selected.uid
 data remove storage player:data test
 
-return run execute unless score #var var.test matches 1
+return run execute if score #var var.test matches 1
