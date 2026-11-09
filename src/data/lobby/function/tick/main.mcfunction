@@ -50,7 +50,7 @@ execute if score #time time.start_timer matches 0.. run function lobby:countdown
     execute if score #players var.players matches ..1 run function lobby:cancel_game
     scoreboard objectives remove var.players
 execute if score #time time.start_timer matches 0 expand:
-    function ./../inventory/refresh_inventory
+    execute as @a[tag=lobby] run function ./../inventory/refresh_inventory
     function game:new_match
 
 # Manage mannequin
