@@ -9,6 +9,7 @@ data modify storage skill:data Selection.dialog.actions[-1].label.with[0].atlas 
 data modify storage skill:data Selection.dialog.actions[-1].tooltip set from storage skill:data Selection.Recursive[0].desc
 data modify storage skill:data Selection.dialog.actions[-1].action.command set from storage skill:data Selection.Recursive[0].trigger
 execute store success storage skill:data Selection.dialog.actions[-1].random byte 1 run data get storage skill:data Selection.Recursive[0].components{"skill:random":true}
+execute store success storage skill:data Selection.dialog.actions[-1].default byte 1 if data storage skill:data Selection.Recursive[0].components{"skill:default": true} 
 
 # Check if option is equipped
 data modify storage skill:data Selection.dialog.actions[-1].equipped set value false
@@ -42,7 +43,7 @@ execute if data storage skill:data Selection.dialog.actions[{equipped:true, rand
     function ./lock_options
 
 scoreboard objectives add var.occupied_slots dummy
-execute store result score @s var.occupied_slots if data storage skill:data Selection.dialog.actions[{equipped:true}]
+execute store result score @s var.occupied_slots if data storage skill:data Selection.dialog.actions[{equipped:true,default:false}]
 
 execute if score @s[tag=skill.selection.runner] var.occupied_slots >= #config config.slots.runner run function ./lock_options
 execute if score @s[tag=skill.selection.killer] var.occupied_slots >= #config config.slots.killer run function ./lock_options

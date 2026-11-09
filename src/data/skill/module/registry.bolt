@@ -31,6 +31,10 @@ class SkillBuilder():
         self._components.update({"skill:team_only": team_size})
         return self
 
+    def default(self):
+        self._components.update({"skill:default": true})
+        return self
+
     def predicate(self, predicate):
         self._predicate = predicate
         return self
@@ -123,6 +127,7 @@ def weapon(name):
 weapons = [
     weapon("dagger")
         .icon("hide_and_squeak:item/dagger", "minecraft:items")
+        .default()
         .build(),
     weapon("trident")
         .icon("minecraft:item/trident", "minecraft:items")
@@ -135,88 +140,3 @@ weapons = [
         .is_random()
         .build()
 ]
-
-
-# Old code
-
-id_index = 0
-def register(icon, atlas):
-    global id_index
-    id_index += 1
-    return {"id": id_index, "icon": icon, "atlas": atlas, "isRandom": 0}
-
-def registerRandom():
-    global id_index
-    id_index += 1
-    return {"id": id_index, "icon": "hide_and_squeak:item/random", "atlas": "minecraft:items", "isRandom": 1}
-
-runners = {
-    "camouflage": register("minecraft:block/bush", "minecraft:blocks"),
-    "brawler": register("minecraft:mob_effect/strength", "minecraft:gui"),
-#    "tank": register("minecraft:mob_effect/resistance", "minecraft:gui"),
-    "jumper": register("minecraft:mob_effect/jump_boost", "minecraft:gui"),
-    "medic": register("minecraft:mob_effect/regeneration", "minecraft:gui"),
-    "undying": register("minecraft:item/totem_of_undying", "minecraft:items"),
-    "puppeteer": register("hide_and_squeak:item/small_puppet", "minecraft:items"),
-    "warper": register("hide_and_squeak:item/warp", "minecraft:items"),
-#    "ender": register("minecraft:item/ender_pearl", "minecraft:items"),
-#    "distorter": register("minecraft:block/warped_fungus", "minecraft:blocks"),
-    "alchemist": register("hide_and_squeak:item/alchemist", "minecraft:items"),
-#    "doctor": register("minecraft:item/apple", "minecraft:items"),
-    "random": registerRandom()
-}
-
-killers = {
-    "athlete": register("minecraft:mob_effect/speed", "minecraft:gui"),
-    "breeze": register("minecraft:mob_effect/wind_charged", "minecraft:gui"),
-#    "acrobat": register("minecraft:mob_effect/jump_boost", "minecraft:gui"),
-#    "winged": register("minecraft:item/elytra", "minecraft:items"),
-    "trapper": register("minecraft:block/tripwire_hook", "minecraft:blocks"),
-#    "witch": register("minecraft:item/witch_spawn_egg", "minecraft:items"),
-    "locator": register("minecraft:item/compass_00", "minecraft:items"),
-    "specter": register("hide_and_squeak:item/specter", "minecraft:items"),
-#    "shifter": register("minecraft:block/lapis_ore", "minecraft:blocks"),
-    "gemini": register("hide_and_squeak:item/swap_bodies", "minecraft:items"),
-    "random": registerRandom()
-}
-
-weapons = {
-    "dagger": register("hide_and_squeak:item/dagger", "minecraft:items"),
-    "trident": register("minecraft:item/trident", "minecraft:items"),
-    "foreseer": register("minecraft:item/bow", "minecraft:items"),
-#    "crossbow": register("minecraft:item/crossbow_arrow", "minecraft:items"),
-#    "mace": register("minecraft:item/mace", "minecraft:items"),
-    "random": registerRandom()
-}
-
-runner_prefix = "skill.runner."
-killer_prefix = "skill.killer."
-weapon_prefix = "skill.weapon."
-
-def getRunnerSkills():
-    skills = []
-    for key in runners.keys():
-        skills.append(runner_prefix + key)
-    return skills
-
-def getKillerSkills():
-    skills = []
-    for key in killers.keys():
-        skills.append(killer_prefix + key)
-    return skills
-
-def getWeapons():
-    skills = []
-    for key in weapons.keys():
-        skills.append(weapon_prefix + key)
-    return skills
-
-def getFunctions():
-    skills = []
-    for key in runners.keys():
-        skills.append({"tag": runner_prefix + key, "path": "skill:runner/" + key + "/"})
-    for key in weapons.keys():
-        skills.append({"tag": weapon_prefix + key, "path": "skill:weapon/" + key + "/"})
-    for key in killers.keys():
-        skills.append({"tag": killer_prefix + key, "path": "skill:killer/" + key + "/"})
-    return skills

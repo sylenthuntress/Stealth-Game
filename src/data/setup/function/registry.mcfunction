@@ -37,51 +37,6 @@ for band in bands:
             data modify storage level:registry BandRegistry[-1].canBeMed set value canBeMed
         if canBeSmall == 1:
             data modify storage level:registry BandRegistry[-1].canBeSmall set value canBeSmall
-
-# Skills
-data remove storage skill:registry RunnerSkills
-data remove storage skill:registry KillerSkills
-data remove storage skill:registry WeaponRegistry
-
-runners = skill_registry.getRunnerSkills()
-for runner in runners:
-    data modify storage skill:registry RunnerSkills append value {
-        'id': runner,
-        'desc': (runner + ".desc"),
-        'numid': skill_registry.runners[runner[len(skill_registry.runner_prefix):]].id,
-        'icon': skill_registry.runners[runner[len(skill_registry.runner_prefix):]].icon,
-        'atlas': skill_registry.runners[runner[len(skill_registry.runner_prefix):]].atlas
-    }
-    isRandom = skill_registry.runners[runner[len(skill_registry.runner_prefix):]].isRandom
-    if isRandom == 1:
-        data modify storage skill:registry RunnerSkills[-1].is_random set value isRandom
-
-killers = skill_registry.getKillerSkills()
-for killer in killers:
-    data modify storage skill:registry KillerSkills append value {
-        'id': killer,
-        'desc': (killer + ".desc"),
-        'numid': skill_registry.killers[killer[len(skill_registry.killer_prefix):]].id,
-        'icon': skill_registry.killers[killer[len(skill_registry.killer_prefix):]].icon,
-        'atlas': skill_registry.killers[killer[len(skill_registry.killer_prefix):]].atlas
-    }
-    isRandom = skill_registry.killers[killer[len(skill_registry.killer_prefix):]].isRandom
-    if isRandom == 1:
-        data modify storage skill:registry KillerSkills[-1].is_random set value isRandom
-
-weapons = skill_registry.getWeapons()
-for weapon in weapons:
-    data modify storage skill:registry WeaponRegistry append value {
-        'id': weapon,
-        'desc': (weapon + ".desc"),
-        'numid': skill_registry.weapons[weapon[len(skill_registry.weapon_prefix):]].id,
-        'icon': skill_registry.weapons[weapon[len(skill_registry.weapon_prefix):]].icon,
-        'atlas': skill_registry.weapons[weapon[len(skill_registry.weapon_prefix):]].atlas
-    }
-    isRandom = skill_registry.weapons[weapon[len(skill_registry.weapon_prefix):]].isRandom
-    if isRandom == 1:
-        data modify storage skill:registry WeaponRegistry[-1].is_random set value isRandom
-
     
 # Compatibility with other datapacks
 function #setup:registries
