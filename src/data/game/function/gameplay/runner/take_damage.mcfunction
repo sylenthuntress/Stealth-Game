@@ -42,7 +42,9 @@ tag @a remove this.attacker
 # Reveal attacker
 execute on attacker expand:
     effect clear @s invisibility
-    if score @s f"data.damage_dealt" matches 1.. run function game:gameplay/killer/land_hit
+    if score @s f"data.damage_dealt" matches 1.. expand:
+        function game:gameplay/killer/land_hit
+        function event:on_hit
 
 # Kill player at high damage
 execute on attacker run tag @s add this.attacker
