@@ -15,7 +15,7 @@ execute function game:gameplay/runner/find_ground:
     execute unless block ~ ~-0.1 ~ air run function ./spawn_corpse with entity @s
 
 # Give killer credit
-points["#var"] = (kill_threshold["@s"]+5) / 2
+points["#var"] = (kill_threshold["@s"]+5) / 4
 execute on attacker run tag @s add this.killer
 execute on attacker on origin run tag @s add this.killer
 execute unless entity @a[tag=this.killer] run tag @a[scores={game.player.team_id=2}] add this.killer
