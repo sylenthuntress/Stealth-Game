@@ -11,7 +11,6 @@ percentage["#math.scaled"] = 100 - ((total_damage["@s"] * 100) + (kill_threshold
 percentage["#math.total"] = 100 - (total_damage["@s"] * 100) / kill_threshold["@s"]
 
 data remove storage actionbar:data selector
-execute store result storage actionbar:data selector.uid int 1 run scoreboard players get @s uid.player
 data modify storage actionbar:data selector.constant_text append value ""
 
 execute if entity @s[gamemode=!spectator] run function ./health_text:
@@ -32,4 +31,4 @@ execute if entity @s[gamemode=!spectator] run function ./health_text:
                 execute if score #math.total f"math.percentage" matches 34..65 run data modify storage actionbar:data selector.constant_text[-1].with[0][-1].with[0][0].color set value "#af5645" 
                 execute if score #math.total f"math.percentage" matches 66.. run data modify storage actionbar:data selector.constant_text[-1].with[0][-1].with[0][0].color set value "#8c3019" 
 ## Display actionbars
-function ./display_actionbar with storage actionbar:data selector
+function ./display_actionbar
