@@ -64,3 +64,36 @@ for n in range(1, maxCharge+1):
             }]
         ]
     }}
+
+execute unless predicate {type:"minecraft:entity_properties",entity:"this",predicate:{"minecraft:flags":{is_on_ground:1b}}} run item modify entity @s
+  {type:"minecraft:filtered",slot_source:{type:"minecraft:slot_range",slots:"hotbar.*"},item_filter:{predicates:{"minecraft:custom_data":{skill.runner.jumper.ability:1b}}}}
+  {type:"minecraft:set_name",name:{
+        "color": "dark_gray",
+        "translate": "skill.runner.jumper.disabled",
+        "italic": false,
+        "with": [
+            {
+                "sprite": "minecraft:mob_effect/jump_boost",
+                "atlas": "minecraft:gui",
+                "color": "white"
+            }
+        ]
+    }}
+execute if predicate {type:"minecraft:entity_properties",entity:"this",predicate:{"minecraft:flags":{is_on_ground:1b}}} run item modify entity @s
+  {type:"minecraft:filtered",slot_source:{type:"minecraft:slot_range",slots:"hotbar.*"},item_filter:{predicates:{"minecraft:custom_data":{skill.runner.jumper.ability:1b}}}}
+  {type:"minecraft:set_name",name:{
+        "color": "#7ca132",
+        "translate": "skill.runner.jumper.ability",
+        "italic": false,
+        "with": [
+            {
+                "sprite": "minecraft:mob_effect/jump_boost",
+                "atlas": "minecraft:gui",
+                "color": "white"
+            },
+            {
+                "translate": "skill.use",
+                "color": "#759953"
+            }
+        ]
+    }}

@@ -68,6 +68,7 @@
     "skill.runner.jumper": "%s Jumper",
     "skill.runner.jumper.desc": "Charge your ability to build a super-jump and reach high places. The longer you charge, the higher you'll jump, and the louder you'll be. Once you jump or take damage, the charge resets.\n\nMax Charges: §l7",
     "skill.runner.jumper.ability": "%s Super-Jump [%s]",
+    "skill.runner.jumper.disabled": "%s Disabled (Mid-Air)",
     "skill.runner.medic": "%s Medic",
     "skill.runner.medic.desc": "Dance at recent runner corpses to revive them. This alerts the killer, grants you points depending on band progression, and even more if they make it to the end.\n- Revived teammates have no skills, and gain half points.\n\nLimit: §l2§r\nRevive Time: §l10s\n\n§cNote: All participating medics will lose charges, and get points.§r§c.",
     "skill.runner.medic.revive": "%s has been revived! They are now §csoul-bound§r to %s.",

@@ -18,7 +18,7 @@ advancement ~/: {
 }
 
 advancement revoke @s only ~/
-execute unless predicate {type:"minecraft:entity_properties",entity:"this",predicate:{"minecraft:flags":{is_on_ground:1b}}} run return fail
+execute unless predicate {type:"minecraft:entity_properties",entity:"this",predicate:{"minecraft:flags":{is_on_ground:1b}}} run return run playsound minecraft:block.note_block.didgeridoo master @s ~ ~ ~ 0.3 0.7
 
 scoreboard players remove @s skill.runner.jumper.charge_cooldown 1
 execute at @s unless score @s skill.runner.jumper.charge_cooldown matches 1.. unless score @s skill.runner.jumper.charge matches maxCharge run function ./charge:
