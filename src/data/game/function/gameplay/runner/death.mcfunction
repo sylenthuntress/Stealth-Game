@@ -26,6 +26,6 @@ execute as @a[tag=this.killer] function ./kill_credit:
 points["@a[tag=!this.killer,scores={game.player.team_id=2}]"] + (points["#var"]+5) / 2
 tag @e remove this.killer
 
-# FX
-playsound minecraft:entity.bat.death player @a[tag=game.viewing] ~ ~ ~ 1 2 0.1
+# Post-death
+function event:on_death
 tellraw @a[tag=game.viewing] {"translate": "gameplay.player.death_message", "color": "red", "bold": true, "with": [{"selector": "@s", "color": "dark_red", "bold": false}]}
