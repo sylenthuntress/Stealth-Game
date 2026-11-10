@@ -92,7 +92,7 @@ execute if predicate {type:"minecraft:entity_properties",entity:"this",predicate
                 "color": "white"
             },
             {
-                "translate": "skill.use",
+                "translate": "skill.hold_use",
                 "color": "#759953"
             }
         ]

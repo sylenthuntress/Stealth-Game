@@ -16,7 +16,7 @@ give @s golden_carrot[
                 "color": "white"
             },
             {
-                "translate": "skill.use",
+                "translate": "skill.hold_use",
                 "color": "#759953"
             }
         ]

@@ -55,6 +55,7 @@
     "skill.slot": "Selected: %s",
     "skill.cooldown": "[%s]",
     "skill.use": "Use",
+    "skill.hold_use": "Hold: Use",
     "skill.drop": "Drop",
     "skill.attack": "Attack",
     "skill.announcement.killers": "Killer loadouts in play: %s",
