@@ -187,7 +187,8 @@ class CosmeticsBuilder():
                 profile = {"texture": self._identifier.replace("cosmetic.", "hide_and_squeak:entity/player/cosmetic/", 1).replace(".", "/") + "/hiding"}
             components.update({"profile":profile})
         components.update({"equippable":{"slot":"body","equip_sound":"block.sand.step","damage_on_hurt":false},"enchantment_glint_override":false,"enchantments":{"binding_curse":1,"vanishing_curse":1},"tooltip_display":{"hide_tooltip":false,"hidden_components":["enchantments","attribute_modifiers"]}})
-        return self.equipment("armor.body", item, components) 
+        self._components.update({"cosmetic:hiding_form": {"id": item, "components": components}})
+        return self
 
     def default(self):
         self._components.update({"cosmetic:default": true})
