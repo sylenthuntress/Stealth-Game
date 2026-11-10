@@ -10,7 +10,7 @@ kill_threshold = Scoreboard("game.player.kill_threshold")
 total_damage["@s"] += damage_taken["@s"]
 execute if score #gamestate gamestate.runners matches 2..:
     injuries["@s"] += damage_taken["@s"]
-min(total_damage["@s"], kill_threshold["@s"])
+scoreboard players operation @s total_damage < @s kill_threshold
 
 # Display health percentage
 percentage = Scoreboard("math.percentage")
@@ -35,7 +35,7 @@ points["#var"] = (total_damage["@s"] - prev_damage["@s"] + 5)/4
 execute on attacker run tag @s add this.attacker
 execute on attacker on origin run tag @s add this.attacker
 execute unless entity @a[tag=this.attacker] as @a[scores={game.player.team_id=2}] run tag @s add this.attacker
-execute as @a[tag=this.attacker] run function ./damage_credit:
+execute if score @s total_damage < @s kill_threshold as @a[tag=this.attacker] run function ./damage_credit:
     points["@s"] = points["#var"]
 tag @a remove this.attacker
 
