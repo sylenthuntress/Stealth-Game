@@ -43,11 +43,14 @@ execute if data storage skill:data Selection.dialog.actions[{equipped:true, rand
     function ./lock_options
 
 scoreboard objectives add var.occupied_slots dummy
+scoreboard objectives add var.remaining_slots dummy
 execute store result score @s var.occupied_slots if data storage skill:data Selection.dialog.actions[{equipped:true,default:false}]
+scoreboard players operation @s[tag=skill.selection.runner] var.remaining_slots = #config config.slots.runner
+scoreboard players operation @s[tag=skill.selection.killer] var.remaining_slots = #config config.slots.killer
+scoreboard players operation @s[tag=skill.selection.weapon] var.remaining_slots = #config config.slots.weapon
+scoreboard players operation @s var.remaining_slots -= @s var.occupied_slots
 
-execute if score @s[tag=skill.selection.runner] var.occupied_slots >= #config config.slots.runner run function ./lock_options
-execute if score @s[tag=skill.selection.killer] var.occupied_slots >= #config config.slots.killer run function ./lock_options
-execute if score @s[tag=skill.selection.weapon] var.occupied_slots >= #config config.slots.weapon run function ./lock_options
+execute if score @s var.remaining_slots matches ..0 run function ./lock_options
 function ./lock_options:
     data modify storage skill:data Selection.dialog.actions[{equipped:false, random:false}].label.color set value "dark_gray"
     data modify storage skill:data Selection.dialog.actions[{equipped:false, random:false}].label.with[0].color set value "dark_gray"
@@ -55,4 +58,32 @@ function ./lock_options:
     data modify storage skill:data Selection.dialog.actions[{equipped:false, random:false}].action.command set value "trigger skill.selection set -1" 
     data modify storage skill:data Selection.dialog.actions[{equipped:false, random:false}].locked set value true
 
+execute function ./display_slots: # Display the number of remaining slots
+    data modify storage skill:data Selection.dialog.body append value {
+        "type": "minecraft:plain_message",
+        "contents": {
+            "translate": "skill.selection.gui.available_slots",
+            "color": "gray",
+            "with": [
+                {
+                    "text": "",
+                    "color": "green",
+                    "bold": true
+                }
+            ]
+        }
+    }
+    execute store result storage skill:data Selection.dialog.body[-1].contents.with[-1].text int 1 run scoreboard players get @s var.remaining_slots
+    data modify storage skill:data Selection.dialog.body[-1].contents.with[-1].text set string storage skill:data Selection.dialog.body[-1].contents.with[-1].text
+    execute if score @s var.remaining_slots matches ..0 run data modify storage skill:data Selection.dialog.body[-1].contents.with[-1].color set value "red"
+
+    # Replace text if Random is selected
+    execute unless data storage skill:data Selection.dialog.actions[{equipped:true, random:true}] run return fail
+    data modify storage skill:data Selection.dialog.body[-1].contents set value [{"translate": "skill.selection.gui.random_selected","with":[[]],"color":"gray"}]
+    data modify storage skill:data Selection.dialog.body[-1].contents[-1].with[0] append value {"translate": "","color":"gray", "bold": true}
+    data modify storage skill:data Selection.dialog.body[-1].contents[-1].with[0][-1].translate set from storage skill:data Selection.dialog.actions[{equipped:true, random:true}].label.translate
+    data modify storage skill:data Selection.dialog.body[-1].contents[-1].with[0][-1].with set from storage skill:data Selection.dialog.actions[{equipped:true, random:true}].label.with
+    
+
 scoreboard objectives remove var.occupied_slots
+scoreboard objectives remove var.remaining_slots

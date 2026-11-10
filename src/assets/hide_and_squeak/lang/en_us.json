@@ -48,6 +48,8 @@
     "skill.selection.gui": "Skill Selection",
     "skill.selection.gui.weapon": "Weapon Selection",
     "skill.selection.gui.ready": "Ready",
+    "skill.selection.gui.available_slots": "Available slots: %s\nSelect a skill to (un)equip it.",
+    "skill.selection.gui.random_selected": "%s selected\nSkill selection is disabled",
     "skill.selection.locked": "LOCKED: %s",
     "skill.selection.locked.team_only": "Requires at least %s teammates to select.",
     "skill.slot": "Selected: %s",
