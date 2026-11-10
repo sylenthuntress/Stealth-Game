@@ -26,7 +26,11 @@ advancement revoke @s only ~/
 
 tag @s add this.selector
 execute as @e[type=item,tag=skill.killer.trapper.dropped] at @s run function ./tick_item:
-    execute if predicate {type:"minecraft:entity_properties",entity:"this",predicate:{"minecraft:flags":{is_on_ground:1b}}} run function ./set_trap:
+    execute unless predicate {type:"minecraft:entity_properties",entity:"this",predicate:{"minecraft:flags":{is_on_ground:1b}}} run return fail
+    scoreboard players add @s skill.killer.trapper.trap_age 1
+    particle crit ~ ~.2 ~ 0.1 0.1 0.1 0.0001 1 normal
+    playsound minecraft:ui.stonecutter.select_recipe block @a ~ ~ ~ 0.05 2
+    execute if score @s skill.killer.trapper.trap_age matches 60.. run function ./set_trap:
         execute positioned ~-0.5 ~-0.1 ~-0.5 as @a[dx=1,dy=0.2,dz=1,team=runner] run return fail
 
         execute function ./spawn_trap:

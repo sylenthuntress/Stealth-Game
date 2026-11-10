@@ -151,6 +151,7 @@ scoreboard objectives add skill.killer.athlete.cooldown dummy
 scoreboard objectives add skill.killer.breeze.count dummy
 scoreboard objectives add skill.killer.breeze.cooldown dummy
 scoreboard objectives add skill.killer.trapper.count dummy
+scoreboard objectives add skill.killer.trapper.trap_age dummy
 scoreboard objectives add skill.killer.locator.cooldown dummy
 scoreboard objectives add skill.killer.locator.tracking_uid dummy
 scoreboard objectives add skill.killer.locator.tracking_timer dummy

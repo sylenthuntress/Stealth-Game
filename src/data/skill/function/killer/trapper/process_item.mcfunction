@@ -7,5 +7,7 @@ execute on origin run scoreboard players remove @s skill.killer.trapper.count 1
 
 execute unless score @s uid.entity matches 0.. on origin run scoreboard players operation @n[type=item] uid.entity = @s uid.player
 
+data modify entity @s Owner set from entity @s Thrower
+
 tag @s add skill.killer.trapper.dropped
 tag @s add items.nopickup
