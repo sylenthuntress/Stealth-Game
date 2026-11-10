@@ -51,6 +51,26 @@ function ./check_equipped:
 scoreboard objectives remove var.list_size
 scoreboard objectives remove var.list_success
 function ./equip_option:
+    data modify storage cosmetic:data Selection.dialog.body append value {
+        "type": "minecraft:plain_message",
+        "contents": {
+            "translate": "skill.selection.gui.available_slots",
+            "color": "gray",
+            "with": [
+                {
+                    "text": "",
+                    "color": "green",
+                    "bold": true
+                }
+            ]
+        }
+    }
+    data modify storage cosmetic:data Selection.dialog.body[-1].contents set value [{"translate": "cosmetic.selection.gui.body.selected","with":[[]],"color":"gray"}]
+    data modify storage cosmetic:data Selection.dialog.body[-1].contents[-1].with[0] append value {"translate": "","bold": false}
+    data modify storage cosmetic:data Selection.dialog.body[-1].contents[-1].with[0][-1].translate set from storage cosmetic:data Selection.dialog.actions[-1].label.translate
+    data modify storage cosmetic:data Selection.dialog.body[-1].contents[-1].with[0][-1].color set from storage cosmetic:data Selection.dialog.actions[-1].label.color
+    data modify storage cosmetic:data Selection.dialog.body[-1].contents[-1].with[0][-1].with set from storage cosmetic:data Selection.dialog.actions[-1].label.with
+
     data modify storage cosmetic:data Selection.dialog.actions[-1].label.color set value "green"
     data modify storage cosmetic:data Selection.dialog.actions[-1].label.with[0].color set value "white"
     data modify storage cosmetic:data Selection.dialog.actions[-1].label.strikethrough set value false
@@ -68,7 +88,7 @@ execute if score #var var.locked matches 1 run function ./lock_option:
         data modify storage cosmetic:data Selection.dialog.actions[-1].label.color set value "black"
         data modify storage cosmetic:data Selection.dialog.actions[-1].label.with[0].color set value "black"
         data modify storage cosmetic:data Selection.dialog.actions[-1].tooltip[1] set value {"translate": "cosmetic.selection.hidden", "color": "dark_gray", "bold": false}
-        data remove storage cosmetic:data Selection.dialog.actions[-1].tooltip[-1]
+        data remove storage cosmetic:data Selection.dialog.actions[-1].tooltip[2]
         data modify storage cosmetic:data Selection.dialog.actions[-1].locked set value true
 
     execute if data storage cosmetic:data Selection.Recursive[0].components."cosmetic:unlockable" run 
@@ -78,14 +98,3 @@ execute if score #var var.locked matches 1 run function ./lock_option:
 scoreboard objectives remove var.locked
 data remove storage cosmetic:data Selection.Recursive[0]
 execute if data storage cosmetic:data Selection.Recursive[0] run return run function ~/
-
-# Ensure that the default selection is always picked
-scoreboard objectives add var.occupied_slots dummy
-execute store result score @s var.occupied_slots if data storage cosmetic:data Selection.dialog.actions[{equipped:true}]
-execute unless score @s var.occupied_slots matches 1.. run function ./equip_defaults:
-    data modify storage cosmetic:data Selection.dialog.actions[{default:true}].label.color set value "green"
-    data modify storage cosmetic:data Selection.dialog.actions[{default:true}].label.with[0].color set value "white"
-    data modify storage cosmetic:data Selection.dialog.actions[{default:true}].label.strikethrough set value false
-    data modify storage cosmetic:data Selection.dialog.actions[{default:true}].equipped set value true
-
-scoreboard objectives remove var.occupied_slots

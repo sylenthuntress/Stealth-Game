@@ -1,9 +1,11 @@
 data modify storage cosmetic:data Selection.dialog set value {
     "type": "minecraft:multi_action",
-    "body": {
-        "type": "minecraft:plain_message",
-        "contents": "\n\n"
-    },
+    "body": [
+        {
+            "type": "minecraft:plain_message",
+            "contents": "\n\n"
+        }
+    ],
     "inputs": [],
     "pause": false,
     "after_action": "none",

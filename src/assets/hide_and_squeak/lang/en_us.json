@@ -5,6 +5,7 @@
     "cosmetic.selection.hidden": "Unlock to reveal more information.",
     "cosmetic.selection.runner_skin": "Runner Skins",
     "cosmetic.selection.killer_skin": "Killer Skins",
+    "cosmetic.selection.gui.body.selected": "Selected: %s",
     "game.end": "%s has ended!",
     "game.end.winners": "%s won the game with %s points!",
     "game.end.rankings": "%s had %s points",
