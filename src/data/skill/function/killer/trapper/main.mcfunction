@@ -48,9 +48,11 @@ execute unless score @s skill.killer.trapper.count matches 3 run function ./disp
     execute at @s anchored eyes facing entity @n[type=interaction,tag=this.selected,distance=..4] eyes anchored feet positioned ^ ^ ^1 rotated as @s positioned ^ ^ ^-1 if entity @s[distance=..0.1] run title @s actionbar {"translate":"skill.killer.trapper.prompt","with":[[{"translate":"skill.use","color":"#c46e3c"},{"text":"/","color":"#c46e3c"},{"translate":"skill.attack","color":"#c46e3c"}],{"color":"#866654","translate":"skill.killer.trapper.ability.name","italic":false,"with":[{"sprite":"minecraft:block/tripwire_hook","atlas":"minecraft:blocks","color":"white"}]}]}
 
 execute as @e[tag=this.selected] at @s run function ./tick_trap:
-    execute if entity @s[type=marker,tag=skill.killer.trapper.trap.armed] positioned ~-0.5 ~-0.1 ~-0.5 as @a[dx=1,dy=0.2,dz=1,team=runner] at @s run function ./trigger_trap:
+    scoreboard players remove @s skill.killer.trapper.trap_cooldown 1
+    execute unless score @s skill.killer.trapper.trap_cooldown matches 1.. as @s[type=marker,tag=skill.killer.trapper.trap.armed] positioned ~-0.5 ~-0.1 ~-0.5 as @a[dx=1,dy=0.2,dz=1,team=runner] at @s run function ./trigger_trap:
         damage @s 6.0 minecraft:magic by @p[tag=this.selector]
-        scoreboard players add @s time.player.stun_timer 145
+        scoreboard players add @s time.player.stun_timer 100
+        scoreboard players set @e[tag=skill.killer.trapper.trap,distance=..5] skill.killer.trapper.trap_cooldown 145
         effect give @s glowing 5 0 true
 
         particle ash ~ ~1 ~ 0.5 0.5 0.5 0 100
@@ -58,7 +60,7 @@ execute as @e[tag=this.selected] at @s run function ./tick_trap:
         playsound minecraft:ui.stonecutter.take_result master @a ~ ~ ~ 1 0.5
         playsound minecraft:ui.stonecutter.take_result master @p[tag=this.selector] ~ ~ ~ 1 0.5 1
         playsound minecraft:block.note_block.bell master @p[tag=this.selector] ~ ~ ~ 1 0.55 1
-        execute as @e[tag=this.selected] at @s expand:
+        execute as @n[tag=this.selected,limit=3] at @s expand:
             summon evoker_fangs ~ ~ ~ {Warmup:-1,Silent:1b}
             data modify entity @n[type=evoker_fangs] Owner set from entity @p[tag=this.selector] UUID
             kill @s
