@@ -128,6 +128,7 @@ class CosmeticsBuilder():
             profile.update({"texture": profile.get("texture") + texture})
         components = {"enchantment_glint_override":false,"enchantments":{"binding_curse":1,"vanishing_curse":1},"tooltip_display":{"hide_tooltip":false,"hidden_components":["enchantments","attribute_modifiers"]}}
         components.update({"profile":profile})
+        components.update({"equippable":{"slot":"head","equip_sound":"block.sand.step"}})
 
         item_name = self._title.copy()
         item_name.update({"with": [{"player": profile, "color": "white"}]})
