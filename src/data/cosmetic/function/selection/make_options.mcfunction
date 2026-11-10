@@ -8,6 +8,7 @@ data modify storage cosmetic:data Selection.dialog.actions[-1].label.with[0].pla
 data modify storage cosmetic:data Selection.dialog.actions[-1].label.with[0].object set from storage cosmetic:data Selection.Recursive[0].icon.object
 data modify storage cosmetic:data Selection.dialog.actions[-1].width set from storage cosmetic:data Selection.Recursive[0].width
 data modify storage cosmetic:data Selection.dialog.actions[-1].tooltip set from storage cosmetic:data Selection.Recursive[0].desc
+data modify storage cosmetic:data Selection.dialog.actions[-1].tooltip append from storage cosmetic:data Selection.Recursive[0].components."cosmetic:features"
 execute if data storage cosmetic:data Selection.Recursive[0].components{"cosmetic:default": true} run data modify storage cosmetic:data Selection.dialog.actions[-1].default set value true 
 
 # Set on-click behavior
@@ -67,6 +68,7 @@ execute if score #var var.locked matches 1 run function ./lock_option:
         data modify storage cosmetic:data Selection.dialog.actions[-1].label.color set value "black"
         data modify storage cosmetic:data Selection.dialog.actions[-1].label.with[0].color set value "black"
         data modify storage cosmetic:data Selection.dialog.actions[-1].tooltip[1] set value {"translate": "cosmetic.selection.hidden", "color": "dark_gray", "bold": false}
+        data remove storage cosmetic:data Selection.dialog.actions[-1].tooltip[-1]
         data modify storage cosmetic:data Selection.dialog.actions[-1].locked set value true
 
     execute if data storage cosmetic:data Selection.Recursive[0].components."cosmetic:unlockable" run 

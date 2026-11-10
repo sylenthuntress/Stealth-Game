@@ -190,6 +190,17 @@ class CosmeticsBuilder():
         self._components.update({"cosmetic:hiding_form": {"id": item, "components": components}})
         return self
 
+    def feature(self, text):
+        self._components.setdefault("cosmetic:features", [
+            {
+                "text": "\n\nFeatures:",
+                "color": "dark_gray",
+                "bold": true
+            }
+        ]).append({"text": "\n• ","color":"dark_gray"})
+        self._components.get("cosmetic:features").append(text)
+        return self
+
     def default(self):
         self._components.update({"cosmetic:default": true})
         return self
@@ -284,6 +295,14 @@ def runner_skin(name):
     .armor("legs")
     .armor("feet")
     .hiding_form()
+    .feature(TextBuilder("cosmetic.runner_skin.bumblebee.feature.1")
+        .translate("Unique FX when hurt/killed")
+        .color("gray")
+        .build())
+    .feature(TextBuilder("cosmetic.runner_skin.bumblebee.feature.2")
+        .translate("Head changes when hurt")
+        .color("gray")
+        .build())
     .build())
 
 
