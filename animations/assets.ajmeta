@@ -1,0 +1,41 @@
+{
+	"formatVersion": "1.0.0",
+	"rigs": {
+		"render:animation/cosmetic/runner_skin/allay/hiding_form": {
+			"coreFiles": ["assets/minecraft/atlases/blocks.json", "pack.mcmeta"],
+			"versionedFiles": [
+				"assets/render/items/blueprint/animation/cosmetic/runner_skin/allay/hiding_form/body.json",
+				"assets/render/items/blueprint/animation/cosmetic/runner_skin/allay/hiding_form/head.json",
+				"assets/render/items/blueprint/animation/cosmetic/runner_skin/allay/hiding_form/left_arm.json",
+				"assets/render/items/blueprint/animation/cosmetic/runner_skin/allay/hiding_form/left_wing.json",
+				"assets/render/items/blueprint/animation/cosmetic/runner_skin/allay/hiding_form/right_arm.json",
+				"assets/render/items/blueprint/animation/cosmetic/runner_skin/allay/hiding_form/right_wing.json",
+				"assets/render/models/blueprint/animation/cosmetic/runner_skin/allay/hiding_form/body.json",
+				"assets/render/models/blueprint/animation/cosmetic/runner_skin/allay/hiding_form/head.json",
+				"assets/render/models/blueprint/animation/cosmetic/runner_skin/allay/hiding_form/left_arm.json",
+				"assets/render/models/blueprint/animation/cosmetic/runner_skin/allay/hiding_form/left_wing.json",
+				"assets/render/models/blueprint/animation/cosmetic/runner_skin/allay/hiding_form/right_arm.json",
+				"assets/render/models/blueprint/animation/cosmetic/runner_skin/allay/hiding_form/right_wing.json",
+				"assets/render/textures/blueprint/animation/cosmetic/runner_skin/allay/hiding_form/allay.png"
+			]
+		},
+		"render:hiding_form": {
+			"coreFiles": ["assets/minecraft/atlases/blocks.json", "pack.mcmeta"],
+			"versionedFiles": [
+				"assets/render/items/blueprint/hiding_form/body.json",
+				"assets/render/items/blueprint/hiding_form/head.json",
+				"assets/render/items/blueprint/hiding_form/left_arm.json",
+				"assets/render/items/blueprint/hiding_form/left_wing.json",
+				"assets/render/items/blueprint/hiding_form/right_arm.json",
+				"assets/render/items/blueprint/hiding_form/right_wing.json",
+				"assets/render/models/blueprint/hiding_form/body.json",
+				"assets/render/models/blueprint/hiding_form/head.json",
+				"assets/render/models/blueprint/hiding_form/left_arm.json",
+				"assets/render/models/blueprint/hiding_form/left_wing.json",
+				"assets/render/models/blueprint/hiding_form/right_arm.json",
+				"assets/render/models/blueprint/hiding_form/right_wing.json",
+				"assets/render/textures/blueprint/hiding_form/allay.png"
+			]
+		}
+	}
+}

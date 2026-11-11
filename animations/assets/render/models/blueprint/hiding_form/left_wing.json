@@ -1,0 +1,50 @@
+{
+	"credit": "Made with Animated Java (https://github.com/Animated-Java/animated-java) via Blockbench",
+	"textures": {
+		"0": "render:blueprint/hiding_form/allay",
+		"particle": "minecraft:item/pufferfish"
+	},
+	"display": {
+		"head": {
+			"rotation": [0, 180, 0]
+		}
+	},
+	"elements": [
+		{
+			"from": [0, 5.5, -4],
+			"to": [0, 10.5, 4],
+			"rotation": {
+				"x": 0,
+				"y": 0,
+				"z": 0,
+				"origin": [0.5, 5.5, -5]
+			},
+			"faces": {
+				"north": {
+					"uv": [12, 11, 12, 13.5],
+					"texture": "#0"
+				},
+				"east": {
+					"uv": [8, 11, 12, 13.5],
+					"texture": "#0"
+				},
+				"south": {
+					"uv": [16, 11, 16, 13.5],
+					"texture": "#0"
+				},
+				"west": {
+					"uv": [8, 11, 12, 13.5],
+					"texture": "#0"
+				},
+				"up": {
+					"uv": [12, 11, 12, 7],
+					"texture": "#0"
+				},
+				"down": {
+					"uv": [12, 7, 12, 11],
+					"texture": "#0"
+				}
+			}
+		}
+	]
+}

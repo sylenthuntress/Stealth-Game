@@ -12,20 +12,20 @@ execute function game:gameplay/runner/tick_hiding:
     execute if entity @s[tag=!hiding] run return fail
 
     tag @s add this.self
-    execute as @e[type=item_display,tag=little_mouse] if score @s uid.entity = @a[tag=this.self,limit=1] uid.player run tag @s add this.display
-    execute positioned ~ ~0.5 ~ as @n[type=item_display,tag=this.display,distance=0.125..] expand:
+    execute as @e[tag=little_mouse] if score @s uid.entity = @a[tag=this.self,limit=1] uid.player run tag @s add this.display
+    execute as @n[tag=this.display,distance=0.125..] expand:
         rotate @s facing entity @a[tag=this.self,limit=1] eyes
-        at @s run rotate @s ~180 0
+        at @s run rotate @s ~ 0
         tp @s ~ ~ ~
 
     execute if predicate {type:"minecraft:entity_properties",entity:"this",predicate:{"minecraft:effects":{"minecraft:glowing":{}}}} run function game:gameplay/runner/glow_hiding:
         execute store result score #var time.entity.glow_timer run data get entity @s active_effects[{id:"minecraft:glowing"}].duration
-        scoreboard players operation @n[type=item_display,tag=this.display] time.entity.glow_timer += #var time.entity.glow_timer
+        scoreboard players operation @n[tag=this.display] time.entity.glow_timer += #var time.entity.glow_timer
         scoreboard players reset #var time.entity.glow_timer
-        data merge entity @n[type=item_display,tag=this.display] {Glowing:1b}
+        data merge entity @n[tag=this.display] {Glowing:1b}
         effect clear @s minecraft:glowing
-    scoreboard players remove @n[type=item_display,tag=this.display,scores={time.entity.glow_timer=1..}] time.entity.glow_timer 1
-    execute as @n[type=item_display,tag=this.display] if score @s time.entity.glow_timer matches ..0 expand:
+    scoreboard players remove @n[tag=this.display,scores={time.entity.glow_timer=1..}] time.entity.glow_timer 1
+    execute as @n[tag=this.display] if score @s time.entity.glow_timer matches ..0 expand:
         data merge entity @s {Glowing:0b}
         scoreboard players reset @s time.entity.glow_timer
 

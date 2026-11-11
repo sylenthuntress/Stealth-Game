@@ -1,0 +1,4 @@
+{
+	"replace": false,
+	"values": ["render:animation/cosmetic/runner_skin/allay/hiding_form/on_load", "render:hiding_form/on_load"]
+}

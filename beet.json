@@ -30,7 +30,19 @@
         "min_format": 97,
         "max_format": 97
     },
-    "pipeline": [ "mecha" ],
+    "pipeline": [ 
+        "mecha", 
+        {
+            "data_pack": {
+                "load": ["animations"]
+            } 
+        },
+        {
+            "resource_pack": {
+                "load": ["animations"]
+            } 
+        }
+    ],
     "output": "build",
     "meta": {
         "bolt": {
