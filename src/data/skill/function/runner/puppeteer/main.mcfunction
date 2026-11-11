@@ -32,7 +32,7 @@ execute as @e[type=marker,tag=skill.runner.puppeteer.large_puppet] at @s unless 
     function ./spawn_mannequin with entity @p[tag=this.selector]
     execute as @p[tag=this.selector] run function player:get/cosmetics
     data modify storage cosmetic:temp Recursive append from storage player:data selected.cosmetics[{"type": "cosmetic:runner/skin"}].components."cosmetic:equipment"[]
-    function ./set_armor with storage cosmetic:temp Recursive[0]
+    execute as @n[type=mannequin,tag=skill.runner.puppeteer.puppet] run function ./set_armor with storage cosmetic:temp Recursive[0]
     function ./set_armor:
         # Add tag if conditions pass
         $item replace entity @s weapon.mainhand with $(id) 1
