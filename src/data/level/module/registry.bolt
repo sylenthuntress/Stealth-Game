@@ -16,7 +16,9 @@ segments = {
     "trial_chambers": registerUniversal(10),
     "canyon": registerBiome(10, "minecraft:badlands"),
     "haunted_foyer": registerBiome(10, "minecraft:dark_forest"),
-    # "old_canopy": registerBiome(10, minecraft:dappled_forest)
+    "old_canopy": registerBiome(30, minecraft:dappled_forest),
+    "mana_trees": registerBiome(30, minecraft:warm_ocean),
+    "city_canal": registerBiome(30, minecraft:forest)
 }
 
 bands = {
