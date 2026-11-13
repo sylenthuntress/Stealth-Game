@@ -15,6 +15,6 @@ execute function ./announce_runner_skills
 execute as @a run function ./display_personal_skills:
     data remove storage skill:data SkillDisplay
     data remove storage skill:data Selection.selector
-    execute store result storage skill:data Selection.selector.uid int 1 run scoreboard players get @s uid.player   
+    execute store result storage skill:data Selection.selector.uid int 1 run scoreboard players get @s uid   
     data modify storage skill:data Selection.Recursive set value []
     function ./get_personal_skills with storage skill:data Selection.selector

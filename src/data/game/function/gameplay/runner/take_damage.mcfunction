@@ -55,7 +55,12 @@ tag @a remove this.attacker
 
 # Refresh health-based penalties
 function game:gameplay/runner/update_injury
-execute if entity @s[tag=hiding] run function game:gameplay/runner/stop_hiding
+function event:take_damage
+
+# Add context params
+execute as @s[tag=hiding] expand:
+    data modify storage event:data context.stop_hiding.reason set value "damage"
+    function game:gameplay/runner/stop_hiding
 
 if damage_taken["@s"] >= 10: 
     execute function ./damage_boost:

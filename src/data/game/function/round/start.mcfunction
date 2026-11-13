@@ -16,7 +16,8 @@ execute as @a[tag=game.playing] at @s run function game:round/start_moving:
 
     execute if entity @s[scores={game.player.team_id=2}] run function game:gameplay/killer/get_backdoor
 
-    # Equip cosmetics
+    # Enable cosmetics
+    function cosmetic:selection/add_tags
     function cosmetic:add_equipment
 
     # Enable skills

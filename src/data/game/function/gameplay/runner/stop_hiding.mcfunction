@@ -1,11 +1,9 @@
 tag @s add this.self
-execute as @e[type=item_display,tag=little_mouse] if score @s uid.entity = @p uid.player run tag @s add this.display
+execute as @e[tag=hiding_form,tag=!skill.runner.puppeteer.hiding_form] if score @s uid = @p uid run tag @s add this.display
 
 tag @s remove hiding
-particle minecraft:block_crumble{block_state:"minecraft:white_wool"} ~ ~ ~ 0.2 0.5 0.2 1 10 normal @a
 
-effect clear @s invisibility
-execute store result storage var:glow_timer duration int 0.05 run scoreboard players get @n[type=item_display,tag=this.display] time.entity.glow_timer
+execute store result storage var:glow_timer duration int 0.05 run scoreboard players get @n[tag=this.display] time.entity.glow_timer
 function ./transfer_hiding with storage var:glow_timer
 function ./transfer_hiding:
     $effect give @s minecraft:glowing $(duration) 0
@@ -20,4 +18,10 @@ attribute @s minecraft:step_height modifier remove game:gameplay/runner/hiding
 scoreboard players set @s time.player.hide_timer 0
 
 tag @s remove this.self
-kill @e[type=item_display,tag=this.display]
+
+execute if function cosmetic:effects/stop_hiding run return 1
+function cosmetic:add_equipment
+
+tp @n[tag=this.display] ~ -60 ~
+execute as @n[tag=this.display] on passengers run kill @s
+kill @n[tag=this.display]

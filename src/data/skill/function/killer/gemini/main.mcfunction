@@ -25,7 +25,7 @@ advancement ~/ {
 advancement revoke @s only ~/
 
 tag @s add this.selector
-execute as @e[type=mannequin,tag=skill.killer.gemini.clone] if score @s uid.entity = @p[tag=this.selector] uid.player run tag @s add this.selected
+execute as @e[type=mannequin,tag=skill.killer.gemini.clone] if score @s uid = @p[tag=this.selector] uid run tag @s add this.selected
 
 execute as @e[type=mannequin,tag=this.selected] at @s expand:
     store result score @s skill.killer.gemini.clone.curr_hp run data get entity @s Health

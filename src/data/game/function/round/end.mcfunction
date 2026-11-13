@@ -9,6 +9,7 @@ execute as @a run function game:round/leave_round:
     function game:points/add_points
 
     function skill:disable_skills
+    function cosmetic:selection/remove_tags
 
     function game:gameplay/reset_attributes
 
@@ -24,7 +25,7 @@ scoreboard players reset * game.player.due_points
 scoreboard players reset * game.player.prev_damage
 scoreboard players reset * time.player.damage_timer
 scoreboard players reset * skill.runner.medic.revive_uid
-kill @e[type=item_display,tag=little_mouse]
+kill @e[type=item_display,tag=hiding_form]
 execute as @e[type=mannequin,tag=game.runner_corpse] run function game:gameplay/runner/kill_corpse
 
 # Put every player in spectator

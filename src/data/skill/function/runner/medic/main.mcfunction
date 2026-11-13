@@ -56,11 +56,11 @@ execute at @s if score @s time.player.heal_timer matches -10.. positioned ~-3 ~-
             execute if score @s time.player.corpse_age matches 600.. run return fail
             effect give @s glowing 2 0 true
             tag @s add this.selector
-            execute as @a[team=dead] if score @s uid.player = @n[tag=this.selector] uid.entity run tag @s add this.selected
+            execute as @a[team=dead] if score @s uid = @n[tag=this.selector] uid run tag @s add this.selected
             tag @s remove this.selector
             scoreboard players add @s skill.runner.medic.revive_timer 1
             scoreboard players remove @s time.player.corpse_age 1
-    scoreboard players operation @s skill.runner.medic.reviving_uid = @p[tag=this.selected] uid.player 
+    scoreboard players operation @s skill.runner.medic.reviving_uid = @p[tag=this.selected] uid 
 
     # Display revival progress
     i = 0
@@ -104,11 +104,11 @@ execute at @s if score @s time.player.heal_timer matches -10.. positioned ~-3 ~-
         execute as @n[type=mannequin,tag=game.runner_corpse] at @s function game:gameplay/runner/kill_corpse # Kill corpse after respawning
         
         ## Credit all responsible medics
-        execute as @a[tag=skill.runner.medic,scores={time.player.heal_timer=-10..}] if score @s skill.runner.medic.reviving_uid = @p[tag=this.selected] uid.player run tag @s add skill.runner.medic.give_credit
+        execute as @a[tag=skill.runner.medic,scores={time.player.heal_timer=-10..}] if score @s skill.runner.medic.reviving_uid = @p[tag=this.selected] uid run tag @s add skill.runner.medic.give_credit
         
-        execute store result storage skill:data RunnerSkill.Medic.selector.revived_uid int 1 run scoreboard players get @p[tag=this.selected] uid.player
+        execute store result storage skill:data RunnerSkill.Medic.selector.revived_uid int 1 run scoreboard players get @p[tag=this.selected] uid
         execute as @a[tag=skill.runner.medic.give_credit] run function ./give_credit:
-            execute store result storage skill:data RunnerSkill.Medic.selector.medic_uid int 1 run scoreboard players get @s uid.player
+            execute store result storage skill:data RunnerSkill.Medic.selector.medic_uid int 1 run scoreboard players get @s uid
             function ./add_credit with storage skill:data RunnerSkill.Medic.selector
             function ./add_credit:
                 $data modify storage skill:data RunnerSkill.Medic.revival_credit.$(revived_uid).$(medic_uid) set value true 

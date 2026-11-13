@@ -11,13 +11,10 @@ $summon mannequin ~ ~ ~ {       \
     pose:"sleeping"             \
 }
 
-tag @s add this.selector
 item replace entity @n[tag=game.runner_corpse] armor.head with player_head
 item modify entity @n[tag=game.runner_corpse] armor.head {type:"minecraft:fill_player_head",entity:"this"}
-execute as @n[tag=game.runner_corpse] expand:
-    team join dead
-    scoreboard players operation @s uid.entity = @p[tag=this.selector] uid.player
-    data modify entity @s CustomName set from entity @s equipment.head.components."minecraft:profile".name
-    item replace entity @s armor.head with air
-    at @s run rotate @s ~ 0
-tag @s remove this.selector
+team join dead @n[tag=game.runner_corpse]
+scoreboard players operation @n[tag=game.runner_corpse] uid = @s uid
+data modify entity @n[tag=game.runner_corpse] CustomName set from entity @n[tag=game.runner_corpse] equipment.head.components."minecraft:profile".name
+effect give @n[tag=game.runner_corpse] invisibility infinite 0 true
+execute at @s run rotate @n[tag=game.runner_corpse] ~ 0

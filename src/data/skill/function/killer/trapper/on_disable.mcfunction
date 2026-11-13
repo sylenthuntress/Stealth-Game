@@ -5,8 +5,8 @@ append function_tag event:disable_skills {
 execute unless entity @s[tag=skill.killer.trapper] run return fail
 
 tag @s add this.self
-execute as @e[tag=skill.killer.trapper.trap] if score @s uid.entity = @p[tag=this.self] uid.player run kill @s
-execute as @e[tag=skill.killer.trapper.dropped] if score @s uid.entity = @p[tag=this.self] uid.player run kill @s
+execute as @e[tag=skill.killer.trapper.trap] if score @s uid = @p[tag=this.self] uid run kill @s
+execute as @e[tag=skill.killer.trapper.dropped] if score @s uid = @p[tag=this.self] uid run kill @s
 tag @s remove this.self
 
 scoreboard players reset @s skill.killer.trapper.count

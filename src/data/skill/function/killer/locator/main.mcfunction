@@ -104,7 +104,7 @@ execute unless score @s skill.killer.locator.cooldown matches 1.. unless score @
         scoreboard objectives remove var.runners
 
     scoreboard players set @s skill.killer.locator.tracking_timer 2
-    execute at @s run scoreboard players operation @s skill.killer.locator.tracking_uid = @p[distance=12..48,sort=furthest,team=runner] uid.player
+    execute at @s run scoreboard players operation @s skill.killer.locator.tracking_uid = @p[distance=12..48,sort=furthest,team=runner] uid
             item modify entity @s {"type":"minecraft:filtered","slot_source":"util:inventory","item_filter":{"items":"minecraft:compass","predicates":{"minecraft:custom_data":{"skill.killer.locator.ability":true}}}} {
             "type": "minecraft:set_components",
                 "components": {
@@ -114,7 +114,7 @@ execute unless score @s skill.killer.locator.cooldown matches 1.. unless score @
 
 data modify storage skill:data KillerSkills.Locator.Tracked set value {pos:[0,0,0],dimension:the_nether}
 tag @s add this.self
-execute at @s as @a[team=runner] if score @s uid.player = @p[tag=this.self] skill.killer.locator.tracking_uid expand:
+execute at @s as @a[team=runner] if score @s uid = @p[tag=this.self] skill.killer.locator.tracking_uid expand:
     data modify storage skill:data KillerSkills.Locator.Tracked.pos set from entity @s Pos
     data modify storage skill:data KillerSkills.Locator.Tracked.dimension set from entity @s Dimension
     if entity @s[distance=..12] as @p[tag=this.self] run function ./too_close:

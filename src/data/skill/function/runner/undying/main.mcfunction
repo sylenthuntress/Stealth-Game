@@ -26,7 +26,7 @@ advancement revoke @s only ~/
 
 execute if entity @s[gamemode=spectator,team=dead] at @s run function ./attempt_revive:
     tag @s add this.selector
-    execute as @e[type=mannequin,tag=game.runner_corpse] if score @s uid.entity = @p[tag=this.selector] uid.player run tag @s add this.selected
+    execute as @e[type=mannequin,tag=game.runner_corpse] if score @s uid = @p[tag=this.selector] uid run tag @s add this.selected
     tag @s remove this.selector
 
     i = 0

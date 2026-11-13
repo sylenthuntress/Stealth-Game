@@ -1,0 +1,7 @@
+{
+	"credit": "Made with Animated Java (https://github.com/Animated-Java/animated-java) via Blockbench",
+	"parent": "animation:blueprint/cosmetic/runner_skin/allay/hiding_form/right_wing/wings",
+	"textures": {
+		"slot_wings": "animation:blueprint/cosmetic/runner_skin/allay/hiding_form/happy"
+	}
+}

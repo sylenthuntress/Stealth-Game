@@ -3,29 +3,30 @@ attribute @s[predicate=!util:is_sprinting] minecraft:movement_speed modifier add
 
 # Sneak to hide
 execute function game:gameplay/runner/tick_hiding:
+    function event:tick/hiding
     execute if entity @s[predicate=util:is_sneaking] unless score @s time.player.hide_timer matches 16.. run scoreboard players add @s time.player.hide_timer 1
     execute if score @s time.player.hide_timer matches 16.. run scoreboard players remove @s time.player.hide_timer 1
     execute if entity @s[predicate=!util:is_sneaking] if score @s time.player.hide_timer matches 1.. run scoreboard players remove @s time.player.hide_timer 1
     execute if score @s[tag=!hiding] time.player.hide_timer matches 15 run function game:gameplay/runner/start_hiding
-    execute if score @s[tag=hiding] time.player.hide_timer matches 0 run function game:gameplay/runner/stop_hiding
-
-    execute if entity @s[tag=!hiding] run return fail
+    execute if score @s[tag=hiding] time.player.hide_timer matches 0 expand:
+        data modify storage event:data context.stop_hiding.reason set value "time"
+        function game:gameplay/runner/stop_hiding
 
     tag @s add this.self
-    execute as @e[type=item_display,tag=little_mouse] if score @s uid.entity = @a[tag=this.self,limit=1] uid.player run tag @s add this.display
-    execute positioned ~ ~0.5 ~ as @n[type=item_display,tag=this.display,distance=0.125..] expand:
+    execute as @e[tag=hiding_form,tag=!skill.runner.puppeteer.hiding_form] if score @s uid = @a[tag=this.self,limit=1] uid run tag @s add this.display
+    execute as @n[tag=this.display,distance=0.125..] expand:
         rotate @s facing entity @a[tag=this.self,limit=1] eyes
-        at @s run rotate @s ~180 0
+        at @s run rotate @s ~ 0
         tp @s ~ ~ ~
 
     execute if predicate {type:"minecraft:entity_properties",entity:"this",predicate:{"minecraft:effects":{"minecraft:glowing":{}}}} run function game:gameplay/runner/glow_hiding:
         execute store result score #var time.entity.glow_timer run data get entity @s active_effects[{id:"minecraft:glowing"}].duration
-        scoreboard players operation @n[type=item_display,tag=this.display] time.entity.glow_timer += #var time.entity.glow_timer
+        scoreboard players operation @n[tag=this.display] time.entity.glow_timer += #var time.entity.glow_timer
         scoreboard players reset #var time.entity.glow_timer
-        data merge entity @n[type=item_display,tag=this.display] {Glowing:1b}
+        data merge entity @n[tag=this.display] {Glowing:1b}
         effect clear @s minecraft:glowing
-    scoreboard players remove @n[type=item_display,tag=this.display,scores={time.entity.glow_timer=1..}] time.entity.glow_timer 1
-    execute as @n[type=item_display,tag=this.display] if score @s time.entity.glow_timer matches ..0 expand:
+    scoreboard players remove @n[tag=this.display,scores={time.entity.glow_timer=1..}] time.entity.glow_timer 1
+    execute as @n[tag=this.display] if score @s time.entity.glow_timer matches ..0 expand:
         data merge entity @s {Glowing:0b}
         scoreboard players reset @s time.entity.glow_timer
 
@@ -58,9 +59,7 @@ execute if score @s time.player.heal_timer matches 1.. if entity @a[distance=0.1
 execute if score @s time.player.heal_timer matches 1 positioned ~-3 ~-1 ~-3 as @a[dx=6,dy=4,dz=6,team=runner,scores={time.player.heal_timer=2..,game.player.injury=1..}] at @s run function game:gameplay/mutual_health:
     scoreboard players add @s game.player.heal_amount 5
     function game:gameplay/runner/heal
-
-    particle minecraft:heart ~ ~.5 ~ 0.75 0.2 0.75 0.6 3 normal @a
-    playsound minecraft:entity.bat.ambient player @a ~ ~ ~ 0.1 0.7
+    function event:group_heal
 
 # Band crossing
 execute if block ~ 41 ~ minecraft:diamond_block unless score @s game.player.band_progression >= @e[type=text_display,tag=band_display,limit=1,sort=nearest] segments.elapsed run function game:gameplay/runner/cross_band:

@@ -1,6 +1,6 @@
-execute store result storage skill:data RunnerSkill.Medic.selector.revived_uid int 1 run scoreboard players get @s uid.player
+execute store result storage skill:data RunnerSkill.Medic.selector.revived_uid int 1 run scoreboard players get @s uid
 execute as @a[tag=game.playing] run function ~/find_medics:
-    execute store result storage skill:data RunnerSkill.Medic.selector.medic_uid int 1 run scoreboard players get @s uid.player
+    execute store result storage skill:data RunnerSkill.Medic.selector.medic_uid int 1 run scoreboard players get @s uid
     function ~/check_storage with storage skill:data RunnerSkill.Medic.selector
     function ./check_storage:
         $execute if data storage skill:data RunnerSkill.Medic.revival_credit.$(revived_uid){"$(medic_uid)": true} run tag @s add this.medic

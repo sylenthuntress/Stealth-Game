@@ -1,5 +1,5 @@
 data remove storage skill:data Selection.selector
-execute store result storage skill:data Selection.selector.uid int 1 run scoreboard players get @s uid.player
+execute store result storage skill:data Selection.selector.uid int 1 run scoreboard players get @s uid
 function player:get/skills
 data modify storage skill:data Selection.Recursive set value []
 execute if entity @s[scores={game.player.team_id=1}] run data modify storage skill:data Selection.Recursive append from storage player:data selected.skills[{"type": "skill:runner"}]

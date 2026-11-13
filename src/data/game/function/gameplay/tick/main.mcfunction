@@ -20,17 +20,6 @@ execute as @a run function ./../gameplay/manage_camera:
         attribute @s minecraft:camera_distance modifier remove game:gameplay/camera_distance
         $attribute @s minecraft:camera_distance modifier add game:gameplay/camera_distance $(camera_distance) add_multiplied_base
 
-## Manage invisibility
-execute as @a[tag=game.playing] if entity @s[tag=!game.player.invisible] if predicate {type:"minecraft:entity_properties",entity:"this",predicate:{"minecraft:effects":{"minecraft:invisibility":{}}}} function ./../start_invisibility:
-    item replace entity @s armor.head with air
-    item replace entity @s armor.chest with air
-    item replace entity @s armor.legs with air
-    item replace entity @s armor.feet with air
-    tag @s add game.player.invisible
-execute as @a[tag=game.player.invisible] unless predicate {type:"minecraft:entity_properties",entity:"this",predicate:{"minecraft:effects":{"minecraft:invisibility":{}}}} function ./../end_invisibility:
-    function cosmetic:add_equipment
-    tag @s remove game.player.invisible
-
 # Apply due points
 execute as @a[scores={game.player.due_points=1..}] at @s run function game:points/add_points
 execute as @a[scores={time.player.assist_timer=1..}] run scoreboard players remove @s time.player.assist_timer 1

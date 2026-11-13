@@ -1,0 +1,58 @@
+{
+	"formatVersion": "1.0.0",
+	"rigs": {
+		"animation:cosmetic/runner_skin/allay/hiding_form": {
+			"coreFiles": ["assets/minecraft/atlases/blocks.json", "pack.mcmeta"],
+			"versionedFiles": [
+				"assets/animation/items/blueprint/cosmetic/runner_skin/allay/hiding_form/body.json",
+				"assets/animation/items/blueprint/cosmetic/runner_skin/allay/hiding_form/head.json",
+				"assets/animation/items/blueprint/cosmetic/runner_skin/allay/hiding_form/left_arm.json",
+				"assets/animation/items/blueprint/cosmetic/runner_skin/allay/hiding_form/left_wing.json",
+				"assets/animation/items/blueprint/cosmetic/runner_skin/allay/hiding_form/right_arm.json",
+				"assets/animation/items/blueprint/cosmetic/runner_skin/allay/hiding_form/right_wing.json",
+				"assets/animation/models/blueprint/cosmetic/runner_skin/allay/hiding_form/body.json",
+				"assets/animation/models/blueprint/cosmetic/runner_skin/allay/hiding_form/head/face.json",
+				"assets/animation/models/blueprint/cosmetic/runner_skin/allay/hiding_form/head/face/blush.json",
+				"assets/animation/models/blueprint/cosmetic/runner_skin/allay/hiding_form/head/face/crying.json",
+				"assets/animation/models/blueprint/cosmetic/runner_skin/allay/hiding_form/head/face/worried.json",
+				"assets/animation/models/blueprint/cosmetic/runner_skin/allay/hiding_form/left_arm.json",
+				"assets/animation/models/blueprint/cosmetic/runner_skin/allay/hiding_form/left_wing/wings.json",
+				"assets/animation/models/blueprint/cosmetic/runner_skin/allay/hiding_form/left_wing/wings/happy.json",
+				"assets/animation/models/blueprint/cosmetic/runner_skin/allay/hiding_form/left_wing/wings/tattered.json",
+				"assets/animation/models/blueprint/cosmetic/runner_skin/allay/hiding_form/left_wing/wings/worn.json",
+				"assets/animation/models/blueprint/cosmetic/runner_skin/allay/hiding_form/right_arm.json",
+				"assets/animation/models/blueprint/cosmetic/runner_skin/allay/hiding_form/right_wing/wings.json",
+				"assets/animation/models/blueprint/cosmetic/runner_skin/allay/hiding_form/right_wing/wings/happy.json",
+				"assets/animation/models/blueprint/cosmetic/runner_skin/allay/hiding_form/right_wing/wings/tattered.json",
+				"assets/animation/models/blueprint/cosmetic/runner_skin/allay/hiding_form/right_wing/wings/worn.json",
+				"assets/animation/textures/blueprint/cosmetic/runner_skin/allay/hiding_form/allay.png",
+				"assets/animation/textures/blueprint/cosmetic/runner_skin/allay/hiding_form/blush.png",
+				"assets/animation/textures/blueprint/cosmetic/runner_skin/allay/hiding_form/crying.png",
+				"assets/animation/textures/blueprint/cosmetic/runner_skin/allay/hiding_form/happy.png",
+				"assets/animation/textures/blueprint/cosmetic/runner_skin/allay/hiding_form/neutral.png",
+				"assets/animation/textures/blueprint/cosmetic/runner_skin/allay/hiding_form/normal.png",
+				"assets/animation/textures/blueprint/cosmetic/runner_skin/allay/hiding_form/tattered.png",
+				"assets/animation/textures/blueprint/cosmetic/runner_skin/allay/hiding_form/worn.png",
+				"assets/animation/textures/blueprint/cosmetic/runner_skin/allay/hiding_form/worried.png"
+			]
+		},
+		"render:hiding_form": {
+			"coreFiles": ["assets/minecraft/atlases/blocks.json", "pack.mcmeta"],
+			"versionedFiles": [
+				"assets/render/items/blueprint/hiding_form/body.json",
+				"assets/render/items/blueprint/hiding_form/head.json",
+				"assets/render/items/blueprint/hiding_form/left_arm.json",
+				"assets/render/items/blueprint/hiding_form/left_wing.json",
+				"assets/render/items/blueprint/hiding_form/right_arm.json",
+				"assets/render/items/blueprint/hiding_form/right_wing.json",
+				"assets/render/models/blueprint/hiding_form/body.json",
+				"assets/render/models/blueprint/hiding_form/head.json",
+				"assets/render/models/blueprint/hiding_form/left_arm.json",
+				"assets/render/models/blueprint/hiding_form/left_wing.json",
+				"assets/render/models/blueprint/hiding_form/right_arm.json",
+				"assets/render/models/blueprint/hiding_form/right_wing.json",
+				"assets/render/textures/blueprint/hiding_form/allay.png"
+			]
+		}
+	}
+}

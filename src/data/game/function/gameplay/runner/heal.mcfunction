@@ -1,3 +1,4 @@
+function event:on_heal
 # Apply healing based on queued heal amount
 scoreboard players operation @s game.player.injury -= @s game.player.heal_amount
 scoreboard players operation @s game.player.heal_amount /= #3 math.const

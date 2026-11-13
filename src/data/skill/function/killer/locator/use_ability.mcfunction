@@ -41,9 +41,9 @@ execute unless entity @a[distance=12..48,sort=furthest,team=runner] run return r
     playsound minecraft:item.lodestone_compass.lock master @s ~ ~ ~ 1 0.2
     playsound minecraft:block.note_block.didgeridoo player @s ~ ~ ~ 0.5 1
 
-scoreboard players operation @s skill.killer.locator.tracking_uid = @p[distance=12..48,sort=furthest,team=runner] uid.player
+scoreboard players operation @s skill.killer.locator.tracking_uid = @p[distance=12..48,sort=furthest,team=runner] uid
 tag @s add this.self
-execute as @a[team=runner] if score @s uid.player = @p[tag=this.self] skill.killer.locator.tracking_uid at @s expand:
+execute as @a[team=runner] if score @s uid = @p[tag=this.self] skill.killer.locator.tracking_uid at @s expand:
     playsound minecraft:item.lodestone_compass.lock master @s ~ ~ ~ 2 1
     playsound minecraft:entity.evoker.prepare_attack master @s ~ ~ ~ 0.5 2
     function render:actionbar/set_actionbar {"duration": 30, "text": {"color":"#C68346","translate":"skill.killer.locator.notification"}}
