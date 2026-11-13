@@ -62,7 +62,7 @@ execute as @a[scores={game.player.team_id=2}] run function game:round/join_kille
     team join killer @s
     effect give @s invisibility 17 0 true
     function skill:selection/gui/killer_skills
-    attribute @s minecraft:camera_distance modifier add game:teams/killer -1.5 add_value
+    attribute @s minecraft:camera_distance modifier add game:teams/killer -3.5 add_value
     attribute @s minecraft:attack_damage modifier add game:teams/killer 2 add_value
     attribute @s minecraft:attack_speed modifier add game:teams/killer 100 add_value
     attribute @s minecraft:entity_interaction_range modifier add game:teams/killer 0.33 add_multiplied_base
