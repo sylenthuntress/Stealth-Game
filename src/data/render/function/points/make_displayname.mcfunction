@@ -7,7 +7,7 @@ execute positioned 0 0 0:
 
 execute if entity @s[team=killer] run data modify storage points:data DisplayName.with[0].color set value "gold"
 execute if entity @s[team=runner] run data modify storage points:data DisplayName.with[0].color set value "gray"
-execute if entity @s[team=finished] run data modify storage points:data DisplayName.with[0].color set value "gold"
+execute if entity @s[team=finished] run data modify storage points:data DisplayName.with[0].color set value "yellow"
 execute if entity @s[team=finished] run data modify storage points:data DisplayName.with[0].bold set value true
 execute if entity @s[team=dead] run data modify storage points:data DisplayName.with[0].color set value "dark_gray"
 execute if entity @s[team=dead] run data modify storage points:data DisplayName.with[0].strikethrough set value true

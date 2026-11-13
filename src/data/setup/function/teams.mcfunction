@@ -60,7 +60,7 @@ team modify dead prefix {
 
 # Finished
 team add finished "Finish"
-team modify finished color gold
+team modify finished color yellow
 team modify finished prefix {
     "text":"🏆 ",
     "bold":false,
