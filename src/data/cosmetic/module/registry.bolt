@@ -330,7 +330,7 @@ def runner_skin(name):
     .player("hide_and_squeak:entity/player/cosmetic/runner_skin/allay")
     .rarity(Rarity.EPIC)
     .desc(TextBuilder("cosmetic.runner_skin.allay.desc")
-        .translate("Humble servant-worker of the hive, ripped away from her beloved queen after a tragedy.")
+        .translate("NO DESCRIPTION")
         .color("gray")
         .italic()
         .build())
