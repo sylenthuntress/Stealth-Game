@@ -197,14 +197,6 @@ class CosmeticsBuilder():
         self._components.update({"cosmetic:hiding_form": {"type": "cosmetic:item", "id": item, "components": components}})
         return self
 
-    def hiding_entity(self, entity_type = "minecraft:marker", nbt = {}):
-        nbt.update({"Tags":["this.summoned","hiding_form"]})
-        nbt.update({"NoAI":true})
-        nbt.update({"Invulnerable":true})
-
-        self._components.update({"cosmetic:hiding_form": {"type": "cosmetic:entity", "entity_type": entity_type, "nbt": nbt}})
-        return self
-
     def feature(self, text):
         self._components.setdefault("cosmetic:features", [
             {
@@ -337,7 +329,6 @@ def runner_skin(name):
     .equip_player_head("/head")
     .armor("chest").add_layer("humanoid").add_layer("wings")
     .armor("legs").add_layer("humanoid_leggings")
-    .hiding_entity("minecraft:allay", {"attributes":[{"id":"minecraft:scale","base":0.7}]})
     .feature(TextBuilder("cosmetic.runner_skin.allay.feature.1")
         .translate("Unique FX")
         .color("gray")
