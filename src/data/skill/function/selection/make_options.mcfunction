@@ -11,9 +11,9 @@ data modify storage skill:data Selection.dialog.actions[-1].action.command set f
 execute store success storage skill:data Selection.dialog.actions[-1].random byte 1 run data get storage skill:data Selection.Recursive[0].components{"skill:random":true}
 execute store success storage skill:data Selection.dialog.actions[-1].default byte 1 if data storage skill:data Selection.Recursive[0].components{"skill:default": true} 
 
-# Check if option is equipped
 data modify storage skill:data Selection.dialog.actions[-1].equipped set value false
-execute if function ./check_equipped run function ./equip_option
+function ./check_locked # Locks the skill if the conditions return false
+execute unless score #var var.locked matches 1 if function ./check_equipped run function ./equip_option
 function ./check_equipped:
     scoreboard objectives add var.list_size dummy
     scoreboard objectives add var.list_success dummy
@@ -26,6 +26,7 @@ function ./check_equipped:
     return fail
 scoreboard objectives remove var.list_size
 scoreboard objectives remove var.list_success
+scoreboard objectives remove var.locked
 function ./equip_option:
     data modify storage skill:data Selection.dialog.actions[-1].label.color set value "green"
     data modify storage skill:data Selection.dialog.actions[-1].label.with[0].color set value "white"

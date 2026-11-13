@@ -1,7 +1,7 @@
 function ./check_predicate with storage skill:data Selection.Recursive[0]
 function ./check_predicate:
     $execute unless predicate $(predicate) run function ./lock_option
-execute if score #gamestate gamestate.game_active matches 1 unless score #var var.locked matches 1 run function ./check_teammates:
+execute if data storage skill:data Selection.Recursive[0].components."skill:team_only" if score #gamestate gamestate.game_active matches 1 unless score #var var.locked matches 1 run function ./check_teammates:
     scoreboard objectives add var.teammates dummy
     execute store result score @s var.teammates run data get storage skill:data Selection.Recursive[0].components."skill:team_only"
     execute if score @s[scores={game.player.team_id=1}] var.teammates > #gamestate gamestate.runners run function ./lock_option
