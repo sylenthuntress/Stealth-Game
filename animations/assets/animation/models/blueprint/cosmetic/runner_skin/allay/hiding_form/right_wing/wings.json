@@ -1,0 +1,50 @@
+{
+	"credit": "Made with Animated Java (https://github.com/Animated-Java/animated-java) via Blockbench",
+	"textures": {
+		"particle": "minecraft:item/pufferfish",
+		"slot_wings": "animation:blueprint/cosmetic/runner_skin/allay/hiding_form/normal"
+	},
+	"display": {
+		"head": {
+			"rotation": [0, 180, 0]
+		}
+	},
+	"elements": [
+		{
+			"from": [8, 5.5, 4],
+			"to": [8, 10.5, 12],
+			"rotation": {
+				"x": 0,
+				"y": 0,
+				"z": 0,
+				"origin": [7.5, 5.5, 3]
+			},
+			"faces": {
+				"north": {
+					"uv": [12, 11, 12, 13.5],
+					"texture": "#slot_wings"
+				},
+				"east": {
+					"uv": [8, 11, 12, 13.5],
+					"texture": "#slot_wings"
+				},
+				"south": {
+					"uv": [16, 11, 16, 13.5],
+					"texture": "#slot_wings"
+				},
+				"west": {
+					"uv": [12, 11, 8, 13.5],
+					"texture": "#slot_wings"
+				},
+				"up": {
+					"uv": [12, 11, 12, 7],
+					"texture": "#slot_wings"
+				},
+				"down": {
+					"uv": [12, 7, 12, 11],
+					"texture": "#slot_wings"
+				}
+			}
+		}
+	]
+}

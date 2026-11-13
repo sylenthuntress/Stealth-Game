@@ -1,9 +1,0 @@
-{
-	"model": {
-		"type": "minecraft:model",
-		"model": "render:blueprint/animation/cosmetic/runner_skin/allay/hiding_form/right_wing",
-		"tints": [
-			{"type": "minecraft:dye", "default": [1, 1, 1]}
-		]
-	}
-}
