@@ -103,7 +103,7 @@ execute as @e[type=mannequin,tag=this.selected] at @s run function ./tick_puppet
                 playsound minecraft:block.netherite_block.break master @a[tag=game.viewing] ~ ~ ~ 1000 0.67
                 playsound minecraft:block.netherite_block.break master @a[tag=game.viewing] ~ ~ ~ 1000 0.75
             
-            execute as @n[type=item_display,tag=skill.runner.puppeteer.hiding_form] if score @s uid = @n[type=mannequin,tag=this.selected] uid kill @s
+            execute as @e[tag=skill.runner.puppeteer.hiding_form] if score @s uid = @n[type=mannequin,tag=this.selected] uid kill @s
             kill @s
             
     tag @a remove this.attacker
