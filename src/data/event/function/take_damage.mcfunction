@@ -1,17 +1,3 @@
-advancement ~/: {
-  "criteria": {
-    "condition": {
-      "trigger": "minecraft:entity_hurt_player",
-      "conditions": {}
-    }
-  },
-  "rewards": {
-    "function": (~/)
-  }
-}
-
-advancement revoke @s only ~/
-
 # Add tag to attack target
 execute on attacker run tag @s add event.attacker
 

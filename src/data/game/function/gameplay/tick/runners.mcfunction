@@ -7,12 +7,12 @@ execute function game:gameplay/runner/tick_hiding:
     execute if score @s time.player.hide_timer matches 16.. run scoreboard players remove @s time.player.hide_timer 1
     execute if entity @s[predicate=!util:is_sneaking] if score @s time.player.hide_timer matches 1.. run scoreboard players remove @s time.player.hide_timer 1
     execute if score @s[tag=!hiding] time.player.hide_timer matches 15 run function game:gameplay/runner/start_hiding
-    execute if score @s[tag=hiding] time.player.hide_timer matches 0 run function game:gameplay/runner/stop_hiding
-
-    execute if entity @s[tag=!hiding] run return fail
+    execute if score @s[tag=hiding] time.player.hide_timer matches 0 expand:
+        data modify storage event:data context.stop_hiding.reason set value "time"
+        function game:gameplay/runner/stop_hiding
 
     tag @s add this.self
-    execute as @e[tag=little_mouse] if score @s uid.entity = @a[tag=this.self,limit=1] uid.player run tag @s add this.display
+    execute as @e[tag=hiding_form] if score @s uid.entity = @a[tag=this.self,limit=1] uid.player run tag @s add this.display
     execute as @n[tag=this.display,distance=0.125..] expand:
         rotate @s facing entity @a[tag=this.self,limit=1] eyes
         at @s run rotate @s ~ 0
@@ -58,9 +58,7 @@ execute if score @s time.player.heal_timer matches 1.. if entity @a[distance=0.1
 execute if score @s time.player.heal_timer matches 1 positioned ~-3 ~-1 ~-3 as @a[dx=6,dy=4,dz=6,team=runner,scores={time.player.heal_timer=2..,game.player.injury=1..}] at @s run function game:gameplay/mutual_health:
     scoreboard players add @s game.player.heal_amount 5
     function game:gameplay/runner/heal
-
-    particle minecraft:heart ~ ~.5 ~ 0.75 0.2 0.75 0.6 3 normal @a
-    playsound minecraft:entity.bat.ambient player @a ~ ~ ~ 0.1 0.7
+    function event:group_heal
 
 # Band crossing
 execute if block ~ 41 ~ minecraft:diamond_block unless score @s game.player.band_progression >= @e[type=text_display,tag=band_display,limit=1,sort=nearest] segments.elapsed run function game:gameplay/runner/cross_band:
