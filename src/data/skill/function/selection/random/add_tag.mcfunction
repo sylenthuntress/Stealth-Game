@@ -15,7 +15,7 @@ execute if data storage skill:data args.skill.components."skill:team_only" run f
 execute if score #var var.predicate matches 0 run return fail # Guard-return if condition fails
 
 # Add tag if conditions pass
-execute store result storage skill:data Random.args.skill.uid int 1 run scoreboard players get @s uid.player
+execute store result storage skill:data Random.args.skill.uid int 1 run scoreboard players get @s uid
 
 function skill:announcement/remove_name with storage skill:data Random.args
 function ./add_name with storage skill:data Random.args

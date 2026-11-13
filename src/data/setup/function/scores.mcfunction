@@ -16,8 +16,8 @@ scoreboard players set #config config.loaded_defaults 1
 scoreboard objectives add uid.index dummy
 execute unless score #uid.index uid.index matches 0.. run scoreboard players set #uid.index uid.index 0
 
-scoreboard objectives add uid.player dummy
-scoreboard objectives add uid.entity dummy
+scoreboard objectives add uid dummy
+scoreboard objectives add uid dummy
 
 # Cosmetics
 scoreboard objectives add cosmetic.selection trigger

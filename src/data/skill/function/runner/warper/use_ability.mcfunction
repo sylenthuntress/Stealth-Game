@@ -30,7 +30,7 @@ scoreboard players set @s skill.runner.warper.cooldown 600
 scoreboard players set @s skill.runner.warper.warp_length 0
 
 tag @s add this.selector
-execute as @e[type=marker,tag=skill.runner.warper.warp_spot] if score @s uid.entity = @p[tag=this.selector] uid.player run tag @s add this.selected
+execute as @e[type=marker,tag=skill.runner.warper.warp_spot] if score @s uid = @p[tag=this.selector] uid run tag @s add this.selected
 
 execute as @e[type=marker,tag=this.selected] at @s run function ./find_warp:
     particle minecraft:reverse_portal ~ ~ ~ 0.15 0.25 0.15 0.01 1 normal @a

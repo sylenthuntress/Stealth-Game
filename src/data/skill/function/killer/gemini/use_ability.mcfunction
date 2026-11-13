@@ -22,7 +22,7 @@ item modify entity @s {"type":"minecraft:filtered","slot_source":"util:inventory
 item modify entity @s {"type":"minecraft:filtered","slot_source":"util:inventory","item_filter":{"items":"minecraft:slime_ball","components":{"minecraft:custom_data":{"skill.killer.gemini.ability":true}}}} util:decrement
 
 tag @s add this.self
-execute as @e[type=mannequin,tag=skill.killer.gemini.clone] if score @s uid.entity = @p[tag=this.self] uid.player run tag @s add this.selected
+execute as @e[type=mannequin,tag=skill.killer.gemini.clone] if score @s uid = @p[tag=this.self] uid run tag @s add this.selected
 
 execute unless predicate {type:"minecraft:entity_properties",entity:"this",predicate:{"minecraft:effects":{"minecraft:invisibility":{}}}} scoreboard players set @s skill.killer.gemini.hide_teleport 3
 effect give @s invisibility 1 1 true

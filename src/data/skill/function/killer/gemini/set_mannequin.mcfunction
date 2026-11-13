@@ -1,4 +1,4 @@
-scoreboard players operation @s uid.entity = @p[tag=this.selector] uid.player
+scoreboard players operation @s uid = @p[tag=this.selector] uid
 team join killer
 
 data modify entity @s CustomName set from entity @s equipment.head.components."minecraft:profile".name

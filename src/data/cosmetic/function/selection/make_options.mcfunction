@@ -12,7 +12,7 @@ data modify storage cosmetic:data Selection.dialog.actions[-1].tooltip append fr
 execute if data storage cosmetic:data Selection.Recursive[0].components{"cosmetic:default": true} run data modify storage cosmetic:data Selection.dialog.actions[-1].default set value true 
 
 # Set on-click behavior
-execute store result storage cosmetic:data Selection.Recursive[0].uid int 1 run scoreboard players get @s uid.player 
+execute store result storage cosmetic:data Selection.Recursive[0].uid int 1 run scoreboard players get @s uid 
 function ./set_command with storage cosmetic:data Selection.Recursive[0]
 function ./set_command:
     $data modify storage cosmetic:data Selection.dialog.actions[-1].action.command set value "trigger cosmetic.selection set $(numid)" 

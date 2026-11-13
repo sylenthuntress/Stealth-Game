@@ -1,5 +1,5 @@
 data remove storage cosmetic:data Selection.selector
-execute store result storage cosmetic:data Selection.selector.uid int 1 run scoreboard players get @s uid.player
+execute store result storage cosmetic:data Selection.selector.uid int 1 run scoreboard players get @s uid
 
 data modify storage cosmetic:data Selection.Recursive set from storage cosmetic:data Registry
 

@@ -1,7 +1,7 @@
 data remove storage cosmetic:temp selector
 data modify storage cosmetic:temp Recursive set value []
 
-execute store result storage cosmetic:temp selector.uid int 1 run scoreboard players get @s uid.player
+execute store result storage cosmetic:temp selector.uid int 1 run scoreboard players get @s uid
 function player:get/cosmetics
 execute if entity @s[scores={game.player.team_id=1}] run data modify storage cosmetic:temp Recursive append from storage player:data selected.cosmetics[{"type": "cosmetic:runner/skin"}].components."cosmetic:equipment"[]
 execute if entity @s[scores={game.player.team_id=2}] run data modify storage cosmetic:temp Recursive append from storage player:data selected.cosmetics[{"type": "cosmetic:killer/skin"}].components."cosmetic:equipment"[]

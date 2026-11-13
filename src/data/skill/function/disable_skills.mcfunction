@@ -1,6 +1,6 @@
 function event:disable_skills
 data remove storage skill:data Selection.selector
-execute store result storage skill:data Selection.selector.uid int 1 run scoreboard players get @s uid.player
+execute store result storage skill:data Selection.selector.uid int 1 run scoreboard players get @s uid
 
 data modify storage skill:data Selection.Recursive set from storage skill:data Registry
 

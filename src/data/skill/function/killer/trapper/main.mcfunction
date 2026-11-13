@@ -38,12 +38,12 @@ execute as @e[type=item,tag=skill.killer.trapper.dropped] at @s run function ./t
             summon marker ~ ~ ~ {Tags:["skill.killer.trapper.trap","skill.killer.trapper.trap.armed"]}
             summon block_display ~ ~ ~ {Tags:["skill.killer.trapper.trap","skill.killer.trapper.trap.display"],block_state: "minecraft:polished_blackstone_pressure_plate", transformation: {left_rotation: [0.0f, 0.0f, 0.0f, 1.0f], right_rotation: [0.0f, 0.0f, 0.0f, 1.0f], scale: [1.0f, 0.1f, 1.0f], translation: [-0.5f, 0.0f, -0.5f]}}
             summon minecraft:interaction ~ ~ ~ {Tags:["skill.killer.trapper.trap"],height: 0.75f, response: 1b, width: 1f}
-            execute as @e[tag=skill.killer.trapper.trap] unless score @s uid.entity matches 0.. run scoreboard players operation @s uid.entity = @p[tag=this.selector] uid.player
+            execute as @e[tag=skill.killer.trapper.trap] unless score @s uid matches 0.. run scoreboard players operation @s uid = @p[tag=this.selector] uid
             playsound minecraft:entity.evoker_fangs.attack master @p[tag=this.selector] ~ ~ ~ 0.1 0.8 0.1
         playsound minecraft:entity.evoker_fangs.attack master @a ~ ~ ~ 0.8 0.8
         kill @s
 
-execute as @e[tag=skill.killer.trapper.trap] if score @s uid.entity = @p[tag=this.selector] uid.player run tag @s add this.selected
+execute as @e[tag=skill.killer.trapper.trap] if score @s uid = @p[tag=this.selector] uid run tag @s add this.selected
 execute unless score @s skill.killer.trapper.count matches 3 run function ./display_prompt:
     execute at @s anchored eyes facing entity @n[type=interaction,tag=this.selected,distance=..4] eyes anchored feet positioned ^ ^ ^1 rotated as @s positioned ^ ^ ^-1 if entity @s[distance=..0.1] run title @s actionbar {"translate":"skill.killer.trapper.prompt","with":[[{"translate":"skill.use","color":"#c46e3c"},{"text":"/","color":"#c46e3c"},{"translate":"skill.attack","color":"#c46e3c"}],{"color":"#866654","translate":"skill.killer.trapper.ability.name","italic":false,"with":[{"sprite":"minecraft:block/tripwire_hook","atlas":"minecraft:blocks","color":"white"}]}]}
 

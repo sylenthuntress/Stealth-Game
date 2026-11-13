@@ -1,5 +1,5 @@
 tag @s add this.self
-execute as @e[tag=hiding_form] if score @s uid.entity = @p uid.player run tag @s add this.display
+execute as @e[tag=hiding_form,tag=!skill.runner.puppeteer.hiding_form] if score @s uid = @p uid run tag @s add this.display
 
 tag @s remove hiding
 
