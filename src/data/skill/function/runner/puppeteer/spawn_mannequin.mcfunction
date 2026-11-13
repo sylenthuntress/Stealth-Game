@@ -1,10 +1,11 @@
 $summon mannequin ~ ~ ~ {Tags:["skill.runner.puppeteer.puppet"],profile:{"id":$(UUID)},Rotation:$(Rotation),Health:999f,attributes:[{id:"minecraft:scale",base:0.66f},{id:"minecraft:max_health",base:999f}],CustomNameVisible:false}
 
-item replace entity @n[type=mannequin,tag=skill.runner.puppeteer.puppet] armor.head with player_head
-item modify entity @n[type=mannequin,tag=skill.runner.puppeteer.puppet] armor.head {type:"minecraft:fill_player_head",entity:"this"}
-execute as @n[type=mannequin,tag=skill.runner.puppeteer.puppet] at @s expand:
-    scoreboard players operation @s uid.entity = @p[tag=this.selector] uid.player
-    team join runner
-    rotate @s ~ 0
-    data modify entity @s CustomName set from entity @s equipment.head.components."minecraft:profile".name
-    item replace entity @s armor.head with air
+effect give @n[type=mannequin,tag=skill.runner.puppeteer.puppet] invisibility infinite 0 true
+scoreboard players operation @n[type=mannequin,tag=skill.runner.puppeteer.puppet] uid = @p[tag=this.selector] uid
+team join runner @n[type=mannequin,tag=skill.runner.puppeteer.puppet]
+execute as @n[type=mannequin,tag=skill.runner.puppeteer.puppet] at @s run rotate @s ~ 0
+
+execute as @p[tag=this.selector] run function player:get/cosmetics
+data modify storage cosmetic:data Selection.Recursive set value []
+data modify storage cosmetic:data Selection.Recursive append from storage player:data selected.cosmetics[{"type": "cosmetic:runner/skin"}]
+execute as @n[type=mannequin,tag=skill.runner.puppeteer.puppet] run function cosmetic:selection/add_tag with storage cosmetic:data Selection.Recursive[0]

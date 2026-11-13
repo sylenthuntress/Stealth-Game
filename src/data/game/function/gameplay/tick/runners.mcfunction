@@ -3,6 +3,7 @@ attribute @s[predicate=!util:is_sprinting] minecraft:movement_speed modifier add
 
 # Sneak to hide
 execute function game:gameplay/runner/tick_hiding:
+    function event:tick/hiding
     execute if entity @s[predicate=util:is_sneaking] unless score @s time.player.hide_timer matches 16.. run scoreboard players add @s time.player.hide_timer 1
     execute if score @s time.player.hide_timer matches 16.. run scoreboard players remove @s time.player.hide_timer 1
     execute if entity @s[predicate=!util:is_sneaking] if score @s time.player.hide_timer matches 1.. run scoreboard players remove @s time.player.hide_timer 1
@@ -12,7 +13,7 @@ execute function game:gameplay/runner/tick_hiding:
         function game:gameplay/runner/stop_hiding
 
     tag @s add this.self
-    execute as @e[tag=hiding_form] if score @s uid.entity = @a[tag=this.self,limit=1] uid.player run tag @s add this.display
+    execute as @e[tag=hiding_form,tag=!skill.runner.puppeteer.hiding_form] if score @s uid = @a[tag=this.self,limit=1] uid run tag @s add this.display
     execute as @n[tag=this.display,distance=0.125..] expand:
         rotate @s facing entity @a[tag=this.self,limit=1] eyes
         at @s run rotate @s ~ 0

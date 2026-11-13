@@ -1,48 +1,20 @@
-advancement ~/ {
-  "criteria": {
-    "requirement": {
-      "trigger": "minecraft:tick",
-      "conditions": {
-        "player": {
-          "type": "minecraft:entity_properties",
-          "entity": "this",
-          "predicate": {
-            "minecraft:entity_tags": {
-              "any_of": [
-                "cosmetic.runner_skin.allay"
-              ]
-            }
-          }
-        }
-      }
-    }
-  },
-  "rewards": {
-    "function": (~/)
-  }
+append function_tag skill:runner/puppeteer/fake_cosmetic: {
+  "values": [(~/)]
+}
+append function_tag event:tick/hiding: {
+  "values": [(~/)]
 }
 
-predicate ./is_moving: {
-  "type": "minecraft:entity_properties",
-  "entity": "this",
-  "predicate": {
-    "minecraft:movement": {
-      "horizontal_speed": {
-        "min": 0.1
-      }
-    }
-  }
-}
-
-advancement revoke @s only ~/
+execute unless entity @s[tag=hiding] run return fail
+execute unless entity @s[tag=cosmetic.runner_skin.allay] run return fail
 
 tag @s add this.self
-execute as @e[type=item_display,tag=hiding_form] if score @s uid.entity = @p[tag=this.self] uid.player run tag @s add this.display
+execute as @e[type=item_display,tag=hiding_form] if score @s uid = @n[tag=this.self] uid run tag @s add this.display
 
-execute if predicate ./is_moving as @n[type=item_display,tag=this.display] run function ./anim/move:
+execute as @n[type=item_display,tag=this.display] as @s[distance=0.125..] run function ./anim/move:
     function animation:cosmetic/runner_skin/allay/hiding_form/animations/idle/pause
     function animation:cosmetic/runner_skin/allay/hiding_form/animations/move/resume
-execute unless predicate ./is_moving as @n[type=item_display,tag=this.display] run function ./anim/idle:
+execute as @n[type=item_display,tag=this.display] as @s[distance=..0.124] run function ./anim/idle:
     function animation:cosmetic/runner_skin/allay/hiding_form/animations/move/pause
     function animation:cosmetic/runner_skin/allay/hiding_form/animations/idle/resume
 

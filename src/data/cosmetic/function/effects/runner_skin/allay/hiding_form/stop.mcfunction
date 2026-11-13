@@ -15,15 +15,15 @@ tag @e remove this.display
 return 1
 function ./despawn: # This function runs as the allay as it despawns
     tag @s add this.self
-    execute as @a[tag=!hiding] if score @s uid.player = @n[tag=this.self] uid.entity run tag @s add this.owner
+    execute as @p[tag=!hiding] if score @s uid = @n[tag=this.self] uid run tag @s add this.owner
     execute unless entity @a[tag=this.owner] run return run function ./cancel_despawn:
         function animation:cosmetic/runner_skin/allay/hiding_form/animations/idle/resume
         tag @s remove this.self
 
-    execute as @a[tag=this.owner] at @s expand:
+    execute as @p[tag=this.owner] at @s expand:
         function cosmetic:add_equipment
         function ./../set_variant
 
-    tag @a remove this.owner
+    tag @e remove this.owner
     tag @s remove this.self
     function animation:cosmetic/runner_skin/allay/hiding_form/remove/this

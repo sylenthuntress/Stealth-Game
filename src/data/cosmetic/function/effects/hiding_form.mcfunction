@@ -1,1 +1,1 @@
-execute at @s run function #~/
+function #~/
