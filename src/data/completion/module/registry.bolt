@@ -113,3 +113,20 @@ def secret(name):
     .announce_to_chat()
     .icon_item("minecraft:warden_spawn_egg", {})
     .build())
+
+(secret("find_wither")
+    .translate_title("Secret Dungeon")
+    .desc([
+        TextBuilder("completion.secret.find_wither.desc.1")
+            .color("green")
+            .translate("Discover the secret of a condemned manor.")
+            .build(),
+        TextBuilder("completion.secret.find_wither.desc.2")
+            .translate("\n\nUnlocks: %s")
+            .color("dark_green")
+            .with_text(get_cosmetic_name("cosmetic.killer_skin.wither"))
+            .build()])
+    .show_toast()
+    .announce_to_chat()
+    .icon_item("minecraft:wither_skeleton_skull", {})
+    .build())

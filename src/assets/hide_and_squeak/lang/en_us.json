@@ -6,6 +6,7 @@
     "cosmetic.selection.runner_skin": "Runner Skins",
     "cosmetic.selection.killer_skin": "Killer Skins",
     "cosmetic.selection.gui.body.selected": "Selected: %s",
+    "completion.secret.find_wither.open_sculkdoor": "You heard a rumbling beneath the manor.",
     "game.end": "%s has ended!",
     "game.end.winners": "%s won the game with %s points!",
     "game.end.rankings": "%s had %s points",
