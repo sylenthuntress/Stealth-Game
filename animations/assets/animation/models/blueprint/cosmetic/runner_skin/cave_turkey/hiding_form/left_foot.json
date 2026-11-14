@@ -1,0 +1,50 @@
+{
+	"credit": "Made with Animated Java (https://github.com/Animated-Java/animated-java) via Blockbench",
+	"textures": {
+		"0": "animation:blueprint/cosmetic/runner_skin/cave_turkey/hiding_form/cave_turkey",
+		"particle": "minecraft:item/pufferfish"
+	},
+	"display": {
+		"head": {
+			"rotation": [0, 180, 0]
+		}
+	},
+	"elements": [
+		{
+			"from": [4, 8, 4.5],
+			"to": [8, 8, 8.5],
+			"rotation": {
+				"x": 0,
+				"y": 0,
+				"z": 0,
+				"origin": [8, 8, 8]
+			},
+			"faces": {
+				"north": {
+					"uv": [7.5, 0.75, 8.25, 0.75],
+					"texture": "#0"
+				},
+				"east": {
+					"uv": [6.5, 0.75, 7.5, 0.75],
+					"texture": "#0"
+				},
+				"south": {
+					"uv": [9.25, 0.75, 10, 0.75],
+					"texture": "#0"
+				},
+				"west": {
+					"uv": [8.25, 0.75, 9.25, 0.75],
+					"texture": "#0"
+				},
+				"up": {
+					"uv": [8.25, 1, 7.25, 0],
+					"texture": "#0"
+				},
+				"down": {
+					"uv": [8.25, 0, 7.25, 1],
+					"texture": "#0"
+				}
+			}
+		}
+	]
+}

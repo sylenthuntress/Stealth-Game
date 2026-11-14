@@ -1,5 +1,6 @@
 # Tick subtasks
 execute as @a[tag=lobby] run function lobby:tick/player
+execute as @e[type=marker,tag=lobby.parkour.cave_turkey] at @s run function lobby:parkour/cave_turkey
 
 # Manage start button
 execute positioned 60 32 -0.5 if block ~ ~ ~ minecraft:acacia_button[powered=true] run function lobby:start_game:

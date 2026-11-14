@@ -25,6 +25,7 @@ scoreboard objectives add cosmetic.switch_gui trigger
 scoreboard objectives add cosmetic.close_selection trigger
 
 scoreboard objectives add cosmetic.runner_skin.bumblebee.hurt_timer dummy
+scoreboard objectives add cosmetic.runner_skin.cave_turkey.hurt_timer dummy
 
 # Data
 ## Example: data.<raw_criteria>

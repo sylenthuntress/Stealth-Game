@@ -1,4 +1,8 @@
 {
 	"replace": false,
-	"values": ["animation:cosmetic/runner_skin/allay/hiding_form/on_load", "render:hiding_form/on_load"]
+	"values": [
+		"animation:cosmetic/runner_skin/allay/hiding_form/on_load",
+		"animation:cosmetic/runner_skin/cave_turkey/hiding_form/on_load",
+		"render:hiding_form/on_load"
+	]
 }

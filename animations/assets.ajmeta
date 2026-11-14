@@ -36,6 +36,36 @@
 				"assets/animation/textures/blueprint/cosmetic/runner_skin/allay/hiding_form/worried.png"
 			]
 		},
+		"animation:cosmetic/runner_skin/cave_turkey/hiding_form": {
+			"coreFiles": ["assets/minecraft/atlases/blocks.json", "pack.mcmeta"],
+			"versionedFiles": [
+				"assets/animation/items/blueprint/cosmetic/runner_skin/cave_turkey/hiding_form/bill.json",
+				"assets/animation/items/blueprint/cosmetic/runner_skin/cave_turkey/hiding_form/body.json",
+				"assets/animation/items/blueprint/cosmetic/runner_skin/cave_turkey/hiding_form/chin.json",
+				"assets/animation/items/blueprint/cosmetic/runner_skin/cave_turkey/hiding_form/head.json",
+				"assets/animation/items/blueprint/cosmetic/runner_skin/cave_turkey/hiding_form/left_foot.json",
+				"assets/animation/items/blueprint/cosmetic/runner_skin/cave_turkey/hiding_form/left_leg.json",
+				"assets/animation/items/blueprint/cosmetic/runner_skin/cave_turkey/hiding_form/left_wing.json",
+				"assets/animation/items/blueprint/cosmetic/runner_skin/cave_turkey/hiding_form/right_foot.json",
+				"assets/animation/items/blueprint/cosmetic/runner_skin/cave_turkey/hiding_form/right_leg.json",
+				"assets/animation/items/blueprint/cosmetic/runner_skin/cave_turkey/hiding_form/right_wing.json",
+				"assets/animation/items/blueprint/cosmetic/runner_skin/cave_turkey/hiding_form/tail.json",
+				"assets/animation/models/blueprint/cosmetic/runner_skin/cave_turkey/hiding_form/bill.json",
+				"assets/animation/models/blueprint/cosmetic/runner_skin/cave_turkey/hiding_form/body.json",
+				"assets/animation/models/blueprint/cosmetic/runner_skin/cave_turkey/hiding_form/chin.json",
+				"assets/animation/models/blueprint/cosmetic/runner_skin/cave_turkey/hiding_form/head.json",
+				"assets/animation/models/blueprint/cosmetic/runner_skin/cave_turkey/hiding_form/left_foot.json",
+				"assets/animation/models/blueprint/cosmetic/runner_skin/cave_turkey/hiding_form/left_leg.json",
+				"assets/animation/models/blueprint/cosmetic/runner_skin/cave_turkey/hiding_form/left_wing.json",
+				"assets/animation/models/blueprint/cosmetic/runner_skin/cave_turkey/hiding_form/right_foot.json",
+				"assets/animation/models/blueprint/cosmetic/runner_skin/cave_turkey/hiding_form/right_leg.json",
+				"assets/animation/models/blueprint/cosmetic/runner_skin/cave_turkey/hiding_form/right_wing.json",
+				"assets/animation/models/blueprint/cosmetic/runner_skin/cave_turkey/hiding_form/tail.json",
+				"assets/animation/textures/blueprint/cosmetic/runner_skin/cave_turkey/hiding_form/body.png",
+				"assets/animation/textures/blueprint/cosmetic/runner_skin/cave_turkey/hiding_form/cave_turkey.png",
+				"assets/animation/textures/blueprint/cosmetic/runner_skin/cave_turkey/hiding_form/tail.png"
+			]
+		},
 		"render:hiding_form": {
 			"coreFiles": ["assets/minecraft/atlases/blocks.json", "pack.mcmeta"],
 			"versionedFiles": [

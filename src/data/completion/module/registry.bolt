@@ -2,13 +2,6 @@ from util:builders import TextBuilder
 from completion:builder import AdvancementBuilder
 from cosmetic:registry import cosmetics
 
-(AdvancementBuilder("completion:hunter/root")
-    .criteria_always()
-    .translate_title("Hunter")
-    .icon_item("minecraft:trident", {})
-    .build())
-
-# Runner
 def get_cosmetic_name(target_id):
     name = []
     for skin in cosmetics:
@@ -19,6 +12,39 @@ def get_cosmetic_name(target_id):
             break
     return name
 
+# Lobby
+(AdvancementBuilder("completion:lobby/root")
+    .criteria_always()
+    .translate_title("Lobby")
+    .icon_item("minecraft:mud_bricks", {})
+    .build())
+(AdvancementBuilder("completion:lobby/complete_parkour")
+    .translate_title("Gobble, Gobble")
+    .desc([
+        TextBuilder("completion.lobby.complete_parkour.desc.1")
+        .translate("Reach the end of the lobby parkour and claim your delicious prize.")
+            .color("green")
+            .build(),
+        TextBuilder("completion.lobby.complete_parkour.desc.2")
+            .translate("\n\nUnlocks: %s")
+            .color("dark_green")
+            .with_text(get_cosmetic_name("cosmetic.runner_skin.cave_turkey"))
+            .build()])
+    .show_toast()
+    .announce_to_chat()
+    .icon_player("hide_and_squeak:entity/player/cosmetic/runner_skin/cave_turkey/head")
+    .parent("completion:lobby/root")
+    .build())
+
+# Hunter
+
+(AdvancementBuilder("completion:hunter/root")
+    .criteria_always()
+    .translate_title("Hunter")
+    .icon_item("minecraft:trident", {})
+    .build())
+
+# Runner
 (AdvancementBuilder("completion:runner/root")
         .criteria_always()
         .translate_title("Runner")
