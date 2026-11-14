@@ -135,6 +135,9 @@ weapons = [
     weapon("foreseer")
         .icon("minecraft:item/bow", "minecraft:items")
         .build(),
+    weapon("auto_crossbow")
+        .icon("minecraft:item/crossbow_arrow", "minecraft:items")
+        .build(),
     weapon("random")
         .icon("hide_and_squeak:item/random", "minecraft:items")
         .is_random()

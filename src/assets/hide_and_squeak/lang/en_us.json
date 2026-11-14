@@ -144,7 +144,9 @@
     "skill.weapon.foreseer.desc": "Fires spectral arrows that, upon hitting a block, reveal all nearby runners. While on cooldown, it only fires normal arrows.\n\nCooldown: §l20s",
     "skill.weapon.foreseer.spectral_bow": "%s Spectral Bow",
     "skill.weapon.foreseer.spectral_arrow": "%s Spectral Arrow",
-    "skill.weapon.crossbow": "%s Crossbow",
+    "skill.weapon.auto_crossbow": "%s Auto-Crossbow",
+    "skill.weapon.auto_crossbow.desc": "Reloads instantly after firing. Your ammo is limited to the amount of runners in the match, but you regain arrows over-time, or as a reward for landing your shots",
+    "skill.weapon.auto_crossbow.arrow": "%s Bolt",
     "skill.weapon.mace": "%s Mace",
     "skill.weapon.random": "%s Random",
     "skill.weapon.random.desc": "Your weapon will be randomly selected."

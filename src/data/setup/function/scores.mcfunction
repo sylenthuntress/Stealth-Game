@@ -173,6 +173,12 @@ scoreboard objectives add skill.weapon.foreseer.cooldown dummy
 scoreboard objectives add skill.weapon.foreseer.motion.x dummy
 scoreboard objectives add skill.weapon.foreseer.motion.y dummy
 scoreboard objectives add skill.weapon.foreseer.motion.z dummy
+scoreboard objectives add skill.weapon.auto_crossbow.charge_time dummy
+scoreboard objectives add skill.weapon.auto_crossbow.count dummy
+scoreboard objectives add skill.weapon.auto_crossbow.cooldown dummy
+scoreboard objectives add skill.weapon.auto_crossbow.motion.x dummy
+scoreboard objectives add skill.weapon.auto_crossbow.motion.y dummy
+scoreboard objectives add skill.weapon.auto_crossbow.motion.z dummy
 
 # Time
 scoreboard objectives add time.display_sec dummy
