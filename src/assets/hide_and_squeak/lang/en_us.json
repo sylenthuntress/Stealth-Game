@@ -66,7 +66,7 @@
     "skill.runner.camouflage": "%s Camouflage",
     "skill.runner.camouflage.desc": "§lHiding§r lingers for up to 10 seconds after you stop crouching. Furthermore, you're more nimble in that state.",
     "skill.runner.brawler": "%s Brawler",
-    "skill.runner.brawler.desc": "Punch killers to stun them. Each hit comes with great knockback, and adds 1s to their stun duration. Attacking 3 consecutive times triggers a cooldown.\n\nCooldown: §l15s\n\n§cNote: Runners cannot attack while §lHiding§r§c.",
+    "skill.runner.brawler.desc": "Punch killers to stun them. Each hit comes with great knockback, and adds 1s to their stun duration. Attacking 3 consecutive times triggers a cooldown.\n\nCooldown: §l10s",
     "skill.runner.tank": "%s Tank",
     "skill.runner.jumper": "%s Jumper",
     "skill.runner.jumper.desc": "Charge your ability to build a super-jump and reach high places. The longer you charge, the higher you'll jump, and the louder you'll be. Once you jump or take damage, the charge resets.\n\nMax Charges: §l7",

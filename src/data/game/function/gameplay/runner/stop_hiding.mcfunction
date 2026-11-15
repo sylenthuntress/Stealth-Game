@@ -11,7 +11,6 @@ data remove storage var:glow_timer duration
 
 attribute @s minecraft:camera_distance modifier remove game:gameplay/runner/hiding
 attribute @s minecraft:sneaking_speed modifier remove game:gameplay/runner/hiding
-attribute @s minecraft:attack_damage modifier remove game:gameplay/runner/hiding
 attribute @s minecraft:jump_strength modifier remove game:gameplay/runner/hiding
 attribute @s minecraft:gravity modifier remove game:gameplay/runner/hiding
 attribute @s minecraft:step_height modifier remove game:gameplay/runner/hiding
