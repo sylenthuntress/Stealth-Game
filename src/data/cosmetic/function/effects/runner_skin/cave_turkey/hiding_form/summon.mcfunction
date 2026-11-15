@@ -14,5 +14,6 @@ execute as @n[type=item_display,tag=animation.cosmetic.runner_skin.cave_turkey.h
     scoreboard players operation @s uid = @p uid
     rotate @s ~ 0
     team join runner @s
+    execute on passengers run team join runner @s
     tag @s add hiding_form
     tag @s remove this.summoned

@@ -19,11 +19,13 @@ execute function game:gameplay/runner/tick_hiding:
         at @s run rotate @s ~ 0
         tp @s ~ ~ ~
 
-    execute if predicate {type:"minecraft:entity_properties",entity:"this",predicate:{"minecraft:effects":{"minecraft:glowing":{}}}} run function game:gameplay/runner/glow_hiding:
+    execute as @s[tag=hiding] if predicate {type:"minecraft:entity_properties",entity:"this",predicate:{"minecraft:effects":{"minecraft:glowing":{}}}} run function game:gameplay/runner/glow_hiding:
         execute store result score #var time.entity.glow_timer run data get entity @s active_effects[{id:"minecraft:glowing"}].duration
         scoreboard players operation @n[tag=this.display] time.entity.glow_timer += #var time.entity.glow_timer
         scoreboard players reset #var time.entity.glow_timer
         data merge entity @n[tag=this.display] {Glowing:1b}
+        execute as @n[tag=this.display] on passengers run data merge entity @s {Glowing:1b}
+        effect give @n[tag=this.display] glowing infinite 1 true
         effect clear @s minecraft:glowing
     scoreboard players remove @n[tag=this.display,scores={time.entity.glow_timer=1..}] time.entity.glow_timer 1
     execute as @n[tag=this.display] if score @s time.entity.glow_timer matches ..0 expand:
