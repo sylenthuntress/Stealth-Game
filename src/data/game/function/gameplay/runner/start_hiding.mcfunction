@@ -1,3 +1,5 @@
+execute unless score @s uid.hiding_form matches 0.. store result score @s uid.hiding_form run scoreboard players add #uid.index uid.hiding_form 1 
+
 tag @s add hiding
 item fill entity @s armor.* with air
 attribute @s minecraft:camera_distance modifier add game:gameplay/runner/hiding 1.5 add_multiplied_base

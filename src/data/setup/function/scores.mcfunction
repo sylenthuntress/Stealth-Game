@@ -17,7 +17,7 @@ scoreboard objectives add uid.index dummy
 execute unless score #uid.index uid.index matches 0.. run scoreboard players set #uid.index uid.index 0
 
 scoreboard objectives add uid dummy
-scoreboard objectives add uid dummy
+scoreboard objectives add uid.hiding_form dummy
 
 # Cosmetics
 scoreboard objectives add cosmetic.selection trigger

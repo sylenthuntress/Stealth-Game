@@ -25,6 +25,7 @@ scoreboard players reset * game.player.due_points
 scoreboard players reset * game.player.prev_damage
 scoreboard players reset * time.player.damage_timer
 scoreboard players reset * skill.runner.medic.revive_uid
+scoreboard players reset * uid.hiding_form
 kill @e[type=item_display,tag=hiding_form]
 execute as @e[type=mannequin,tag=game.runner_corpse] run function game:gameplay/runner/kill_corpse
 

@@ -13,7 +13,7 @@ execute function game:gameplay/runner/tick_hiding:
         function game:gameplay/runner/stop_hiding
 
     tag @s add this.self
-    execute as @e[tag=hiding_form,tag=!skill.runner.puppeteer.hiding_form] if score @s uid = @a[tag=this.self,limit=1] uid run tag @s add this.display
+    execute as @e[tag=hiding_form,tag=!skill.runner.puppeteer.hiding_form] if score @s uid.hiding_form = @a[tag=this.self,limit=1] uid.hiding_form run tag @s add this.display
     execute as @n[tag=this.display,distance=0.125..] expand:
         rotate @s facing entity @a[tag=this.self,limit=1] eyes
         at @s run rotate @s ~ 0

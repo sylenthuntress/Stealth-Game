@@ -9,7 +9,7 @@ playsound minecraft:entity.allay.item_given player @a ~ ~ ~ 0.1 0.7
 
 
 tag @s add this.self
-execute as @e[type=item_display,tag=hiding_form] if score @s uid = @p[tag=this.self] uid run tag @s add this.display
+execute as @e[type=item_display,tag=hiding_form] if score @s uid.hiding_form = @p[tag=this.self] uid.hiding_form run tag @s add this.display
 execute as @n[type=item_display,tag=this.display] run function animation:cosmetic/runner_skin/allay/hiding_form/variants/happy/apply
 item modify entity @s armor.head {type:"minecraft:set_components",components:{"minecraft:profile":{texture:"hide_and_squeak:entity/player/cosmetic/runner_skin/allay/head_happy"}}}
 tag @e remove this.display

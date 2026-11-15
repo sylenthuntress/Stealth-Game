@@ -50,12 +50,14 @@ execute as @e[type=marker,tag=skill.runner.puppeteer.small_puppet] at @s unless 
     tag @n[type=mannequin,tag=skill.runner.puppeteer.puppet] add skill.runner.puppeteer.small_puppet
     tag @n[type=mannequin,tag=skill.runner.puppeteer.puppet] add hiding
     execute as @n[type=mannequin,tag=skill.runner.puppeteer.puppet] at @s rotated as @s run function ./start_hiding:
+        execute unless score @s uid.hiding_form matches 0.. store result score @s uid.hiding_form run scoreboard players add #uid.index uid.hiding_form 1 
         data merge entity @s {pose:"crouching"}
         effect give @s invisibility infinite 0 true
         attribute @s minecraft:gravity modifier add game:gameplay/runner/hiding 0.02 add_value
 
         execute as @p[tag=this.selector] run function cosmetic:effects/hiding_form
         tag @n[tag=hiding_form] add skill.runner.puppeteer.hiding_form
+        scoreboard players operation @n[tag=skill.runner.puppeteer.hiding_form] uid.hiding_form = @s uid.hiding_form
     kill @s
 
 execute as @e[type=mannequin,tag=skill.runner.puppeteer.puppet] if score @s uid = @p[tag=this.selector] uid run tag @s add this.selected
@@ -63,7 +65,7 @@ execute as @e[type=mannequin,tag=skill.runner.puppeteer.puppet] if score @s uid 
 execute as @e[type=mannequin,tag=this.selected] at @s run function ./tick_puppet:
     function #./fake_cosmetic
     execute as @s[tag=skill.runner.puppeteer.small_puppet] anchored feet unless entity @e[tag=skill.runner.puppeteer.hiding_form,distance=..0.125] run function ./tick_hiding:
-        execute as @e[tag=skill.runner.puppeteer.hiding_form] if score @s uid = @n[tag=this.selected] uid run tag @s add this.display
+        execute as @e[tag=skill.runner.puppeteer.hiding_form] if score @s uid.hiding_form = @n[tag=this.selected] uid.hiding_form run tag @s add this.display
         execute as @n[tag=this.display,distance=0.125..] expand:
             at @s positioned ~-1.125 ~-1 ~-1.125 unless entity @n[tag=this.selected,dx=0.25,dz=0.25] run rotate @s facing entity @n[tag=this.selected] eyes
             at @s run rotate @s ~ 0
@@ -103,7 +105,8 @@ execute as @e[type=mannequin,tag=this.selected] at @s run function ./tick_puppet
                 playsound minecraft:block.netherite_block.break master @a[tag=game.viewing] ~ ~ ~ 1000 0.67
                 playsound minecraft:block.netherite_block.break master @a[tag=game.viewing] ~ ~ ~ 1000 0.75
             
-            execute as @e[tag=skill.runner.puppeteer.hiding_form] if score @s uid = @n[type=mannequin,tag=this.selected] uid kill @s
+            execute as @e[tag=skill.runner.puppeteer.hiding_form] if score @s uid.hiding_form = @n[type=mannequin,tag=this.selected] uid.hiding_form on passengers run kill @s
+            execute as @e[tag=skill.runner.puppeteer.hiding_form] if score @s uid.hiding_form = @n[type=mannequin,tag=this.selected] uid.hiding_form kill @s
             kill @s
             
     tag @a remove this.attacker
