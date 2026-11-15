@@ -63,14 +63,16 @@ execute if score @s time.player.heal_timer matches 1 positioned ~-3 ~-1 ~-3 as @
 
 # Band crossing
 execute if block ~ 41 ~ minecraft:diamond_block unless score @s game.player.band_progression >= @e[type=text_display,tag=band_display,limit=1,sort=nearest] segments.elapsed run function game:gameplay/runner/cross_band:
+    function skill:cross_band
     scoreboard players add @s game.player.band_progression 1
     scoreboard players add @s game.player.due_points 5
-    execute if score @s game.player.band_progression > #gamestate gamestate.band_progression expand:
+    execute if score @s game.player.band_progression > #gamestate gamestate.band_progression run function ./claim_band:
         scoreboard players add @s game.player.due_points 5
         scoreboard players reset @s time.player.assist_timer
         scoreboard players add @a[scores={time.player.assist_timer=1..}] game.player.due_points 5
         tellraw @a[tag=game.viewing] {"translate": "game.cross_band", "color": "red", with: [["",{text:"#",color:"dark_red","bold":true},{score:{name:"@s",objective:"game.player.band_progression"},color:"dark_red","bold":true}]]}
         as @a at @s run playsound block.note_block.chime master @s ~ ~ ~ 1 0.5
+        execute as @a run function event:band_claimed
     execute unless score @s game.player.band_progression > #gamestate gamestate.band_progression run playsound block.note_block.bit master @s ~ ~ ~ 1 0.5
 
     tag @s add self
@@ -78,8 +80,6 @@ execute if block ~ 41 ~ minecraft:diamond_block unless score @s game.player.band
     tag @s remove self
     
     scoreboard players operation #gamestate gamestate.band_progression > @s game.player.band_progression
-    function skill:cross_band
-    execute as @a run function event:band_claimed
 
 execute if block ~ 41 ~ minecraft:netherite_block run function game:gameplay/runner/cross_finish:
     function event:cross_finish
