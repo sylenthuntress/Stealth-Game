@@ -76,10 +76,12 @@ execute as @e[type=mannequin,tag=this.selected] at @s run function ./tick_puppet
             scoreboard players operation @n[tag=this.display] time.entity.glow_timer += #var time.entity.glow_timer
             scoreboard players reset #var time.entity.glow_timer
             data merge entity @n[tag=this.display] {Glowing:1b}
+            execute as @n[tag=this.display] on passengers run data merge entity @s {Glowing:1b}
             effect clear @s minecraft:glowing
         scoreboard players remove @n[tag=this.display,scores={time.entity.glow_timer=1..}] time.entity.glow_timer 1
         execute as @n[tag=this.display] if score @s time.entity.glow_timer matches ..0 expand:
             data merge entity @s {Glowing:0b}
+            execute on passengers run data merge entity @s {Glowing:0b}
             scoreboard players reset @s time.entity.glow_timer
 
         tag @e remove this.display
@@ -88,11 +90,11 @@ execute as @e[type=mannequin,tag=this.selected] at @s run function ./tick_puppet
     on attacker run tag @s add this.attacker
     if score @s skill.runner.puppeteer.puppet.curr_hp < @s skill.runner.puppeteer.puppet.prev_hp expand:
         if entity @a[tag=this.attacker,team=runner] rotated as @a[tag=this.attacker] run rotate @s ~ 0
-        if entity @a[tag=this.attacker,team=killer] run function ./damage_mannequin:
+        if entity @a[tag=this.attacker,team=killer] run function ./hit_puppet:
             scoreboard players add @p[tag=this.selector] game.player.due_points 15
             execute if entity @s[tag=skill.runner.puppeteer.large_puppet] run scoreboard players add @p[tag=this.selector] game.player.due_points 15
 
-            execute on attacker at @s expand:
+            execute on attacker at @s run function ./stun_killer:
                 scoreboard players add @s time.player.stun_timer 80
                 execute if entity @n[tag=this.selected,tag=skill.runner.puppeteer.large_puppet] run scoreboard players add @s time.player.stun_timer 60
 
@@ -105,9 +107,10 @@ execute as @e[type=mannequin,tag=this.selected] at @s run function ./tick_puppet
                 playsound minecraft:block.netherite_block.break master @a[tag=game.viewing] ~ ~ ~ 1000 0.67
                 playsound minecraft:block.netherite_block.break master @a[tag=game.viewing] ~ ~ ~ 1000 0.75
             
-            execute as @e[tag=skill.runner.puppeteer.hiding_form] if score @s uid.hiding_form = @n[type=mannequin,tag=this.selected] uid.hiding_form on passengers run kill @s
-            execute as @e[tag=skill.runner.puppeteer.hiding_form] if score @s uid.hiding_form = @n[type=mannequin,tag=this.selected] uid.hiding_form kill @s
-            kill @s
+            function ./kill_puppet:
+                execute as @e[tag=skill.runner.puppeteer.hiding_form] if score @s uid.hiding_form = @n[type=mannequin,tag=this.selected] uid.hiding_form on passengers run kill @s
+                execute as @e[tag=skill.runner.puppeteer.hiding_form] if score @s uid.hiding_form = @n[type=mannequin,tag=this.selected] uid.hiding_form kill @s
+                kill @s
             
     tag @a remove this.attacker
     scoreboard players operation @s skill.runner.puppeteer.puppet.prev_hp = @s skill.runner.puppeteer.puppet.curr_hp
