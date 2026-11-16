@@ -1,0 +1,126 @@
+testers:
+  text: ===== Playtesters =====
+  color: gold
+  bold: true
+  names:
+    - FlourCuddle7
+    - 3trobe
+    - AspN_
+    - breadpvper
+    - systolictomneko
+    - Connop
+    - The_Dapper_Toad
+    - P2ime
+    - TheWorfer27
+    - Smurftin
+    - masterofmath
+    - DMgaming100
+    - Scutoel
+    - TheFleshMug
+builders:
+  text: ===== Builders =====
+  color: blue
+  bold: true
+  names:
+    - SylentHuntress
+    - FlourCuddle7
+    - TheFleshMug
+special:
+  text: ===== Special Thanks ===== 
+  color: "#9F2B68"
+  bold: true
+  names:
+    - My Girlfriends <3
+# Builds
+segments:
+  - text: ===== Builds =====
+    color: blue
+  - text: Forest Camp
+    color: '#cc4712'
+    names:
+      - SylentHuntress
+      - Mojang (reference)
+      - 26.3 Promo Art (reference)
+  - text: Birch Trail
+    color: '#8dde50'
+    names:
+      - SylentHuntress
+  - text: Spores Field
+    color: '#20db16'
+    names:
+      - SylentHuntress
+      - ABeeInATree (reference)
+      - Shoot for the Spores (reference) 
+  - text: Desert
+    color: '#e3b842'
+    names:
+      - SylentHuntress
+  - text: Mesa Canyon
+    color: '#e37842'
+    names:
+      - SylentHuntress
+      - ItsOrangyyHere (reference)
+  - text: Haunted Manor
+    color: '#808080'
+    names:
+      - SylentHuntress
+      - /u/YouIndependent5436 (reference)
+  - text: Skull Peak
+    color: '#9bb7c9'
+    names:
+      - SylentHuntress
+      - 'Inspired by: Skull Peak (BTD)'
+  - text: City Canal
+    color: '#d48981'
+    names:
+      - FlourCuddle7
+      - SylentHuntress
+  - text: Mana Trees
+    color: '#4451a6'
+    names:
+      - TheFleshMug
+      - SylentHuntress
+  - text: Belltowers
+    color: '#b5aa5b'
+    names:
+      - TheFleshMug
+      - SylentHuntress
+# Assets
+textures:
+  - text: ===== Item Textures =====
+    color: dark_gray
+    names: 
+      - SylentHuntress
+  - text: Time Warp
+    color: '#b97ecd'
+    names:
+      - 'Inspired by: Stealthiators'
+cosmetics:
+  - text: ===== Cosmetics =====
+    color: dark_gray
+  - text: Field Mouse
+    color: gray
+    names:
+      - SylentHuntress
+      - Hypixel Skyblock (Head)
+  - text: Sewer Rat
+    color: '#616161'
+    names:
+      - SylentHuntress
+      - Hypixel Skyblock (Head)
+  - text: Bumblebee
+    color: yellow
+    names:
+      - SylentHuntress
+      - "Inspired by: lavandula1's skin"
+  - text: Cave Turkey
+    color: '#87776c'
+    names:
+      - SylentHuntress
+      - "Inspired by: Spelunky"
+      - "Made with: Animated Java"
+  - text: Allay
+    color: '#79cdd1'
+    names:
+      - SylentHuntress
+      - "Made with: Animated Java"

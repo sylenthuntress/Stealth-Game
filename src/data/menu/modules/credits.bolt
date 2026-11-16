@@ -1,3 +1,13 @@
+import yaml
+from util:builders import TextBuilder
+
+def make_body(text):
+    return {
+        "type": "minecraft:plain_message",
+        "width": 250,
+        "contents": text
+    }
+
 main_credits = []
 def add_main_credit(name, role):
     main_credits.append(
@@ -11,78 +21,6 @@ def add_main_credit(name, role):
             }
         }
     )
-
-builders = []
-def add_builder(name):
-    if builders:
-        builders.append(", ")
-    if (type(name)) == str:
-        builders.append({"text": name, "color": "gray", "bold": false})
-    else: 
-        builders.append(name)
-
-def add_builders(*names):
-    for name in names:
-        add_builder(name)
-
-testers = []
-def add_tester(name):
-    if testers:
-        testers.append(", ")
-    if (type(name)) == str:
-        testers.append({"text": name, "color": "gray", "bold": false})
-    else: 
-        testers.append(name)
-
-def add_testers(*names):
-    for name in names:
-        add_tester(name)
-
-special_thanks = []
-def add_special(name):
-    if special_thanks:
-        special_thanks.append(", ")
-    if (type(name)) == str:
-        special_thanks.append({"text": name, "color": "gray", "bold": false})
-    else:
-        special_thanks.append(name)
-
-def add_specials(*names):
-    for name in names:
-        add_special(name)
-
-class TextBuilder:
-    def __add_credit__(name, role):
-        credits.append(
-            {
-                "type": "minecraft:plain_message",
-                "contents": {
-                    "translate": "menu.credits.credit",
-                    "with": [name, role]
-                }
-            }
-        )
-
-    def __init__(self, string):
-        self._string = string
-        self._bold = false
-        self._color = "white"
-
-    def color(self, color: str):
-        self._color = color
-        return self
-    
-    def bold(self):
-        self._bold = true
-        return self
-
-    def build(self):
-        Text = {
-            "text": self._string,
-            "color": self._color,
-            "bold": self._bold
-        }
-        return Text
 
 
 add_main_credit(TextBuilder("SylentHuntress")
@@ -100,22 +38,68 @@ add_main_credit(TextBuilder("Command Realm")
     .color("aqua")
     .build())
 
-add_builders("ABeeInATree (partial), ArsonMonkee, FlourCuddle7, TheFleshMug")
-add_testers("FlourCuddle7", "3trobe", "AspN_", "breadpvper", "systolictomneko", "Connop")
-add_special("My Girlfriends <3")
+body = main_credits
+with open('./credits.yml', 'r') as file:
+    credits = yaml.full_load(file)
+    for category in credits.values():
+        contents = []
+        if isinstance(category, list):
+            first = true
+            for credit in category:
+                title = credit.get("text")
+                if not first:
+                    title = "\n\n" + title
 
-credits = main_credits
-credits.append({"type": "minecraft:plain_message", "width": 300, "contents": {"translate": "menu.credits.builders", "color": "blue", "bold": true, "with": [builders]}})
-credits.append({"type": "minecraft:plain_message", "width": 300, "contents": {"translate": "menu.credits.testers", "color": "gold", "bold": true, "with": [testers]}})
-credits.append({"type": "minecraft:plain_message", "width": 300, "contents": {"translate": "menu.credits.special_thanks", "color": "#9F2B68", "bold": true, "with": [special_thanks]}})
+                names = credit.get("names")
+                text = ""
+                first = false
+                if names:
+                    for name in names:
+                       text = text + "\n " + name
+                contents.append([
+                    {
+                        "text": title, 
+                        "color": credit.get("color"),
+                        "bold": true
+                    },
+                    {
+                        "text": text, 
+                        "color": "gray",
+                        "bold": false
+                    }
+                ])
+            body.append(make_body(contents))
+        else:
+            title = category.get("text") + "\n"
+            names = category.get("names")
 
+            text = ""
+            first = true
+            for name in names:
+                if not first:
+                    text = text + "\n "
+                first = false
+                text = text + name
+            contents = [
+                {
+                    "text": "" + title, 
+                    "color": category.get("color"),
+                    "bold": true
+                },
+                {
+                    "text": text, 
+                    "color": "gray",
+                    "bold": false
+                }
+            ]
+            body.append(make_body(contents))
 
 dialog = {
   "type": "minecraft:multi_action",
   "title": {
     "translate": "menu.credits"
   },
-  "body": credits,
+  "body": body,
   "columns": 3,
   "pause": false,
   "actions": [
