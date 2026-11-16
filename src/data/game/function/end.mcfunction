@@ -11,15 +11,14 @@ bossbar set game:time/endgame_timer players
 # Reset player data
 scoreboard players reset * game.player.in_game
 scoreboard players reset * game.player.killer_queue
-execute as @a run function lobby:join_lobby
 
 # Broadcast ending message
-tellraw @a {"text":"\n"}
-tellraw @a {"translate":"game.end","color":"gray","bold":false,"with": [{"translate":"main.game_name","color":"gold","bold":true}]}
+tellraw @a[tag=game.viewing] {"text":"\n"}
+tellraw @a[tag=game.viewing] {"translate":"game.end","color":"gray","bold":false,"with": [{"translate":"main.game_name","color":"gold","bold":true}]}
 execute function game:rankings/broadcast_winner:
     scoreboard players reset #highscore game.player.points
-    execute as @a run scoreboard players operation #highscore game.player.points > @s game.player.points
-    execute as @a if score @s game.player.points = #highscore game.player.points run tag @s add game.winner
+    execute as @a[tag=game.playing] run scoreboard players operation #highscore game.player.points > @s game.player.points
+    execute as @a[tag=game.playing] if score @s game.player.points = #highscore game.player.points run tag @s add game.winner
 
     scoreboard objectives add var.points_decimal dummy
     scoreboard objectives add var.points_whole dummy
@@ -32,10 +31,10 @@ execute function game:rankings/broadcast_winner:
     pointsDecimal["#var"] = points["#highscore"] % 10
     execute unless score #var pointsDecimal matches 0 run tellraw @a {"translate": "game.end.winners", "color": "gold", "with": [{"selector":"@a[tag=game.winner]"}, [{"score": { "name": "#var", "objective": "var.points_whole"}, "color": "red"}, ".", {"score": {"name": "#var", "objective": "var.points_decimal"}, "color": "red"}]]}
     execute if score #var pointsDecimal matches 0 run tellraw @a {"translate": "game.end.winners", "color": "gold", "with": [{"selector":"@a[tag=game.winner]"}, [{"score": { "name": "#var", "objective": "var.points_whole"}, "color": "red"}]]}
-execute if entity @a[tag=!game.winner,scores={game.player.points=1..}] run function game:rankings/broadcast_all:
+execute if entity @a[tag=game.playing,tag=!game.winner,scores={game.player.points=1..}] run function game:rankings/broadcast_all:
     scoreboard players reset #highscore game.player.points
-    execute as @a[tag=!game.winner,scores={game.player.points=1..}] run scoreboard players operation #highscore game.player.points > @s game.player.points
-    execute as @a[tag=!game.winner,scores={game.player.points=1..}] if score @s game.player.points = #highscore game.player.points run tag @s add this.selected
+    execute as @a[tag=game.playing,tag=!game.winner,scores={game.player.points=1..}] run scoreboard players operation #highscore game.player.points > @s game.player.points
+    execute as @a[tag=game.playing,tag=!game.winner,scores={game.player.points=1..}] if score @s game.player.points = #highscore game.player.points run tag @s add this.selected
 
     scoreboard objectives add var.points_decimal dummy
     scoreboard objectives add var.points_whole dummy
@@ -51,10 +50,13 @@ execute if entity @a[tag=!game.winner,scores={game.player.points=1..}] run funct
     
     scoreboard players reset @a[tag=this.selected] game.player.points
     tag @a remove this.selected
-    execute if entity @a[tag=!game.winner,scores={game.player.points=1..}] run function ~/
+    execute if entity @a[tag=game.playing,tag=!game.winner,scores={game.player.points=1..}] run function ~/
     del points
-tellraw @a {"text":"=======================","color":"gold","bold":true}
+tellraw @a[tag=game.viewing] {"text":"=======================","color":"gold","bold":true}
 scoreboard objectives setdisplay sidebar.team.gray
 scoreboard objectives setdisplay sidebar.team.gold
 scoreboard objectives setdisplay sidebar.team.dark_gray
 scoreboard players reset * game.player.points
+
+# Send everyone to lobby
+execute as @a[tag=game.playing,tag=game.viewing] run function lobby:join_lobby

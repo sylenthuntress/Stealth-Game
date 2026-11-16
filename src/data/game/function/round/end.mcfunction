@@ -1,7 +1,7 @@
 import skill:registry as skill_registry
 
 # Reset each player
-execute as @a run function game:round/leave_round:
+execute as @a[tag=game.playing] run function game:round/leave_round:
     effect clear @s
     execute if entity @s[tag=hiding] run function game:gameplay/runner/stop_hiding
     tag @s remove skill.runner.medic.revived
